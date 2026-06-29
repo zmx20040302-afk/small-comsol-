@@ -1,0 +1,763 @@
+{
+  "kind": "comsol_case_card",
+  "title": "起搏器电极模型中添加注释",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\起搏器电极模型中添加注释",
+  "created_at": "2026-06-29T08:49:56.269158+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 3,
+    "kinds": {
+      "comsol_java": 1,
+      "matlab_livelink": 1,
+      "comsol_mph": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [],
+    "geometry": [
+      "cyl1 / Cylinder",
+      "dif1 / Difference",
+      "sel1 / ExplicitSelection",
+      "geom1 / cyl1 / r",
+      "geom1 / cyl1 / h",
+      "geom1 / cyl1 / pos",
+      "geom1 / sel1 / groupcontang"
+    ],
+    "physics": [
+      "ec / ConductiveMedia"
+    ],
+    "materials": [
+      "mat1"
+    ],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [
+      "std1 / stat / Stationary",
+      "std1"
+    ],
+    "results": [
+      "pg1"
+    ],
+    "boundary_conditions": [
+      "cyl1 / r",
+      "cyl1 / h",
+      "cyl1 / pos",
+      "sel1 / groupcontang",
+      "pot1 / V0",
+      "vol1 / showsolutionparams",
+      "vol1 / solutionparams"
+    ],
+    "theory_keywords": [
+      "电磁"
+    ],
+    "source_extracts": [
+      {
+        "name": "pacemaker_electrode_with_annotations.java",
+        "kind": "comsol_java",
+        "evidence_score": 21,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+          "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+          "model.component(\"comp1\").physics().create(\"ec\", \"ConductiveMedia\", \"geom1\");"
+        ],
+        "parameters": [],
+        "geometry": [
+          "cyl1 / Cylinder",
+          "dif1 / Difference",
+          "sel1 / ExplicitSelection",
+          "geom1 / cyl1 / r",
+          "geom1 / cyl1 / h",
+          "geom1 / cyl1 / pos",
+          "geom1 / sel1 / groupcontang"
+        ],
+        "physics": [
+          "ec / ConductiveMedia"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary",
+          "std1"
+        ],
+        "results": [
+          "pg1"
+        ],
+        "boundary_conditions": [
+          "cyl1 / r",
+          "cyl1 / h",
+          "cyl1 / pos",
+          "sel1 / groupcontang",
+          "pot1 / V0",
+          "vol1 / showsolutionparams",
+          "vol1 / solutionparams"
+        ],
+        "theory_keywords": [
+          "电磁"
+        ]
+      },
+      {
+        "name": "pacemaker_electrode_with_annotations.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 17,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.component.create('comp1', true);",
+          "model.component('comp1').geom.create('geom1', 3);",
+          "model.component('comp1').geom('geom1').geomRep('comsol');",
+          "model.component('comp1').mesh.create('mesh1');",
+          "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);"
+        ],
+        "parameters": [],
+        "geometry": [
+          "cyl1 / Cylinder",
+          "dif1 / Difference",
+          "sel1 / ExplicitSelection",
+          "geom1 / cyl1 / r",
+          "geom1 / cyl1 / h",
+          "geom1 / cyl1 / pos",
+          "geom1 / sel1 / groupcontang"
+        ],
+        "physics": [
+          "ec / ConductiveMedia"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary"
+        ],
+        "results": [],
+        "boundary_conditions": [
+          "cyl1 / r",
+          "cyl1 / h",
+          "cyl1 / pos",
+          "sel1 / groupcontang",
+          "pot1 / V0"
+        ],
+        "theory_keywords": [
+          "电磁"
+        ]
+      },
+      {
+        "name": "pacemaker_electrode_with_annotations.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 20,
+      "source_files_with_content": 2,
+      "source_files_checked": 3
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "3 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "pacemaker_electrode_with_annotations.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "pacemaker_electrode_with_annotations.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 0,
+            "physics": [
+              {
+                "tag": "ec",
+                "interface": "ConductiveMedia",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "stat",
+                "type": "Stationary"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup3D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [
+                "cyl1 / Cylinder",
+                "dif1 / Difference",
+                "sel1 / ExplicitSelection",
+                "geom1 / cyl1 / r",
+                "geom1 / cyl1 / h",
+                "geom1 / cyl1 / pos",
+                "geom1 / sel1 / groupcontang"
+              ],
+              "physics": [
+                "ec / ConductiveMedia"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "cyl1 / r",
+                "cyl1 / h",
+                "cyl1 / pos",
+                "sel1 / groupcontang",
+                "pot1 / V0"
+              ],
+              "theory_keywords": [
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.component.create('comp1', true);",
+                "model.component('comp1').geom.create('geom1', 3);",
+                "model.component('comp1').geom('geom1').geomRep('comsol');",
+                "model.component('comp1').mesh.create('mesh1');",
+                "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);",
+                "model.component('comp1').physics.create('ec', 'ConductiveMedia', 'geom1');",
+                "model.study.create('std1');",
+                "model.study('std1').create('stat', 'Stationary');",
+                "model.study('std1').feature('stat').setSolveFor('/physics/ec', true);"
+              ],
+              "evidence_score": 17
+            }
+          },
+          "preview": "function out = model\n%\n% pacemaker_electrode_with_annotations.m\n%\n% Model exported on Jun 13 2026, 18:08 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'8d' '77'}), 'unico"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "pacemaker_electrode_with_annotations.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 0,
+            "physics_create": 1,
+            "study_create": 1,
+            "result_create": 1,
+            "mesh_mentions": 5,
+            "material_mentions": 5,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [],
+              "geometry": [
+                "cyl1 / Cylinder",
+                "dif1 / Difference",
+                "sel1 / ExplicitSelection",
+                "geom1 / cyl1 / r",
+                "geom1 / cyl1 / h",
+                "geom1 / cyl1 / pos",
+                "geom1 / sel1 / groupcontang"
+              ],
+              "physics": [
+                "ec / ConductiveMedia"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary",
+                "std1"
+              ],
+              "results": [
+                "pg1"
+              ],
+              "boundary_conditions": [
+                "cyl1 / r",
+                "cyl1 / h",
+                "cyl1 / pos",
+                "sel1 / groupcontang",
+                "pot1 / V0",
+                "vol1 / showsolutionparams",
+                "vol1 / solutionparams"
+              ],
+              "theory_keywords": [
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+                "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+                "model.component(\"comp1\").physics().create(\"ec\", \"ConductiveMedia\", \"geom1\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+                "model.study(\"std1\").feature(\"stat\").setSolveFor(\"/physics/ec\", true);",
+                "model.component(\"comp1\").geom(\"geom1\").insertFile(\"pacemaker_electrode_geom_sequence.mph\", \"geom1\");"
+              ],
+              "evidence_score": 21
+            }
+          },
+          "preview": "/*\n * pacemaker_electrode_with_annotations.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:08 by COMSOL 6.4.0.293. */\npublic class pacemaker_electrode_with_annotations {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u8d77\\u640f\\u5668\\u7535\\u6781\\u6a21\\u578b\\u4e2d\\u6dfb\\u52a0\\u6ce8\\u91ca\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 3);\n    model.component(\"com"
+        }
+      ],
+      "pdf_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": []
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings.",
+    "No parameter table was detected; parameters may need manual extraction from scripts or PDFs."
+  ],
+  "source_files": [
+    {
+      "name": "pacemaker_electrode_with_annotations.java",
+      "kind": "comsol_java",
+      "size_bytes": 26797,
+      "details": {
+        "model_param_set": 0,
+        "physics_create": 1,
+        "study_create": 1,
+        "result_create": 1,
+        "mesh_mentions": 5,
+        "material_mentions": 5,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [],
+          "geometry": [
+            "cyl1 / Cylinder",
+            "dif1 / Difference",
+            "sel1 / ExplicitSelection",
+            "geom1 / cyl1 / r",
+            "geom1 / cyl1 / h",
+            "geom1 / cyl1 / pos",
+            "geom1 / sel1 / groupcontang"
+          ],
+          "physics": [
+            "ec / ConductiveMedia"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary",
+            "std1"
+          ],
+          "results": [
+            "pg1"
+          ],
+          "boundary_conditions": [
+            "cyl1 / r",
+            "cyl1 / h",
+            "cyl1 / pos",
+            "sel1 / groupcontang",
+            "pot1 / V0",
+            "vol1 / showsolutionparams",
+            "vol1 / solutionparams"
+          ],
+          "theory_keywords": [
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+            "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+            "model.component(\"comp1\").physics().create(\"ec\", \"ConductiveMedia\", \"geom1\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+            "model.study(\"std1\").feature(\"stat\").setSolveFor(\"/physics/ec\", true);",
+            "model.component(\"comp1\").geom(\"geom1\").insertFile(\"pacemaker_electrode_geom_sequence.mph\", \"geom1\");"
+          ],
+          "evidence_score": 21
+        }
+      }
+    },
+    {
+      "name": "pacemaker_electrode_with_annotations.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 26523,
+      "details": {
+        "parameters": 0,
+        "physics": [
+          {
+            "tag": "ec",
+            "interface": "ConductiveMedia",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "stat",
+            "type": "Stationary"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup3D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [
+            "cyl1 / Cylinder",
+            "dif1 / Difference",
+            "sel1 / ExplicitSelection",
+            "geom1 / cyl1 / r",
+            "geom1 / cyl1 / h",
+            "geom1 / cyl1 / pos",
+            "geom1 / sel1 / groupcontang"
+          ],
+          "physics": [
+            "ec / ConductiveMedia"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "cyl1 / r",
+            "cyl1 / h",
+            "cyl1 / pos",
+            "sel1 / groupcontang",
+            "pot1 / V0"
+          ],
+          "theory_keywords": [
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.component.create('comp1', true);",
+            "model.component('comp1').geom.create('geom1', 3);",
+            "model.component('comp1').geom('geom1').geomRep('comsol');",
+            "model.component('comp1').mesh.create('mesh1');",
+            "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);",
+            "model.component('comp1').physics.create('ec', 'ConductiveMedia', 'geom1');",
+            "model.study.create('std1');",
+            "model.study('std1').create('stat', 'Stationary');",
+            "model.study('std1').feature('stat').setSolveFor('/physics/ec', true);"
+          ],
+          "evidence_score": 17
+        }
+      }
+    },
+    {
+      "name": "pacemaker_electrode_with_annotations.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 10151686,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "起搏器电极模型中添加注释",
+    "summary": "已学习 起搏器电极模型中添加注释 的 3 个文件；训练阶段=modeling_logic_learning_ready；参数数量=0；内容证据=20 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification.",
+      "20 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 3 个案例文件；MATLAB=1，Java=1，PDF=0，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 20 条；几何=7，物理场=1，材料=1，网格=1，研究=2，结果=1。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：pacemaker_electrode_with_annotations.java, pacemaker_electrode_with_annotations.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 0 个参数。",
+        "judgement": "暂未发现显式参数，需要人工补充参数范围或从 COMSOL/LiveLink 中进一步导出。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=1。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 起搏器电极模型中添加注释，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "起搏器电极模型中添加注释 modeling_logic_learning_ready MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. No parameter table was detected; parameters may need manual extraction from scripts or PDFs. pacemaker_electrode_with_annotations.java comsol_java pacemaker_electrode_with_annotations.m matlab_livelink pacemaker_electrode_with_annotations.mph comsol_mph",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "75d033093bdb",
+        "title": "起搏器电极",
+        "score": 0.2785,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 5,
+        "files": [
+          "models.mph.pacemaker_electrode.pdf",
+          "models.mph.pacemaker_electrode.zh_CN.pdf",
+          "pacemaker_electrode.java",
+          "pacemaker_electrode.m",
+          "pacemaker_electrode.mph",
+          "pacemaker_electrode.zh_CN.mph",
+          "pacemaker_electrode_geom_sequence.java",
+          "pacemaker_electrode_geom_sequence.m"
+        ]
+      },
+      {
+        "case_id": "9fe80deaaf55",
+        "title": "起搏器电极模型中添加注释",
+        "score": 0.2386,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 3,
+        "files": [
+          "pacemaker_electrode_with_annotations.java",
+          "pacemaker_electrode_with_annotations.m",
+          "pacemaker_electrode_with_annotations.mph"
+        ]
+      },
+      {
+        "case_id": "ab164ee69c52",
+        "title": "管式反应器代理模型 App",
+        "score": 0.1708,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "field_gaps": [],
+        "parameter_count": 86,
+        "files": [
+          "applications.tubular_reactor_surrogate.pdf",
+          "applications.tubular_reactor_surrogate.zh_CN.pdf",
+          "models.mph.tubular_reactor_surrogate.pdf",
+          "models.mph.tubular_reactor_surrogate.zh_CN.pdf",
+          "tubular_reactor_surrogate.java",
+          "tubular_reactor_surrogate.m",
+          "tubular_reactor_surrogate.mph",
+          "tubular_reactor_surrogate.zh_CN.mph"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.1141,
+        "module": "LiveLink_for_Inventor",
+        "document": "IntroductionToLiveLinkForInventor.pdf",
+        "page": 12,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_Inventor\\IntroductionToLiveLinkForInventor.pdf",
+        "excerpt": "12 | \n为模 型添加 物理 场接 口和特 征\n起搏器电极 模型包含了基于您已同步的 CAD 几何的完整分析， 该模型位于 “案\n例库”窗口的 “LiveLink for Inventor > 教程， LiveLink 接口”下。\n如果您想进一步设置带有物理场接口和参数化扫描的完整模型，可以首先添加\n研究电极周围组织中的电流分布所需的物理场接口。\n1 在 “主屏幕”工具栏中单击 “添加物理场” 。\n2 在 “添加物理场”窗口的 “AC/DC > 电场和电流”分支下，右键单击 “电\n流 (ec)” 并选择 “添加到 ‘组件 1’ ” 。\n3 在 “主屏幕”工具栏中单击 “添加研究” 。\n4 在 “添加研究”窗口的 “预设研究”分支下，右键单击 “稳态” ，然后选\n择 “添加研究” 。\n要继续设置模型，您可以遵循起搏器电极 模型的分步操作说明进行操作，跳过\n前五节（标题分别为在 Inventor 中建模、 COMSOL Desktop 、新建、模型向导\n和几何 1） ，从全局定义 一节开始。"
+      },
+      {
+        "score": 0.1123,
+        "module": "LiveLink_for_PTC_Creo_Parametric",
+        "document": "IntroductionToLiveLinkForPTCCreoParametric.pdf",
+        "page": 13,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_PTC_Creo_Parametric\\IntroductionToLiveLinkForPTCCreoParametric.pdf",
+        "excerpt": "| 13\n为模 型添加 物理 场接 口和特 征\n起搏器电极 模型包含了基于您已同步的 CAD 几何的完整分析， 该模型位于 “案\n例库”窗口的 “LiveLink for PTC Creo Parametric > 教程， LiveLink 接口”下。\n如果您想进一步设置带有物理场接口和参数化扫描的完整模型，可以首先添加\n研究电极周围组织中的电流分布所需的物理场接口。\n1 在 “主屏幕”工具栏中单击 “添加物理场” 。\n2 在 “添加物理场”窗口的 “AC/DC > 电场和电流”分支下，右键单击 “电\n流 (ec)” 并选择 “添加到 ‘组件 1’ ” 。\n3 在 “主屏幕”工具栏中单击 “添加研究” 。\n4 在 “添加研究”窗口的 “预设研究”分支下，右键单击 “稳态” ，然后选\n择 “添加研究” 。\n要继续设置模型，您可以遵循起搏器电极 模型的分步操作说明进行操作，跳过\n前三节 （标题分别为新建、模型向导 和几何 1） ，从全局定义 一节开始。"
+      },
+      {
+        "score": 0.1108,
+        "module": "LiveLink_for_Solid_Edge",
+        "document": "IntroductionToLiveLinkForSolidEdge.pdf",
+        "page": 13,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_Solid_Edge\\IntroductionToLiveLinkForSolidEdge.pdf",
+        "excerpt": "| 13\n为模 型添加 物理 场接 口和特 征\n起搏器电极 模型包含了基于您已同步的 CAD 几何的完整分析， 该模型位于 “案\n例库”窗口的 “LiveLink for Solid Edge > 教程， LiveLink 接口”下。\n如果您想进一步设置带有物理场接口和参数化扫描的完整模型，可以首先添加\n研究电极周围组织中的电流分布所需的物理场接口。\n1 在 “主屏幕”工具栏中单击 “添加物理场” 。\n2 在 “添加物理场”窗口的 “AC/DC > 电场和电流”分支下，右键单击 “电\n流 (ec)” 并选择 “添加到 ‘组件 1’ ” 。\n3 在 “主屏幕”工具栏中单击 “添加研究” 。\n4 在 “添加研究”窗口的 “预设研究”分支下，右键单击 “稳态” ，然后选\n择 “添加研究” 。\n要继续设置模型，您可以遵循起搏器电极 模型的分步操作说明进行操作，跳过\n前几节 （标题分别为新建、模型向导 和几何 1） ，从全局定义 一节开始。"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

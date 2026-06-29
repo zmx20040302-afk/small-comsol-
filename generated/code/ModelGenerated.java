@@ -1,0 +1,71 @@
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+
+public class ModelGenerated {
+  public static Model run() {
+    Model model = ModelUtil.create("Model");
+    model.label("model_generated.mph");
+    model.modelNode().create("mod1");
+    // Requirement: 结合已学习案例和文章知识，生成一个 COMSOL 模型构建脚本，要求同时输出 LiveLink MATLAB 代码和 Java 代码，并标注需要人工复核的边界选择、材料和物理场。
+    // Review geometry dimensions, selections, and physics feature names before production runs.
+
+    // Parameters merged from matched case memory and defaults.
+    model.param().set("rho_ref", "2500[kg/m^3]", "Default density; replace with material data");
+    model.param().set("E_ref", "35.1[GPa]", "Default Young modulus; replace with case or article data");
+    model.param().set("k_ref", "1[W/(m*K)]", "Default thermal conductivity if heat transfer is used");
+    model.param().set("hmax", "0.02[m]", "Maximum mesh size");
+    model.param().set("L_ref", "1[m]", "Reference length");
+    model.param().set("W_ref", "1[m]", "Reference width");
+    model.param().set("H_ref", "0.1[m]", "Reference height");
+    model.param().set("N", "20", "Spatial frequency resolution");
+    model.param().set("b", "1.8", "Spectral exponent");
+    model.param().set("D", "2+(3-b)/2", "Fractal dimension");
+
+    model.component().create("comp1", true);
+    model.component("comp1").geom().create("geom1", 2);
+    model.component("comp1").geom("geom1").lengthUnit("m");
+    // TODO: Replace this starter geometry with the learned case geometry sequence when exact dimensions are known.
+    model.component("comp1").geom("geom1").create("r1", "Rectangle");
+    model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"L_ref", "W_ref"});
+    model.component("comp1").geom("geom1").run();
+
+    model.component("comp1").material().create("mat1", "Common");
+    model.component("comp1").material("mat1").label("Review material from learned cases");
+    model.component("comp1").material("mat1").propertyGroup("def").set("density", "rho_ref");
+    model.component("comp1").material("mat1").propertyGroup("def").set("youngsmodulus", "E_ref");
+    model.component("comp1").material("mat1").propertyGroup("def").set("thermalconductivity", "k_ref");
+
+    // Physics inferred from requirement, matched cases, and COMSOL knowledge memory.
+    model.component("comp1").physics().create("ht", "HeatTransferInSolids", "geom1");
+    // Add heat flux, temperature, or convection features after selections are verified.
+    model.component("comp1").physics().create("solid", "SolidMechanics", "geom1");
+    // Add fixed constraints, loads, pore/fracture pressure, and stress boundary conditions.
+    // Boundary selections are placeholders. Inspect generated geometry boundary numbers in COMSOL.
+
+    model.component("comp1").mesh().create("mesh1");
+    model.component("comp1").mesh("mesh1").create("size1", "Size");
+    model.component("comp1").mesh("mesh1").feature("size1").set("custom", true);
+    model.component("comp1").mesh("mesh1").feature("size1").set("hmax", "hmax");
+    model.component("comp1").mesh("mesh1").run();
+
+    model.study().create("std1");
+    model.study("std1").create("stat", "Stationary");
+    model.study("std1").createAutoSequences("all");
+    // model.study("std1").run(); // Enable after boundary selections and loads are verified.
+
+    // Derived values suggested by memory-assisted plan.
+    model.result().numerical().create("gev1", "EvalGlobal");
+    model.result().numerical("gev1").label("primary_quantity_of_interest");
+    model.result().numerical("gev1").set("expr", "1");
+    model.result().numerical().create("gev2", "EvalGlobal");
+    model.result().numerical("gev2").label("validation_error");
+    model.result().numerical("gev2").set("expr", "1");
+
+    return model;
+  }
+
+  public static void main(String[] args) {
+    Model model = run();
+    model.save("model_generated.mph");
+  }
+}

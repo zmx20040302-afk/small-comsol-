@@ -1,0 +1,1239 @@
+{
+  "kind": "comsol_case_card",
+  "title": "飞秒激光加热引起的超快传热",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\飞秒激光加热引起的超快传热",
+  "created_at": "2026-06-29T08:51:20.141447+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 3,
+    "kinds": {
+      "comsol_java": 1,
+      "matlab_livelink": 1,
+      "comsol_mph": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [
+    {
+      "name": "Phi",
+      "value": "10[mJ/cm^2]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "G",
+      "value": "2.6E16[W/m^3/K]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "delta",
+      "value": "15.3[nm]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "C_l",
+      "value": "2.5E6[J/m^3/K]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "C_e",
+      "value": "2.1E4[J/m^3/K]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "K_e",
+      "value": "315[W/m/K]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "rho",
+      "value": "10000[kg/m^3]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_p",
+      "value": "100[fs]",
+      "description": "",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "Phi",
+      "G",
+      "delta",
+      "C_l",
+      "C_e",
+      "K_e",
+      "rho",
+      "t_p"
+    ],
+    "geometry": [
+      "i1 / Interval"
+    ],
+    "physics": [
+      "ht / HeatTransfer",
+      "dode / DomainODE"
+    ],
+    "materials": [],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [
+      "std1 / time / Transient",
+      "std1"
+    ],
+    "results": [],
+    "boundary_conditions": [
+      "hs1 / 1",
+      "solid1 / k_mat",
+      "solid1 / Cp_mat",
+      "solid1 / Cp",
+      "solid1 / rho_mat",
+      "solid1 / rho",
+      "hs1 / Q0",
+      "solid1 / k"
+    ],
+    "theory_keywords": [
+      "传热"
+    ],
+    "source_extracts": [
+      {
+        "name": "ultrafast_heat_transfer.java",
+        "kind": "comsol_java",
+        "evidence_score": 22,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 1);",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+          "model.component(\"comp1\").physics().create(\"dode\", \"DomainODE\", \"geom1\");",
+          "model.component(\"comp1\").physics(\"dode\").prop(\"EquationForm\").set(\"form\", \"Automatic\");"
+        ],
+        "parameters": [
+          "Phi",
+          "G",
+          "delta",
+          "C_l",
+          "C_e",
+          "K_e",
+          "rho",
+          "t_p"
+        ],
+        "geometry": [
+          "i1 / Interval"
+        ],
+        "physics": [
+          "ht / HeatTransfer",
+          "dode / DomainODE"
+        ],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / time / Transient",
+          "std1"
+        ],
+        "results": [],
+        "boundary_conditions": [
+          "hs1 / 1",
+          "solid1 / k_mat",
+          "solid1 / Cp_mat",
+          "solid1 / Cp",
+          "solid1 / rho_mat",
+          "solid1 / rho",
+          "hs1 / Q0"
+        ],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "ultrafast_heat_transfer.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 19,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.component.create('comp1', true);",
+          "model.component('comp1').geom.create('geom1', 1);",
+          "model.component('comp1').mesh.create('mesh1');",
+          "model.component('comp1').physics.create('ht', 'HeatTransfer', 'geom1');",
+          "model.component('comp1').physics.create('dode', 'DomainODE', 'geom1');"
+        ],
+        "parameters": [
+          "Phi",
+          "G",
+          "delta",
+          "C_l",
+          "C_e",
+          "K_e",
+          "rho"
+        ],
+        "geometry": [
+          "i1 / Interval"
+        ],
+        "physics": [
+          "ht / HeatTransfer",
+          "dode / DomainODE"
+        ],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / time / Transient"
+        ],
+        "results": [],
+        "boundary_conditions": [
+          "solid1 / k_mat",
+          "solid1 / k",
+          "solid1 / Cp_mat",
+          "solid1 / Cp",
+          "solid1 / rho_mat",
+          "solid1 / rho"
+        ],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "ultrafast_heat_transfer.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 22,
+      "source_files_with_content": 2,
+      "source_files_checked": 3
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "3 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "ultrafast_heat_transfer.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "ultrafast_heat_transfer.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 40,
+            "physics": [
+              {
+                "tag": "ht",
+                "interface": "HeatTransfer",
+                "geom": "geom1"
+              },
+              {
+                "tag": "dode",
+                "interface": "DomainODE",
+                "geom": "geom1"
+              },
+              {
+                "tag": "ht2",
+                "interface": "HeatTransfer",
+                "geom": "geom1"
+              },
+              {
+                "tag": "c",
+                "interface": "CoefficientFormPDE",
+                "geom": "geom1"
+              },
+              {
+                "tag": "g",
+                "interface": "GeneralFormPDE",
+                "geom": "geom1"
+              },
+              {
+                "tag": "dode2",
+                "interface": "DomainODE",
+                "geom": "geom1"
+              },
+              {
+                "tag": "g2",
+                "interface": "GeneralFormPDE",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "time",
+                "type": "Transient"
+              },
+              {
+                "study": "std1",
+                "tag": "param",
+                "type": "Parametric"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg6",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg9",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg7",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg8",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg6",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "Phi",
+                "G",
+                "delta",
+                "C_l",
+                "C_e",
+                "K_e",
+                "rho"
+              ],
+              "geometry": [
+                "i1 / Interval"
+              ],
+              "physics": [
+                "ht / HeatTransfer",
+                "dode / DomainODE"
+              ],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / time / Transient"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "solid1 / k_mat",
+                "solid1 / k",
+                "solid1 / Cp_mat",
+                "solid1 / Cp",
+                "solid1 / rho_mat",
+                "solid1 / rho"
+              ],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.component.create('comp1', true);",
+                "model.component('comp1').geom.create('geom1', 1);",
+                "model.component('comp1').mesh.create('mesh1');",
+                "model.component('comp1').physics.create('ht', 'HeatTransfer', 'geom1');",
+                "model.component('comp1').physics.create('dode', 'DomainODE', 'geom1');",
+                "model.component('comp1').physics('dode').prop('EquationForm').set('form', 'Automatic');",
+                "model.study.create('std1');",
+                "model.study('std1').create('time', 'Transient');",
+                "model.study('std1').feature('time').setSolveFor('/physics/ht', true);"
+              ],
+              "evidence_score": 19
+            }
+          },
+          "preview": "function out = model\n%\n% ultrafast_heat_transfer.m\n%\n% Model exported on Jun 11 2026, 10:58 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'98' 'de'}), 'unicode')  native2"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "ultrafast_heat_transfer.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 8,
+            "physics_create": 2,
+            "study_create": 1,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "Phi",
+                "G",
+                "delta",
+                "C_l",
+                "C_e",
+                "K_e",
+                "rho",
+                "t_p"
+              ],
+              "geometry": [
+                "i1 / Interval"
+              ],
+              "physics": [
+                "ht / HeatTransfer",
+                "dode / DomainODE"
+              ],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / time / Transient",
+                "std1"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "hs1 / 1",
+                "solid1 / k_mat",
+                "solid1 / Cp_mat",
+                "solid1 / Cp",
+                "solid1 / rho_mat",
+                "solid1 / rho",
+                "hs1 / Q0"
+              ],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 1);",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+                "model.component(\"comp1\").physics().create(\"dode\", \"DomainODE\", \"geom1\");",
+                "model.component(\"comp1\").physics(\"dode\").prop(\"EquationForm\").set(\"form\", \"Automatic\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"time\", \"Transient\");",
+                "model.study(\"std1\").feature(\"time\").setSolveFor(\"/physics/ht\", true);",
+                "model.study(\"std1\").feature(\"time\").setSolveFor(\"/physics/dode\", true);"
+              ],
+              "evidence_score": 22
+            }
+          },
+          "preview": "/*\n * ultrafast_heat_transfer.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 11 2026, 10:58 by COMSOL 6.4.0.293. */\npublic class ultrafast_heat_transfer {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u98de\\u79d2\\u6fc0\\u5149\\u52a0\\u70ed\\u5f15\\u8d77\\u7684\\u8d85\\u5feb\\u4f20\\u70ed\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 1);\n\n    model.component(\"comp1\").mesh().create("
+        }
+      ],
+      "pdf_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": []
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "ultrafast_heat_transfer.java",
+      "kind": "comsol_java",
+      "size_bytes": 178330,
+      "details": {
+        "model_param_set": 8,
+        "physics_create": 2,
+        "study_create": 1,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "Phi",
+            "G",
+            "delta",
+            "C_l",
+            "C_e",
+            "K_e",
+            "rho",
+            "t_p"
+          ],
+          "geometry": [
+            "i1 / Interval"
+          ],
+          "physics": [
+            "ht / HeatTransfer",
+            "dode / DomainODE"
+          ],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / time / Transient",
+            "std1"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "hs1 / 1",
+            "solid1 / k_mat",
+            "solid1 / Cp_mat",
+            "solid1 / Cp",
+            "solid1 / rho_mat",
+            "solid1 / rho",
+            "hs1 / Q0"
+          ],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 1);",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+            "model.component(\"comp1\").physics().create(\"dode\", \"DomainODE\", \"geom1\");",
+            "model.component(\"comp1\").physics(\"dode\").prop(\"EquationForm\").set(\"form\", \"Automatic\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"time\", \"Transient\");",
+            "model.study(\"std1\").feature(\"time\").setSolveFor(\"/physics/ht\", true);",
+            "model.study(\"std1\").feature(\"time\").setSolveFor(\"/physics/dode\", true);"
+          ],
+          "evidence_score": 22
+        }
+      }
+    },
+    {
+      "name": "ultrafast_heat_transfer.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 159265,
+      "details": {
+        "parameters": 40,
+        "physics": [
+          {
+            "tag": "ht",
+            "interface": "HeatTransfer",
+            "geom": "geom1"
+          },
+          {
+            "tag": "dode",
+            "interface": "DomainODE",
+            "geom": "geom1"
+          },
+          {
+            "tag": "ht2",
+            "interface": "HeatTransfer",
+            "geom": "geom1"
+          },
+          {
+            "tag": "c",
+            "interface": "CoefficientFormPDE",
+            "geom": "geom1"
+          },
+          {
+            "tag": "g",
+            "interface": "GeneralFormPDE",
+            "geom": "geom1"
+          },
+          {
+            "tag": "dode2",
+            "interface": "DomainODE",
+            "geom": "geom1"
+          },
+          {
+            "tag": "g2",
+            "interface": "GeneralFormPDE",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "time",
+            "type": "Transient"
+          },
+          {
+            "study": "std1",
+            "tag": "param",
+            "type": "Parametric"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg6",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg9",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg7",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg8",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg6",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "Phi",
+            "G",
+            "delta",
+            "C_l",
+            "C_e",
+            "K_e",
+            "rho"
+          ],
+          "geometry": [
+            "i1 / Interval"
+          ],
+          "physics": [
+            "ht / HeatTransfer",
+            "dode / DomainODE"
+          ],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / time / Transient"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "solid1 / k_mat",
+            "solid1 / k",
+            "solid1 / Cp_mat",
+            "solid1 / Cp",
+            "solid1 / rho_mat",
+            "solid1 / rho"
+          ],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.component.create('comp1', true);",
+            "model.component('comp1').geom.create('geom1', 1);",
+            "model.component('comp1').mesh.create('mesh1');",
+            "model.component('comp1').physics.create('ht', 'HeatTransfer', 'geom1');",
+            "model.component('comp1').physics.create('dode', 'DomainODE', 'geom1');",
+            "model.component('comp1').physics('dode').prop('EquationForm').set('form', 'Automatic');",
+            "model.study.create('std1');",
+            "model.study('std1').create('time', 'Transient');",
+            "model.study('std1').feature('time').setSolveFor('/physics/ht', true);"
+          ],
+          "evidence_score": 19
+        }
+      }
+    },
+    {
+      "name": "ultrafast_heat_transfer.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 21651509,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "飞秒激光加热引起的超快传热",
+    "summary": "已学习 飞秒激光加热引起的超快传热 的 3 个文件；训练阶段=modeling_logic_learning_ready；参数数量=8；内容证据=22 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "8 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification.",
+      "22 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 3 个案例文件；MATLAB=1，Java=1，PDF=0，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 22 条；几何=1，物理场=2，材料=0，网格=1，研究=2，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：ultrafast_heat_transfer.java, ultrafast_heat_transfer.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 8 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=1。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 飞秒激光加热引起的超快传热，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "飞秒激光加热引起的超快传热 modeling_logic_learning_ready MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. Phi 10[mJ/cm^2] G 2.6E16[W/m^3/K] delta 15.3[nm] C_l 2.5E6[J/m^3/K] C_e 2.1E4[J/m^3/K] K_e 315[W/m/K] rho 10000[kg/m^3] t_p 100[fs] ultrafast_heat_transfer.java comsol_java ultrafast_heat_transfer.m matlab_livelink ultrafast_heat_transfer.mph comsol_mph",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "13f740a838a5",
+        "title": "飞秒激光加热引起的超快传热",
+        "score": 0.3373,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "field_gaps": [],
+        "parameter_count": 100,
+        "files": [
+          "ultrafast_heat_transfer.java",
+          "ultrafast_heat_transfer.m",
+          "ultrafast_heat_transfer.mph"
+        ]
+      },
+      {
+        "case_id": "ab164ee69c52",
+        "title": "管式反应器代理模型 App",
+        "score": 0.1653,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "field_gaps": [],
+        "parameter_count": 86,
+        "files": [
+          "applications.tubular_reactor_surrogate.pdf",
+          "applications.tubular_reactor_surrogate.zh_CN.pdf",
+          "models.mph.tubular_reactor_surrogate.pdf",
+          "models.mph.tubular_reactor_surrogate.zh_CN.pdf",
+          "tubular_reactor_surrogate.java",
+          "tubular_reactor_surrogate.m",
+          "tubular_reactor_surrogate.mph",
+          "tubular_reactor_surrogate.zh_CN.mph"
+        ]
+      },
+      {
+        "case_id": "9f934362690f",
+        "title": "热执行器代理模型 App",
+        "score": 0.1494,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 42,
+        "files": [
+          "applications.thermal_actuator_surrogate.pdf",
+          "thermal_actuator_surrogate (1).mph",
+          "thermal_actuator_surrogate.java",
+          "thermal_actuator_surrogate.m",
+          "thermal_actuator_surrogate.mph"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.1096,
+        "module": "LiveLink_for_MATLAB",
+        "document": "IntroductionToLiveLinkForMATLAB.pdf",
+        "page": 5,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_MATLAB\\IntroductionToLiveLinkForMATLAB.pdf",
+        "excerpt": "| 5\n简介\nLiveLink™ for MATLAB® 用于连接 COMSOL Multiphysics® 与 MATLAB® 脚本\n环境。通过使用此功能，您可以执行以下操作：\n• 基于脚本设置模型。 LiveLink™ for MATLAB® 包含 COMSOL ® 应用程序编\n程接口 (API) ，它具有从头开始实施模型所需的所有功能和方法。在\nCOMSOL Desktop ® 中执行的每一项操作都有相应的命令 （在 MATLAB 提\n示符下输入） 。它是一种基于 Java® 编程语言的简化语法，不需要具备任何\nJava 知识。\n• 在模型设置中使用 MATLAB 函数。使用 LiveLink™ 通过 MATLAB 函数来\n设置模型属性。例如，将材料属性或边界条件定义为在求解模型时计算的\nMATLAB 例程。\n• COMSOL Desktop 与 MATLAB 之间共享同一模型的交互建模。在 MATLAB\n提示符下执行的每一项修改都会在 COMSOL Desktop 中同步更新。\n• 利用 MATLAB 的功能来实现程序流程。将 COMSOL API 语法与 MATLAB\n功能结"
+      },
+      {
+        "score": 0.1062,
+        "module": "COMSOL_Multiphysics",
+        "document": "IntroductionToCOMSOLMultiphysics.pdf",
+        "page": 262,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\IntroductionToCOMSOLMultiphysics.pdf",
+        "excerpt": "262 | \n“方法编辑器”中的代码基本相同。不过， “方法编辑器”带有集成的 Java® 编\n译器。\nMATLAB® 模型文件是可编辑的脚本文件（M 文件） ， 类似于 Java® 模型文件，\n供 MATLAB® 使用。这些模型文件 （扩展名为 .m）以 MATLAB® M 文件的形\n式包含 COMSOL 命令序列。 像其他任何 M 文件脚本一样， 您可以在 MATLAB®\n中运行这些模型文件。此外，也可以在文本编辑器中编辑这些文件，以包含其\n他 COMSOL 命令或常用的 MATLAB® 命令。运行 M 文件格式的模型文件时需\n要使用 LiveLink™ for MATLAB®。\n通 过 LiveLink™ for Excel® 许 可 证，您 可 以 将 模 型保 存 为 Visual Basic for\nApplications (VBA) 格式，以便同 Excel® 结合使用。\n编译的 C 代码可通过多种方式链接到模型或 App，包括 “模型开发器”中的\n“外部材料”和 “外部函数”接口以及 “App 开发器”中的 “外部库”接口。\n文件类型 扩展名 导入 导出\nMATLAB"
+      },
+      {
+        "score": 0.1038,
+        "module": "LiveLink_for_MATLAB",
+        "document": "IntroductionToLiveLinkForMATLAB.pdf",
+        "page": 3,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_MATLAB\\IntroductionToLiveLinkForMATLAB.pdf",
+        "excerpt": "| 3\n目录 \n简介. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n启动 COMSOL Multiphysics® with MATLAB®. . . . . . . . . 7\n完整示例：母线板. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n在 MATLAB® 命令行中提取结果. . . . . . . . . . . . . . . . . . . 29\n使用 MATLAB® 脚本实现自动化. . . . . . . . . . . . . . . . . . . 35\n使用外部 MATLAB® 函数. . . . . . . . . . . . . . . . . . . . . . . . . 45"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

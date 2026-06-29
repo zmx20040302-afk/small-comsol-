@@ -1,0 +1,1021 @@
+{
+  "kind": "comsol_case_card",
+  "title": "在轨航天器",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\在轨航天器",
+  "created_at": "2026-06-29T08:42:43.317808+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 3,
+    "kinds": {
+      "comsol_java": 1,
+      "matlab_livelink": 1,
+      "comsol_mph": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [
+    {
+      "name": "NumberOfOrbits",
+      "value": "1",
+      "description": "Number of orbits to run",
+      "source": "java_param_set"
+    },
+    {
+      "name": "a_op",
+      "value": "2500[km]+PlanetRadius",
+      "description": "Semi-major axis",
+      "source": "java_param_set"
+    },
+    {
+      "name": "i_op",
+      "value": "53.5[deg]",
+      "description": "Inclination relative to equatorial plane",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Omega_op",
+      "value": "30[deg]",
+      "description": "Longitude of Ascending Node",
+      "source": "java_param_set"
+    },
+    {
+      "name": "nu0_op",
+      "value": "0[deg]",
+      "description": "True Anomaly at start time (should be >0)",
+      "source": "java_param_set"
+    },
+    {
+      "name": "e_op",
+      "value": "0.7",
+      "description": "Eccentricity",
+      "source": "java_param_set"
+    },
+    {
+      "name": "omega_op",
+      "value": "0",
+      "description": "Argument of Periapsis",
+      "source": "java_param_set"
+    },
+    {
+      "name": "DayOfYear",
+      "value": "25[d]",
+      "description": "Day of Year, for Earth: from day 1, 79[d] = Vernal Equinox",
+      "source": "java_param_set"
+    },
+    {
+      "name": "UTC_0",
+      "value": "13[h]+0[min]+0[s]",
+      "description": "UTC at simulation start time",
+      "source": "java_param_set"
+    },
+    {
+      "name": "UpdateTime",
+      "value": "OrbitPeriod/180",
+      "description": "How often to update ambient loads per orbit",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Reorient_t1",
+      "value": "800[s]",
+      "description": "Optional: Reorientation 1 maneuver time",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Reorient_t2",
+      "value": "1100[s]",
+      "description": "Optional: Reorientation 2 maneuver time",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Declination",
+      "value": "(89+15/60)[deg]",
+      "description": "Optional: Declination of Celestial Point (e.g. Polaris)",
+      "source": "java_param_set"
+    },
+    {
+      "name": "NSUM",
+      "value": "100",
+      "description": "Number of terms to use in Bessel functions for elliptical orbits",
+      "source": "java_param_set"
+    },
+    {
+      "name": "SpaceTemp",
+      "value": "4[K]",
+      "description": "Temperature of Deep Space",
+      "source": "java_param_set"
+    },
+    {
+      "name": "LambdaD",
+      "value": "2.5[um]",
+      "description": "Wavelength division for Solar/Ambient Band",
+      "source": "java_param_set"
+    },
+    {
+      "name": "NumPlanetRings",
+      "value": "8",
+      "description": "Number of rings in distribution of Planet Points",
+      "source": "java_param_set"
+    },
+    {
+      "name": "NumRadialPlanetPoints",
+      "value": "12",
+      "description": "Number of radial points/planet ring",
+      "source": "java_param_set"
+    },
+    {
+      "name": "RotRate_P",
+      "value": "0[deg/s]",
+      "description": "Rotation rate about primary axis",
+      "source": "java_param_set"
+    },
+    {
+      "name": "RotRate_S",
+      "value": "0[deg/s]",
+      "description": "Rotation rate about secondary axis",
+      "source": "java_param_set"
+    },
+    {
+      "name": "RotRate_T",
+      "value": "0[deg/s]",
+      "description": "Rotation rate about third axis",
+      "source": "java_param_set"
+    },
+    {
+      "name": "SunPlotDistance",
+      "value": "1[m]",
+      "description": "Visualization: Distance to the plotted solar arrow",
+      "source": "java_param_set"
+    },
+    {
+      "name": "ViewScale",
+      "value": "0.2",
+      "description": "Parameter that controls display of satellite relative to Planet radius",
+      "source": "java_param_set"
+    },
+    {
+      "name": "RightAscension",
+      "value": "2[h]+41[min]+39[s]",
+      "description": "Optional: Right Ascension of Celestial Point (e.g. Polaris)",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "LatitudeGeo",
+      "value": "(-54.3)[deg]",
+      "description": "Optional: Latitude of Geographic Point (e.g. Tierra del Fuego)",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "LongitudeGeo",
+      "value": "(-67.7)[deg]",
+      "description": "Optional: Longitude of Geographic Point (e.g. Tierra del Fuego)",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "PlanetPlotDistance",
+      "value": "1[m]",
+      "description": "Visualization: Distance to the plotted visualization of Planet",
+      "source": "matlab_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "NumberOfOrbits",
+      "a_op",
+      "i_op",
+      "Omega_op",
+      "nu0_op",
+      "e_op",
+      "omega_op",
+      "DayOfYear",
+      "UTC_0",
+      "UpdateTime",
+      "Reorient_t1",
+      "Reorient_t2",
+      "Declination",
+      "NSUM",
+      "SpaceTemp",
+      "LambdaD",
+      "NumPlanetRings",
+      "NumRadialPlanetPoints",
+      "RotRate_P",
+      "RotRate_S",
+      "RotRate_T",
+      "SunPlotDistance",
+      "ViewScale",
+      "RightAscension",
+      "LatitudeGeo",
+      "LongitudeGeo",
+      "PlanetPlotDistance"
+    ],
+    "geometry": [],
+    "physics": [],
+    "materials": [],
+    "mesh": [],
+    "studies": [],
+    "results": [],
+    "boundary_conditions": [],
+    "theory_keywords": [
+      "传热"
+    ],
+    "source_extracts": [
+      {
+        "name": "orbits_v62.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 28,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "% model.param.loadFile('FILENAME');",
+          "model.param.set('NumberOfOrbits', '1', 'Number of orbits to run');",
+          "model.param.set('a_op', '2500[km]+PlanetRadius', 'Semi-major axis');",
+          "model.param.set('i_op', '53.5[deg]', 'Inclination relative to equatorial plane');",
+          "model.param.set('Omega_op', '30[deg]', 'Longitude of Ascending Node');"
+        ],
+        "parameters": [
+          "NumberOfOrbits",
+          "a_op",
+          "i_op",
+          "Omega_op",
+          "nu0_op",
+          "e_op",
+          "omega_op",
+          "DayOfYear",
+          "UTC_0",
+          "UpdateTime",
+          "Reorient_t1",
+          "Reorient_t2",
+          "Declination",
+          "RightAscension",
+          "LatitudeGeo",
+          "LongitudeGeo",
+          "NSUM",
+          "SpaceTemp",
+          "LambdaD",
+          "NumPlanetRings"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "orbits_v62.java",
+        "kind": "comsol_java",
+        "evidence_score": 24,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5728\\u8f68\\u822a\\u5929\\u5668\");",
+          "// model.param().loadFile(\"FILENAME\");",
+          "model.param().set(\"NumberOfOrbits\", \"1\", \"Number of orbits to run\");",
+          "model.param().set(\"a_op\", \"2500[km]+PlanetRadius\", \"Semi-major axis\");",
+          "model.param().set(\"i_op\", \"53.5[deg]\", \"Inclination relative to equatorial plane\");",
+          "model.param().set(\"Omega_op\", \"30[deg]\", \"Longitude of Ascending Node\");"
+        ],
+        "parameters": [
+          "NumberOfOrbits",
+          "a_op",
+          "i_op",
+          "Omega_op",
+          "nu0_op",
+          "e_op",
+          "omega_op",
+          "DayOfYear",
+          "UTC_0",
+          "UpdateTime",
+          "Reorient_t1",
+          "Reorient_t2",
+          "Declination",
+          "NSUM",
+          "SpaceTemp",
+          "LambdaD",
+          "NumPlanetRings",
+          "NumRadialPlanetPoints",
+          "RotRate_P",
+          "RotRate_S"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "orbits_v62.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 27,
+      "source_files_with_content": 2,
+      "source_files_checked": 3
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "3 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "orbits_v62.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "orbits_v62.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 73,
+            "physics": [
+              {
+                "tag": "ge",
+                "interface": "GlobalEquations",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "time",
+                "type": "Transient"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg6",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg7",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "NumberOfOrbits",
+                "a_op",
+                "i_op",
+                "Omega_op",
+                "nu0_op",
+                "e_op",
+                "omega_op",
+                "DayOfYear",
+                "UTC_0",
+                "UpdateTime",
+                "Reorient_t1",
+                "Reorient_t2",
+                "Declination",
+                "RightAscension",
+                "LatitudeGeo",
+                "LongitudeGeo",
+                "NSUM",
+                "SpaceTemp",
+                "LambdaD",
+                "NumPlanetRings",
+                "NumRadialPlanetPoints",
+                "RotRate_P",
+                "RotRate_S",
+                "RotRate_T",
+                "SunPlotDistance",
+                "PlanetPlotDistance",
+                "ViewScale"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "% model.param.loadFile('FILENAME');",
+                "model.param.set('NumberOfOrbits', '1', 'Number of orbits to run');",
+                "model.param.set('a_op', '2500[km]+PlanetRadius', 'Semi-major axis');",
+                "model.param.set('i_op', '53.5[deg]', 'Inclination relative to equatorial plane');",
+                "model.param.set('Omega_op', '30[deg]', 'Longitude of Ascending Node');",
+                "model.param.set('nu0_op', '0[deg]', 'True Anomaly at start time (should be >0)');",
+                "model.param.set('e_op', '0.7', 'Eccentricity');",
+                "model.param.set('omega_op', '0', 'Argument of Periapsis');",
+                "model.param.set('DayOfYear', '25[d]', 'Day of Year, for Earth: from day 1, 79[d] = Vernal Equinox');"
+              ],
+              "evidence_score": 28
+            }
+          },
+          "preview": "function out = model\n%\n% orbits_v62.m\n%\n% Model exported on Jun 14 2026, 17:12 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'57' '28'}), 'unicode')  native2unicode(hex2d"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "orbits_v62.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 23,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "NumberOfOrbits",
+                "a_op",
+                "i_op",
+                "Omega_op",
+                "nu0_op",
+                "e_op",
+                "omega_op",
+                "DayOfYear",
+                "UTC_0",
+                "UpdateTime",
+                "Reorient_t1",
+                "Reorient_t2",
+                "Declination",
+                "NSUM",
+                "SpaceTemp",
+                "LambdaD",
+                "NumPlanetRings",
+                "NumRadialPlanetPoints",
+                "RotRate_P",
+                "RotRate_S",
+                "RotRate_T",
+                "SunPlotDistance",
+                "ViewScale"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5728\\u8f68\\u822a\\u5929\\u5668\");",
+                "// model.param().loadFile(\"FILENAME\");",
+                "model.param().set(\"NumberOfOrbits\", \"1\", \"Number of orbits to run\");",
+                "model.param().set(\"a_op\", \"2500[km]+PlanetRadius\", \"Semi-major axis\");",
+                "model.param().set(\"i_op\", \"53.5[deg]\", \"Inclination relative to equatorial plane\");",
+                "model.param().set(\"Omega_op\", \"30[deg]\", \"Longitude of Ascending Node\");",
+                "model.param().set(\"nu0_op\", \"0[deg]\", \"True Anomaly at start time (should be >0)\");",
+                "model.param().set(\"e_op\", \"0.7\", \"Eccentricity\");",
+                "model.param().set(\"omega_op\", \"0\", \"Argument of Periapsis\");",
+                "model.param().set(\"DayOfYear\", \"25[d]\", \"Day of Year, for Earth: from day 1, 79[d] = Vernal Equinox\");"
+              ],
+              "evidence_score": 24
+            }
+          },
+          "preview": "/*\n * orbits_v62.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 14 2026, 17:12 by COMSOL 6.4.0.293. */\npublic class orbits_v62 {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5728\\u8f68\\u822a\\u5929\\u5668\");\n\n//    To import content from file, use:\n//    model.param().loadFile(\"FILENAME\");\n    model.param().set(\"NumberOfOrbits\", \"1\", \"Number of orbits to run\");\n    model.param().set(\"a_op\", \"2500[km]+PlanetRadius\", \"Semi-major axis\");\n"
+        }
+      ],
+      "pdf_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": []
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "orbits_v62.java",
+      "kind": "comsol_java",
+      "size_bytes": 358530,
+      "details": {
+        "model_param_set": 23,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "NumberOfOrbits",
+            "a_op",
+            "i_op",
+            "Omega_op",
+            "nu0_op",
+            "e_op",
+            "omega_op",
+            "DayOfYear",
+            "UTC_0",
+            "UpdateTime",
+            "Reorient_t1",
+            "Reorient_t2",
+            "Declination",
+            "NSUM",
+            "SpaceTemp",
+            "LambdaD",
+            "NumPlanetRings",
+            "NumRadialPlanetPoints",
+            "RotRate_P",
+            "RotRate_S",
+            "RotRate_T",
+            "SunPlotDistance",
+            "ViewScale"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5728\\u8f68\\u822a\\u5929\\u5668\");",
+            "// model.param().loadFile(\"FILENAME\");",
+            "model.param().set(\"NumberOfOrbits\", \"1\", \"Number of orbits to run\");",
+            "model.param().set(\"a_op\", \"2500[km]+PlanetRadius\", \"Semi-major axis\");",
+            "model.param().set(\"i_op\", \"53.5[deg]\", \"Inclination relative to equatorial plane\");",
+            "model.param().set(\"Omega_op\", \"30[deg]\", \"Longitude of Ascending Node\");",
+            "model.param().set(\"nu0_op\", \"0[deg]\", \"True Anomaly at start time (should be >0)\");",
+            "model.param().set(\"e_op\", \"0.7\", \"Eccentricity\");",
+            "model.param().set(\"omega_op\", \"0\", \"Argument of Periapsis\");",
+            "model.param().set(\"DayOfYear\", \"25[d]\", \"Day of Year, for Earth: from day 1, 79[d] = Vernal Equinox\");"
+          ],
+          "evidence_score": 24
+        }
+      }
+    },
+    {
+      "name": "orbits_v62.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 322960,
+      "details": {
+        "parameters": 73,
+        "physics": [
+          {
+            "tag": "ge",
+            "interface": "GlobalEquations",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "time",
+            "type": "Transient"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg6",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg7",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "NumberOfOrbits",
+            "a_op",
+            "i_op",
+            "Omega_op",
+            "nu0_op",
+            "e_op",
+            "omega_op",
+            "DayOfYear",
+            "UTC_0",
+            "UpdateTime",
+            "Reorient_t1",
+            "Reorient_t2",
+            "Declination",
+            "RightAscension",
+            "LatitudeGeo",
+            "LongitudeGeo",
+            "NSUM",
+            "SpaceTemp",
+            "LambdaD",
+            "NumPlanetRings",
+            "NumRadialPlanetPoints",
+            "RotRate_P",
+            "RotRate_S",
+            "RotRate_T",
+            "SunPlotDistance",
+            "PlanetPlotDistance",
+            "ViewScale"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "% model.param.loadFile('FILENAME');",
+            "model.param.set('NumberOfOrbits', '1', 'Number of orbits to run');",
+            "model.param.set('a_op', '2500[km]+PlanetRadius', 'Semi-major axis');",
+            "model.param.set('i_op', '53.5[deg]', 'Inclination relative to equatorial plane');",
+            "model.param.set('Omega_op', '30[deg]', 'Longitude of Ascending Node');",
+            "model.param.set('nu0_op', '0[deg]', 'True Anomaly at start time (should be >0)');",
+            "model.param.set('e_op', '0.7', 'Eccentricity');",
+            "model.param.set('omega_op', '0', 'Argument of Periapsis');",
+            "model.param.set('DayOfYear', '25[d]', 'Day of Year, for Earth: from day 1, 79[d] = Vernal Equinox');"
+          ],
+          "evidence_score": 28
+        }
+      }
+    },
+    {
+      "name": "orbits_v62.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 5335460,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "在轨航天器",
+    "summary": "已学习 在轨航天器 的 3 个文件；训练阶段=modeling_logic_learning_ready；参数数量=27；内容证据=27 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "27 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification.",
+      "27 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 3 个案例文件；MATLAB=1，Java=1，PDF=0，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 27 条；几何=0，物理场=0，材料=0，网格=0，研究=0，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：orbits_v62.java, orbits_v62.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 27 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=1。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 在轨航天器，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "在轨航天器 modeling_logic_learning_ready MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. NumberOfOrbits Number of orbits to run 1 a_op Semi-major axis 2500[km]+PlanetRadius i_op Inclination relative to equatorial plane 53.5[deg] Omega_op Longitude of Ascending Node 30[deg] nu0_op True Anomaly at start time (should be >0) 0[deg] e_op Eccentricity 0.7 omega_op Argument of Periapsis 0 DayOfYear Day of Year, for Earth: from day 1, 79[d] = Vernal Equinox 25[d] UTC_0 UTC at simulation start time 13[h]+0[min]+0[s] UpdateTime How often to update ambient loads per orbit OrbitPeriod/180 Reorient_t1 Optional: Reorientation 1 maneuver time 800[s] Reorient_t2 Optional: Reorientation 2 maneuver time 1100[s] Declination Optional: Declination of Celestial Point (e.g. Polaris) (89+15/60)[deg] NSUM Number of terms to use in Bessel functions for elliptical orbits 100 SpaceTemp Temperature of Deep Space 4[K] LambdaD Wavelength division for Solar/Ambient Band 2.5[um] NumPlanetRings Number of rings in distribution of Planet Points 8 NumRadialPlanetPoints Number of radial points/planet ring 12 RotRate_P Rotation rate about primary axis 0[deg/s] RotRate_S Rotation rate about secondary axis 0[deg/s] orbits_v62.java comsol_java orbits_v62.m matlab_livelink orbits_v62.mph comsol_mph",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "032f02588236",
+        "title": "在轨航天器",
+        "score": 0.4304,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "boundary_conditions",
+          "applicability"
+        ],
+        "parameter_count": 88,
+        "files": [
+          "orbits_v62.java",
+          "orbits_v62.m",
+          "orbits_v62.mph"
+        ]
+      },
+      {
+        "case_id": "ab164ee69c52",
+        "title": "管式反应器代理模型 App",
+        "score": 0.1574,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "field_gaps": [],
+        "parameter_count": 86,
+        "files": [
+          "applications.tubular_reactor_surrogate.pdf",
+          "applications.tubular_reactor_surrogate.zh_CN.pdf",
+          "models.mph.tubular_reactor_surrogate.pdf",
+          "models.mph.tubular_reactor_surrogate.zh_CN.pdf",
+          "tubular_reactor_surrogate.java",
+          "tubular_reactor_surrogate.m",
+          "tubular_reactor_surrogate.mph",
+          "tubular_reactor_surrogate.zh_CN.mph"
+        ]
+      },
+      {
+        "case_id": "9f934362690f",
+        "title": "热执行器代理模型 App",
+        "score": 0.1552,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 42,
+        "files": [
+          "applications.thermal_actuator_surrogate.pdf",
+          "thermal_actuator_surrogate (1).mph",
+          "thermal_actuator_surrogate.java",
+          "thermal_actuator_surrogate.m",
+          "thermal_actuator_surrogate.mph"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.2156,
+        "module": "Heat_Transfer_Module",
+        "document": "HeatTransferModuleUsersGuide.pdf",
+        "page": 854,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\Heat_Transfer_Module\\HeatTransferModuleUsersGuide.pdf",
+        "excerpt": "854 | CHAPTER 6: THE HEAT TRANSFER FEATURES\n Argument of periapsis, ω (SI unit: rad, default value 0 deg), and\n True anomaly at start time, ν0 (SI unit: rad, default value 0 deg).\nFigure 6-5: Definition of Keplerian elements.\nEquatorial elliptical is similar to the Elliptical option with the Inclination, i, and the \nLongitude of Ascending Node, Ω , set to zero. In this configuration the Argument of \nperiapsis, ω , is referred to as Longitude of periapsis, π. \nThe Circular option is another optio"
+      },
+      {
+        "score": 0.1719,
+        "module": "Heat_Transfer_Module",
+        "document": "HeatTransferModuleUsersGuide.pdf",
+        "page": 296,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\Heat_Transfer_Module\\HeatTransferModuleUsersGuide.pdf",
+        "excerpt": "296 | CHAPTER 4: THEORY FOR THE HEAT TRANSFER MODULE\nthis plane, and then rotated into the ECS. The orbital plane coordinate system is not \ndefined with User defined selected as Orbit type in the Orbital Parameters feature.\nDefining the Position of the Spacecraft Over Time\nWith any other option than User defined selected as Orbit type in the Orbital Parameters, \nthe orbit is computed using the six Keplerian elements as in Figure 4-28: the \neccentricity (e), argument of periapsis (ω ), semi-major"
+      },
+      {
+        "score": 0.1458,
+        "module": "Heat_Transfer_Module",
+        "document": "HeatTransferModuleUsersGuide.pdf",
+        "page": 853,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\Heat_Transfer_Module\\HeatTransferModuleUsersGuide.pdf",
+        "excerpt": "GLOBAL FEATURES | 853\nSet an expression for the Event indicator, V, that indicates the global quantity that \nshould be monitored. Select either Upper threshold or Lower threshold and set the \nThreshold value, Vth, to define when the implicit event is triggered. \nLOCATION IN USER INTERFACE\nContext Menus\nOrbital Thermal Loads > Implicit Event\nRibbon\nPhysics tab with Orbital Thermal Loads selected:\nGlobal > Implicit Event\nOrbital Parameters\nThis feature contains all the information needed to define"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

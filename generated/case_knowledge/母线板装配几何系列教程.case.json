@@ -1,0 +1,2100 @@
+{
+  "kind": "comsol_case_card",
+  "title": "母线板装配几何系列教程",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\母线板装配几何系列教程",
+  "created_at": "2026-06-29T08:45:17.219570+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 16,
+    "kinds": {
+      "comsol_java": 3,
+      "matlab_livelink": 3,
+      "comsol_mph": 6,
+      "text": 2,
+      "pdf_document": 2
+    },
+    "matlab_files": 3,
+    "java_files": 3,
+    "pdf_files": 2,
+    "mph_files": 6,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [
+    {
+      "name": "c_g_w",
+      "value": "400[mm]",
+      "description": "Cell grid top width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_g_l",
+      "value": "800[mm]",
+      "description": "Cell grid top length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_g_h",
+      "value": "5[mm]",
+      "description": "Cell grid top height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_l",
+      "value": "c_g_l/2-2*s_di",
+      "description": "Spine length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_w",
+      "value": "c_g_w/2-2*s_di",
+      "description": "Spine width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_h",
+      "value": "5[mm]",
+      "description": "Spine height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_di",
+      "value": "10[mm]",
+      "description": "Spine to cell grid boundary distance",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_c_w",
+      "value": "65[mm]",
+      "description": "Spine center width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_c_l",
+      "value": "60[mm]",
+      "description": "Spine cut out length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_c_r",
+      "value": "40[mm]",
+      "description": "Central column radius",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_c_h",
+      "value": "70[mm]",
+      "description": "Central column height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_c_d",
+      "value": "25[mm]",
+      "description": "Central column center hole depth",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_c_h",
+      "value": "6[mm]",
+      "description": "Rod connector height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_c_w",
+      "value": "150[mm]",
+      "description": "Rod connector width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "e_c_h",
+      "value": "10[mm]",
+      "description": "Elbow connector height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "e_c_lx",
+      "value": "60[mm]",
+      "description": "Elbow connector length x-direction",
+      "source": "parameter_table"
+    },
+    {
+      "name": "e_c_lz",
+      "value": "80[mm]",
+      "description": "Elbow connector length z-direction",
+      "source": "parameter_table"
+    },
+    {
+      "name": "a_c_h",
+      "value": "6[mm]",
+      "description": "Angle connector height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "a_c_w",
+      "value": "90[mm]",
+      "description": "Angle connector width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_d",
+      "value": "20[mm]",
+      "description": "Rod diameter",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_l",
+      "value": "160[mm]",
+      "description": "Rod length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "i_b_h",
+      "value": "10[mm]",
+      "description": "Intercell busbar height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "i_b_l",
+      "value": "820[mm]",
+      "description": "Intercell busbar length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "i_b_w",
+      "value": "120[mm]",
+      "description": "Intercell busbar width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "b_di",
+      "value": "20[mm]",
+      "description": "Bolt to boundary distance",
+      "source": "parameter_table"
+    },
+    {
+      "name": "b_r",
+      "value": "6[mm]",
+      "description": "Bolt radius",
+      "source": "parameter_table"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "c_g_w",
+      "c_g_l",
+      "c_g_h",
+      "s_l",
+      "s_w",
+      "s_h",
+      "s_di",
+      "s_c_w",
+      "s_c_l",
+      "c_c_r",
+      "c_c_h",
+      "c_c_d",
+      "r_c_h",
+      "r_c_w",
+      "e_c_h",
+      "e_c_lx",
+      "e_c_lz",
+      "a_c_h",
+      "a_c_w",
+      "r_d",
+      "r_l",
+      "i_b_h",
+      "i_b_l",
+      "i_b_w",
+      "b_di",
+      "b_r"
+    ],
+    "geometry": [
+      "part1 / Part",
+      "blk1 / Block",
+      "wp1 / WorkPlane",
+      "sel1 / ExplicitSelection",
+      "part2 / Part",
+      "part1 / blk1 / size",
+      "part1 / blk1 / base",
+      "part1 / blk1 / pos",
+      "part1 / blk1 / selresult",
+      "part1 / wp1 / unite",
+      "part1 / wp1 / planetype",
+      "part1 / wp1 / displ",
+      "geom1 / blk1 / size",
+      "geom1 / blk1 / base",
+      "geom1 / blk1 / pos",
+      "geom1 / blk1 / contributeto",
+      "geom1 / wp1 / unite",
+      "geom1 / wp1 / planetype",
+      "geom1 / wp1 / displ"
+    ],
+    "physics": [],
+    "materials": [],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [],
+    "results": [],
+    "boundary_conditions": [
+      "blk1 / size",
+      "blk1 / base",
+      "blk1 / pos",
+      "blk1 / selresult",
+      "wp1 / unite",
+      "wp1 / planetype",
+      "wp1 / displ",
+      "blk1 / contributeto"
+    ],
+    "theory_keywords": [],
+    "source_extracts": [
+      {
+        "name": "busbar_assembly_groups_geom_sequence.java",
+        "kind": "comsol_java",
+        "evidence_score": 43,
+        "content_summary": [
+          "* busbar_assembly_groups_geom_sequence.java",
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "public class busbar_assembly_groups_geom_sequence {",
+          "// model.param().loadFile(\"FILENAME\");",
+          "model.param().set(\"c_g_w\", \"400[mm]\", \"Cell grid top width\");",
+          "model.param().set(\"c_g_l\", \"800[mm]\", \"Cell grid top length\");",
+          "model.param().set(\"c_g_h\", \"5[mm]\", \"Cell grid top height\");"
+        ],
+        "parameters": [
+          "c_g_w",
+          "c_g_l",
+          "c_g_h",
+          "s_l",
+          "s_w",
+          "s_h",
+          "s_di",
+          "s_c_w",
+          "s_c_l",
+          "c_c_r",
+          "c_c_h",
+          "c_c_d",
+          "r_c_h",
+          "r_c_w",
+          "e_c_h",
+          "e_c_lx",
+          "e_c_lz",
+          "a_c_h",
+          "a_c_w",
+          "r_d"
+        ],
+        "geometry": [
+          "blk1 / Block",
+          "wp1 / WorkPlane",
+          "geom1 / blk1 / size",
+          "geom1 / blk1 / base",
+          "geom1 / blk1 / pos",
+          "geom1 / blk1 / contributeto",
+          "geom1 / wp1 / unite",
+          "geom1 / wp1 / planetype",
+          "geom1 / wp1 / displ"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "blk1 / size",
+          "blk1 / base",
+          "blk1 / pos",
+          "blk1 / contributeto",
+          "wp1 / unite",
+          "wp1 / planetype",
+          "wp1 / displ"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_groups_geom_sequence.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 39,
+        "content_summary": [
+          "% busbar_assembly_groups_geom_sequence.m",
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "% model.param.loadFile('FILENAME');",
+          "model.param.set('c_g_w', '400[mm]', 'Cell grid top width');",
+          "model.param.set('c_g_l', '800[mm]', 'Cell grid top length');",
+          "model.param.set('c_g_h', '5[mm]', 'Cell grid top height');"
+        ],
+        "parameters": [
+          "c_g_w",
+          "c_g_l",
+          "c_g_h",
+          "s_l",
+          "s_w",
+          "s_h",
+          "s_di",
+          "s_c_w",
+          "s_c_l",
+          "c_c_r",
+          "c_c_h",
+          "c_c_d",
+          "r_c_h",
+          "r_c_w",
+          "e_c_h",
+          "e_c_lx",
+          "e_c_lz",
+          "a_c_h",
+          "a_c_w",
+          "r_d"
+        ],
+        "geometry": [
+          "blk1 / Block",
+          "wp1 / WorkPlane",
+          "geom1 / blk1 / size",
+          "geom1 / blk1 / base",
+          "geom1 / blk1 / pos",
+          "geom1 / blk1 / contributeto",
+          "geom1 / wp1 / unite"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "blk1 / size",
+          "blk1 / base",
+          "blk1 / pos",
+          "blk1 / contributeto",
+          "wp1 / unite"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_sequence.java",
+        "kind": "comsol_java",
+        "evidence_score": 19,
+        "content_summary": [
+          "* busbar_assembly_geom_sequence.java",
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "public class busbar_assembly_geom_sequence {",
+          "model.geom().create(\"part1\", \"Part\", 3);",
+          "model.geom(\"part1\").geomRep(\"comsol\");",
+          "model.geom(\"part1\").label(\"Cell Grid Top\");",
+          "model.geom(\"part1\").lengthUnit(\"mm\");"
+        ],
+        "parameters": [],
+        "geometry": [
+          "part1 / Part",
+          "blk1 / Block",
+          "wp1 / WorkPlane",
+          "sel1 / ExplicitSelection",
+          "part2 / Part",
+          "part1 / blk1 / size",
+          "part1 / blk1 / base",
+          "part1 / blk1 / pos",
+          "part1 / blk1 / selresult",
+          "part1 / wp1 / unite",
+          "part1 / wp1 / planetype",
+          "part1 / wp1 / displ"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "blk1 / size",
+          "blk1 / base",
+          "blk1 / pos",
+          "blk1 / selresult",
+          "wp1 / unite",
+          "wp1 / planetype",
+          "wp1 / displ"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_sequence.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 19,
+        "content_summary": [
+          "% busbar_assembly_geom_sequence.m",
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.geom.create('part1', 'Part', 3);",
+          "model.geom('part1').geomRep('comsol');",
+          "model.geom('part1').label('Cell Grid Top');",
+          "model.geom('part1').lengthUnit('mm');"
+        ],
+        "parameters": [],
+        "geometry": [
+          "part1 / Part",
+          "blk1 / Block",
+          "wp1 / WorkPlane",
+          "sel1 / ExplicitSelection",
+          "part2 / Part",
+          "part1 / blk1 / size",
+          "part1 / blk1 / base",
+          "part1 / blk1 / pos",
+          "part1 / blk1 / selresult",
+          "part1 / wp1 / unite",
+          "part1 / wp1 / planetype",
+          "part1 / wp1 / displ"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "blk1 / size",
+          "blk1 / base",
+          "blk1 / pos",
+          "blk1 / selresult",
+          "wp1 / unite",
+          "wp1 / planetype",
+          "wp1 / displ"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_subsequence.java",
+        "kind": "comsol_java",
+        "evidence_score": 19,
+        "content_summary": [
+          "* busbar_assembly_geom_subsequence.java",
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "public class busbar_assembly_geom_subsequence {",
+          "model.geom().create(\"part1\", \"Part\", 3);",
+          "model.geom(\"part1\").geomRep(\"comsol\");",
+          "model.geom(\"part1\").label(\"Cell Grid Top\");",
+          "model.geom(\"part1\").lengthUnit(\"mm\");"
+        ],
+        "parameters": [],
+        "geometry": [
+          "part1 / Part",
+          "blk1 / Block",
+          "wp1 / WorkPlane",
+          "sel1 / ExplicitSelection",
+          "part2 / Part",
+          "part1 / blk1 / size",
+          "part1 / blk1 / base",
+          "part1 / blk1 / pos",
+          "part1 / blk1 / selresult",
+          "part1 / wp1 / unite",
+          "part1 / wp1 / planetype",
+          "part1 / wp1 / displ"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "blk1 / size",
+          "blk1 / base",
+          "blk1 / pos",
+          "blk1 / selresult",
+          "wp1 / unite",
+          "wp1 / planetype",
+          "wp1 / displ"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_subsequence.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 19,
+        "content_summary": [
+          "% busbar_assembly_geom_subsequence.m",
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.geom.create('part1', 'Part', 3);",
+          "model.geom('part1').geomRep('comsol');",
+          "model.geom('part1').label('Cell Grid Top');",
+          "model.geom('part1').lengthUnit('mm');"
+        ],
+        "parameters": [],
+        "geometry": [
+          "part1 / Part",
+          "blk1 / Block",
+          "wp1 / WorkPlane",
+          "sel1 / ExplicitSelection",
+          "part2 / Part",
+          "part1 / blk1 / size",
+          "part1 / blk1 / base",
+          "part1 / blk1 / pos",
+          "part1 / blk1 / selresult",
+          "part1 / wp1 / unite",
+          "part1 / wp1 / planetype",
+          "part1 / wp1 / displ"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "blk1 / size",
+          "blk1 / base",
+          "blk1 / pos",
+          "blk1 / selresult",
+          "wp1 / unite",
+          "wp1 / planetype",
+          "wp1 / displ"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_sequence.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_sequence.zh_CN.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_subsequence.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_geom_subsequence.zh_CN.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_groups_geom_parameters.txt",
+        "kind": "text",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_groups_geom_parameters.zh_CN.txt",
+        "kind": "text",
+        "evidence_score": 0,
+        "content_summary": [
+          "s_di 10[mm] \"脊线到电池栅格边界的距离\"",
+          "b_di 20[mm] \"螺栓到边界的距离\""
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_groups_geom_sequence.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "busbar_assembly_groups_geom_sequence.zh_CN.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "models.mph.busbar_assembly_geometry.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "models.mph.busbar_assembly_groups_geometry.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 54,
+      "source_files_with_content": 6,
+      "source_files_checked": 16
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "16 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "busbar_assembly_geom_sequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_geom_sequence.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "busbar_assembly_geom_sequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 2,
+            "physics": [],
+            "studies": [],
+            "results": [],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [
+                "part1 / Part",
+                "blk1 / Block",
+                "wp1 / WorkPlane",
+                "sel1 / ExplicitSelection",
+                "part2 / Part",
+                "part1 / blk1 / size",
+                "part1 / blk1 / base",
+                "part1 / blk1 / pos",
+                "part1 / blk1 / selresult",
+                "part1 / wp1 / unite",
+                "part1 / wp1 / planetype",
+                "part1 / wp1 / displ"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "blk1 / size",
+                "blk1 / base",
+                "blk1 / pos",
+                "blk1 / selresult",
+                "wp1 / unite",
+                "wp1 / planetype",
+                "wp1 / displ"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "% busbar_assembly_geom_sequence.m",
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.geom.create('part1', 'Part', 3);",
+                "model.geom('part1').geomRep('comsol');",
+                "model.geom('part1').label('Cell Grid Top');",
+                "model.geom('part1').lengthUnit('mm');",
+                "model.geom('part1').localParam.set('c_g_w_part', '400[mm]');",
+                "model.geom('part1').localParam.descr('c_g_w_part', 'Cell grid top width');",
+                "model.geom('part1').localParam.set('c_g_l_part', '800[mm]');",
+                "model.geom('part1').localParam.descr('c_g_l_part', 'Cell grid top length');"
+              ],
+              "evidence_score": 19
+            }
+          },
+          "preview": "function out = model\n%\n% busbar_assembly_geom_sequence.m\n%\n% Model exported on Jun 13 2026, 18:00 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6b' 'cd'}), 'unicode')  n"
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 0,
+            "physics": [],
+            "studies": [],
+            "results": [],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [
+                "part1 / Part",
+                "blk1 / Block",
+                "wp1 / WorkPlane",
+                "sel1 / ExplicitSelection",
+                "part2 / Part",
+                "part1 / blk1 / size",
+                "part1 / blk1 / base",
+                "part1 / blk1 / pos",
+                "part1 / blk1 / selresult",
+                "part1 / wp1 / unite",
+                "part1 / wp1 / planetype",
+                "part1 / wp1 / displ"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "blk1 / size",
+                "blk1 / base",
+                "blk1 / pos",
+                "blk1 / selresult",
+                "wp1 / unite",
+                "wp1 / planetype",
+                "wp1 / displ"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "% busbar_assembly_geom_subsequence.m",
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.geom.create('part1', 'Part', 3);",
+                "model.geom('part1').geomRep('comsol');",
+                "model.geom('part1').label('Cell Grid Top');",
+                "model.geom('part1').lengthUnit('mm');",
+                "model.geom('part1').localParam.set('c_g_w_part', '400[mm]');",
+                "model.geom('part1').localParam.descr('c_g_w_part', 'Cell grid top width');",
+                "model.geom('part1').localParam.set('c_g_l_part', '800[mm]');",
+                "model.geom('part1').localParam.descr('c_g_l_part', 'Cell grid top length');"
+              ],
+              "evidence_score": 19
+            }
+          },
+          "preview": "function out = model\n%\n% busbar_assembly_geom_subsequence.m\n%\n% Model exported on Jun 13 2026, 18:01 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6b' 'cd'}), 'unicode')"
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 26,
+            "physics": [],
+            "studies": [],
+            "results": [],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "c_g_w",
+                "c_g_l",
+                "c_g_h",
+                "s_l",
+                "s_w",
+                "s_h",
+                "s_di",
+                "s_c_w",
+                "s_c_l",
+                "c_c_r",
+                "c_c_h",
+                "c_c_d",
+                "r_c_h",
+                "r_c_w",
+                "e_c_h",
+                "e_c_lx",
+                "e_c_lz",
+                "a_c_h",
+                "a_c_w",
+                "r_d",
+                "r_l",
+                "i_b_h",
+                "i_b_l",
+                "i_b_w",
+                "b_di",
+                "b_r"
+              ],
+              "geometry": [
+                "blk1 / Block",
+                "wp1 / WorkPlane",
+                "geom1 / blk1 / size",
+                "geom1 / blk1 / base",
+                "geom1 / blk1 / pos",
+                "geom1 / blk1 / contributeto",
+                "geom1 / wp1 / unite"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "blk1 / size",
+                "blk1 / base",
+                "blk1 / pos",
+                "blk1 / contributeto",
+                "wp1 / unite"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "% busbar_assembly_groups_geom_sequence.m",
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "% model.param.loadFile('FILENAME');",
+                "model.param.set('c_g_w', '400[mm]', 'Cell grid top width');",
+                "model.param.set('c_g_l', '800[mm]', 'Cell grid top length');",
+                "model.param.set('c_g_h', '5[mm]', 'Cell grid top height');",
+                "model.param.set('s_l', 'c_g_l/2-2*s_di', 'Spine length');",
+                "model.param.set('s_w', 'c_g_w/2-2*s_di', 'Spine width');",
+                "model.param.set('s_h', '5[mm]', 'Spine height');",
+                "model.param.set('s_di', '10[mm]', 'Spine to cell grid boundary distance');"
+              ],
+              "evidence_score": 39
+            }
+          },
+          "preview": "function out = model\n%\n% busbar_assembly_groups_geom_sequence.m\n%\n% Model exported on Jun 13 2026, 18:03 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6b' 'cd'}), 'unico"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "busbar_assembly_geom_sequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 0,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [],
+              "geometry": [
+                "part1 / Part",
+                "blk1 / Block",
+                "wp1 / WorkPlane",
+                "sel1 / ExplicitSelection",
+                "part2 / Part",
+                "part1 / blk1 / size",
+                "part1 / blk1 / base",
+                "part1 / blk1 / pos",
+                "part1 / blk1 / selresult",
+                "part1 / wp1 / unite",
+                "part1 / wp1 / planetype",
+                "part1 / wp1 / displ"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "blk1 / size",
+                "blk1 / base",
+                "blk1 / pos",
+                "blk1 / selresult",
+                "wp1 / unite",
+                "wp1 / planetype",
+                "wp1 / displ"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "* busbar_assembly_geom_sequence.java",
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "public class busbar_assembly_geom_sequence {",
+                "model.geom().create(\"part1\", \"Part\", 3);",
+                "model.geom(\"part1\").geomRep(\"comsol\");",
+                "model.geom(\"part1\").label(\"Cell Grid Top\");",
+                "model.geom(\"part1\").lengthUnit(\"mm\");",
+                "model.geom(\"part1\").localParam().set(\"c_g_w_part\", \"400[mm]\");",
+                "model.geom(\"part1\").localParam().descr(\"c_g_w_part\", \"Cell grid top width\");",
+                "model.geom(\"part1\").localParam().set(\"c_g_l_part\", \"800[mm]\");",
+                "model.geom(\"part1\").localParam().descr(\"c_g_l_part\", \"Cell grid top length\");"
+              ],
+              "evidence_score": 19
+            }
+          },
+          "preview": "/*\n * busbar_assembly_geom_sequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:00 by COMSOL 6.4.0.293. */\npublic class busbar_assembly_geom_sequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6bcd\\u7ebf\\u677f\\u88c5\\u914d\\u51e0\\u4f55\\u7cfb\\u5217\\u6559\\u7a0b\");\n\n    model.geom().create(\"part1\", \"Part\", 3);\n    model.geom(\"part1\").geomRep(\"comsol\");\n    model.geom(\"part1\").label(\"Cell Grid Top\");\n    model."
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 0,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [],
+              "geometry": [
+                "part1 / Part",
+                "blk1 / Block",
+                "wp1 / WorkPlane",
+                "sel1 / ExplicitSelection",
+                "part2 / Part",
+                "part1 / blk1 / size",
+                "part1 / blk1 / base",
+                "part1 / blk1 / pos",
+                "part1 / blk1 / selresult",
+                "part1 / wp1 / unite",
+                "part1 / wp1 / planetype",
+                "part1 / wp1 / displ"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "blk1 / size",
+                "blk1 / base",
+                "blk1 / pos",
+                "blk1 / selresult",
+                "wp1 / unite",
+                "wp1 / planetype",
+                "wp1 / displ"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "* busbar_assembly_geom_subsequence.java",
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "public class busbar_assembly_geom_subsequence {",
+                "model.geom().create(\"part1\", \"Part\", 3);",
+                "model.geom(\"part1\").geomRep(\"comsol\");",
+                "model.geom(\"part1\").label(\"Cell Grid Top\");",
+                "model.geom(\"part1\").lengthUnit(\"mm\");",
+                "model.geom(\"part1\").localParam().set(\"c_g_w_part\", \"400[mm]\");",
+                "model.geom(\"part1\").localParam().descr(\"c_g_w_part\", \"Cell grid top width\");",
+                "model.geom(\"part1\").localParam().set(\"c_g_l_part\", \"800[mm]\");",
+                "model.geom(\"part1\").localParam().descr(\"c_g_l_part\", \"Cell grid top length\");"
+              ],
+              "evidence_score": 19
+            }
+          },
+          "preview": "/*\n * busbar_assembly_geom_subsequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:01 by COMSOL 6.4.0.293. */\npublic class busbar_assembly_geom_subsequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6bcd\\u7ebf\\u677f\\u88c5\\u914d\\u51e0\\u4f55\\u7cfb\\u5217\\u6559\\u7a0b\");\n\n    model.geom().create(\"part1\", \"Part\", 3);\n    model.geom(\"part1\").geomRep(\"comsol\");\n    model.geom(\"part1\").label(\"Cell Grid Top\");\n    "
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 26,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 3,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "c_g_w",
+                "c_g_l",
+                "c_g_h",
+                "s_l",
+                "s_w",
+                "s_h",
+                "s_di",
+                "s_c_w",
+                "s_c_l",
+                "c_c_r",
+                "c_c_h",
+                "c_c_d",
+                "r_c_h",
+                "r_c_w",
+                "e_c_h",
+                "e_c_lx",
+                "e_c_lz",
+                "a_c_h",
+                "a_c_w",
+                "r_d",
+                "r_l",
+                "i_b_h",
+                "i_b_l",
+                "i_b_w",
+                "b_di",
+                "b_r"
+              ],
+              "geometry": [
+                "blk1 / Block",
+                "wp1 / WorkPlane",
+                "geom1 / blk1 / size",
+                "geom1 / blk1 / base",
+                "geom1 / blk1 / pos",
+                "geom1 / blk1 / contributeto",
+                "geom1 / wp1 / unite",
+                "geom1 / wp1 / planetype",
+                "geom1 / wp1 / displ"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "blk1 / size",
+                "blk1 / base",
+                "blk1 / pos",
+                "blk1 / contributeto",
+                "wp1 / unite",
+                "wp1 / planetype",
+                "wp1 / displ"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "* busbar_assembly_groups_geom_sequence.java",
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "public class busbar_assembly_groups_geom_sequence {",
+                "// model.param().loadFile(\"FILENAME\");",
+                "model.param().set(\"c_g_w\", \"400[mm]\", \"Cell grid top width\");",
+                "model.param().set(\"c_g_l\", \"800[mm]\", \"Cell grid top length\");",
+                "model.param().set(\"c_g_h\", \"5[mm]\", \"Cell grid top height\");",
+                "model.param().set(\"s_l\", \"c_g_l/2-2*s_di\", \"Spine length\");",
+                "model.param().set(\"s_w\", \"c_g_w/2-2*s_di\", \"Spine width\");",
+                "model.param().set(\"s_h\", \"5[mm]\", \"Spine height\");",
+                "model.param().set(\"s_di\", \"10[mm]\", \"Spine to cell grid boundary distance\");"
+              ],
+              "evidence_score": 43
+            }
+          },
+          "preview": "/*\n * busbar_assembly_groups_geom_sequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:03 by COMSOL 6.4.0.293. */\npublic class busbar_assembly_groups_geom_sequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6bcd\\u7ebf\\u677f\\u88c5\\u914d\\u51e0\\u4f55\\u7cfb\\u5217\\u6559\\u7a0b\");\n\n//    To import content from file, use:\n//    model.param().loadFile(\"FILENAME\");\n    model.param().set(\"c_g_w\", \"400[mm]\", \"Cell gr"
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.mph.busbar_assembly_geometry.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": false,
+            "missing_dependency": "pdfplumber",
+            "recommendation": "安装 pypdf 或 pdfplumber 以提取 PDF 文本。",
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            }
+          },
+          "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
+        },
+        {
+          "name": "models.mph.busbar_assembly_groups_geometry.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": false,
+            "missing_dependency": "pdfplumber",
+            "recommendation": "安装 pypdf 或 pdfplumber 以提取 PDF 文本。",
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            }
+          },
+          "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
+        }
+      ],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": [
+        {
+          "name": "busbar_assembly_groups_geom_parameters.txt",
+          "kind": "text",
+          "details": {
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "text",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            }
+          },
+          "preview": "c_g_w 400[mm] \"Cell grid top width\"\nc_g_l 800[mm] \"Cell grid top length\"\nc_g_h 5[mm] \"Cell grid top height\"\ns_l c_g_l/2-2*s_di \"Spine length\"\ns_w c_g_w/2-2*s_di \"Spine width\"\ns_h 5[mm] \"Spine height\"\ns_di 10[mm] \"Spine to cell grid boundary distance\"\ns_c_w 65[mm] \"Spine center width\"\ns_c_l 60[mm] \"Spine cut out length\"\nc_c_r 40[mm] \"Central column radius\"\nc_c_h 70[mm] \"Central column height\"\nc_c_d 25[mm] \"Central column center hole depth\"\nr_c_h 6[mm] \"Rod connector height\"\nr_c_w 150[mm] \"Rod connector width\"\ne_c_h 10[mm] \"Elbow connector height\"\ne_c_lx 60[mm] \"Elbow connector length x-directio"
+        },
+        {
+          "name": "busbar_assembly_groups_geom_parameters.zh_CN.txt",
+          "kind": "text",
+          "details": {
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "text",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "s_di 10[mm] \"脊线到电池栅格边界的距离\"",
+                "b_di 20[mm] \"螺栓到边界的距离\""
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "c_g_w 400[mm] \"电池栅格顶部宽度\"\nc_g_l 800[mm] \"电池栅格顶部长度\"\nc_g_h 5[mm] \"电池栅格顶部高度\"\ns_l c_g_l/2-2*s_di \"脊线长度\"\ns_w c_g_w/2-2*s_di \"脊线宽度\"\ns_h 5[mm] \"脊线高度\"\ns_di 10[mm] \"脊线到电池栅格边界的距离\"\ns_c_w 65[mm] \"脊线中心宽度\"\ns_c_l 60[mm] \"脊线开口长度\"\nc_c_r 40[mm] \"中心柱半径\"\nc_c_h 70[mm] \"中心柱高度\"\nc_c_d 25[mm] \"中心柱中心孔深度\"\nr_c_h 6[mm] \"杆连接器高度\"\nr_c_w 150[mm] \"杆连接器宽度\"\ne_c_h 10[mm] \"弯头连接器高度\"\ne_c_lx 60[mm] \"弯头连接器长度 x 方向\"\ne_c_lz 80[mm] \"弯头连接器长度 z 方向\"\na_c_h 6[mm] \"角形连接器高度\"\na_c_w 90[mm] \"角形连接器宽度\"\nr_d 20[mm] \"杆直径\"\nr_l 160[mm] \"杆长度\"\ni_b_h 10[mm] \"槽间母线板高度\"\ni_b_l 820[mm] \"槽间母线板长度\"\ni_b_w 120[mm] \"槽间母线板宽度\"\nb_di 20[mm] \"螺栓到边界的距离\"\nb_r 6[mm] \"螺栓半径\""
+        }
+      ]
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "busbar_assembly_geom_sequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 56644,
+      "details": {
+        "model_param_set": 0,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [],
+          "geometry": [
+            "part1 / Part",
+            "blk1 / Block",
+            "wp1 / WorkPlane",
+            "sel1 / ExplicitSelection",
+            "part2 / Part",
+            "part1 / blk1 / size",
+            "part1 / blk1 / base",
+            "part1 / blk1 / pos",
+            "part1 / blk1 / selresult",
+            "part1 / wp1 / unite",
+            "part1 / wp1 / planetype",
+            "part1 / wp1 / displ"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "blk1 / size",
+            "blk1 / base",
+            "blk1 / pos",
+            "blk1 / selresult",
+            "wp1 / unite",
+            "wp1 / planetype",
+            "wp1 / displ"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "* busbar_assembly_geom_sequence.java",
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "public class busbar_assembly_geom_sequence {",
+            "model.geom().create(\"part1\", \"Part\", 3);",
+            "model.geom(\"part1\").geomRep(\"comsol\");",
+            "model.geom(\"part1\").label(\"Cell Grid Top\");",
+            "model.geom(\"part1\").lengthUnit(\"mm\");",
+            "model.geom(\"part1\").localParam().set(\"c_g_w_part\", \"400[mm]\");",
+            "model.geom(\"part1\").localParam().descr(\"c_g_w_part\", \"Cell grid top width\");",
+            "model.geom(\"part1\").localParam().set(\"c_g_l_part\", \"800[mm]\");",
+            "model.geom(\"part1\").localParam().descr(\"c_g_l_part\", \"Cell grid top length\");"
+          ],
+          "evidence_score": 19
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_sequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 53035,
+      "details": {
+        "parameters": 2,
+        "physics": [],
+        "studies": [],
+        "results": [],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [
+            "part1 / Part",
+            "blk1 / Block",
+            "wp1 / WorkPlane",
+            "sel1 / ExplicitSelection",
+            "part2 / Part",
+            "part1 / blk1 / size",
+            "part1 / blk1 / base",
+            "part1 / blk1 / pos",
+            "part1 / blk1 / selresult",
+            "part1 / wp1 / unite",
+            "part1 / wp1 / planetype",
+            "part1 / wp1 / displ"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "blk1 / size",
+            "blk1 / base",
+            "blk1 / pos",
+            "blk1 / selresult",
+            "wp1 / unite",
+            "wp1 / planetype",
+            "wp1 / displ"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "% busbar_assembly_geom_sequence.m",
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.geom.create('part1', 'Part', 3);",
+            "model.geom('part1').geomRep('comsol');",
+            "model.geom('part1').label('Cell Grid Top');",
+            "model.geom('part1').lengthUnit('mm');",
+            "model.geom('part1').localParam.set('c_g_w_part', '400[mm]');",
+            "model.geom('part1').localParam.descr('c_g_w_part', 'Cell grid top width');",
+            "model.geom('part1').localParam.set('c_g_l_part', '800[mm]');",
+            "model.geom('part1').localParam.descr('c_g_l_part', 'Cell grid top length');"
+          ],
+          "evidence_score": 19
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_sequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 8247750,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_sequence.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 8288358,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 35059,
+      "details": {
+        "model_param_set": 0,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [],
+          "geometry": [
+            "part1 / Part",
+            "blk1 / Block",
+            "wp1 / WorkPlane",
+            "sel1 / ExplicitSelection",
+            "part2 / Part",
+            "part1 / blk1 / size",
+            "part1 / blk1 / base",
+            "part1 / blk1 / pos",
+            "part1 / blk1 / selresult",
+            "part1 / wp1 / unite",
+            "part1 / wp1 / planetype",
+            "part1 / wp1 / displ"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "blk1 / size",
+            "blk1 / base",
+            "blk1 / pos",
+            "blk1 / selresult",
+            "wp1 / unite",
+            "wp1 / planetype",
+            "wp1 / displ"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "* busbar_assembly_geom_subsequence.java",
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "public class busbar_assembly_geom_subsequence {",
+            "model.geom().create(\"part1\", \"Part\", 3);",
+            "model.geom(\"part1\").geomRep(\"comsol\");",
+            "model.geom(\"part1\").label(\"Cell Grid Top\");",
+            "model.geom(\"part1\").lengthUnit(\"mm\");",
+            "model.geom(\"part1\").localParam().set(\"c_g_w_part\", \"400[mm]\");",
+            "model.geom(\"part1\").localParam().descr(\"c_g_w_part\", \"Cell grid top width\");",
+            "model.geom(\"part1\").localParam().set(\"c_g_l_part\", \"800[mm]\");",
+            "model.geom(\"part1\").localParam().descr(\"c_g_l_part\", \"Cell grid top length\");"
+          ],
+          "evidence_score": 19
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 32898,
+      "details": {
+        "parameters": 0,
+        "physics": [],
+        "studies": [],
+        "results": [],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [
+            "part1 / Part",
+            "blk1 / Block",
+            "wp1 / WorkPlane",
+            "sel1 / ExplicitSelection",
+            "part2 / Part",
+            "part1 / blk1 / size",
+            "part1 / blk1 / base",
+            "part1 / blk1 / pos",
+            "part1 / blk1 / selresult",
+            "part1 / wp1 / unite",
+            "part1 / wp1 / planetype",
+            "part1 / wp1 / displ"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "blk1 / size",
+            "blk1 / base",
+            "blk1 / pos",
+            "blk1 / selresult",
+            "wp1 / unite",
+            "wp1 / planetype",
+            "wp1 / displ"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "% busbar_assembly_geom_subsequence.m",
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.geom.create('part1', 'Part', 3);",
+            "model.geom('part1').geomRep('comsol');",
+            "model.geom('part1').label('Cell Grid Top');",
+            "model.geom('part1').lengthUnit('mm');",
+            "model.geom('part1').localParam.set('c_g_w_part', '400[mm]');",
+            "model.geom('part1').localParam.descr('c_g_w_part', 'Cell grid top width');",
+            "model.geom('part1').localParam.set('c_g_l_part', '800[mm]');",
+            "model.geom('part1').localParam.descr('c_g_l_part', 'Cell grid top length');"
+          ],
+          "evidence_score": 19
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 1661383,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 1698834,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_parameters.txt",
+      "kind": "text",
+      "size_bytes": 985,
+      "details": {
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "text",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_parameters.zh_CN.txt",
+      "kind": "text",
+      "size_bytes": 955,
+      "details": {
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "text",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "s_di 10[mm] \"脊线到电池栅格边界的距离\"",
+            "b_di 20[mm] \"螺栓到边界的距离\""
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 38185,
+      "details": {
+        "model_param_set": 26,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 3,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "c_g_w",
+            "c_g_l",
+            "c_g_h",
+            "s_l",
+            "s_w",
+            "s_h",
+            "s_di",
+            "s_c_w",
+            "s_c_l",
+            "c_c_r",
+            "c_c_h",
+            "c_c_d",
+            "r_c_h",
+            "r_c_w",
+            "e_c_h",
+            "e_c_lx",
+            "e_c_lz",
+            "a_c_h",
+            "a_c_w",
+            "r_d",
+            "r_l",
+            "i_b_h",
+            "i_b_l",
+            "i_b_w",
+            "b_di",
+            "b_r"
+          ],
+          "geometry": [
+            "blk1 / Block",
+            "wp1 / WorkPlane",
+            "geom1 / blk1 / size",
+            "geom1 / blk1 / base",
+            "geom1 / blk1 / pos",
+            "geom1 / blk1 / contributeto",
+            "geom1 / wp1 / unite",
+            "geom1 / wp1 / planetype",
+            "geom1 / wp1 / displ"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "blk1 / size",
+            "blk1 / base",
+            "blk1 / pos",
+            "blk1 / contributeto",
+            "wp1 / unite",
+            "wp1 / planetype",
+            "wp1 / displ"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "* busbar_assembly_groups_geom_sequence.java",
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "public class busbar_assembly_groups_geom_sequence {",
+            "// model.param().loadFile(\"FILENAME\");",
+            "model.param().set(\"c_g_w\", \"400[mm]\", \"Cell grid top width\");",
+            "model.param().set(\"c_g_l\", \"800[mm]\", \"Cell grid top length\");",
+            "model.param().set(\"c_g_h\", \"5[mm]\", \"Cell grid top height\");",
+            "model.param().set(\"s_l\", \"c_g_l/2-2*s_di\", \"Spine length\");",
+            "model.param().set(\"s_w\", \"c_g_w/2-2*s_di\", \"Spine width\");",
+            "model.param().set(\"s_h\", \"5[mm]\", \"Spine height\");",
+            "model.param().set(\"s_di\", \"10[mm]\", \"Spine to cell grid boundary distance\");"
+          ],
+          "evidence_score": 43
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 35877,
+      "details": {
+        "parameters": 26,
+        "physics": [],
+        "studies": [],
+        "results": [],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "c_g_w",
+            "c_g_l",
+            "c_g_h",
+            "s_l",
+            "s_w",
+            "s_h",
+            "s_di",
+            "s_c_w",
+            "s_c_l",
+            "c_c_r",
+            "c_c_h",
+            "c_c_d",
+            "r_c_h",
+            "r_c_w",
+            "e_c_h",
+            "e_c_lx",
+            "e_c_lz",
+            "a_c_h",
+            "a_c_w",
+            "r_d",
+            "r_l",
+            "i_b_h",
+            "i_b_l",
+            "i_b_w",
+            "b_di",
+            "b_r"
+          ],
+          "geometry": [
+            "blk1 / Block",
+            "wp1 / WorkPlane",
+            "geom1 / blk1 / size",
+            "geom1 / blk1 / base",
+            "geom1 / blk1 / pos",
+            "geom1 / blk1 / contributeto",
+            "geom1 / wp1 / unite"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "blk1 / size",
+            "blk1 / base",
+            "blk1 / pos",
+            "blk1 / contributeto",
+            "wp1 / unite"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "% busbar_assembly_groups_geom_sequence.m",
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "% model.param.loadFile('FILENAME');",
+            "model.param.set('c_g_w', '400[mm]', 'Cell grid top width');",
+            "model.param.set('c_g_l', '800[mm]', 'Cell grid top length');",
+            "model.param.set('c_g_h', '5[mm]', 'Cell grid top height');",
+            "model.param.set('s_l', 'c_g_l/2-2*s_di', 'Spine length');",
+            "model.param.set('s_w', 'c_g_w/2-2*s_di', 'Spine width');",
+            "model.param.set('s_h', '5[mm]', 'Spine height');",
+            "model.param.set('s_di', '10[mm]', 'Spine to cell grid boundary distance');"
+          ],
+          "evidence_score": 39
+        }
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 3069424,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 3087411,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "models.mph.busbar_assembly_geometry.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 7056400,
+      "details": {
+        "readable": false,
+        "missing_dependency": "pdfplumber",
+        "recommendation": "安装 pypdf 或 pdfplumber 以提取 PDF 文本。",
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "models.mph.busbar_assembly_groups_geometry.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 6713283,
+      "details": {
+        "readable": false,
+        "missing_dependency": "pdfplumber",
+        "recommendation": "安装 pypdf 或 pdfplumber 以提取 PDF 文本。",
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        }
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "母线板装配几何系列教程",
+    "summary": "已学习 母线板装配几何系列教程 的 16 个文件；训练阶段=modeling_logic_learning_ready；参数数量=26；内容证据=54 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "26 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification.",
+      "54 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 16 个案例文件；MATLAB=3，Java=3，PDF=2，MPH=6，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 54 条；几何=19，物理场=0，材料=0，网格=1，研究=0，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：busbar_assembly_geom_sequence.java, busbar_assembly_geom_sequence.m, busbar_assembly_geom_subsequence.java, busbar_assembly_geom_subsequence.m, busbar_assembly_groups_geom_sequence.java, busbar_assembly_groups_geom_sequence.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 26 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=2，MPH 模型=6。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 母线板装配几何系列教程，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "母线板装配几何系列教程 modeling_logic_learning_ready PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. c_g_w Cell grid top width 400[mm] c_g_l Cell grid top length 800[mm] c_g_h Cell grid top height 5[mm] s_l Spine length c_g_l/2-2*s_di s_w Spine width c_g_w/2-2*s_di s_h Spine height 5[mm] s_di Spine to cell grid boundary distance 10[mm] s_c_w Spine center width 65[mm] s_c_l Spine cut out length 60[mm] c_c_r Central column radius 40[mm] c_c_h Central column height 70[mm] c_c_d Central column center hole depth 25[mm] r_c_h Rod connector height 6[mm] r_c_w Rod connector width 150[mm] e_c_h Elbow connector height 10[mm] e_c_lx Elbow connector length x-direction 60[mm] e_c_lz Elbow connector length z-direction 80[mm] a_c_h Angle connector height 6[mm] a_c_w Angle connector width 90[mm] r_d Rod diameter 20[mm] busbar_assembly_geom_sequence.java comsol_java busbar_assembly_geom_sequence.m matlab_livelink busbar_assembly_geom_sequence.mph comsol_mph busbar_assembly_geom_sequence.zh_CN.mph comsol_mph busbar_assembly_geom_subsequence.java comsol_java busbar_assembly_geom_subsequence.m matlab_livelink busbar_assembly_geom_subsequence.mph comsol_mph busbar_assembly_geom_subsequence.zh_CN.mph comsol_mph busbar_assembly_groups_geom_parameters.txt text busbar_assembly_groups_geom_parameters.zh_CN.txt text busbar_assembly_groups_geom_sequence.java comsol_java busbar_assembly_groups_geom_sequence.m matlab_livelink",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "665213039792",
+        "title": "母线板装配几何系列教程",
+        "score": 0.3448,
+        "root": ".",
+        "supported_fields": [
+          "geometry",
+          "mesh",
+          "results"
+        ],
+        "field_gaps": [
+          "physics",
+          "materials",
+          "boundary_conditions",
+          "solver",
+          "applicability"
+        ],
+        "parameter_count": 26,
+        "files": [
+          "busbar_assembly_geom_sequence.java",
+          "busbar_assembly_geom_sequence.m",
+          "busbar_assembly_geom_sequence.mph",
+          "busbar_assembly_geom_sequence.zh_CN.mph",
+          "busbar_assembly_geom_subsequence.java",
+          "busbar_assembly_geom_subsequence.m",
+          "busbar_assembly_geom_subsequence.mph",
+          "busbar_assembly_geom_subsequence.zh_CN.mph"
+        ]
+      },
+      {
+        "case_id": "ab164ee69c52",
+        "title": "管式反应器代理模型 App",
+        "score": 0.1729,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "field_gaps": [],
+        "parameter_count": 86,
+        "files": [
+          "applications.tubular_reactor_surrogate.pdf",
+          "applications.tubular_reactor_surrogate.zh_CN.pdf",
+          "models.mph.tubular_reactor_surrogate.pdf",
+          "models.mph.tubular_reactor_surrogate.zh_CN.pdf",
+          "tubular_reactor_surrogate.java",
+          "tubular_reactor_surrogate.m",
+          "tubular_reactor_surrogate.mph",
+          "tubular_reactor_surrogate.zh_CN.mph"
+        ]
+      },
+      {
+        "case_id": "9f934362690f",
+        "title": "热执行器代理模型 App",
+        "score": 0.1506,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 42,
+        "files": [
+          "applications.thermal_actuator_surrogate.pdf",
+          "thermal_actuator_surrogate (1).mph",
+          "thermal_actuator_surrogate.java",
+          "thermal_actuator_surrogate.m",
+          "thermal_actuator_surrogate.mph"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.1066,
+        "module": "LiveLink_for_MATLAB",
+        "document": "IntroductionToLiveLinkForMATLAB.pdf",
+        "page": 3,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_MATLAB\\IntroductionToLiveLinkForMATLAB.pdf",
+        "excerpt": "| 3\n目录 \n简介. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n启动 COMSOL Multiphysics® with MATLAB®. . . . . . . . . 7\n完整示例：母线板. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n在 MATLAB® 命令行中提取结果. . . . . . . . . . . . . . . . . . . 29\n使用 MATLAB® 脚本实现自动化. . . . . . . . . . . . . . . . . . . 35\n使用外部 MATLAB® 函数. . . . . . . . . . . . . . . . . . . . . . . . . 45"
+      },
+      {
+        "score": 0.1007,
+        "module": "COMSOL_Multiphysics",
+        "document": "COMSOL_ApplicationBuilderManual.pdf",
+        "page": 177,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\COMSOL_ApplicationBuilderManual.pdf",
+        "excerpt": "THE FORM OBJECTS | 177\nUnder File ( ), double-click the Load from File ( ), Clear Table and Load from File ( ), and Save to File () \nbuttons to add corresponding buttons for loading table data from a file, clearing the table first and then loading \nnew content from a file, and saving table data to a file, respectively. The file types that users can load and save table \ndata to and from include text files (.txt); CSV files (.csv); data files (.dat); and, if the license includes LiveLink™ \nfor \nEx"
+      },
+      {
+        "score": 0.0962,
+        "module": "COMSOL_Multiphysics",
+        "document": "IntroductionToCOMSOLMultiphysics.pdf",
+        "page": 215,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\IntroductionToCOMSOLMultiphysics.pdf",
+        "excerpt": "| 215\n附录 A—— 构建几何\n本节将详细介绍如何使用 COMSOL Multiphysics 内置的几何工具来创建母线板\n几何，其中的分步操作说明将引导您使用 全局定义部分中设置的参数来构造几\n何形状。\n模型树中 “几何”节点下的所有几何操作都按其参数序列 （称为几何序列）进\n行组织，使用参数化尺寸有助于进行各种假设 分析和几何参数化扫描。\n除了使用 COMSOL Multiphysics 提供的工具来构建几何以外，您还可以导入通\n过 CAD 软件创建的几何。可选的 “CAD 导入模块”和 “设计模块”支持多种\nCAD 文件格式。 此外， 多个附加产品还提供了与通用 CAD 软件包的双向接口。\n请参见第 264 页的 “附录 E—— 使用 LiveLink™ 模块实现连接”获取相关列\n表。请注意， “设计模块”除了包含 “CAD 导入模块”中的特征以外，还添加\n了尺寸和约束功能。 “设计模块”还包含额外的三维几何建模操作，例如放样、\n倒圆角、倒斜角、抽取中面和加厚。\n如果您尚未完成这一步，请从第 79 页的 “示例 2：母线板 —— 多物理场模型”\n开始，按照第 39 页的 “模"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

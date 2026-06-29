@@ -1,0 +1,734 @@
+{
+  "kind": "comsol_case_card",
+  "title": "busbar_assembly_geometry",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\母线板装配几何系列教程",
+  "created_at": "2026-06-29T03:03:44.190000+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 16,
+    "kinds": {
+      "comsol_java": 3,
+      "matlab_livelink": 3,
+      "comsol_mph": 6,
+      "text": 2,
+      "pdf_document": 2
+    },
+    "matlab_files": 3,
+    "java_files": 3,
+    "pdf_files": 2,
+    "mph_files": 6,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [
+    {
+      "name": "c_g_w",
+      "value": "400[mm]",
+      "description": "Cell grid top width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_g_l",
+      "value": "800[mm]",
+      "description": "Cell grid top length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_g_h",
+      "value": "5[mm]",
+      "description": "Cell grid top height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_l",
+      "value": "c_g_l/2-2*s_di",
+      "description": "Spine length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_w",
+      "value": "c_g_w/2-2*s_di",
+      "description": "Spine width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_h",
+      "value": "5[mm]",
+      "description": "Spine height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_di",
+      "value": "10[mm]",
+      "description": "Spine to cell grid boundary distance",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_c_w",
+      "value": "65[mm]",
+      "description": "Spine center width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_c_l",
+      "value": "60[mm]",
+      "description": "Spine cut out length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_c_r",
+      "value": "40[mm]",
+      "description": "Central column radius",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_c_h",
+      "value": "70[mm]",
+      "description": "Central column height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c_c_d",
+      "value": "25[mm]",
+      "description": "Central column center hole depth",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_c_h",
+      "value": "6[mm]",
+      "description": "Rod connector height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_c_w",
+      "value": "150[mm]",
+      "description": "Rod connector width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "e_c_h",
+      "value": "10[mm]",
+      "description": "Elbow connector height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "e_c_lx",
+      "value": "60[mm]",
+      "description": "Elbow connector length x-direction",
+      "source": "parameter_table"
+    },
+    {
+      "name": "e_c_lz",
+      "value": "80[mm]",
+      "description": "Elbow connector length z-direction",
+      "source": "parameter_table"
+    },
+    {
+      "name": "a_c_h",
+      "value": "6[mm]",
+      "description": "Angle connector height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "a_c_w",
+      "value": "90[mm]",
+      "description": "Angle connector width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_d",
+      "value": "20[mm]",
+      "description": "Rod diameter",
+      "source": "parameter_table"
+    },
+    {
+      "name": "r_l",
+      "value": "160[mm]",
+      "description": "Rod length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "i_b_h",
+      "value": "10[mm]",
+      "description": "Intercell busbar height",
+      "source": "parameter_table"
+    },
+    {
+      "name": "i_b_l",
+      "value": "820[mm]",
+      "description": "Intercell busbar length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "i_b_w",
+      "value": "120[mm]",
+      "description": "Intercell busbar width",
+      "source": "parameter_table"
+    },
+    {
+      "name": "b_di",
+      "value": "20[mm]",
+      "description": "Bolt to boundary distance",
+      "source": "parameter_table"
+    },
+    {
+      "name": "b_r",
+      "value": "6[mm]",
+      "description": "Bolt radius",
+      "source": "parameter_table"
+    }
+  ],
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "16 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "busbar_assembly_geom_sequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_geom_sequence.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "busbar_assembly_geom_sequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 2,
+            "physics": [],
+            "studies": [],
+            "results": []
+          },
+          "preview": "function out = model\n%\n% busbar_assembly_geom_sequence.m\n%\n% Model exported on Jun 13 2026, 18:00 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6b' 'cd'}), 'unicode')  n"
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 0,
+            "physics": [],
+            "studies": [],
+            "results": []
+          },
+          "preview": "function out = model\n%\n% busbar_assembly_geom_subsequence.m\n%\n% Model exported on Jun 13 2026, 18:01 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6b' 'cd'}), 'unicode')"
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 26,
+            "physics": [],
+            "studies": [],
+            "results": []
+          },
+          "preview": "function out = model\n%\n% busbar_assembly_groups_geom_sequence.m\n%\n% Model exported on Jun 13 2026, 18:03 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6b' 'cd'}), 'unico"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "busbar_assembly_geom_sequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 0,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0
+          },
+          "preview": "/*\n * busbar_assembly_geom_sequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:00 by COMSOL 6.4.0.293. */\npublic class busbar_assembly_geom_sequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6bcd\\u7ebf\\u677f\\u88c5\\u914d\\u51e0\\u4f55\\u7cfb\\u5217\\u6559\\u7a0b\");\n\n    model.geom().create(\"part1\", \"Part\", 3);\n    model.geom(\"part1\").geomRep(\"comsol\");\n    model.geom(\"part1\").label(\"Cell Grid Top\");\n    model."
+        },
+        {
+          "name": "busbar_assembly_geom_subsequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 0,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0
+          },
+          "preview": "/*\n * busbar_assembly_geom_subsequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:01 by COMSOL 6.4.0.293. */\npublic class busbar_assembly_geom_subsequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6bcd\\u7ebf\\u677f\\u88c5\\u914d\\u51e0\\u4f55\\u7cfb\\u5217\\u6559\\u7a0b\");\n\n    model.geom().create(\"part1\", \"Part\", 3);\n    model.geom(\"part1\").geomRep(\"comsol\");\n    model.geom(\"part1\").label(\"Cell Grid Top\");\n    "
+        },
+        {
+          "name": "busbar_assembly_groups_geom_sequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 26,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 3,
+            "material_mentions": 0
+          },
+          "preview": "/*\n * busbar_assembly_groups_geom_sequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:03 by COMSOL 6.4.0.293. */\npublic class busbar_assembly_groups_geom_sequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6bcd\\u7ebf\\u677f\\u88c5\\u914d\\u51e0\\u4f55\\u7cfb\\u5217\\u6559\\u7a0b\");\n\n//    To import content from file, use:\n//    model.param().loadFile(\"FILENAME\");\n    model.param().set(\"c_g_w\", \"400[mm]\", \"Cell gr"
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.mph.busbar_assembly_geometry.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": false,
+            "missing_dependency": "pdfplumber",
+            "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+          },
+          "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
+        },
+        {
+          "name": "models.mph.busbar_assembly_groups_geometry.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": false,
+            "missing_dependency": "pdfplumber",
+            "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+          },
+          "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
+        }
+      ],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": [
+        {
+          "name": "busbar_assembly_groups_geom_parameters.txt",
+          "kind": "text",
+          "details": {},
+          "preview": "c_g_w 400[mm] \"Cell grid top width\"\nc_g_l 800[mm] \"Cell grid top length\"\nc_g_h 5[mm] \"Cell grid top height\"\ns_l c_g_l/2-2*s_di \"Spine length\"\ns_w c_g_w/2-2*s_di \"Spine width\"\ns_h 5[mm] \"Spine height\"\ns_di 10[mm] \"Spine to cell grid boundary distance\"\ns_c_w 65[mm] \"Spine center width\"\ns_c_l 60[mm] \"Spine cut out length\"\nc_c_r 40[mm] \"Central column radius\"\nc_c_h 70[mm] \"Central column height\"\nc_c_d 25[mm] \"Central column center hole depth\"\nr_c_h 6[mm] \"Rod connector height\"\nr_c_w 150[mm] \"Rod connector width\"\ne_c_h 10[mm] \"Elbow connector height\"\ne_c_lx 60[mm] \"Elbow connector length x-directio"
+        },
+        {
+          "name": "busbar_assembly_groups_geom_parameters.zh_CN.txt",
+          "kind": "text",
+          "details": {},
+          "preview": "c_g_w 400[mm] \"电池栅格顶部宽度\"\nc_g_l 800[mm] \"电池栅格顶部长度\"\nc_g_h 5[mm] \"电池栅格顶部高度\"\ns_l c_g_l/2-2*s_di \"脊线长度\"\ns_w c_g_w/2-2*s_di \"脊线宽度\"\ns_h 5[mm] \"脊线高度\"\ns_di 10[mm] \"脊线到电池栅格边界的距离\"\ns_c_w 65[mm] \"脊线中心宽度\"\ns_c_l 60[mm] \"脊线开口长度\"\nc_c_r 40[mm] \"中心柱半径\"\nc_c_h 70[mm] \"中心柱高度\"\nc_c_d 25[mm] \"中心柱中心孔深度\"\nr_c_h 6[mm] \"杆连接器高度\"\nr_c_w 150[mm] \"杆连接器宽度\"\ne_c_h 10[mm] \"弯头连接器高度\"\ne_c_lx 60[mm] \"弯头连接器长度 x 方向\"\ne_c_lz 80[mm] \"弯头连接器长度 z 方向\"\na_c_h 6[mm] \"角形连接器高度\"\na_c_w 90[mm] \"角形连接器宽度\"\nr_d 20[mm] \"杆直径\"\nr_l 160[mm] \"杆长度\"\ni_b_h 10[mm] \"槽间母线板高度\"\ni_b_l 820[mm] \"槽间母线板长度\"\ni_b_w 120[mm] \"槽间母线板宽度\"\nb_di 20[mm] \"螺栓到边界的距离\"\nb_r 6[mm] \"螺栓半径\""
+        }
+      ]
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "The small model should not guess missing settings. It should cite available file evidence, keep unknowns explicit, and generate constrained model scripts only from validated records."
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "Validate or create a constraints JSON.",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "PDF documents should be used to understand the case purpose, modeling sequence, assumptions, and validation targets.",
+    "MATLAB and Java files are executable evidence for the COMSOL model tree and should drive automated script generation.",
+    "MPH files should be summarized through COMSOL with MATLAB before relying on internal model settings.",
+    "Parameter text/script evidence can be converted into constraints and sweep variables.",
+    "No training CSV was found, so numerical surrogate training requires a COMSOL parametric sweep export first."
+  ],
+  "implementation_path": [
+    "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "busbar_assembly_geom_sequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 56644,
+      "details": {
+        "model_param_set": 0,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_sequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 53035,
+      "details": {
+        "parameters": 2,
+        "physics": [],
+        "studies": [],
+        "results": []
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_sequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 8247750,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_sequence.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 8288358,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 35059,
+      "details": {
+        "model_param_set": 0,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 32898,
+      "details": {
+        "parameters": 0,
+        "physics": [],
+        "studies": [],
+        "results": []
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 1661383,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_geom_subsequence.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 1698834,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_parameters.txt",
+      "kind": "text",
+      "size_bytes": 985,
+      "details": {}
+    },
+    {
+      "name": "busbar_assembly_groups_geom_parameters.zh_CN.txt",
+      "kind": "text",
+      "size_bytes": 955,
+      "details": {}
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 38185,
+      "details": {
+        "model_param_set": 26,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 3,
+        "material_mentions": 0
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 35877,
+      "details": {
+        "parameters": 26,
+        "physics": [],
+        "studies": [],
+        "results": []
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 3069424,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "busbar_assembly_groups_geom_sequence.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 3087411,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "models.mph.busbar_assembly_geometry.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 7056400,
+      "details": {
+        "readable": false,
+        "missing_dependency": "pdfplumber",
+        "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+      }
+    },
+    {
+      "name": "models.mph.busbar_assembly_groups_geometry.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 6713283,
+      "details": {
+        "readable": false,
+        "missing_dependency": "pdfplumber",
+        "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "busbar_assembly_geometry",
+    "summary": "Learned 16 files for busbar_assembly_geometry; stage=modeling_logic_learning_ready; parameters=26.",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "Detected parameters can seed a constraints JSON and later become sweep variables for surrogate-model training."
+    ],
+    "reusable_assets": [
+      "26 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification."
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 16 个案例文件；MATLAB=3，Java=3，PDF=2，MPH=6，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：busbar_assembly_geom_sequence.java, busbar_assembly_geom_sequence.m, busbar_assembly_geom_subsequence.java, busbar_assembly_geom_subsequence.m, busbar_assembly_groups_geom_sequence.java, busbar_assembly_groups_geom_sequence.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "3. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 26 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "4. 理论与模型来源判断",
+        "evidence": "PDF 文档=2，MPH 模型=6。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "5. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "6. 记忆库补充",
+        "evidence": "案例标题为 busbar_assembly_geometry，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "After the geometry/modeling logic is verified, run COMSOL parameter sweeps and export CSV training data."
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "busbar_assembly_geometry modeling_logic_learning_ready PDF documents should be used to understand the case purpose, modeling sequence, assumptions, and validation targets. MATLAB and Java files are executable evidence for the COMSOL model tree and should drive automated script generation. MPH files should be summarized through COMSOL with MATLAB before relying on internal model settings. Parameter text/script evidence can be converted into constraints and sweep variables. No training CSV was found, so numerical surrogate training requires a COMSOL parametric sweep export first. Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package. Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. c_g_w Cell grid top width 400[mm] c_g_l Cell grid top length 800[mm] c_g_h Cell grid top height 5[mm] s_l Spine length c_g_l/2-2*s_di s_w Spine width c_g_w/2-2*s_di s_h Spine height 5[mm] s_di Spine to cell grid boundary distance 10[mm] s_c_w Spine center width 65[mm] s_c_l Spine cut out length 60[mm] c_c_r Central column radius 40[mm] c_c_h Central column height 70[mm] c_c_d Central column center hole depth 25[mm] r_c_h Rod connector height 6[mm] r_c_w Rod connector width 150[mm] e_c_h Elbow connector height 10[mm] e_c_lx Elbow connector length x-direction 60[mm] e_c_lz Elbow connector length z-direction 80[mm] a_c_h Angle connector height 6[mm] a_c_w Angle connector width 90[mm] r_d Rod diameter 20[mm] busbar_assembly_geom_sequence.java comsol_java busbar_assembly_geom_sequence.m matlab_livelink busbar_assembly_geom_sequence.mph comsol_mph busbar_assembly_geom_sequence.zh_CN.mph comsol_mph busbar_assembly_geom_subsequence.java comsol_java busbar_assembly_geom_subsequence.m matlab_livelink busbar_assembly_geom_subsequence.mph comsol_mph busbar_assembly_geom_subsequence.zh_CN.mph comsol_mph busbar_assembly_groups_geom_parameters.txt text busbar_assembly_groups_geom_parameters.zh_CN.txt text busbar_assembly_groups_geom_sequence.java comsol_java busbar_assembly_groups_geom_sequence.m matlab_livelink",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "665213039792",
+        "title": "母线板装配几何系列教程",
+        "score": 0.1566,
+        "root": ".",
+        "supported_fields": [
+          "geometry",
+          "mesh",
+          "results"
+        ],
+        "field_gaps": [
+          "physics",
+          "materials",
+          "boundary_conditions",
+          "solver",
+          "applicability"
+        ],
+        "parameter_count": 26,
+        "files": [
+          "busbar_assembly_geom_sequence.java",
+          "busbar_assembly_geom_sequence.m",
+          "busbar_assembly_geom_sequence.mph",
+          "busbar_assembly_geom_sequence.zh_CN.mph",
+          "busbar_assembly_geom_subsequence.java",
+          "busbar_assembly_geom_subsequence.m",
+          "busbar_assembly_geom_subsequence.mph",
+          "busbar_assembly_geom_subsequence.zh_CN.mph"
+        ]
+      },
+      {
+        "case_id": "3b1b771582ca",
+        "title": "使用 Microsoft® Azure 运行 COMSOL® 软件",
+        "score": 0.111,
+        "root": ".",
+        "supported_fields": [],
+        "field_gaps": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "parameter_count": 0,
+        "files": [
+          "COMSOL_CloudServer.parameter.json",
+          "LicenseServerForwardPort.parameter.json",
+          "licenseServerOnAzurePart1.parameter.json",
+          "licenseServerOnAzurePart2.parameter.json",
+          "RunningCOMSOLOnMicrosoftAzure.pdf"
+        ]
+      },
+      {
+        "case_id": "a944d73bc97d",
+        "title": "通过 Amazon EC2™ 运行 COMSOL® 软件",
+        "score": 0.1,
+        "root": ".",
+        "supported_fields": [],
+        "field_gaps": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "parameter_count": 0,
+        "files": [
+          "RunningCOMSOLOnTheAmazonCloud.pdf"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.1392,
+        "module": "COMSOL_Multiphysics",
+        "document": "COMSOL_ProgrammingReferenceManual.pdf",
+        "page": 1196,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\COMSOL_ProgrammingReferenceManual.pdf",
+        "excerpt": "1196 | CHAPTER 8: THE COMSOL FILE FORMATS\nFile Formats\nThe following table shows the file types that COMSOL Multiphysics can read and write and provides pointers to \ndocumentation:\nProduct keys:\n MPH: COMSOL Multiphysics\n ACOUSTICS: The Acoustics Module\n CFD: The CFD Module\n LLMATLAB: COMSOL LiveLink™ for MATLAB®\n LLEXCEL: COMSOL LiveLink™ for Excel®\nTABLE 8-1: FILE FORMATS SUMMARY.\nFILE FORMAT EXTENSION PRODUCT READ WRITE DOCUMENTATION\nCOMSOL Model Files mph MPH Yes Yes N/A\nModel files for Java"
+      },
+      {
+        "score": 0.1387,
+        "module": "COMSOL_Multiphysics",
+        "document": "COMSOL_ApplicationBuilderManual.pdf",
+        "page": 177,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\COMSOL_ApplicationBuilderManual.pdf",
+        "excerpt": "THE FORM OBJECTS | 177\nUnder File ( ), double-click the Load from File ( ), Clear Table and Load from File ( ), and Save to File () \nbuttons to add corresponding buttons for loading table data from a file, clearing the table first and then loading \nnew content from a file, and saving table data to a file, respectively. The file types that users can load and save table \ndata to and from include text files (.txt); CSV files (.csv); data files (.dat); and, if the license includes LiveLink™ \nfor \nEx"
+      },
+      {
+        "score": 0.1377,
+        "module": "COMSOL_Multiphysics",
+        "document": "COMSOL_ReferenceManual.pdf",
+        "page": 797,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\COMSOL_ReferenceManual.pdf",
+        "excerpt": "GEOMETRY OPERATIONS | 797\nSweep\nSelect Sweep ( ) from the Geometry toolbar to sweep one or several faces, edges, or points along a curve, as seen \nin Figure 7-95.\nFigure 7-95: The geometry of a coil generated using two Sweep operations: one for the windings and one for the vertical \nconnection.\nThen enter the properties of the sweep operation using the following sections:\nCROSS SECTION\nFrom the Geometric entity level list, choose the level of the entities to sweep: Boundary, Edge, or Point. Then"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

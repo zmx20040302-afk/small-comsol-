@@ -1,0 +1,358 @@
+{
+  "kind": "comsol_case_card",
+  "title": "light_bulb_geometry",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\灯泡几何",
+  "created_at": "2026-06-29T03:10:35.207025+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 5,
+    "kinds": {
+      "comsol_java": 1,
+      "matlab_livelink": 1,
+      "comsol_mph": 2,
+      "pdf_document": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 1,
+    "mph_files": 2,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [],
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "5 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "light_bulb_geom_sequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "light_bulb_geom_sequence.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "light_bulb_geom_sequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 0,
+            "physics": [],
+            "studies": [],
+            "results": []
+          },
+          "preview": "function out = model\n%\n% light_bulb_geom_sequence.m\n%\n% Model exported on Jun 9 2026, 10:02 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'70' '6f'}), 'unicode')  native2"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "light_bulb_geom_sequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 0,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 0
+          },
+          "preview": "/*\n * light_bulb_geom_sequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 9 2026, 10:02 by COMSOL 6.4.0.293. */\npublic class light_bulb_geom_sequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u706f\\u6ce1\\u51e0\\u4f55\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 2);\n    model.component(\"comp1\").geom(\"geom1\").axisymmetric(true);\n\n    model.component(\"comp1\").mesh().create("
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.mph.light_bulb_geometry.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": false,
+            "missing_dependency": "pdfplumber",
+            "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+          },
+          "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
+        }
+      ],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": []
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "The small model should not guess missing settings. It should cite available file evidence, keep unknowns explicit, and generate constrained model scripts only from validated records."
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "Validate or create a constraints JSON.",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "PDF documents should be used to understand the case purpose, modeling sequence, assumptions, and validation targets.",
+    "MATLAB and Java files are executable evidence for the COMSOL model tree and should drive automated script generation.",
+    "MPH files should be summarized through COMSOL with MATLAB before relying on internal model settings.",
+    "No training CSV was found, so numerical surrogate training requires a COMSOL parametric sweep export first."
+  ],
+  "implementation_path": [
+    "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings.",
+    "No parameter table was detected; parameters may need manual extraction from scripts or PDFs."
+  ],
+  "source_files": [
+    {
+      "name": "light_bulb_geom_sequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 19232,
+      "details": {
+        "model_param_set": 0,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 0
+      }
+    },
+    {
+      "name": "light_bulb_geom_sequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 18367,
+      "details": {
+        "parameters": 0,
+        "physics": [],
+        "studies": [],
+        "results": []
+      }
+    },
+    {
+      "name": "light_bulb_geom_sequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 339555,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "light_bulb_geom_sequence.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 344935,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "models.mph.light_bulb_geometry.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 2457270,
+      "details": {
+        "readable": false,
+        "missing_dependency": "pdfplumber",
+        "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "light_bulb_geometry",
+    "summary": "Learned 5 files for light_bulb_geometry; stage=modeling_logic_learning_ready; parameters=0.",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction."
+    ],
+    "reusable_assets": [
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification."
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 5 个案例文件；MATLAB=1，Java=1，PDF=1，MPH=2，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：light_bulb_geom_sequence.java, light_bulb_geom_sequence.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "3. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 0 个参数。",
+        "judgement": "暂未发现显式参数，需要人工补充参数范围或从 COMSOL/LiveLink 中进一步导出。"
+      },
+      {
+        "step": "4. 理论与模型来源判断",
+        "evidence": "PDF 文档=1，MPH 模型=2。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "5. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "6. 记忆库补充",
+        "evidence": "案例标题为 light_bulb_geometry，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "After the geometry/modeling logic is verified, run COMSOL parameter sweeps and export CSV training data."
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "light_bulb_geometry modeling_logic_learning_ready PDF documents should be used to understand the case purpose, modeling sequence, assumptions, and validation targets. MATLAB and Java files are executable evidence for the COMSOL model tree and should drive automated script generation. MPH files should be summarized through COMSOL with MATLAB before relying on internal model settings. No training CSV was found, so numerical surrogate training requires a COMSOL parametric sweep export first. Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package. Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. No parameter table was detected; parameters may need manual extraction from scripts or PDFs. light_bulb_geom_sequence.java comsol_java light_bulb_geom_sequence.m matlab_livelink light_bulb_geom_sequence.mph comsol_mph light_bulb_geom_sequence.zh_CN.mph comsol_mph models.mph.light_bulb_geometry.pdf pdf_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "3b1b771582ca",
+        "title": "使用 Microsoft® Azure 运行 COMSOL® 软件",
+        "score": 0.1432,
+        "root": ".",
+        "supported_fields": [],
+        "field_gaps": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "parameter_count": 0,
+        "files": [
+          "COMSOL_CloudServer.parameter.json",
+          "LicenseServerForwardPort.parameter.json",
+          "licenseServerOnAzurePart1.parameter.json",
+          "licenseServerOnAzurePart2.parameter.json",
+          "RunningCOMSOLOnMicrosoftAzure.pdf"
+        ]
+      },
+      {
+        "case_id": "a944d73bc97d",
+        "title": "通过 Amazon EC2™ 运行 COMSOL® 软件",
+        "score": 0.1203,
+        "root": ".",
+        "supported_fields": [],
+        "field_gaps": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "parameter_count": 0,
+        "files": [
+          "RunningCOMSOLOnTheAmazonCloud.pdf"
+        ]
+      },
+      {
+        "case_id": "9f934362690f",
+        "title": "热执行器代理模型 App",
+        "score": 0.0854,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 42,
+        "files": [
+          "applications.thermal_actuator_surrogate.pdf",
+          "thermal_actuator_surrogate (1).mph",
+          "thermal_actuator_surrogate.java",
+          "thermal_actuator_surrogate.m",
+          "thermal_actuator_surrogate.mph"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.174,
+        "module": "LiveLink_for_MATLAB",
+        "document": "LiveLinkForMATLABUsersGuide.pdf",
+        "page": 198,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_MATLAB\\LiveLinkForMATLABUsersGuide.pdf",
+        "excerpt": "198 | CHAPTER 4: WORKING WITH MODELS\nRunning Models in a Loop\nA common use of LiveLink™ for MATLAB® is to run models in a loop. MATLAB \nprovides several functionalities to run loops, including conditional statements and \nerror handling, and this section shows how to use that functionality together with the \nCOMSOL API syntax to run COMSOL Multiphysics\n® models in loops.\nIn this section:\n The Parametric Sweep Node\n Running Model in a Loop Using the MATLAB\n® Tools\nThe Parametric Sweep Node\nUsing t"
+      },
+      {
+        "score": 0.1708,
+        "module": "COMSOL_Multiphysics",
+        "document": "COMSOL_ReferenceManual.pdf",
+        "page": 1597,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\COMSOL_ReferenceManual.pdf",
+        "excerpt": "INTRODUCTION TO SOLVERS AND STUDIES | 1597\nADVANCED SETTINGS\nSelect the Accumulated probe table checkbox to activate the accumulation of probe updates for both the variation \non the solver level (time, frequency, and so forth) and on the parametric sweep level. From the Output table list, \nchoose New to create a new table, or choose any existing table. The Use all probes checkbox is selected by default \nto accumulate all the model probes in the table. If you clear this checkbox, the probes selec"
+      },
+      {
+        "score": 0.1689,
+        "module": "COMSOL_Multiphysics",
+        "document": "COMSOL_ReferenceManual.pdf",
+        "page": 1591,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\COMSOL_ReferenceManual.pdf",
+        "excerpt": "INTRODUCTION TO SOLVERS AND STUDIES | 1591\n Making a parametric sweep of another study (here the parametric sweep uses the study step in Study 2):\n Using another study as a precomputing step (here the Eigenfrequency study step in Study 1 runs as a \nprecomputing step in Study 2):\nThe study reference node’s Settings window includes the following section:\nSTUDY REFERENCE\nFrom the Study reference list, select any available study in the model, except the one that contains the study \nreference node it"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

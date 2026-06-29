@@ -1,0 +1,1242 @@
+{
+  "kind": "comsol_case_card",
+  "title": "求解模型后保存数据的作业序列6.3",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\求解模型后保存数据的作业序列6.3",
+  "created_at": "2026-06-29T08:45:34.872085+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 6,
+    "kinds": {
+      "comsol_java": 2,
+      "matlab_livelink": 2,
+      "comsol_mph": 2
+    },
+    "matlab_files": 2,
+    "java_files": 2,
+    "pdf_files": 0,
+    "mph_files": 2,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [
+    {
+      "name": "c0",
+      "value": "27[mol/m^3]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "D",
+      "value": "4.5e-9[m^2/s]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "h_max",
+      "value": "0.1[mm]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "U_mean",
+      "value": "10[mm/s]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "a",
+      "value": "1.4[mm]",
+      "description": "",
+      "source": "java_param_set"
+    },
+    {
+      "name": "alpha",
+      "value": "36*U_mean/a^4",
+      "description": "",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "c0",
+      "D",
+      "h_max",
+      "U_mean",
+      "a",
+      "alpha"
+    ],
+    "geometry": [],
+    "physics": [
+      "spf / LaminarFlow",
+      "tds / DilutedSpecies"
+    ],
+    "materials": [
+      "mat1"
+    ],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [
+      "std1 / stat / Stationary",
+      "std1"
+    ],
+    "results": [],
+    "boundary_conditions": [],
+    "theory_keywords": [
+      "流体"
+    ],
+    "source_extracts": [
+      {
+        "name": "micromixer_job_sequence.java",
+        "kind": "comsol_java",
+        "evidence_score": 13,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+          "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+          "model.component(\"comp1\").physics().create(\"spf\", \"LaminarFlow\", \"geom1\");"
+        ],
+        "parameters": [
+          "c0",
+          "D",
+          "h_max",
+          "U_mean",
+          "a",
+          "alpha"
+        ],
+        "geometry": [],
+        "physics": [
+          "spf / LaminarFlow",
+          "tds / DilutedSpecies"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary",
+          "std1"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "流体"
+        ]
+      },
+      {
+        "name": "micromixer_parametric_sweep.java",
+        "kind": "comsol_java",
+        "evidence_score": 13,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+          "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+          "model.component(\"comp1\").physics().create(\"spf\", \"LaminarFlow\", \"geom1\");"
+        ],
+        "parameters": [
+          "c0",
+          "D",
+          "h_max",
+          "U_mean",
+          "a",
+          "alpha"
+        ],
+        "geometry": [],
+        "physics": [
+          "spf / LaminarFlow",
+          "tds / DilutedSpecies"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary",
+          "std1"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "流体"
+        ]
+      },
+      {
+        "name": "micromixer_job_sequence.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 11,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.component.create('comp1', true);",
+          "model.component('comp1').geom.create('geom1', 3);",
+          "model.component('comp1').geom('geom1').geomRep('comsol');",
+          "model.component('comp1').mesh.create('mesh1');",
+          "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);"
+        ],
+        "parameters": [
+          "c0",
+          "D",
+          "h_max",
+          "U_mean",
+          "a",
+          "alpha"
+        ],
+        "geometry": [],
+        "physics": [
+          "spf / LaminarFlow",
+          "tds / DilutedSpecies"
+        ],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "流体"
+        ]
+      },
+      {
+        "name": "micromixer_parametric_sweep.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 11,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.component.create('comp1', true);",
+          "model.component('comp1').geom.create('geom1', 3);",
+          "model.component('comp1').geom('geom1').geomRep('comsol');",
+          "model.component('comp1').mesh.create('mesh1');",
+          "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);"
+        ],
+        "parameters": [
+          "c0",
+          "D",
+          "h_max",
+          "U_mean",
+          "a",
+          "alpha"
+        ],
+        "geometry": [],
+        "physics": [
+          "spf / LaminarFlow",
+          "tds / DilutedSpecies"
+        ],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "流体"
+        ]
+      },
+      {
+        "name": "micromixer_job_sequence.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "micromixer_parametric_sweep.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 12,
+      "source_files_with_content": 4,
+      "source_files_checked": 6
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "6 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "micromixer_job_sequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "micromixer_parametric_sweep.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "micromixer_job_sequence.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 6,
+            "physics": [
+              {
+                "tag": "spf",
+                "interface": "LaminarFlow",
+                "geom": "geom1"
+              },
+              {
+                "tag": "tds",
+                "interface": "DilutedSpecies",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "stat",
+                "type": "Stationary"
+              },
+              {
+                "study": "std1",
+                "tag": "stat2",
+                "type": "Stationary"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "c0",
+                "D",
+                "h_max",
+                "U_mean",
+                "a",
+                "alpha"
+              ],
+              "geometry": [],
+              "physics": [
+                "spf / LaminarFlow",
+                "tds / DilutedSpecies"
+              ],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "流体"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.component.create('comp1', true);",
+                "model.component('comp1').geom.create('geom1', 3);",
+                "model.component('comp1').geom('geom1').geomRep('comsol');",
+                "model.component('comp1').mesh.create('mesh1');",
+                "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);",
+                "model.component('comp1').physics.create('spf', 'LaminarFlow', 'geom1');",
+                "model.component('comp1').physics.create('tds', 'DilutedSpecies', 'geom1');",
+                "model.study.create('std1');",
+                "model.study('std1').create('stat', 'Stationary');"
+              ],
+              "evidence_score": 11
+            }
+          },
+          "preview": "function out = model\n%\n% micromixer_job_sequence.m\n%\n% Model exported on Jun 13 2026, 18:13 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6c' '42'}), 'unicode')  native2"
+        },
+        {
+          "name": "micromixer_parametric_sweep.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 7,
+            "physics": [
+              {
+                "tag": "spf",
+                "interface": "LaminarFlow",
+                "geom": "geom1"
+              },
+              {
+                "tag": "tds",
+                "interface": "DilutedSpecies",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "stat",
+                "type": "Stationary"
+              },
+              {
+                "study": "std1",
+                "tag": "stat2",
+                "type": "Stationary"
+              },
+              {
+                "study": "std1",
+                "tag": "param",
+                "type": "Parametric"
+              },
+              {
+                "study": "std1",
+                "tag": "param",
+                "type": "Parametric"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg6",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg7",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg8",
+                "type": "PlotGroup3D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "c0",
+                "D",
+                "h_max",
+                "U_mean",
+                "a",
+                "alpha"
+              ],
+              "geometry": [],
+              "physics": [
+                "spf / LaminarFlow",
+                "tds / DilutedSpecies"
+              ],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "流体"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.component.create('comp1', true);",
+                "model.component('comp1').geom.create('geom1', 3);",
+                "model.component('comp1').geom('geom1').geomRep('comsol');",
+                "model.component('comp1').mesh.create('mesh1');",
+                "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);",
+                "model.component('comp1').physics.create('spf', 'LaminarFlow', 'geom1');",
+                "model.component('comp1').physics.create('tds', 'DilutedSpecies', 'geom1');",
+                "model.study.create('std1');",
+                "model.study('std1').create('stat', 'Stationary');"
+              ],
+              "evidence_score": 11
+            }
+          },
+          "preview": "function out = model\n%\n% micromixer_parametric_sweep.m\n%\n% Model exported on Jun 13 2026, 18:15 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'6c' '42'}), 'unicode')  nat"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "micromixer_job_sequence.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 6,
+            "physics_create": 2,
+            "study_create": 1,
+            "result_create": 0,
+            "mesh_mentions": 3,
+            "material_mentions": 7,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "c0",
+                "D",
+                "h_max",
+                "U_mean",
+                "a",
+                "alpha"
+              ],
+              "geometry": [],
+              "physics": [
+                "spf / LaminarFlow",
+                "tds / DilutedSpecies"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary",
+                "std1"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "流体"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+                "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+                "model.component(\"comp1\").physics().create(\"spf\", \"LaminarFlow\", \"geom1\");",
+                "model.component(\"comp1\").physics().create(\"tds\", \"DilutedSpecies\", \"geom1\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+                "model.study(\"std1\").feature(\"stat\").setSolveFor(\"/physics/spf\", true);"
+              ],
+              "evidence_score": 13
+            }
+          },
+          "preview": "/*\n * micromixer_job_sequence.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:13 by COMSOL 6.4.0.293. */\npublic class micromixer_job_sequence {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6c42\\u89e3\\u6a21\\u578b\\u540e\\u4fdd\\u5b58\\u6570\\u636e\\u7684\\u4f5c\\u4e1a\\u5e8f\\u52176.3\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 3);\n    model.component(\"comp1\").geom(\""
+        },
+        {
+          "name": "micromixer_parametric_sweep.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 6,
+            "physics_create": 2,
+            "study_create": 1,
+            "result_create": 0,
+            "mesh_mentions": 3,
+            "material_mentions": 7,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "c0",
+                "D",
+                "h_max",
+                "U_mean",
+                "a",
+                "alpha"
+              ],
+              "geometry": [],
+              "physics": [
+                "spf / LaminarFlow",
+                "tds / DilutedSpecies"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary",
+                "std1"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "流体"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+                "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+                "model.component(\"comp1\").physics().create(\"spf\", \"LaminarFlow\", \"geom1\");",
+                "model.component(\"comp1\").physics().create(\"tds\", \"DilutedSpecies\", \"geom1\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+                "model.study(\"std1\").feature(\"stat\").setSolveFor(\"/physics/spf\", true);"
+              ],
+              "evidence_score": 13
+            }
+          },
+          "preview": "/*\n * micromixer_parametric_sweep.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 18:15 by COMSOL 6.4.0.293. */\npublic class micromixer_parametric_sweep {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u6c42\\u89e3\\u6a21\\u578b\\u540e\\u4fdd\\u5b58\\u6570\\u636e\\u7684\\u4f5c\\u4e1a\\u5e8f\\u52176.3\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 3);\n    model.component(\"comp1\""
+        }
+      ],
+      "pdf_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": []
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "micromixer_job_sequence.java",
+      "kind": "comsol_java",
+      "size_bytes": 23553,
+      "details": {
+        "model_param_set": 6,
+        "physics_create": 2,
+        "study_create": 1,
+        "result_create": 0,
+        "mesh_mentions": 3,
+        "material_mentions": 7,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "c0",
+            "D",
+            "h_max",
+            "U_mean",
+            "a",
+            "alpha"
+          ],
+          "geometry": [],
+          "physics": [
+            "spf / LaminarFlow",
+            "tds / DilutedSpecies"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary",
+            "std1"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "流体"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+            "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+            "model.component(\"comp1\").physics().create(\"spf\", \"LaminarFlow\", \"geom1\");",
+            "model.component(\"comp1\").physics().create(\"tds\", \"DilutedSpecies\", \"geom1\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+            "model.study(\"std1\").feature(\"stat\").setSolveFor(\"/physics/spf\", true);"
+          ],
+          "evidence_score": 13
+        }
+      }
+    },
+    {
+      "name": "micromixer_job_sequence.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 24928,
+      "details": {
+        "parameters": 6,
+        "physics": [
+          {
+            "tag": "spf",
+            "interface": "LaminarFlow",
+            "geom": "geom1"
+          },
+          {
+            "tag": "tds",
+            "interface": "DilutedSpecies",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "stat",
+            "type": "Stationary"
+          },
+          {
+            "study": "std1",
+            "tag": "stat2",
+            "type": "Stationary"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "c0",
+            "D",
+            "h_max",
+            "U_mean",
+            "a",
+            "alpha"
+          ],
+          "geometry": [],
+          "physics": [
+            "spf / LaminarFlow",
+            "tds / DilutedSpecies"
+          ],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "流体"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.component.create('comp1', true);",
+            "model.component('comp1').geom.create('geom1', 3);",
+            "model.component('comp1').geom('geom1').geomRep('comsol');",
+            "model.component('comp1').mesh.create('mesh1');",
+            "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);",
+            "model.component('comp1').physics.create('spf', 'LaminarFlow', 'geom1');",
+            "model.component('comp1').physics.create('tds', 'DilutedSpecies', 'geom1');",
+            "model.study.create('std1');",
+            "model.study('std1').create('stat', 'Stationary');"
+          ],
+          "evidence_score": 11
+        }
+      }
+    },
+    {
+      "name": "micromixer_job_sequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 7080137,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "micromixer_parametric_sweep.java",
+      "kind": "comsol_java",
+      "size_bytes": 29320,
+      "details": {
+        "model_param_set": 6,
+        "physics_create": 2,
+        "study_create": 1,
+        "result_create": 0,
+        "mesh_mentions": 3,
+        "material_mentions": 7,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "c0",
+            "D",
+            "h_max",
+            "U_mean",
+            "a",
+            "alpha"
+          ],
+          "geometry": [],
+          "physics": [
+            "spf / LaminarFlow",
+            "tds / DilutedSpecies"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary",
+            "std1"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "流体"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+            "model.component(\"comp1\").geom(\"geom1\").geomRep(\"comsol\");",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").mesh(\"mesh1\").contribute(\"geom/detail\", true);",
+            "model.component(\"comp1\").physics().create(\"spf\", \"LaminarFlow\", \"geom1\");",
+            "model.component(\"comp1\").physics().create(\"tds\", \"DilutedSpecies\", \"geom1\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+            "model.study(\"std1\").feature(\"stat\").setSolveFor(\"/physics/spf\", true);"
+          ],
+          "evidence_score": 13
+        }
+      }
+    },
+    {
+      "name": "micromixer_parametric_sweep.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 30166,
+      "details": {
+        "parameters": 7,
+        "physics": [
+          {
+            "tag": "spf",
+            "interface": "LaminarFlow",
+            "geom": "geom1"
+          },
+          {
+            "tag": "tds",
+            "interface": "DilutedSpecies",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "stat",
+            "type": "Stationary"
+          },
+          {
+            "study": "std1",
+            "tag": "stat2",
+            "type": "Stationary"
+          },
+          {
+            "study": "std1",
+            "tag": "param",
+            "type": "Parametric"
+          },
+          {
+            "study": "std1",
+            "tag": "param",
+            "type": "Parametric"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg6",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg7",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg8",
+            "type": "PlotGroup3D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "c0",
+            "D",
+            "h_max",
+            "U_mean",
+            "a",
+            "alpha"
+          ],
+          "geometry": [],
+          "physics": [
+            "spf / LaminarFlow",
+            "tds / DilutedSpecies"
+          ],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "流体"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.component.create('comp1', true);",
+            "model.component('comp1').geom.create('geom1', 3);",
+            "model.component('comp1').geom('geom1').geomRep('comsol');",
+            "model.component('comp1').mesh.create('mesh1');",
+            "model.component('comp1').mesh('mesh1').contribute('geom/detail', true);",
+            "model.component('comp1').physics.create('spf', 'LaminarFlow', 'geom1');",
+            "model.component('comp1').physics.create('tds', 'DilutedSpecies', 'geom1');",
+            "model.study.create('std1');",
+            "model.study('std1').create('stat', 'Stationary');"
+          ],
+          "evidence_score": 11
+        }
+      }
+    },
+    {
+      "name": "micromixer_parametric_sweep.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 9557141,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "求解模型后保存数据的作业序列6.3",
+    "summary": "已学习 求解模型后保存数据的作业序列6.3 的 6 个文件；训练阶段=modeling_logic_learning_ready；参数数量=6；内容证据=12 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "6 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification.",
+      "12 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 6 个案例文件；MATLAB=2，Java=2，PDF=0，MPH=2，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 12 条；几何=0，物理场=2，材料=1，网格=1，研究=2，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：micromixer_job_sequence.java, micromixer_job_sequence.m, micromixer_parametric_sweep.java, micromixer_parametric_sweep.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 6 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=2。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 求解模型后保存数据的作业序列6.3，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "求解模型后保存数据的作业序列6.3 modeling_logic_learning_ready MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. c0 27[mol/m^3] D 4.5e-9[m^2/s] h_max 0.1[mm] U_mean 10[mm/s] a 1.4[mm] alpha 36*U_mean/a^4 micromixer_job_sequence.java comsol_java micromixer_job_sequence.m matlab_livelink micromixer_job_sequence.mph comsol_mph micromixer_parametric_sweep.java comsol_java micromixer_parametric_sweep.m matlab_livelink micromixer_parametric_sweep.mph comsol_mph",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "409affb1cd5c",
+        "title": "求解模型后保存数据的作业序列6.3",
+        "score": 0.2761,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 21,
+        "files": [
+          "micromixer_job_sequence.java",
+          "micromixer_job_sequence.m",
+          "micromixer_job_sequence.mph",
+          "micromixer_parametric_sweep.java",
+          "micromixer_parametric_sweep.m",
+          "micromixer_parametric_sweep.mph"
+        ]
+      },
+      {
+        "case_id": "ab164ee69c52",
+        "title": "管式反应器代理模型 App",
+        "score": 0.1761,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "field_gaps": [],
+        "parameter_count": 86,
+        "files": [
+          "applications.tubular_reactor_surrogate.pdf",
+          "applications.tubular_reactor_surrogate.zh_CN.pdf",
+          "models.mph.tubular_reactor_surrogate.pdf",
+          "models.mph.tubular_reactor_surrogate.zh_CN.pdf",
+          "tubular_reactor_surrogate.java",
+          "tubular_reactor_surrogate.m",
+          "tubular_reactor_surrogate.mph",
+          "tubular_reactor_surrogate.zh_CN.mph"
+        ]
+      },
+      {
+        "case_id": "9f934362690f",
+        "title": "热执行器代理模型 App",
+        "score": 0.1522,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 42,
+        "files": [
+          "applications.thermal_actuator_surrogate.pdf",
+          "thermal_actuator_surrogate (1).mph",
+          "thermal_actuator_surrogate.java",
+          "thermal_actuator_surrogate.m",
+          "thermal_actuator_surrogate.mph"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.1185,
+        "module": "LiveLink_for_MATLAB",
+        "document": "IntroductionToLiveLinkForMATLAB.pdf",
+        "page": 5,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_MATLAB\\IntroductionToLiveLinkForMATLAB.pdf",
+        "excerpt": "| 5\n简介\nLiveLink™ for MATLAB® 用于连接 COMSOL Multiphysics® 与 MATLAB® 脚本\n环境。通过使用此功能，您可以执行以下操作：\n• 基于脚本设置模型。 LiveLink™ for MATLAB® 包含 COMSOL ® 应用程序编\n程接口 (API) ，它具有从头开始实施模型所需的所有功能和方法。在\nCOMSOL Desktop ® 中执行的每一项操作都有相应的命令 （在 MATLAB 提\n示符下输入） 。它是一种基于 Java® 编程语言的简化语法，不需要具备任何\nJava 知识。\n• 在模型设置中使用 MATLAB 函数。使用 LiveLink™ 通过 MATLAB 函数来\n设置模型属性。例如，将材料属性或边界条件定义为在求解模型时计算的\nMATLAB 例程。\n• COMSOL Desktop 与 MATLAB 之间共享同一模型的交互建模。在 MATLAB\n提示符下执行的每一项修改都会在 COMSOL Desktop 中同步更新。\n• 利用 MATLAB 的功能来实现程序流程。将 COMSOL API 语法与 MATLAB\n功能结"
+      },
+      {
+        "score": 0.1101,
+        "module": "COMSOL_Multiphysics",
+        "document": "IntroductionToCOMSOLMultiphysics.pdf",
+        "page": 262,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\COMSOL_Multiphysics\\IntroductionToCOMSOLMultiphysics.pdf",
+        "excerpt": "262 | \n“方法编辑器”中的代码基本相同。不过， “方法编辑器”带有集成的 Java® 编\n译器。\nMATLAB® 模型文件是可编辑的脚本文件（M 文件） ， 类似于 Java® 模型文件，\n供 MATLAB® 使用。这些模型文件 （扩展名为 .m）以 MATLAB® M 文件的形\n式包含 COMSOL 命令序列。 像其他任何 M 文件脚本一样， 您可以在 MATLAB®\n中运行这些模型文件。此外，也可以在文本编辑器中编辑这些文件，以包含其\n他 COMSOL 命令或常用的 MATLAB® 命令。运行 M 文件格式的模型文件时需\n要使用 LiveLink™ for MATLAB®。\n通 过 LiveLink™ for Excel® 许 可 证，您 可 以 将 模 型保 存 为 Visual Basic for\nApplications (VBA) 格式，以便同 Excel® 结合使用。\n编译的 C 代码可通过多种方式链接到模型或 App，包括 “模型开发器”中的\n“外部材料”和 “外部函数”接口以及 “App 开发器”中的 “外部库”接口。\n文件类型 扩展名 导入 导出\nMATLAB"
+      },
+      {
+        "score": 0.1048,
+        "module": "LiveLink_for_MATLAB",
+        "document": "IntroductionToLiveLinkForMATLAB.pdf",
+        "page": 3,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_MATLAB\\IntroductionToLiveLinkForMATLAB.pdf",
+        "excerpt": "| 3\n目录 \n简介. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n启动 COMSOL Multiphysics® with MATLAB®. . . . . . . . . 7\n完整示例：母线板. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n在 MATLAB® 命令行中提取结果. . . . . . . . . . . . . . . . . . . 29\n使用 MATLAB® 脚本实现自动化. . . . . . . . . . . . . . . . . . . 35\n使用外部 MATLAB® 函数. . . . . . . . . . . . . . . . . . . . . . . . . 45"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

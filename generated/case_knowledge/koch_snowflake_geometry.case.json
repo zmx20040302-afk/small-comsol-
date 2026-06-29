@@ -1,0 +1,228 @@
+{
+  "kind": "comsol_case_card",
+  "title": "koch_snowflake_geometry",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\科赫雪花建模",
+  "created_at": "2026-06-29T03:46:53.594918+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 3,
+    "kinds": {
+      "comsol_java": 1,
+      "matlab_livelink": 1,
+      "comsol_mph": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [
+    {
+      "name": "L",
+      "value": "1",
+      "description": "geometry input parameter",
+      "source": "java_geometry_input_param"
+    },
+    {
+      "name": "rotation",
+      "value": "0",
+      "description": "geometry input parameter",
+      "source": "java_geometry_input_param"
+    },
+    {
+      "name": "x_loc",
+      "value": "0",
+      "description": "geometry input parameter",
+      "source": "java_geometry_input_param"
+    },
+    {
+      "name": "y_loc",
+      "value": "0",
+      "description": "geometry input parameter",
+      "source": "java_geometry_input_param"
+    }
+  ],
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "3 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "snowflake.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "snowflake.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 8,
+            "physics": [],
+            "studies": [],
+            "results": []
+          },
+          "preview": "function out = model\n%\n% snowflake.m\n%\n% Model exported on Jun 11 2026, 18:34 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'79' 'd1'}), 'unicode')  native2unicode(hex2de"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "snowflake.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 0,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 0
+          },
+          "preview": "/*\n * snowflake.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 11 2026, 18:34 by COMSOL 6.4.0.293. */\npublic class snowflake {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u79d1\\u8d6b\\u96ea\\u82b1\\u5efa\\u6a21\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.modelNode().create(\"comp1\");\n\n    model.geom().create(\"geom1\", 2);\n\n    model.mesh().create(\"mesh1\", \"geom1\");\n\n    model.geom().create(\"part1\", \"Part\", 2);\n    model.ge"
+        }
+      ],
+      "pdf_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": []
+    },
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "The small model should not guess missing settings. It should cite available file evidence, keep unknowns explicit, and generate constrained model scripts only from validated records."
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "Validate or create a constraints JSON.",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "MATLAB and Java files are executable evidence for the COMSOL model tree and should drive automated script generation.",
+    "MPH files should be summarized through COMSOL with MATLAB before relying on internal model settings.",
+    "Parameter text/script evidence can be converted into constraints and sweep variables.",
+    "No training CSV was found, so numerical surrogate training requires a COMSOL parametric sweep export first."
+  ],
+  "implementation_path": [
+    "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "snowflake.java",
+      "kind": "comsol_java",
+      "size_bytes": 20070,
+      "details": {
+        "model_param_set": 0,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 0
+      }
+    },
+    {
+      "name": "snowflake.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 18641,
+      "details": {
+        "parameters": 8,
+        "physics": [],
+        "studies": [],
+        "results": []
+      }
+    },
+    {
+      "name": "snowflake.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 872506,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "koch_snowflake_geometry",
+    "summary": "Learned 3 files for koch_snowflake_geometry; stage=modeling_logic_learning_ready; parameters=4.",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "Detected parameters can seed a constraints JSON and later become sweep variables for surrogate-model training."
+    ],
+    "reusable_assets": [
+      "4 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification."
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 3 个案例文件；MATLAB=1，Java=1，PDF=0，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：snowflake.java, snowflake.m",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "3. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 4 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "4. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=1。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "5. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "6. 记忆库补充",
+        "evidence": "案例标题为 koch_snowflake_geometry，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "After the geometry/modeling logic is verified, run COMSOL parameter sweeps and export CSV training data."
+    ]
+  }
+}

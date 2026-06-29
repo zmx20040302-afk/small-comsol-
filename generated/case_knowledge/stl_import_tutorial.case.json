@@ -1,0 +1,519 @@
+{
+  "kind": "comsol_case_card",
+  "title": "stl_import_tutorial",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\STL导入教程",
+  "created_at": "2026-06-29T03:09:38.589021+00:00",
+  "training_stage": "needs_comsol_sweep_csv",
+  "file_summary": {
+    "count": 11,
+    "kinds": {
+      "pdf_document": 2,
+      "comsol_mph": 5,
+      "text": 4
+    },
+    "matlab_files": 0,
+    "java_files": 0,
+    "pdf_files": 2,
+    "mph_files": 5,
+    "csv_files": 0,
+    "json_files": 0
+  },
+  "parameters": [
+    {
+      "name": "d_rod",
+      "value": "3.5[mm]",
+      "description": "Rod diameter",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c3_L",
+      "value": "11[mm]",
+      "description": "C3 screw thread length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c4_L",
+      "value": "12[mm]",
+      "description": "C4 screw thread length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c5_L",
+      "value": "12[mm]",
+      "description": "C5 screw thread length",
+      "source": "parameter_table"
+    },
+    {
+      "name": "t_angle",
+      "value": "10[deg]",
+      "description": "Transverse angle",
+      "source": "parameter_table"
+    },
+    {
+      "name": "s_angle",
+      "value": "35[deg]",
+      "description": "Sagittal angle",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c3_xw",
+      "value": "26[mm]",
+      "description": "C3 entry coordinate, x",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c3_yw",
+      "value": "1.5[mm]",
+      "description": "C3 entry coordinate, y",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c3_zw",
+      "value": "15[mm]",
+      "description": "C3 entry coordinate, z",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c4_xw",
+      "value": "38.5[mm]",
+      "description": "C4 entry coordinate, x",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c4_yw",
+      "value": "0.5[mm]",
+      "description": "C4 entry coordinate, y",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c4_zw",
+      "value": "17[mm]",
+      "description": "C4 entry coordinate, z",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c5_xw",
+      "value": "56[mm]",
+      "description": "C5 entry coordinate, x",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c5_yw",
+      "value": "0.5[mm]",
+      "description": "C5 entry coordinate, y",
+      "source": "parameter_table"
+    },
+    {
+      "name": "c5_zw",
+      "value": "18.4[mm]",
+      "description": "C5 entry coordinate, z",
+      "source": "parameter_table"
+    }
+  ],
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "11 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "polyaxial_screw_geom_sequence.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "stl_1_repair_imported_meshes.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "stl_1_repair_imported_meshes.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "stl_2_combine_geom_mesh.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        },
+        {
+          "name": "stl_2_combine_geom_mesh.zh_CN.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [],
+      "java_exports": [],
+      "pdf_documents": [
+        {
+          "name": "models.mph.stl_1_repair_imported_meshes.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": false,
+            "missing_dependency": "pdfplumber",
+            "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+          },
+          "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
+        },
+        {
+          "name": "models.mph.stl_2_combine_geom_mesh.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": false,
+            "missing_dependency": "pdfplumber",
+            "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+          },
+          "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
+        }
+      ],
+      "training_tables": [],
+      "constraints_or_metadata": [],
+      "other": [
+        {
+          "name": "stl_2_combine_geom_mesh_parameters.txt",
+          "kind": "text",
+          "details": {},
+          "preview": "d_rod 3.5[mm] \"Rod diameter\"\nc3_L 11[mm] \"C3 screw thread length\"\nc4_L 12[mm] \"C4 screw thread length\"\nc5_L 12[mm] \"C5 screw thread length\"\nt_angle 10[deg] \"Transverse angle\"\ns_angle 35[deg] \"Sagittal angle\"\nc3_xw 26[mm] \"C3 entry coordinate, x\"\nc3_yw 1.5[mm] \"C3 entry coordinate, y\"\nc3_zw 15[mm] \"C3 entry coordinate, z\"\nc4_xw 38.5[mm] \"C4 entry coordinate, x\"\nc4_yw 0.5[mm] \"C4 entry coordinate, y\"\nc4_zw 17[mm] \"C4 entry coordinate, z\"\nc5_xw 56[mm] \"C5 entry coordinate, x\"\nc5_yw 0.5[mm] \"C5 entry coordinate, y\"\nc5_zw 18.4[mm] \"C5 entry coordinate, z\""
+        },
+        {
+          "name": "stl_2_combine_geom_mesh_parameters.zh_CN.txt",
+          "kind": "text",
+          "details": {},
+          "preview": "d_rod 3.5[mm] \"杆直径\"\nc3_L 11[mm] \"C3 螺纹长度\"\nc4_L 12[mm] \"C4 螺纹长度\"\nc5_L 12[mm] \"C5 螺纹长度\"\nt_angle 10[deg] \"横向角度\"\ns_angle 35[deg] \"矢状角\"\nc3_xw 26[mm] \"C3 起点坐标，x\"\nc3_yw 1.5[mm] \"C3 起点坐标，y\"\nc3_zw 15[mm] \"C3 起点坐标，z\"\nc4_xw 38.5[mm] \"C4 起点坐标，x\"\nc4_yw 0.5[mm] \"C4 起点坐标，y\"\nc4_zw 17[mm] \"C4 起点坐标，z\"\nc5_xw 56[mm] \"C5 起点坐标，x\"\nc5_yw 0.5[mm] \"C5 起点坐标，y\"\nc5_zw 18.4[mm] \"C5 起点坐标，z\""
+        },
+        {
+          "name": "stl_2_combine_geom_mesh_rod_coord.txt",
+          "kind": "text",
+          "details": {},
+          "preview": "geom1.cm1.x geom1.cm1.y geom1.cm1.z\ngeom1.cm2.x geom1.cm2.y geom1.cm2.z\ngeom1.cm3.x geom1.cm3.y geom1.cm3.z\ngeom1.cm4.x geom1.cm4.y geom1.cm4.z\ngeom1.cm5.x geom1.cm5.y geom1.cm5.z\ngeom1.cm6.x geom1.cm6.y geom1.cm6.z"
+        },
+        {
+          "name": "stl_2_combine_geom_mesh_rod_coord.zh_CN.txt",
+          "kind": "text",
+          "details": {},
+          "preview": "geom1.cm1.x geom1.cm1.y geom1.cm1.z\ngeom1.cm2.x geom1.cm2.y geom1.cm2.z\ngeom1.cm3.x geom1.cm3.y geom1.cm3.z\ngeom1.cm4.x geom1.cm4.y geom1.cm4.z\ngeom1.cm5.x geom1.cm5.y geom1.cm5.z\ngeom1.cm6.x geom1.cm6.y geom1.cm6.z"
+        }
+      ]
+    },
+    "recommendations": [
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "The small model should not guess missing settings. It should cite available file evidence, keep unknowns explicit, and generate constrained model scripts only from validated records."
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "Validate or create a constraints JSON.",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "thoughts": [
+    "PDF documents should be used to understand the case purpose, modeling sequence, assumptions, and validation targets.",
+    "MPH files should be summarized through COMSOL with MATLAB before relying on internal model settings.",
+    "Parameter text/script evidence can be converted into constraints and sweep variables.",
+    "No training CSV was found, so numerical surrogate training requires a COMSOL parametric sweep export first."
+  ],
+  "implementation_path": [
+    "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "models.mph.stl_1_repair_imported_meshes.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 8816284,
+      "details": {
+        "readable": false,
+        "missing_dependency": "pdfplumber",
+        "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+      }
+    },
+    {
+      "name": "models.mph.stl_2_combine_geom_mesh.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 4151092,
+      "details": {
+        "readable": false,
+        "missing_dependency": "pdfplumber",
+        "recommendation": "Install pypdf or pdfplumber for PDF text extraction."
+      }
+    },
+    {
+      "name": "polyaxial_screw_geom_sequence.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 181730,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "stl_1_repair_imported_meshes.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 63621458,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "stl_1_repair_imported_meshes.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 81177482,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "stl_2_combine_geom_mesh.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 74936112,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "stl_2_combine_geom_mesh.zh_CN.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 89098486,
+      "details": {
+        "readable": false,
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+      }
+    },
+    {
+      "name": "stl_2_combine_geom_mesh_parameters.txt",
+      "kind": "text",
+      "size_bytes": 570,
+      "details": {}
+    },
+    {
+      "name": "stl_2_combine_geom_mesh_parameters.zh_CN.txt",
+      "kind": "text",
+      "size_bytes": 510,
+      "details": {}
+    },
+    {
+      "name": "stl_2_combine_geom_mesh_rod_coord.txt",
+      "kind": "text",
+      "size_bytes": 220,
+      "details": {}
+    },
+    {
+      "name": "stl_2_combine_geom_mesh_rod_coord.zh_CN.txt",
+      "kind": "text",
+      "size_bytes": 220,
+      "details": {}
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "stl_import_tutorial",
+    "summary": "Learned 11 files for stl_import_tutorial; stage=needs_comsol_sweep_csv; parameters=15.",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "Detected parameters can seed a constraints JSON and later become sweep variables for surrogate-model training."
+    ],
+    "reusable_assets": [
+      "15 extracted parameters with values/descriptions.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification."
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 11 个案例文件；MATLAB=0，Java=0，PDF=2，MPH=5，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：未检测到 MATLAB/Java 脚本",
+        "judgement": "缺少脚本时，只能依赖文档和其他文本线索推断建模逻辑。"
+      },
+      {
+        "step": "3. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 15 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "4. 理论与模型来源判断",
+        "evidence": "PDF 文档=2，MPH 模型=5。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "5. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "6. 记忆库补充",
+        "evidence": "案例标题为 stl_import_tutorial，训练阶段为 needs_comsol_sweep_csv。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package.",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "After the geometry/modeling logic is verified, run COMSOL parameter sweeps and export CSV training data."
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "stl_import_tutorial needs_comsol_sweep_csv PDF documents should be used to understand the case purpose, modeling sequence, assumptions, and validation targets. MPH files should be summarized through COMSOL with MATLAB before relying on internal model settings. Parameter text/script evidence can be converted into constraints and sweep variables. No training CSV was found, so numerical surrogate training requires a COMSOL parametric sweep export first. Read the PDF, MATLAB, Java, MPH, TXT, JSON, and CSV evidence as one case package. Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. d_rod Rod diameter 3.5[mm] c3_L C3 screw thread length 11[mm] c4_L C4 screw thread length 12[mm] c5_L C5 screw thread length 12[mm] t_angle Transverse angle 10[deg] s_angle Sagittal angle 35[deg] c3_xw C3 entry coordinate, x 26[mm] c3_yw C3 entry coordinate, y 1.5[mm] c3_zw C3 entry coordinate, z 15[mm] c4_xw C4 entry coordinate, x 38.5[mm] c4_yw C4 entry coordinate, y 0.5[mm] c4_zw C4 entry coordinate, z 17[mm] c5_xw C5 entry coordinate, x 56[mm] c5_yw C5 entry coordinate, y 0.5[mm] c5_zw C5 entry coordinate, z 18.4[mm] models.mph.stl_1_repair_imported_meshes.pdf pdf_document models.mph.stl_2_combine_geom_mesh.pdf pdf_document polyaxial_screw_geom_sequence.mph comsol_mph stl_1_repair_imported_meshes.mph comsol_mph stl_1_repair_imported_meshes.zh_CN.mph comsol_mph stl_2_combine_geom_mesh.mph comsol_mph stl_2_combine_geom_mesh.zh_CN.mph comsol_mph stl_2_combine_geom_mesh_parameters.txt text stl_2_combine_geom_mesh_parameters.zh_CN.txt text stl_2_combine_geom_mesh_rod_coord.txt text stl_2_combine_geom_mesh_rod_coord.zh_CN.txt text",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [
+      {
+        "case_id": "3b1b771582ca",
+        "title": "使用 Microsoft® Azure 运行 COMSOL® 软件",
+        "score": 0.1153,
+        "root": ".",
+        "supported_fields": [],
+        "field_gaps": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "parameter_count": 0,
+        "files": [
+          "COMSOL_CloudServer.parameter.json",
+          "LicenseServerForwardPort.parameter.json",
+          "licenseServerOnAzurePart1.parameter.json",
+          "licenseServerOnAzurePart2.parameter.json",
+          "RunningCOMSOLOnMicrosoftAzure.pdf"
+        ]
+      },
+      {
+        "case_id": "a944d73bc97d",
+        "title": "通过 Amazon EC2™ 运行 COMSOL® 软件",
+        "score": 0.102,
+        "root": ".",
+        "supported_fields": [],
+        "field_gaps": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results",
+          "applicability"
+        ],
+        "parameter_count": 0,
+        "files": [
+          "RunningCOMSOLOnTheAmazonCloud.pdf"
+        ]
+      },
+      {
+        "case_id": "9f934362690f",
+        "title": "热执行器代理模型 App",
+        "score": 0.0867,
+        "root": ".",
+        "supported_fields": [
+          "physics",
+          "geometry",
+          "materials",
+          "boundary_conditions",
+          "mesh",
+          "solver",
+          "results"
+        ],
+        "field_gaps": [
+          "applicability"
+        ],
+        "parameter_count": 42,
+        "files": [
+          "applications.thermal_actuator_surrogate.pdf",
+          "thermal_actuator_surrogate (1).mph",
+          "thermal_actuator_surrogate.java",
+          "thermal_actuator_surrogate.m",
+          "thermal_actuator_surrogate.mph"
+        ]
+      }
+    ],
+    "docs_matches": [
+      {
+        "score": 0.1811,
+        "module": "CFD_Module",
+        "document": "CFDModuleUsersGuide.pdf",
+        "page": 292,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\CFD_Module\\CFDModuleUsersGuide.pdf",
+        "excerpt": "292 | CHAPTER 3: SINGLE-PHASE FLOW INTERFACES\nThe general framework of SSG-LRR is similar to The Turbulent Flow, Wilcox R-ω \nInterface. The differences are listed below.\nThe set of SSG-LRR model parameters with their default values is\n (3-214)\nNote that\nwhere the original Launder–Reece–Rodi expressions for the pressure-strain \ncoefficients are stated using .\nThe expression for the turbulence dissipation rate is\n (3-215)\nSimilar to The SST Turbulence Model the model parameters are blended between"
+      },
+      {
+        "score": 0.1604,
+        "module": "LiveLink_for_MATLAB",
+        "document": "LiveLinkForMATLABUsersGuide.pdf",
+        "page": 62,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\LiveLink_for_MATLAB\\LiveLinkForMATLABUsersGuide.pdf",
+        "excerpt": "62 | CHAPTER 3: BUILDING MODELS\nc4.set('w',[1 w 1]);\nc5 = g1.feature.create('c5','BezierPolygon');\nc5.set('type','open');\nc5.set('degree',2);\nc5.set('p',[1 1 0.5; 0 -0.5 -0.5]);\nc5.set('w',[1 w 1]);\nc6 = g1.feature.create('c6','BezierPolygon');\nc6.set('type','open');\nc6.set('degree',1);\nc6.set('p',[0.5 -0.5; -0.5 -0.5]);\nThe objects c1, c2, c3, c4, c5, and c6 are all curve2 objects. The vector [1 w 1] \nspecifies the weights for a rational Bézier curve that is equivalent to a quarter-circle arc. "
+      },
+      {
+        "score": 0.1506,
+        "module": "CFD_Module",
+        "document": "CFDModuleUsersGuide.pdf",
+        "page": 109,
+        "path": "D:\\COMSOL64\\Multiphysics\\doc\\pdf\\CFD_Module\\CFDModuleUsersGuide.pdf",
+        "excerpt": "THE CREEPING FLOW, LAMINAR FLOW, TURBULENT FLOW, LA RGE EDDY SIMULATION, AND DETACHED EDDY SIMULATION\ncontinuity equation for conservation of mass. Turbulence effects are modeled using \nthe Speziale–Sarkar–Gatski/Launder–Reece–Rodi-ω (SSG-LRR) seven-equation \ntransport model. The SSG-LRR model is a so-called low-Reynolds number model, \nwhich means that it can resolve the flow all the way down to the wall. The physics \ninterface includes a wall distance equation.\nThe Turbulent Flow, SSG-LRR inter"
+      }
+    ],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "优先对齐相似案例中已有证据的参数、物理场、网格、求解器和结果导出设置。",
+      "生成或修改 LiveLink MATLAB/Java API 前，使用官方文档索引核对接口和节点含义。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}
