@@ -35,7 +35,7 @@ Build a COMSOL hydraulic fracturing model for a single borehole under different 
 
 ## Correction Strategy
 
-- Use the article parameters as the baseline constraints instead of generic thermal or structural defaults.
+- 优先使用文章参数作为基准约束，而不是套用通用热学或结构默认值。
 - Correct geometry to a 300 mm square domain with a 15 mm borehole and optional natural-fracture weak planes.
 - Correct loads by sweeping principal stress ratio from 1.5 to 2.0 and stress directions such as 90, 135, and 180 degrees.
 - Correct material definition by adding Weibull-distributed elastic modulus and strength rather than a single homogeneous material.
@@ -46,18 +46,18 @@ Build a COMSOL hydraulic fracturing model for a single borehole under different 
 ## Memory-Assisted COMSOL Construction Plan
 
 ### Retrieved Cases
-- `岩石裂隙流` score=5.760901812651248
-- `dynamic_loaded_beam` score=5.302434289526359
-- `pulley_stress` score=5.276939015148195
-- `瞬态声压级6.3` score=5.204828993353749
-- `激波管` score=5.1453125733564
-- `圆柱绕流` score=5.082003561600919
-- `螺旋静态混合器` score=5.067489992328232
-- `真空干燥` score=5.061957298559955
+- `COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究` score=67.81339611063653
+- `岩石裂隙流` score=26.01324490029408
+- `带轮应力` score=7.636994336101661
+- `扳手的应力和应变` score=6.437432590799961
+- `已验证：二维热应力矩形模板` score=6.349389079621698
+- `如何生成随机非均匀材料数据6.2` score=5.4692651680936
+- `受载弹簧 - 使用全局方程满足约束条件` score=5.0055731996703
+- `COMSOL 物理场类型与选择指南` score=4.912889112810202
 
 ### Construction Steps
 - Clarify model objective, dimensionality, input parameters, outputs, and validation targets.
-- Review retrieved similar cases and reuse their parameter names, geometry sequence, and LiveLink API patterns.
+- 查看检索到的相似案例，并复用其参数命名、几何序列和 LiveLink API 调用模式。
 - Choose geometry strategy: reuse similar case script, import CAD, or generate parametric geometry.
 - Define materials, units, selections, and reusable parameter groups.
 - Add physics interfaces and boundary/initial conditions.
@@ -65,7 +65,7 @@ Build a COMSOL hydraulic fracturing model for a single borehole under different 
 - Export derived values and plots for validation.
 
 ### Article-Specific Modifications
-- Use the article parameters as the baseline constraints instead of generic thermal or structural defaults.
+- 优先使用文章参数作为基准约束，而不是套用通用热学或结构默认值。
 - Correct geometry to a 300 mm square domain with a 15 mm borehole and optional natural-fracture weak planes.
 - Correct loads by sweeping principal stress ratio from 1.5 to 2.0 and stress directions such as 90, 135, and 180 degrees.
 - Correct material definition by adding Weibull-distributed elastic modulus and strength rather than a single homogeneous material.

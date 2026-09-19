@@ -2,7 +2,7 @@
   "kind": "comsol_case_card",
   "title": "曼德勃罗集和柏林噪声",
   "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\曼德勃罗集和柏林噪声",
-  "created_at": "2026-06-29T08:45:04.646186+00:00",
+  "created_at": "2026-07-06T09:40:17.200943+00:00",
   "training_stage": "modeling_logic_learning_ready",
   "file_summary": {
     "count": 6,
@@ -77,7 +77,8 @@
     ],
     "studies": [
       "std1 / stat / Stationary",
-      "std1"
+      "std1",
+      "Stationary"
     ],
     "results": [
       "pg1",
@@ -106,9 +107,9 @@
     "theory_keywords": [],
     "source_extracts": [
       {
-        "name": "mandelbrot_set.java",
-        "kind": "comsol_java",
-        "evidence_score": 29,
+        "name": "mandelbrot_set.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 32,
         "content_summary": [
           "import com.comsol.model.*;",
           "import com.comsol.model.util.*;",
@@ -139,7 +140,70 @@
         ],
         "studies": [
           "std1 / stat / Stationary",
-          "std1"
+          "std1",
+          "Stationary"
+        ],
+        "results": [
+          "pg1",
+          "surf1",
+          "surf2"
+        ],
+        "boundary_conditions": [
+          "dis1 / [2]",
+          "dis2 / [1]",
+          "dis1 / 2",
+          "dis2 / 1",
+          "r1 / pos",
+          "r1 / base",
+          "r1 / size",
+          "map1 / smoothmaxiter",
+          "map1 / smoothmaxdepth",
+          "dis1 / numelem",
+          "dis2 / numelem",
+          "stat / useadvanceddisable",
+          "surf1 / expr",
+          "surf2 / expr",
+          "stat / plot",
+          "stat / useparam"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "mandelbrot_set.java",
+        "kind": "comsol_java",
+        "evidence_score": 30,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"mandelbrot_set.mph\");",
+          "model.param().set(\"iter\", \"0\", \"Iteration step\");",
+          "model.param().set(\"n_max\", \"25\", \"Number of iterations\");",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+          "model.component(\"comp1\").baseSystem(\"none\");"
+        ],
+        "parameters": [
+          "iter",
+          "n_max"
+        ],
+        "geometry": [
+          "r1 / Rectangle",
+          "geom1 / r1 / pos",
+          "geom1 / r1 / base",
+          "geom1 / r1 / size"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1",
+          "map1",
+          "mesh1 / map1 / smoothmaxiter",
+          "mesh1 / map1 / smoothmaxdepth"
+        ],
+        "studies": [
+          "std1 / stat / Stationary",
+          "std1",
+          "Stationary"
         ],
         "results": [
           "pg1",
@@ -167,7 +231,7 @@
       {
         "name": "mandelbrot_set.m",
         "kind": "matlab_livelink",
-        "evidence_score": 24,
+        "evidence_score": 25,
         "content_summary": [
           "import com.comsol.model.*",
           "import com.comsol.model.util.*",
@@ -197,7 +261,8 @@
           "mesh1 / map1 / smoothmaxdepth"
         ],
         "studies": [
-          "std1 / stat / Stationary"
+          "std1 / stat / Stationary",
+          "Stationary"
         ],
         "results": [
           "pg1",
@@ -291,39 +356,45 @@
         "theory_keywords": []
       },
       {
-        "name": "mandelbrot_set.mph",
-        "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
-      },
-      {
         "name": "perlin_noise.mph",
         "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
+        "evidence_score": 8,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"perlin_noise.mph\");",
+          "model.param().set(\"size\", \"6\", \"Side length of plane\");",
+          "model.param().set(\"iter\", \"0\", \"Iteration step\");",
+          "model.param().set(\"octaves\", \"5\", \"Number of octaves\");",
+          "model.param().set(\"o2\", \"2^iter\", \"Scale factor\");",
+          "model.component().create(\"comp1\", true);"
+        ],
+        "parameters": [
+          "size",
+          "iter",
+          "octaves",
+          "o2"
+        ],
+        "geometry": [
+          "sq1 / Square",
+          "geom1 / sq1 / size"
+        ],
         "physics": [],
         "materials": [],
-        "mesh": [],
+        "mesh": [
+          "mesh1"
+        ],
         "studies": [],
         "results": [],
-        "boundary_conditions": [],
+        "boundary_conditions": [
+          "sq1 / size"
+        ],
         "theory_keywords": []
       }
     ],
     "totals": {
-      "model_tree_items": 37,
-      "source_files_with_content": 4,
+      "model_tree_items": 38,
+      "source_files_with_content": 6,
       "source_files_checked": 6
     }
   },
@@ -337,18 +408,152 @@
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "mandelbrot_set.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 6770
+              },
+              {
+                "name": "mandelbrot_set.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 6712
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [
+                "iter",
+                "n_max"
+              ],
+              "geometry": [
+                "r1 / Rectangle",
+                "geom1 / r1 / pos",
+                "geom1 / r1 / base",
+                "geom1 / r1 / size"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1",
+                "map1",
+                "mesh1 / map1 / smoothmaxiter",
+                "mesh1 / map1 / smoothmaxdepth"
+              ],
+              "studies": [
+                "std1 / stat / Stationary",
+                "std1",
+                "Stationary"
+              ],
+              "results": [
+                "pg1",
+                "surf1",
+                "surf2"
+              ],
+              "boundary_conditions": [
+                "dis1 / [2]",
+                "dis2 / [1]",
+                "dis1 / 2",
+                "dis2 / 1",
+                "r1 / pos",
+                "r1 / base",
+                "r1 / size",
+                "map1 / smoothmaxiter",
+                "map1 / smoothmaxdepth",
+                "dis1 / numelem",
+                "dis2 / numelem",
+                "stat / useadvanceddisable",
+                "surf1 / expr",
+                "surf2 / expr",
+                "stat / plot",
+                "stat / useparam"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"mandelbrot_set.mph\");",
+                "model.param().set(\"iter\", \"0\", \"Iteration step\");",
+                "model.param().set(\"n_max\", \"25\", \"Number of iterations\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+                "model.component(\"comp1\").baseSystem(\"none\");",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").geom(\"geom1\").create(\"r1\", \"Rectangle\");",
+                "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"pos\", new double[]{-0.5, 0});",
+                "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"base\", \"center\");"
+              ],
+              "evidence_score": 32
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## mandelbrot_set.java\n/*\n * mandelbrot_set.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 17:55 by COMSOL 6.4.0.293. */\npublic class mandelbrot_set {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u66fc\\u5fb7\\u52c3\\u7f57\\u96c6\\u548c\\u67cf\\u6797\\u566a\\u58f0\");\n\n    model.label(\"mandelbrot_set.mph\");\n\n    model.param().set(\"iter\", \"0\", \"Iteration step\");\n    model.param().set(\"n_max\", \"25\", \"Number of iterations\");\n\n  "
         },
         {
           "name": "perlin_noise.mph",
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "perlin_noise.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 18346
+              },
+              {
+                "name": "perlin_noise.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 17360
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [
+                "size",
+                "iter",
+                "octaves",
+                "o2"
+              ],
+              "geometry": [
+                "sq1 / Square",
+                "geom1 / sq1 / size"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "sq1 / size"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"perlin_noise.mph\");",
+                "model.param().set(\"size\", \"6\", \"Side length of plane\");",
+                "model.param().set(\"iter\", \"0\", \"Iteration step\");",
+                "model.param().set(\"octaves\", \"5\", \"Number of octaves\");",
+                "model.param().set(\"o2\", \"2^iter\", \"Scale factor\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+                "model.component(\"comp1\").baseSystem(\"none\");",
+                "model.result().table().create(\"evl2\", \"Table\");",
+                "model.func().create(\"rn1\", \"Random\");"
+              ],
+              "evidence_score": 8
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## perlin_noise.java\n/*\n * perlin_noise.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 17:55 by COMSOL 6.4.0.293. */\npublic class perlin_noise {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u66fc\\u5fb7\\u52c3\\u7f57\\u96c6\\u548c\\u67cf\\u6797\\u566a\\u58f0\");\n\n    model.label(\"perlin_noise.mph\");\n\n    model.param().set(\"size\", \"6\", \"Side length of plane\");\n    model.param().set(\"iter\", \"0\", \"Iteration step\");\n    model.par"
         }
       ],
       "matlab_builders": [
@@ -393,7 +598,8 @@
                 "mesh1 / map1 / smoothmaxdepth"
               ],
               "studies": [
-                "std1 / stat / Stationary"
+                "std1 / stat / Stationary",
+                "Stationary"
               ],
               "results": [
                 "pg1",
@@ -427,7 +633,7 @@
                 "model.component('comp1').geom('geom1').create('r1', 'Rectangle');",
                 "model.component('comp1').geom('geom1').feature('r1').set('pos', [-0.5 0]);"
               ],
-              "evidence_score": 24
+              "evidence_score": 25
             }
           },
           "preview": "function out = model\n%\n% mandelbrot_set.m\n%\n% Model exported on Jun 13 2026, 17:55 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'66' 'fc'}), 'unicode')  native2unicode(h"
@@ -541,7 +747,8 @@
               ],
               "studies": [
                 "std1 / stat / Stationary",
-                "std1"
+                "std1",
+                "Stationary"
               ],
               "results": [
                 "pg1",
@@ -579,7 +786,7 @@
                 "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"pos\", new double[]{-0.5, 0});",
                 "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"base\", \"center\");"
               ],
-              "evidence_score": 29
+              "evidence_score": 30
             }
           },
           "preview": "/*\n * mandelbrot_set.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 17:55 by COMSOL 6.4.0.293. */\npublic class mandelbrot_set {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u66fc\\u5fb7\\u52c3\\u7f57\\u96c6\\u548c\\u67cf\\u6797\\u566a\\u58f0\");\n\n    model.label(\"mandelbrot_set.mph\");\n\n    model.param().set(\"iter\", \"0\", \"Iteration step\");\n    model.param().set(\"n_max\", \"25\", \"Number of iterations\");\n\n    model.component().cre"
@@ -643,6 +850,7 @@
       "constraints_or_metadata": [],
       "other": []
     },
+    "pdf_simple_summaries": [],
     "recommendations": [
       "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
       "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
@@ -661,6 +869,7 @@
       "Train and validate the surrogate model."
     ]
   },
+  "pdf_simple_summaries": [],
   "thoughts": [
     "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
     "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
@@ -716,7 +925,8 @@
           ],
           "studies": [
             "std1 / stat / Stationary",
-            "std1"
+            "std1",
+            "Stationary"
           ],
           "results": [
             "pg1",
@@ -754,7 +964,7 @@
             "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"pos\", new double[]{-0.5, 0});",
             "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"base\", \"center\");"
           ],
-          "evidence_score": 29
+          "evidence_score": 30
         }
       }
     },
@@ -800,7 +1010,8 @@
             "mesh1 / map1 / smoothmaxdepth"
           ],
           "studies": [
-            "std1 / stat / Stationary"
+            "std1 / stat / Stationary",
+            "Stationary"
           ],
           "results": [
             "pg1",
@@ -834,7 +1045,7 @@
             "model.component('comp1').geom('geom1').create('r1', 'Rectangle');",
             "model.component('comp1').geom('geom1').feature('r1').set('pos', [-0.5 0]);"
           ],
-          "evidence_score": 24
+          "evidence_score": 25
         }
       }
     },
@@ -844,7 +1055,87 @@
       "size_bytes": 72010989,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "mandelbrot_set.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 6770
+          },
+          {
+            "name": "mandelbrot_set.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 6712
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [
+            "iter",
+            "n_max"
+          ],
+          "geometry": [
+            "r1 / Rectangle",
+            "geom1 / r1 / pos",
+            "geom1 / r1 / base",
+            "geom1 / r1 / size"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1",
+            "map1",
+            "mesh1 / map1 / smoothmaxiter",
+            "mesh1 / map1 / smoothmaxdepth"
+          ],
+          "studies": [
+            "std1 / stat / Stationary",
+            "std1",
+            "Stationary"
+          ],
+          "results": [
+            "pg1",
+            "surf1",
+            "surf2"
+          ],
+          "boundary_conditions": [
+            "dis1 / [2]",
+            "dis2 / [1]",
+            "dis1 / 2",
+            "dis2 / 1",
+            "r1 / pos",
+            "r1 / base",
+            "r1 / size",
+            "map1 / smoothmaxiter",
+            "map1 / smoothmaxdepth",
+            "dis1 / numelem",
+            "dis2 / numelem",
+            "stat / useadvanceddisable",
+            "surf1 / expr",
+            "surf2 / expr",
+            "stat / plot",
+            "stat / useparam"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"mandelbrot_set.mph\");",
+            "model.param().set(\"iter\", \"0\", \"Iteration step\");",
+            "model.param().set(\"n_max\", \"25\", \"Number of iterations\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+            "model.component(\"comp1\").baseSystem(\"none\");",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").geom(\"geom1\").create(\"r1\", \"Rectangle\");",
+            "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"pos\", new double[]{-0.5, 0});",
+            "model.component(\"comp1\").geom(\"geom1\").feature(\"r1\").set(\"base\", \"center\");"
+          ],
+          "evidence_score": 32
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
     },
     {
@@ -980,14 +1271,267 @@
       "size_bytes": 12997643,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "perlin_noise.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 18346
+          },
+          {
+            "name": "perlin_noise.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 17360
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [
+            "size",
+            "iter",
+            "octaves",
+            "o2"
+          ],
+          "geometry": [
+            "sq1 / Square",
+            "geom1 / sq1 / size"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "sq1 / size"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"perlin_noise.mph\");",
+            "model.param().set(\"size\", \"6\", \"Side length of plane\");",
+            "model.param().set(\"iter\", \"0\", \"Iteration step\");",
+            "model.param().set(\"octaves\", \"5\", \"Number of octaves\");",
+            "model.param().set(\"o2\", \"2^iter\", \"Scale factor\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+            "model.component(\"comp1\").baseSystem(\"none\");",
+            "model.result().table().create(\"evl2\", \"Table\");",
+            "model.func().create(\"rn1\", \"Random\");"
+          ],
+          "evidence_score": 8
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 5 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。",
+      "结果节点可用于确定导出量和训练目标。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "曼德勃罗集和柏林噪声 的 PDF 可用于理解案例目的、假设和操作步骤；当前证据还不足以唯一确定物理场，后续应结合 MATLAB/Java 中的 physics.create 或 COMSOL 模型树再确认。",
+    "primary_physics": "needs_more_evidence",
+    "study_type": "Stationary",
+    "judgement_rule": "先根据 PDF 的核心物理量提出候选物理场，再用 MATLAB/Java/MPH 摘要中的 physics.create 做最终确认。",
+    "evidence": [
+      "识别到的研究类型: std1 / stat / Stationary, std1, Stationary"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [],
+    "matlab_mapping": [
+      {
+        "keyword": "iter",
+        "modeling_content": "Iteration step",
+        "matlab_action": "model.param.set('iter', value, description)"
+      },
+      {
+        "keyword": "n_max",
+        "modeling_content": "Number of iterations",
+        "matlab_action": "model.param.set('n_max', value, description)"
+      },
+      {
+        "keyword": "size",
+        "modeling_content": "Side length of plane",
+        "matlab_action": "model.param.set('size', value, description)"
+      },
+      {
+        "keyword": "octaves",
+        "modeling_content": "Number of octaves",
+        "matlab_action": "model.param.set('octaves', value, description)"
+      },
+      {
+        "keyword": "o2",
+        "modeling_content": "Scale factor",
+        "matlab_action": "model.param.set('o2', value, description)"
+      },
+      {
+        "keyword": "Rectangle",
+        "modeling_content": "矩形/二维计算域",
+        "matlab_action": "model.component('comp1').geom('geom1').create(tag, 'Rectangle')"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：r1 / Rectangle；geom1 / r1 / pos；geom1 / r1 / base；geom1 / r1 / size；sq1 / Square；geom1 / sq1 / size",
+      "已识别参数：iter、n_max、size、octaves、o2"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "iter",
+      "n_max",
+      "size",
+      "octaves",
+      "o2"
+    ],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 60,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations.",
+      "Use the learned study types as solver starting points: std1 / stat / Stationary, std1, Stationary.",
+      "Use detected result nodes as candidate validation and training targets: pg1, surf1, surf2."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `iter` around the learned value `0` and export target outputs to CSV.",
+      "Sweep `n_max` around the learned value `25` and export target outputs to CSV.",
+      "Sweep `size` around the learned value `6` and export target outputs to CSV.",
+      "Sweep `octaves` around the learned value `5` and export target outputs to CSV.",
+      "Sweep `o2` around the learned value `2^iter` and export target outputs to CSV.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\COMSOL\\曼德勃罗集和柏林噪声"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=6, MATLAB=2, Java=2, PDF=0, MPH=2, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 38 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
     }
   ],
   "post_learning_summary": {
     "kind": "post_case_learning_summary",
     "title": "曼德勃罗集和柏林噪声",
-    "summary": "已学习 曼德勃罗集和柏林噪声 的 6 个文件；训练阶段=modeling_logic_learning_ready；参数数量=5；内容证据=37 条。",
+    "summary": "已学习 曼德勃罗集和柏林噪声 的 6 个文件；训练阶段=modeling_logic_learning_ready；参数数量=5；内容证据=38 条。",
     "learned_modeling_logic": [
       "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
       "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
@@ -1000,7 +1544,7 @@
       "5 extracted parameters with values/descriptions.",
       "LiveLink MATLAB or COMSOL Java script structure.",
       "Original MPH files for later COMSOL-side verification.",
-      "37 条内容级模型树证据。"
+      "38 条内容级模型树证据。"
     ],
     "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
     "reusable_confidence": "medium",
@@ -1012,7 +1556,7 @@
       },
       {
         "step": "2. 内容级模型树抽取",
-        "evidence": "抽取到模型树证据 37 条；几何=6，物理场=0，材料=0，网格=4，研究=2，结果=3。",
+        "evidence": "抽取到模型树证据 38 条；几何=6，物理场=0，材料=0，网格=4，研究=3，结果=3。",
         "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
       },
       {

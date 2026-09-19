@@ -2,7 +2,7 @@
   "kind": "comsol_case_card",
   "title": "Black-Scholes 方程",
   "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\Black-Scholes 方程",
-  "created_at": "2026-06-29T08:40:29.495593+00:00",
+  "created_at": "2026-07-06T09:36:08.579657+00:00",
   "training_stage": "needs_comsol_sweep_csv",
   "file_summary": {
     "count": 4,
@@ -107,7 +107,25 @@
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
           },
           "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
         },
@@ -116,7 +134,25 @@
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
           },
           "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
         }
@@ -145,7 +181,8 @@
               "theory_keywords": [],
               "content_summary": [],
               "evidence_score": 0
-            }
+            },
+            "simple_summary": "models.mph.black_scholes_put.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
           },
           "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
         },
@@ -170,7 +207,8 @@
               "theory_keywords": [],
               "content_summary": [],
               "evidence_score": 0
-            }
+            },
+            "simple_summary": "models.mph.black_scholes_put.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
           },
           "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
         }
@@ -179,6 +217,16 @@
       "constraints_or_metadata": [],
       "other": []
     },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.mph.black_scholes_put.pdf",
+        "summary": "models.mph.black_scholes_put.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+      },
+      {
+        "name": "models.mph.black_scholes_put.zh_CN.pdf",
+        "summary": "models.mph.black_scholes_put.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+      }
+    ],
     "recommendations": [
       "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
       "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
@@ -197,6 +245,16 @@
       "Train and validate the surrogate model."
     ]
   },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.mph.black_scholes_put.pdf",
+      "summary": "models.mph.black_scholes_put.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    },
+    {
+      "name": "models.mph.black_scholes_put.zh_CN.pdf",
+      "summary": "models.mph.black_scholes_put.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    }
+  ],
   "thoughts": [
     "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
     "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
@@ -223,7 +281,25 @@
       "size_bytes": 699888,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
       }
     },
     {
@@ -232,7 +308,25 @@
       "size_bytes": 713070,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
       }
     },
     {
@@ -257,7 +351,8 @@
           "theory_keywords": [],
           "content_summary": [],
           "evidence_score": 0
-        }
+        },
+        "simple_summary": "models.mph.black_scholes_put.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
       }
     },
     {
@@ -282,8 +377,165 @@
           "theory_keywords": [],
           "content_summary": [],
           "evidence_score": 0
-        }
+        },
+        "simple_summary": "models.mph.black_scholes_put.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
       }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。"
+    ],
+    "physics_reasoning": [
+      "当前未识别到明确物理场，需要补充 MATLAB/Java/MPH 摘要或 PDF 理论说明。"
+    ],
+    "automation_evidence": [
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "Black-Scholes 方程 的 PDF 可用于理解案例目的、假设和操作步骤；当前证据还不足以唯一确定物理场，后续应结合 MATLAB/Java 中的 physics.create 或 COMSOL 模型树再确认。",
+    "primary_physics": "needs_more_evidence",
+    "study_type": "unknown",
+    "judgement_rule": "先根据 PDF 的核心物理量提出候选物理场，再用 MATLAB/Java/MPH 摘要中的 physics.create 做最终确认。",
+    "evidence": [],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "models.mph.black_scholes_put.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber.",
+      "models.mph.black_scholes_put.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "parameterized_geometry",
+        "modeling_content": "先建立参数化基准几何，再按 PDF/脚本证据替换为案例几何。",
+        "matlab_action": "model.param.set(...) + model.component('comp1').geom('geom1').create(...)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "needs_more_case_evidence_before_training",
+    "readiness_score": 20,
+    "candidate_inputs": [],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。",
+      "未识别到足够输入参数，需要补充参数表或从 LiveLink/Java 脚本导出参数。",
+      "缺少 MATLAB/Java 脚本时，自动建模只能依赖文档推断，需要人工复核更多步骤。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "needs_more_evidence_for_reliable_extension",
+    "readiness_score": 0,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target."
+    ],
+    "parameter_sweep_ideas": [
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training.",
+      "No MATLAB/Java script was detected; generated automation should be reviewed more carefully."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\COMSOL\\Black-Scholes 方程"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=4, MATLAB=0, Java=0, PDF=2, MPH=2, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 0 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=needs_more_case_evidence_before_training, 分数=20"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
     }
   ],
   "post_learning_summary": {

@@ -2,7 +2,7 @@
   "kind": "comsol_case_card",
   "title": "积分-偏微分方程",
   "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\积分-偏微分方程",
-  "created_at": "2026-06-29T08:48:38.704856+00:00",
+  "created_at": "2026-07-06T09:43:32.972712+00:00",
   "training_stage": "modeling_logic_learning_ready",
   "file_summary": {
     "count": 5,
@@ -151,17 +151,51 @@
       {
         "name": "integro_partial.mph",
         "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
+        "evidence_score": 17,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.component.create('comp1', true);",
+          "model.component('comp1').geom.create('geom1', 1);",
+          "model.component('comp1').mesh.create('mesh1');",
+          "model.component('comp1').physics.create('ht', 'HeatTransfer', 'geom1');",
+          "model.study.create('std1');"
+        ],
+        "parameters": [
+          "epsilon",
+          "T_cold",
+          "DT_max",
+          "T_init",
+          "D_i",
+          "D_o",
+          "L"
+        ],
+        "geometry": [
+          "i1 / Interval"
+        ],
+        "physics": [
+          "ht / HeatTransfer"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / time / Transient"
+        ],
         "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
+        "boundary_conditions": [
+          "temp1 / [1]",
+          "hs1 / Q0",
+          "init1 / Tinit",
+          "temp1 / T0"
+        ],
+        "theory_keywords": [
+          "传热"
+        ]
       },
       {
         "name": "integro_partial.zh_CN.mph",
@@ -211,7 +245,7 @@
     ],
     "totals": {
       "model_tree_items": 16,
-      "source_files_with_content": 1,
+      "source_files_with_content": 2,
       "source_files_checked": 5
     }
   },
@@ -225,16 +259,96 @@
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "integro_partial.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 8940
+              }
+            ],
+            "sidecar_count": 1,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [
+                "epsilon",
+                "T_cold",
+                "DT_max",
+                "T_init",
+                "D_i",
+                "D_o",
+                "L"
+              ],
+              "geometry": [
+                "i1 / Interval"
+              ],
+              "physics": [
+                "ht / HeatTransfer"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / time / Transient"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "temp1 / [1]",
+                "hs1 / Q0",
+                "init1 / Tinit",
+                "temp1 / T0"
+              ],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.component.create('comp1', true);",
+                "model.component('comp1').geom.create('geom1', 1);",
+                "model.component('comp1').mesh.create('mesh1');",
+                "model.component('comp1').physics.create('ht', 'HeatTransfer', 'geom1');",
+                "model.study.create('std1');",
+                "model.study('std1').create('time', 'Transient');",
+                "model.param.set('epsilon', '1');",
+                "model.param.descr('epsilon', 'Emissivity');",
+                "model.param.set('T_cold', '300[K]');"
+              ],
+              "evidence_score": 17
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## integro_partial.m\nfunction out = model\n%\n% integro_partial.m\n%\n% Model exported on Jun 11 2026, 18:28 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'79' 'ef'}), 'unico"
         },
         {
           "name": "integro_partial.zh_CN.mph",
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
           },
           "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
         }
@@ -350,7 +464,8 @@
               "theory_keywords": [],
               "content_summary": [],
               "evidence_score": 0
-            }
+            },
+            "simple_summary": "models.mph.integro_partial.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
           },
           "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
         },
@@ -375,7 +490,8 @@
               "theory_keywords": [],
               "content_summary": [],
               "evidence_score": 0
-            }
+            },
+            "simple_summary": "models.mph.integro_partial.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
           },
           "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
         }
@@ -384,6 +500,16 @@
       "constraints_or_metadata": [],
       "other": []
     },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.mph.integro_partial.pdf",
+        "summary": "models.mph.integro_partial.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+      },
+      {
+        "name": "models.mph.integro_partial.zh_CN.pdf",
+        "summary": "models.mph.integro_partial.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+      }
+    ],
     "recommendations": [
       "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
       "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
@@ -403,6 +529,16 @@
       "Train and validate the surrogate model."
     ]
   },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.mph.integro_partial.pdf",
+      "summary": "models.mph.integro_partial.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    },
+    {
+      "name": "models.mph.integro_partial.zh_CN.pdf",
+      "summary": "models.mph.integro_partial.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    }
+  ],
   "thoughts": [
     "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
     "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
@@ -517,7 +653,69 @@
       "size_bytes": 4021106,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "integro_partial.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 8940
+          }
+        ],
+        "sidecar_count": 1,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [
+            "epsilon",
+            "T_cold",
+            "DT_max",
+            "T_init",
+            "D_i",
+            "D_o",
+            "L"
+          ],
+          "geometry": [
+            "i1 / Interval"
+          ],
+          "physics": [
+            "ht / HeatTransfer"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / time / Transient"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "temp1 / [1]",
+            "hs1 / Q0",
+            "init1 / Tinit",
+            "temp1 / T0"
+          ],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.component.create('comp1', true);",
+            "model.component('comp1').geom.create('geom1', 1);",
+            "model.component('comp1').mesh.create('mesh1');",
+            "model.component('comp1').physics.create('ht', 'HeatTransfer', 'geom1');",
+            "model.study.create('std1');",
+            "model.study('std1').create('time', 'Transient');",
+            "model.param.set('epsilon', '1');",
+            "model.param.descr('epsilon', 'Emissivity');",
+            "model.param.set('T_cold', '300[K]');"
+          ],
+          "evidence_score": 17
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
     },
     {
@@ -526,7 +724,25 @@
       "size_bytes": 4046231,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
       }
     },
     {
@@ -551,7 +767,8 @@
           "theory_keywords": [],
           "content_summary": [],
           "evidence_score": 0
-        }
+        },
+        "simple_summary": "models.mph.integro_partial.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
       }
     },
     {
@@ -576,8 +793,235 @@
           "theory_keywords": [],
           "content_summary": [],
           "evidence_score": 0
-        }
+        },
+        "simple_summary": "models.mph.integro_partial.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
       }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 7 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：ht / HeatTransfer",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "材料节点已识别，生成脚本时应保留材料标签、属性组和单位。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "积分-偏微分方程 主要研究温度场和热传递过程，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Heat Transfer，并采用 Transient 研究。",
+    "primary_physics": "Heat Transfer",
+    "study_type": "Transient",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Heat Transfer，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Transient 确认。",
+    "evidence": [
+      "脚本/文本识别到的物理场: ht / HeatTransfer",
+      "识别到的研究类型: std1 / time / Transient",
+      "理论关键词: 传热"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "传热",
+      "models.mph.integro_partial.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber.",
+      "models.mph.integro_partial.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "epsilon",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('epsilon', value, description)"
+      },
+      {
+        "keyword": "T_cold",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('T_cold', value, description)"
+      },
+      {
+        "keyword": "DT_max",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('DT_max', value, description)"
+      },
+      {
+        "keyword": "T_init",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('T_init', value, description)"
+      },
+      {
+        "keyword": "D_i",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('D_i', value, description)"
+      },
+      {
+        "keyword": "D_o",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('D_o', value, description)"
+      },
+      {
+        "keyword": "L",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('L', value, description)"
+      },
+      {
+        "keyword": "HeatTransfer",
+        "modeling_content": "传热物理场",
+        "matlab_action": "model.component('comp1').physics.create('ht','HeatTransferInSolids','geom1')"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：i1 / Interval",
+      "已识别物理场证据：ht / HeatTransfer",
+      "已识别参数：epsilon、T_cold、DT_max、T_init、D_i、D_o、L"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "epsilon",
+      "T_cold",
+      "DT_max",
+      "T_init",
+      "D_i",
+      "D_o",
+      "L"
+    ],
+    "candidate_outputs": [
+      "Tmax",
+      "Tavg"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 85,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: ht / HeatTransfer.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations.",
+      "Use the learned study types as solver starting points: std1 / time / Transient."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 传热?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to temperature sensitivity studies by sweeping heat source, convection coefficient, and thermal conductivity.",
+      "Couple heat transfer with structural stress or electric losses when the requirement includes deformation or Joule heating."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `epsilon` around the learned value `1` and export target outputs to CSV.",
+      "Sweep `T_cold` around the learned value `300[K]` and export target outputs to CSV.",
+      "Sweep `DT_max` around the learned value `1200[K]` and export target outputs to CSV.",
+      "Sweep `T_init` around the learned value `T_cold` and export target outputs to CSV.",
+      "Sweep `D_i` around the learned value `1[in]` and export target outputs to CSV.",
+      "Sweep `D_o` around the learned value `1.1*D_i` and export target outputs to CSV.",
+      "Sweep `L` around the learned value `0.2[m]` and export target outputs to CSV.",
+      "Sweep heat source, heat-transfer coefficient, thermal conductivity, and ambient temperature.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\COMSOL\\积分-偏微分方程"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=5, MATLAB=1, Java=0, PDF=2, MPH=2, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 16 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
     }
   ],
   "post_learning_summary": {

@@ -1,0 +1,976 @@
+{
+  "schema": "comsol-surrogate-runtime-audit",
+  "schema_version": "1.1.0",
+  "generated_at": "2026-09-12T11:26:43.769899+00:00",
+  "registry_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\surrogate_registry.json",
+  "registry_sha256": "cc7e6a6ec83a76617a944067e11cfd5c96948d2f7a79787bdb014ed700af8b4a",
+  "registered_models": 29,
+  "validated_models": 27,
+  "superseded_models": 2,
+  "active_unvalidated_models": 0,
+  "skipped_unvalidated_models": 2,
+  "passed": 27,
+  "failed": 0,
+  "missing_artifacts": 0,
+  "warning_count": 0,
+  "feature_name_warning_count": 0,
+  "compatibility_notices": [
+    {
+      "dependency": "numpy/joblib",
+      "installed": "numpy 2.5.0, joblib 1.5.3",
+      "message": "joblib 1.5.x 在 NumPy 2.5 下会触发数组 shape 赋值弃用提示；运行时已精确过滤该提示，新部署环境应遵循 requirements.txt 的 NumPy 上限。"
+    }
+  ],
+  "relocation_tested": true,
+  "relocation_failures": 0,
+  "overall_passed": true,
+  "rows": [
+    {
+      "id": "joule_rectangle_validated_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_rectangle_validated_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_rectangle_validated_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_rectangle_validated_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_rectangle_validated_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "Vtot_V": 0.00055
+      },
+      "expected_outputs": [
+        "Tmax_K",
+        "Tavg_K"
+      ],
+      "predicted_outputs": [
+        "Tmax_K",
+        "Tavg_K"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "thermal_actuator_safe_tmax_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_safe_tmax_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_safe_tmax_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_safe_tmax_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_safe_tmax_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "DV_V": 3.5,
+        "htc_s_W_m2K": 20000.0,
+        "htc_us_W_m2K": 400.0
+      },
+      "expected_outputs": [
+        "Tmax_K"
+      ],
+      "predicted_outputs": [
+        "Tmax_K"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "thermal_actuator_voltage_extended_tmax_surrogate",
+      "status": "needs_more_comsol_evidence",
+      "lifecycle_status": "superseded",
+      "superseded_by": "thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate",
+      "eligible_for_prediction": false,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_extended_tmax_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_extended_tmax_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_extended_tmax_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_extended_tmax_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {},
+      "expected_outputs": [],
+      "predicted_outputs": [],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": false,
+      "error": "",
+      "skip_reason": "历史模型已由 thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate 替代。"
+    },
+    {
+      "id": "thermal_actuator_voltage_dense_extended_tmax_surrogate",
+      "status": "needs_more_comsol_evidence",
+      "lifecycle_status": "superseded",
+      "superseded_by": "thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate",
+      "eligible_for_prediction": false,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_extended_tmax_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_extended_tmax_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_extended_tmax_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_extended_tmax_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {},
+      "expected_outputs": [],
+      "predicted_outputs": [],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": false,
+      "error": "",
+      "skip_reason": "历史模型已由 thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate 替代。"
+    },
+    {
+      "id": "thermal_actuator_voltage_dense_poly_tmax_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_tmax_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_tmax_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_tmax_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_tmax_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "DV_V": 4.3,
+        "htc_s_W_m2K": 20000.0,
+        "htc_us_W_m2K": 400.0
+      },
+      "expected_outputs": [
+        "Tmax_K"
+      ],
+      "predicted_outputs": [
+        "Tmax_K"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "DV_V": 4.3,
+        "htc_s_W_m2K": 20000.0,
+        "htc_us_W_m2K": 400.0
+      },
+      "expected_outputs": [
+        "Tmax_K"
+      ],
+      "predicted_outputs": [
+        "Tmax_K"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "thermal_actuator_simplified_multioutput_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_simplified_multioutput_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_simplified_multioutput_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_simplified_multioutput_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermal_actuator_simplified_multioutput_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "DV_V": 5.0,
+        "htc_s_W_m2K": 20000.0,
+        "htc_us_W_m2K": 400.0
+      },
+      "expected_outputs": [
+        "Tmax_K",
+        "umax_m",
+        "joule_power_W"
+      ],
+      "predicted_outputs": [
+        "Tmax_K",
+        "umax_m",
+        "joule_power_W"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "circuit_fem_resistor_multioutput_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\circuit_fem_resistor_multioutput_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\circuit_fem_resistor_multioutput_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\circuit_fem_resistor_multioutput_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\circuit_fem_resistor_multioutput_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "sigma_S_m": 1000.0
+      },
+      "expected_outputs": [
+        "resistance_circuit_ohm",
+        "resistance_analytic_ohm"
+      ],
+      "predicted_outputs": [
+        "resistance_circuit_ohm",
+        "resistance_analytic_ohm"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "mast_diagonal_mounting_stiffness_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\mast_diagonal_mounting_stiffness_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\mast_diagonal_mounting_stiffness_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\mast_diagonal_mounting_stiffness_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\mast_diagonal_mounting_stiffness_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "t_p_mm": 11.0,
+        "t_m_mm": 12.5
+      },
+      "expected_outputs": [
+        "stiffness_ratio_1"
+      ],
+      "predicted_outputs": [
+        "stiffness_ratio_1"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "heat_convection_2d_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_convection_2d_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_convection_2d_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_convection_2d_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_convection_2d_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "convection_coefficient_W_m2_K": 750.0
+      },
+      "expected_outputs": [
+        "temperature_at_0p6_0p2_K",
+        "maximum_temperature_K"
+      ],
+      "predicted_outputs": [
+        "temperature_at_0p6_0p2_K",
+        "maximum_temperature_K"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "electric_field_concentric_cylinders_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\electric_field_concentric_cylinders_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\electric_field_concentric_cylinders_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\electric_field_concentric_cylinders_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\electric_field_concentric_cylinders_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "voltage_V": 100.0
+      },
+      "expected_outputs": [
+        "potential_mid_V",
+        "electric_field_mid_V_m"
+      ],
+      "predicted_outputs": [
+        "potential_mid_V",
+        "electric_field_mid_V_m"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "capacitor_dc_permittivity_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\capacitor_dc_permittivity_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\capacitor_dc_permittivity_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\capacitor_dc_permittivity_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\capacitor_dc_permittivity_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "relative_permittivity": 5.0
+      },
+      "expected_outputs": [
+        "capacitance_F"
+      ],
+      "predicted_outputs": [
+        "capacitance_F"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "simple_resistor_conductivity_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\simple_resistor_conductivity_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\simple_resistor_conductivity_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\simple_resistor_conductivity_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\simple_resistor_conductivity_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "conductivity_S_m": 50000000.0
+      },
+      "expected_outputs": [
+        "resistance_ohm"
+      ],
+      "predicted_outputs": [
+        "resistance_ohm"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "heat_radiation_1d_emissivity_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_radiation_1d_emissivity_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_radiation_1d_emissivity_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_radiation_1d_emissivity_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\heat_radiation_1d_emissivity_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "emissivity": 0.59
+      },
+      "expected_outputs": [
+        "radiating_end_temperature_K"
+      ],
+      "predicted_outputs": [
+        "radiating_end_temperature_K"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "tapered_cantilever_force_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\tapered_cantilever_force_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\tapered_cantilever_force_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\tapered_cantilever_force_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\tapered_cantilever_force_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "boundary_force_N_m": 10000000.0
+      },
+      "expected_outputs": [
+        "force_case_tip_displacement_m"
+      ],
+      "predicted_outputs": [
+        "force_case_tip_displacement_m"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "lid_driven_cavity_reynolds_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\lid_driven_cavity_reynolds_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\lid_driven_cavity_reynolds_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\lid_driven_cavity_reynolds_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\lid_driven_cavity_reynolds_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "Re": 425.0
+      },
+      "expected_outputs": [
+        "speed_mid_upper_m_s"
+      ],
+      "predicted_outputs": [
+        "speed_mid_upper_m_s"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "room_acoustic_target_mode_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\room_acoustic_target_mode_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\room_acoustic_target_mode_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\room_acoustic_target_mode_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\room_acoustic_target_mode_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "sound_speed_m_s": 340.0
+      },
+      "expected_outputs": [
+        "tracked_eigenfrequency_Hz"
+      ],
+      "predicted_outputs": [
+        "tracked_eigenfrequency_Hz"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "effective_diffusivity_1d_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\effective_diffusivity_1d_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\effective_diffusivity_1d_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\effective_diffusivity_1d_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\effective_diffusivity_1d_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "D1_m2_s": 2.4999999999999998e-06
+      },
+      "expected_outputs": [
+        "concentration_x0p2mm_t100ms_mol_m3"
+      ],
+      "predicted_outputs": [
+        "concentration_x0p2mm_t100ms_mol_m3"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "fresnel_equations_rf_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\fresnel_equations_rf_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\fresnel_equations_rf_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\fresnel_equations_rf_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\fresnel_equations_rf_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "incident_angle_deg": 37.5
+      },
+      "expected_outputs": [
+        "TE_reflectance",
+        "TM_reflectance"
+      ],
+      "predicted_outputs": [
+        "TE_reflectance",
+        "TM_reflectance"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "magnetic_field_infinite_conductor_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\magnetic_field_infinite_conductor_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\magnetic_field_infinite_conductor_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\magnetic_field_infinite_conductor_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\magnetic_field_infinite_conductor_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "current_A": 2.625
+      },
+      "expected_outputs": [
+        "magnetic_flux_density_at_5cm_T"
+      ],
+      "predicted_outputs": [
+        "magnetic_flux_density_at_5cm_T"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "helmholtz_coil_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\helmholtz_coil_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\helmholtz_coil_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\helmholtz_coil_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\helmholtz_coil_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "coil_current_mA": 0.325
+      },
+      "expected_outputs": [
+        "center_By_T"
+      ],
+      "predicted_outputs": [
+        "center_By_T"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "parallel_wires_force_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\parallel_wires_force_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\parallel_wires_force_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\parallel_wires_force_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\parallel_wires_force_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "current_A": 1.625
+      },
+      "expected_outputs": [
+        "force_x_wire2_N"
+      ],
+      "predicted_outputs": [
+        "force_x_wire2_N"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "thermoelectric_generator_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermoelectric_generator_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermoelectric_generator_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermoelectric_generator_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\thermoelectric_generator_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "hot_temperature_degC": 150.0
+      },
+      "expected_outputs": [
+        "open_circuit_voltage_V"
+      ],
+      "predicted_outputs": [
+        "open_circuit_voltage_V"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "pn_junction_carrier_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_carrier_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_carrier_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_carrier_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_carrier_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "bias_V": 0.25
+      },
+      "expected_outputs": [
+        "electron_density_at_junction_cm3",
+        "hole_density_at_junction_cm3"
+      ],
+      "predicted_outputs": [
+        "electron_density_at_junction_cm3",
+        "hole_density_at_junction_cm3"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "pn_junction_current_density_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_current_density_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_current_density_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_current_density_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\pn_junction_current_density_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "bias_V": 0.275
+      },
+      "expected_outputs": [
+        "current_density_at_x_2_5um_A_m2"
+      ],
+      "predicted_outputs": [
+        "current_density_at_x_2_5um_A_m2"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "joule_first_batch_validated_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_first_batch_validated_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_first_batch_validated_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_first_batch_validated_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\joule_first_batch_validated_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "Vtot_V": 0.00055
+      },
+      "expected_outputs": [
+        "Tmax_K",
+        "Tavg_K"
+      ],
+      "predicted_outputs": [
+        "Tmax_K",
+        "Tavg_K"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "power_inductor_frequency_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "frequency_Hz": 10250.0
+      },
+      "expected_outputs": [
+        "inductance_H",
+        "conductance_S"
+      ],
+      "predicted_outputs": [
+        "inductance_H",
+        "conductance_S"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "power_inductor_frequency_dense_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_dense_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_dense_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_dense_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\power_inductor_frequency_dense_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "frequency_Hz": 10250.0
+      },
+      "expected_outputs": [
+        "inductance_H",
+        "conductance_S"
+      ],
+      "predicted_outputs": [
+        "inductance_H",
+        "conductance_S"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    },
+    {
+      "id": "gecko_foot_surrogate",
+      "status": "validated_for_declared_scope",
+      "lifecycle_status": "active",
+      "superseded_by": "",
+      "eligible_for_prediction": true,
+      "artifacts": {
+        "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\gecko_foot_surrogate.joblib",
+        "model_card": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\gecko_foot_surrogate_model_card.md",
+        "model_card_json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\gecko_foot_surrogate_model_card.json",
+        "validation_report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\models\\gecko_foot_surrogate.holdout_validation.json"
+      },
+      "missing_artifacts": [],
+      "midpoint_inputs": {
+        "Fc_uN": 0.4,
+        "Ff_uN": 0.2,
+        "theta_deg": 60.0
+      },
+      "expected_outputs": [
+        "max_v_Mises_Pa",
+        "max_disp_m",
+        "max_ep1"
+      ],
+      "predicted_outputs": [
+        "max_v_Mises_Pa",
+        "max_disp_m",
+        "max_ep1"
+      ],
+      "warnings": [],
+      "warning_count": 0,
+      "feature_name_warning_count": 0,
+      "ok": true,
+      "error": "",
+      "validation_evidence_available": true,
+      "relocation_tested": true,
+      "relocation_ok": true,
+      "relocation_error": ""
+    }
+  ]
+}

@@ -21,3 +21,9 @@ build/
 
 .DS_Store
 Thumbs.db
+
+# Installed dependencies and runtime state
+**/node_modules/
+*.pid
+*.lock
+*.sqlite3

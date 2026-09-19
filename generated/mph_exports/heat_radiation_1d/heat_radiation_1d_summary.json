@@ -1,0 +1,60 @@
+{
+  "source": "D:/桌面/codex/案例下载/COMSOL/稳态辐射传热 - 一维/heat_radiation_1d.mph",
+  "label": "heat_radiation_1d.mph",
+  "parameters": {},
+  "components": {
+    "tag": "comp1",
+    "geometry": [
+      "geom1"
+    ],
+    "materials": [],
+    "physics": [
+      "ht"
+    ],
+    "meshes": [
+      "mesh1"
+    ],
+    "couplings": [
+      "builder_integrate1",
+      "builder_integrate2",
+      "builder_integrate3",
+      "builder_integrate4",
+      "builder_integrate5",
+      "builder_integrate6",
+      "builder_integrate7",
+      "builder_integrate8",
+      "builder_integrate9",
+      "builder_integrate10",
+      "builder_integrate11",
+      "builder_integrate12",
+      "builder_integrate13",
+      "builder_integrate14",
+      "builder_integrate15",
+      "builder_integrate16",
+      "builder_integrate17",
+      "builder_integrate18",
+      "builder_integrate19",
+      "builder_integrate20",
+      "builder_integrate21",
+      "builder_integrate22",
+      "builder_integrate23",
+      "builder_integrate24",
+      "builder_integrate25",
+      "builder_integrate26"
+    ]
+  },
+  "studies": [
+    "std1"
+  ],
+  "result_groups": [
+    "pg1"
+  ],
+  "datasets": [
+    "dset1"
+  ],
+  "tables": [
+    "tbl1"
+  ],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "joule_rectangle_training_data_validation",
+  "created_at": "2026-08-15T07:35:28.262275+00:00",
+  "csv": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\joule_rectangle_auto_solve_results.csv",
+  "sample_count": 37,
+  "checks": {
+    "finite_values": true,
+    "tmax_monotonic_with_voltage": true,
+    "below_copper_melting_point": true
+  },
+  "ranges": {
+    "voltage_v": [
+      0.0001,
+      0.001
+    ],
+    "tmax_k": [
+      293.877163870913,
+      365.866387091282
+    ]
+  },
+  "training_eligible": true,
+  "scope": "Verified 2D copper rectangle Joule-heating benchmark only; do not use as a universal COMSOL dataset."
+}

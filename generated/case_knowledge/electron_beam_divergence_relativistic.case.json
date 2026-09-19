@@ -1,0 +1,1358 @@
+{
+  "kind": "comsol_case_card",
+  "title": "electron_beam_divergence_relativistic",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\相对论发散电子束",
+  "created_at": "2026-08-22T04:29:57.813550+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 6,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1,
+      "pdf_document": 2
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 2,
+    "pptx_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "r0beam",
+      "value": "0.01[m]",
+      "description": "Initial beam radius",
+      "source": "java_param_set"
+    },
+    {
+      "name": "r0",
+      "value": "0.05[m]",
+      "description": "Domain radius",
+      "source": "java_param_set"
+    },
+    {
+      "name": "L",
+      "value": "0.2[m]",
+      "description": "Domain length",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Ibeam",
+      "value": "3[A]",
+      "description": "Beam current magnitude",
+      "source": "java_param_set"
+    },
+    {
+      "name": "v0beam",
+      "value": "1e8[m/s]",
+      "description": "Initial beam velocity",
+      "source": "java_param_set"
+    },
+    {
+      "name": "gamma",
+      "value": "1/sqrt(1-(v0beam/c_const)^2)",
+      "description": "Relativistic factor",
+      "source": "java_param_set"
+    },
+    {
+      "name": "K",
+      "value": "e_const*Ibeam/(2*pi*epsilon0_const*me_const*(v0beam*gamma)^3)",
+      "description": "Generalized perveance",
+      "source": "java_param_set"
+    },
+    {
+      "name": "hmax",
+      "value": "0.01",
+      "description": "Maximum mesh element size",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "r0beam",
+      "r0",
+      "L",
+      "Ibeam",
+      "v0beam",
+      "gamma",
+      "K",
+      "hmax"
+    ],
+    "geometry": [
+      "cyl1 / Cylinder",
+      "wp1 / WorkPlane",
+      "c1 / Circle",
+      "geom1 / cyl1 / r",
+      "geom1 / cyl1 / h",
+      "geom1 / wp1 / planetype",
+      "geom1 / wp1 / unite"
+    ],
+    "physics": [
+      "Electrostatics",
+      "Magnetic Fields",
+      "Particle Tracing"
+    ],
+    "materials": [],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [],
+    "results": [],
+    "boundary_conditions": [
+      "cyl1 / r",
+      "cyl1 / h",
+      "wp1 / planetype",
+      "wp1 / unite",
+      "c1 / r"
+    ],
+    "theory_keywords": [
+      "流体",
+      "电磁",
+      "结构力学"
+    ],
+    "source_extracts": [
+      {
+        "name": "electron_beam_divergence_relativistic.java",
+        "kind": "comsol_java",
+        "evidence_score": 23,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"electron_beam_divergence_relativistic.mph\");",
+          "model.title(\"\\u76f8\\u5bf9\\u8bba\\u53d1\\u6563\\u7535\\u5b50\\u675f\");",
+          "model.param().set(\"r0beam\", \"0.01[m]\", \"Initial beam radius\");",
+          "model.param().set(\"r0\", \"0.05[m]\", \"Domain radius\");",
+          "model.param().set(\"L\", \"0.2[m]\", \"Domain length\");",
+          "model.param().set(\"Ibeam\", \"3[A]\", \"Beam current magnitude\");"
+        ],
+        "parameters": [
+          "r0beam",
+          "r0",
+          "L",
+          "Ibeam",
+          "v0beam",
+          "gamma",
+          "K",
+          "hmax"
+        ],
+        "geometry": [
+          "cyl1 / Cylinder",
+          "wp1 / WorkPlane",
+          "c1 / Circle",
+          "geom1 / cyl1 / r",
+          "geom1 / cyl1 / h",
+          "geom1 / wp1 / planetype",
+          "geom1 / wp1 / unite"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "cyl1 / r",
+          "cyl1 / h",
+          "wp1 / planetype",
+          "wp1 / unite",
+          "c1 / r"
+        ],
+        "theory_keywords": [
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "models.acdc.electron_beam_divergence_relativistic.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 6,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          "Results and Discussion",
+          "from the beam waist as a function of beam radius is compared to the result of Equation 2",
+          "using a Global Evaluation. The results agree to within a few percentage points. The sources",
+          "both of which use constant shape functions within each mesh element.",
+          "2 In the Select Physics tree, select AC/DC > Particle Tracing > Particle–Field Interaction,",
+          "4 Click Study.",
+          "5 In the Select Study tree, select Preset Studies for Selected Physics Interfaces >"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Electrostatics",
+          "Magnetic Fields",
+          "Particle Tracing"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学",
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "models.particle.electron_beam_divergence_relativistic.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 6,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          "Results and Discussion",
+          "from the beam waist as a function of beam radius is compared to the result of Equation 2",
+          "using a Global Evaluation. The results agree to within a few percentage points. The sources",
+          "both of which use constant shape functions within each mesh element.",
+          "2 In the Select Physics tree, select AC/DC > Particle Tracing > Particle–Field Interaction,",
+          "4 Click Study.",
+          "5 In the Select Study tree, select Preset Studies for Selected Physics Interfaces >"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Electrostatics",
+          "Magnetic Fields",
+          "Particle Tracing"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学",
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "electron_beam_divergence_relativistic.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 2,
+        "content_summary": [
+          "hmax 0.01 \"Maximum mesh element size\""
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "electron_beam_divergence_relativistic.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 0,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('electron_beam_divergence_relativistic.mph');",
+          "model.title([native2unicode(hex2dec({'76' 'f8'}), 'unicode') native2unicode(hex2dec({'5b' 'f9'}), 'unicode') native2unicode(hex2dec({'8b' 'ba'}), 'unicode') native2unicode(hex2dec({'53' 'd1'}), 'unicode') native2unicode(hex2dec({'65' '63'})",
+          "model.description([native2unicode(hex2dec({'57' '28'}), 'unicode') native2unicode(hex2dec({'5b' 'f9'}), 'unicode') native2unicode(hex2dec({'5e' '26'}), 'unicode') native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'7c' "
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "electron_beam_divergence_relativistic_summary.json",
+        "kind": "json",
+        "evidence_score": 0,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\",",
+          "\"pgeom_cpt\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\"",
+          "\"result_groups\": ["
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 24,
+      "source_files_with_content": 4,
+      "source_files_checked": 6
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "6 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "electron_beam_divergence_relativistic.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "electron_beam_divergence_relativistic_parameters.txt",
+                "kind": "mph_text_sidecar",
+                "size_bytes": 348
+              }
+            ],
+            "sidecar_count": 1,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "hmax 0.01 \"Maximum mesh element size\""
+              ],
+              "evidence_score": 2
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+          },
+          "preview": "## electron_beam_divergence_relativistic_parameters.txt\nr0beam 0.01[m] \"Initial beam radius\"\nr0 0.05[m] \"Domain radius\"\nL 0.2[m] \"Domain length\"\nIbeam 3[A] \"Beam current magnitude\"\nv0beam 1e8[m/s] \"Initial beam velocity\"\ngamma 1/sqrt(1-(v0beam/c_const)^2) \"Relativistic factor\"\nK e_const*Ibeam/(2*pi*epsilon0_const*me_const*(v0beam*gamma)^3) \"Generalized perveance\"\nhmax 0.01 \"Maximum mesh element size\"\n"
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "electron_beam_divergence_relativistic.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 8,
+            "physics": [
+              {
+                "tag": "es",
+                "interface": "Electrostatics",
+                "geom": "geom1"
+              },
+              {
+                "tag": "mf",
+                "interface": "InductionCurrents",
+                "geom": "geom1"
+              },
+              {
+                "tag": "cpt",
+                "interface": "ChargedParticleTracing",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "bcpt",
+                "type": "BidirectionallyCoupledParticleTracing"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('electron_beam_divergence_relativistic.mph');",
+                "model.title([native2unicode(hex2dec({'76' 'f8'}), 'unicode') native2unicode(hex2dec({'5b' 'f9'}), 'unicode') native2unicode(hex2dec({'8b' 'ba'}), 'unicode') native2unicode(hex2dec({'53' 'd1'}), 'unicode') native2unicode(hex2dec({'65' '63'})",
+                "model.description([native2unicode(hex2dec({'57' '28'}), 'unicode') native2unicode(hex2dec({'5b' 'f9'}), 'unicode') native2unicode(hex2dec({'5e' '26'}), 'unicode') native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'7c' "
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "function out = model\n%\n% electron_beam_divergence_relativistic.m\n%\n% Model exported on Aug 22 2026, 12:29 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'unicode')  "
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "electron_beam_divergence_relativistic.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 8,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "r0beam",
+                "r0",
+                "L",
+                "Ibeam",
+                "v0beam",
+                "gamma",
+                "K",
+                "hmax"
+              ],
+              "geometry": [
+                "cyl1 / Cylinder",
+                "wp1 / WorkPlane",
+                "c1 / Circle",
+                "geom1 / cyl1 / r",
+                "geom1 / cyl1 / h",
+                "geom1 / wp1 / planetype",
+                "geom1 / wp1 / unite"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "cyl1 / r",
+                "cyl1 / h",
+                "wp1 / planetype",
+                "wp1 / unite",
+                "c1 / r"
+              ],
+              "theory_keywords": [
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"electron_beam_divergence_relativistic.mph\");",
+                "model.title(\"\\u76f8\\u5bf9\\u8bba\\u53d1\\u6563\\u7535\\u5b50\\u675f\");",
+                "model.param().set(\"r0beam\", \"0.01[m]\", \"Initial beam radius\");",
+                "model.param().set(\"r0\", \"0.05[m]\", \"Domain radius\");",
+                "model.param().set(\"L\", \"0.2[m]\", \"Domain length\");",
+                "model.param().set(\"Ibeam\", \"3[A]\", \"Beam current magnitude\");",
+                "model.param().set(\"v0beam\", \"1e8[m/s]\", \"Initial beam velocity\");",
+                "model.param().set(\"gamma\", \"1/sqrt(1-(v0beam/c_const)^2)\", \"Relativistic factor\");",
+                "model.param().set(\"K\", \"e_const*Ibeam/(2*pi*epsilon0_const*me_const*(v0beam*gamma)^3)\", \"Generalized perveance\");",
+                "model.param().set(\"hmax\", \"0.01\", \"Maximum mesh element size\");"
+              ],
+              "evidence_score": 23
+            }
+          },
+          "preview": "/*\n * electron_beam_divergence_relativistic.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 22 2026, 12:29 by COMSOL 6.4.0.293. */\npublic class electron_beam_divergence_relativistic {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u76f8\\u5bf9\\u8bba\\u53d1\\u6563\\u7535\\u5b50\\u675f\");\n\n    model.label(\"electron_beam_divergence_relativistic.mph\");\n\n    model.title(\"\\u76f8\\u5bf9\\u8bba\\u53d1\\u6563\\u7535\\u5b50\\u675f\");\n\n    model"
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.acdc.electron_beam_divergence_relativistic.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 10,
+            "extractor": "pypdf",
+            "preview_pages": 10,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Electrostatics",
+                "Magnetic Fields",
+                "Particle Tracing"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学",
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                "Results and Discussion",
+                "from the beam waist as a function of beam radius is compared to the result of Equation 2",
+                "using a Global Evaluation. The results agree to within a few percentage points. The sources",
+                "both of which use constant shape functions within each mesh element.",
+                "2 In the Select Physics tree, select AC/DC > Particle Tracing > Particle–Field Interaction,",
+                "4 Click Study.",
+                "5 In the Select Study tree, select Preset Studies for Selected Physics Interfaces >",
+                "GEOMETRY 1",
+                "1 In the Geometry toolbar, click Cylinder.",
+                "1 In the Geometry toolbar, click Work Plane.",
+                "5 Click Go to Plane Geometry."
+              ],
+              "evidence_score": 6
+            },
+            "simple_summary": "models.acdc.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nRelativistic Diverging Electron Beam\n2 | RELATIVISTIC DIVERGING ELECTRON BEAM\nIntroduction\nWhen modeling the propagation of charged particle beams at high currents and relativistic \nspeeds, the space charge and beam current create significant electric and magnetic forces \nthat tend to expand and focus the beam, respectively. The Charged Particle Tracing \ninterface can use an iterative procedur"
+        },
+        {
+          "name": "models.particle.electron_beam_divergence_relativistic.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 10,
+            "extractor": "pypdf",
+            "preview_pages": 10,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Electrostatics",
+                "Magnetic Fields",
+                "Particle Tracing"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学",
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                "Results and Discussion",
+                "from the beam waist as a function of beam radius is compared to the result of Equation 2",
+                "using a Global Evaluation. The results agree to within a few percentage points. The sources",
+                "both of which use constant shape functions within each mesh element.",
+                "2 In the Select Physics tree, select AC/DC > Particle Tracing > Particle–Field Interaction,",
+                "4 Click Study.",
+                "5 In the Select Study tree, select Preset Studies for Selected Physics Interfaces >",
+                "GEOMETRY 1",
+                "1 In the Geometry toolbar, click Cylinder.",
+                "1 In the Geometry toolbar, click Work Plane.",
+                "5 Click Go to Plane Geometry."
+              ],
+              "evidence_score": 6
+            },
+            "simple_summary": "models.particle.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nRelativistic Diverging Electron Beam\n2 | RELATIVISTIC DIVERGING ELECTRON BEAM\nIntroduction\nWhen modeling the propagation of charged particle beams at high currents and relativistic \nspeeds, the space charge and beam current create significant electric and magnetic forces \nthat tend to expand and focus the beam, respectively. The Charged Particle Tracing \ninterface can use an iterative procedur"
+        }
+      ],
+      "presentation_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "electron_beam_divergence_relativistic_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\",",
+                "\"pgeom_cpt\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/相对论发散电子束/electron_beam_divergence_relativistic.mph\",\n  \"label\": \"electron_beam_divergence_relativistic.mph\",\n  \"parameters\": {\n    \"r0beam\": \"0.01[m]\",\n    \"r0\": \"0.05[m]\",\n    \"L\": \"0.2[m]\",\n    \"Ibeam\": \"3[A]\",\n    \"v0beam\": \"1e8[m/s]\",\n    \"gamma\": \"1/sqrt(1-(v0beam/c_const)^2)\",\n    \"K\": \"e_const*Ibeam/(2*pi*epsilon0_const*me_const*(v0beam*gamma)^3)\",\n    \"hmax\": \"0.01\"\n  },\n  \"components\": {\n    \"tag\": \"comp1\",\n    \"geometry\": [\n      \"geom1\",\n      \"pgeom_cpt\"\n    ],\n    \"materials\": [],\n    \"physics\": [\n      \"es\",\n      \"mf\",\n      \"cpt\"\n    ],\n    \"m"
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.acdc.electron_beam_divergence_relativistic.pdf",
+        "summary": "models.acdc.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+      },
+      {
+        "name": "models.particle.electron_beam_divergence_relativistic.pdf",
+        "summary": "models.particle.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+      }
+    ],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.acdc.electron_beam_divergence_relativistic.pdf",
+      "summary": "models.acdc.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+    },
+    {
+      "name": "models.particle.electron_beam_divergence_relativistic.pdf",
+      "summary": "models.particle.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+    }
+  ],
+  "prompt_summary": "",
+  "thoughts": [
+    "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "electron_beam_divergence_relativistic.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 125737372,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "electron_beam_divergence_relativistic_parameters.txt",
+            "kind": "mph_text_sidecar",
+            "size_bytes": 348
+          }
+        ],
+        "sidecar_count": 1,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "hmax 0.01 \"Maximum mesh element size\""
+          ],
+          "evidence_score": 2
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+      }
+    },
+    {
+      "name": "electron_beam_divergence_relativistic.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 40395,
+      "details": {
+        "parameters": 8,
+        "physics": [
+          {
+            "tag": "es",
+            "interface": "Electrostatics",
+            "geom": "geom1"
+          },
+          {
+            "tag": "mf",
+            "interface": "InductionCurrents",
+            "geom": "geom1"
+          },
+          {
+            "tag": "cpt",
+            "interface": "ChargedParticleTracing",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "bcpt",
+            "type": "BidirectionallyCoupledParticleTracing"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('electron_beam_divergence_relativistic.mph');",
+            "model.title([native2unicode(hex2dec({'76' 'f8'}), 'unicode') native2unicode(hex2dec({'5b' 'f9'}), 'unicode') native2unicode(hex2dec({'8b' 'ba'}), 'unicode') native2unicode(hex2dec({'53' 'd1'}), 'unicode') native2unicode(hex2dec({'65' '63'})",
+            "model.description([native2unicode(hex2dec({'57' '28'}), 'unicode') native2unicode(hex2dec({'5b' 'f9'}), 'unicode') native2unicode(hex2dec({'5e' '26'}), 'unicode') native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'7c' "
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "electron_beam_divergence_relativistic.java",
+      "kind": "comsol_java",
+      "size_bytes": 35207,
+      "details": {
+        "model_param_set": 8,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "r0beam",
+            "r0",
+            "L",
+            "Ibeam",
+            "v0beam",
+            "gamma",
+            "K",
+            "hmax"
+          ],
+          "geometry": [
+            "cyl1 / Cylinder",
+            "wp1 / WorkPlane",
+            "c1 / Circle",
+            "geom1 / cyl1 / r",
+            "geom1 / cyl1 / h",
+            "geom1 / wp1 / planetype",
+            "geom1 / wp1 / unite"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "cyl1 / r",
+            "cyl1 / h",
+            "wp1 / planetype",
+            "wp1 / unite",
+            "c1 / r"
+          ],
+          "theory_keywords": [
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"electron_beam_divergence_relativistic.mph\");",
+            "model.title(\"\\u76f8\\u5bf9\\u8bba\\u53d1\\u6563\\u7535\\u5b50\\u675f\");",
+            "model.param().set(\"r0beam\", \"0.01[m]\", \"Initial beam radius\");",
+            "model.param().set(\"r0\", \"0.05[m]\", \"Domain radius\");",
+            "model.param().set(\"L\", \"0.2[m]\", \"Domain length\");",
+            "model.param().set(\"Ibeam\", \"3[A]\", \"Beam current magnitude\");",
+            "model.param().set(\"v0beam\", \"1e8[m/s]\", \"Initial beam velocity\");",
+            "model.param().set(\"gamma\", \"1/sqrt(1-(v0beam/c_const)^2)\", \"Relativistic factor\");",
+            "model.param().set(\"K\", \"e_const*Ibeam/(2*pi*epsilon0_const*me_const*(v0beam*gamma)^3)\", \"Generalized perveance\");",
+            "model.param().set(\"hmax\", \"0.01\", \"Maximum mesh element size\");"
+          ],
+          "evidence_score": 23
+        }
+      }
+    },
+    {
+      "name": "electron_beam_divergence_relativistic_summary.json",
+      "kind": "json",
+      "size_bytes": 1537,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\",",
+            "\"pgeom_cpt\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "models.acdc.electron_beam_divergence_relativistic.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 616490,
+      "details": {
+        "readable": true,
+        "pages": 10,
+        "extractor": "pypdf",
+        "preview_pages": 10,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Electrostatics",
+            "Magnetic Fields",
+            "Particle Tracing"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学",
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            "Results and Discussion",
+            "from the beam waist as a function of beam radius is compared to the result of Equation 2",
+            "using a Global Evaluation. The results agree to within a few percentage points. The sources",
+            "both of which use constant shape functions within each mesh element.",
+            "2 In the Select Physics tree, select AC/DC > Particle Tracing > Particle–Field Interaction,",
+            "4 Click Study.",
+            "5 In the Select Study tree, select Preset Studies for Selected Physics Interfaces >",
+            "GEOMETRY 1",
+            "1 In the Geometry toolbar, click Cylinder.",
+            "1 In the Geometry toolbar, click Work Plane.",
+            "5 Click Go to Plane Geometry."
+          ],
+          "evidence_score": 6
+        },
+        "simple_summary": "models.acdc.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+      }
+    },
+    {
+      "name": "models.particle.electron_beam_divergence_relativistic.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 616364,
+      "details": {
+        "readable": true,
+        "pages": 10,
+        "extractor": "pypdf",
+        "preview_pages": 10,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Electrostatics",
+            "Magnetic Fields",
+            "Particle Tracing"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学",
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            "Results and Discussion",
+            "from the beam waist as a function of beam radius is compared to the result of Equation 2",
+            "using a Global Evaluation. The results agree to within a few percentage points. The sources",
+            "both of which use constant shape functions within each mesh element.",
+            "2 In the Select Physics tree, select AC/DC > Particle Tracing > Particle–Field Interaction,",
+            "4 Click Study.",
+            "5 In the Select Study tree, select Preset Studies for Selected Physics Interfaces >",
+            "GEOMETRY 1",
+            "1 In the Geometry toolbar, click Cylinder.",
+            "1 In the Geometry toolbar, click Work Plane.",
+            "5 Click Go to Plane Geometry."
+          ],
+          "evidence_score": 6
+        },
+        "simple_summary": "models.particle.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 8 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：Electrostatics",
+      "识别到物理场证据：Magnetic Fields",
+      "识别到物理场证据：Particle Tracing",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "electron_beam_divergence_relativistic 主要研究流动速度、压力或输运过程，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Solid Mechanics。",
+    "primary_physics": "Solid Mechanics",
+    "study_type": "unknown",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Solid Mechanics，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型需要继续从研究步骤确认。",
+    "evidence": [
+      "PDF: Model created in COMSOL Multiphysics 6.4",
+      "PDF: Results and Discussion",
+      "PDF: from the beam waist as a function of beam radius is compared to the result of Equation 2",
+      "PDF: using a Global Evaluation. The results agree to within a few percentage points. The sources",
+      "脚本/文本识别到的物理场: Electrostatics, Magnetic Fields, Particle Tracing",
+      "理论关键词: 流体, 电磁, 结构力学"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "流体",
+      "电磁",
+      "结构力学",
+      "models.acdc.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion",
+      "models.particle.electron_beam_divergence_relativistic.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Electrostatics、Magnetic Fields、Particle Tracing；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Results and Discussion"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "r0beam",
+        "modeling_content": "Initial beam radius",
+        "matlab_action": "model.param.set('r0beam', value, description)"
+      },
+      {
+        "keyword": "r0",
+        "modeling_content": "Domain radius",
+        "matlab_action": "model.param.set('r0', value, description)"
+      },
+      {
+        "keyword": "L",
+        "modeling_content": "Domain length",
+        "matlab_action": "model.param.set('L', value, description)"
+      },
+      {
+        "keyword": "Ibeam",
+        "modeling_content": "Beam current magnitude",
+        "matlab_action": "model.param.set('Ibeam', value, description)"
+      },
+      {
+        "keyword": "v0beam",
+        "modeling_content": "Initial beam velocity",
+        "matlab_action": "model.param.set('v0beam', value, description)"
+      },
+      {
+        "keyword": "gamma",
+        "modeling_content": "Relativistic factor",
+        "matlab_action": "model.param.set('gamma', value, description)"
+      },
+      {
+        "keyword": "K",
+        "modeling_content": "Generalized perveance",
+        "matlab_action": "model.param.set('K', value, description)"
+      },
+      {
+        "keyword": "hmax",
+        "modeling_content": "Maximum mesh element size",
+        "matlab_action": "model.param.set('hmax', value, description)"
+      },
+      {
+        "keyword": "Circle",
+        "modeling_content": "圆孔、圆柱截面或钻孔",
+        "matlab_action": "model.component('comp1').geom('geom1').create(tag, 'Circle')"
+      },
+      {
+        "keyword": "Cylinder",
+        "modeling_content": "圆柱体、管道或三维钻孔",
+        "matlab_action": "model.component('comp1').geom('geom1').create(tag, 'Cylinder')"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：cyl1 / Cylinder；wp1 / WorkPlane；c1 / Circle；geom1 / cyl1 / r；geom1 / cyl1 / h；geom1 / wp1 / planetype",
+      "已识别物理场证据：Electrostatics；Magnetic Fields；Particle Tracing",
+      "已识别参数：r0beam、r0、L、Ibeam、v0beam、gamma、K、hmax"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "r0beam",
+      "r0",
+      "L",
+      "Ibeam",
+      "v0beam",
+      "gamma",
+      "K",
+      "hmax"
+    ],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 85,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: Electrostatics, Magnetic Fields, Particle Tracing.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 流体, 电磁, 结构力学?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to load-case comparison, stress concentration analysis, and displacement safety checks.",
+      "Build a corrected model workflow that separates geometry repair, material assignment, constraints, and load verification.",
+      "Extend to inlet/outlet sensitivity, pressure-drop prediction, and flow-uniformity analysis.",
+      "Add coupled transport, porous media, or nonisothermal flow when concentration or temperature fields are involved.",
+      "Extend to terminal-current, resistance, field-distribution, and Joule-loss studies.",
+      "Use electric-current outputs as coupling sources for thermal or structural models."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `r0beam` around the learned value `0.01[m]` and export target outputs to CSV.",
+      "Sweep `r0` around the learned value `0.05[m]` and export target outputs to CSV.",
+      "Sweep `L` around the learned value `0.2[m]` and export target outputs to CSV.",
+      "Sweep `Ibeam` around the learned value `3[A]` and export target outputs to CSV.",
+      "Sweep `v0beam` around the learned value `1e8[m/s]` and export target outputs to CSV.",
+      "Sweep `gamma` around the learned value `1/sqrt(1-(v0beam/c_const)^2)` and export target outputs to CSV.",
+      "Sweep `K` around the learned value `e_const*Ibeam/(2*pi*epsilon0_const*me_const*(v0beam*gamma)^3)` and export target outputs to CSV.",
+      "Sweep `hmax` around the learned value `0.01` and export target outputs to CSV.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\相对论发散电子束"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=6, MATLAB=1, Java=1, PDF=2, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 24 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "electron_beam_divergence_relativistic",
+    "summary": "已学习 electron_beam_divergence_relativistic 的 6 个文件；训练阶段=modeling_logic_learning_ready；参数数量=8；内容证据=24 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "8 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification.",
+      "24 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 6 个案例文件；MATLAB=1，Java=1，PDF=2，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 24 条；几何=7，物理场=3，材料=0，网格=1，研究=0，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：electron_beam_divergence_relativistic.m, electron_beam_divergence_relativistic.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 8 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=2，MPH 模型=1。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 electron_beam_divergence_relativistic，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "electron_beam_divergence_relativistic modeling_logic_learning_ready PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. r0beam Initial beam radius 0.01[m] r0 Domain radius 0.05[m] L Domain length 0.2[m] Ibeam Beam current magnitude 3[A] v0beam Initial beam velocity 1e8[m/s] gamma Relativistic factor 1/sqrt(1-(v0beam/c_const)^2) K Generalized perveance e_const*Ibeam/(2*pi*epsilon0_const*me_const*(v0beam*gamma)^3) hmax Maximum mesh element size 0.01 electron_beam_divergence_relativistic.mph comsol_mph electron_beam_divergence_relativistic.m matlab_livelink electron_beam_divergence_relativistic.java comsol_java electron_beam_divergence_relativistic_summary.json json models.acdc.electron_beam_divergence_relativistic.pdf pdf_document models.particle.electron_beam_divergence_relativistic.pdf pdf_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

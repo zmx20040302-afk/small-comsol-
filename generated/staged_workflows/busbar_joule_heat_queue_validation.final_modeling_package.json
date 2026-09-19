@@ -1,0 +1,26 @@
+{
+  "kind": "approved_comsol_modeling_package",
+  "workflow_id": "busbar_joule_heat_queue_validation",
+  "requirement": "验证已批准母线板焦耳热 COMSOL 模型的一键执行队列。",
+  "approved_decisions": {
+    "physics": {"title": "Electric Currents + Heat Transfer + Joule Heating"},
+    "materials": {"title": "Copper busbar material"},
+    "data_structure": {"title": "Validated 3D busbar geometry and selections"},
+    "mesh": {"title": "Validated mesh convergence settings"},
+    "study_solver": {"title": "Stationary coupled electrothermal study"},
+    "results_export": {"title": "Tmax and energy-balance validation outputs"}
+  },
+  "generated_code": {
+    "outputs": {
+      "matlab": "D:/桌面/codex/comsol1/comsol_training_small_model/generated/benchmarks/busbar_joule_heat/builders/busbar_joule_heat_baseline.m",
+      "java": "D:/桌面/codex/comsol1/comsol_training_small_model/generated/benchmarks/busbar_joule_heat/builders/BusbarJouleHeatBaseline.java",
+      "verification": "D:/桌面/codex/comsol1/comsol_training_small_model/generated/benchmarks/busbar_joule_heat/energy_balance_validation.json"
+    }
+  },
+  "execution_handoff": {
+    "ready_to_open": true,
+    "ready_to_solve": true,
+    "next_action": "start_baseline_solve",
+    "unresolved_requirements": []
+  }
+}

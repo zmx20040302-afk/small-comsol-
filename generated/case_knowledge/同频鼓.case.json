@@ -2,7 +2,7 @@
   "kind": "comsol_case_card",
   "title": "同频鼓",
   "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\同频鼓",
-  "created_at": "2026-06-29T08:42:14.386473+00:00",
+  "created_at": "2026-07-06T09:37:43.258323+00:00",
   "training_stage": "modeling_logic_learning_ready",
   "file_summary": {
     "count": 6,
@@ -30,7 +30,8 @@
     ],
     "physics": [
       "c / CoefficientFormPDE",
-      "c2 / CoefficientFormPDE"
+      "c2 / CoefficientFormPDE",
+      "Coefficient Form PDE"
     ],
     "materials": [],
     "mesh": [
@@ -41,7 +42,8 @@
       "std1 / eigv / Eigenvalue",
       "std2 / eigv / Eigenvalue",
       "std1",
-      "std2"
+      "std2",
+      "Eigenvalue"
     ],
     "results": [
       "pg1",
@@ -56,7 +58,7 @@
       {
         "name": "isospectral_drums.java",
         "kind": "comsol_java",
-        "evidence_score": 15,
+        "evidence_score": 17,
         "content_summary": [
           "import com.comsol.model.*;",
           "import com.comsol.model.util.*;",
@@ -75,7 +77,8 @@
         ],
         "physics": [
           "c / CoefficientFormPDE",
-          "c2 / CoefficientFormPDE"
+          "c2 / CoefficientFormPDE",
+          "Coefficient Form PDE"
         ],
         "materials": [],
         "mesh": [
@@ -86,7 +89,55 @@
           "std1 / eigv / Eigenvalue",
           "std2 / eigv / Eigenvalue",
           "std1",
-          "std2"
+          "std2",
+          "Eigenvalue"
+        ],
+        "results": [
+          "pg1",
+          "surf1"
+        ],
+        "boundary_conditions": [
+          "pol1 / source",
+          "surf1 / expr"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "isospectral_drums.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 17,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u540c\\u9891\\u9f13\");",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").physics().create(\"c\", \"CoefficientFormPDE\", \"geom1\");",
+          "model.component(\"comp1\").physics(\"c\").prop(\"EquationForm\").set(\"form\", \"Automatic\");"
+        ],
+        "parameters": [],
+        "geometry": [
+          "pol1 / Polygon",
+          "geom1 / pol1 / source",
+          "geom2 / pol1 / source"
+        ],
+        "physics": [
+          "c / CoefficientFormPDE",
+          "c2 / CoefficientFormPDE",
+          "Coefficient Form PDE"
+        ],
+        "materials": [],
+        "mesh": [
+          "mesh1",
+          "mesh2"
+        ],
+        "studies": [
+          "std1 / eigv / Eigenvalue",
+          "std2 / eigv / Eigenvalue",
+          "std1",
+          "std2",
+          "Eigenvalue"
         ],
         "results": [
           "pg1",
@@ -101,7 +152,7 @@
       {
         "name": "isospectral_drums.m",
         "kind": "matlab_livelink",
-        "evidence_score": 13,
+        "evidence_score": 15,
         "content_summary": [
           "import com.comsol.model.*",
           "import com.comsol.model.util.*",
@@ -120,7 +171,8 @@
         ],
         "physics": [
           "c / CoefficientFormPDE",
-          "c2 / CoefficientFormPDE"
+          "c2 / CoefficientFormPDE",
+          "Coefficient Form PDE"
         ],
         "materials": [],
         "mesh": [
@@ -129,7 +181,8 @@
         ],
         "studies": [
           "std1 / eigv / Eigenvalue",
-          "std2 / eigv / Eigenvalue"
+          "std2 / eigv / Eigenvalue",
+          "Eigenvalue"
         ],
         "results": [
           "pg1",
@@ -139,21 +192,6 @@
           "pol1 / source",
           "surf1 / expr"
         ],
-        "theory_keywords": []
-      },
-      {
-        "name": "isospectral_drums.mph",
-        "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
         "theory_keywords": []
       },
       {
@@ -203,8 +241,8 @@
       }
     ],
     "totals": {
-      "model_tree_items": 15,
-      "source_files_with_content": 2,
+      "model_tree_items": 17,
+      "source_files_with_content": 3,
       "source_files_checked": 6
     }
   },
@@ -218,16 +256,99 @@
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "isospectral_drums.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 7885
+              },
+              {
+                "name": "isospectral_drums.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 9653
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [
+                "pol1 / Polygon",
+                "geom1 / pol1 / source",
+                "geom2 / pol1 / source"
+              ],
+              "physics": [
+                "c / CoefficientFormPDE",
+                "c2 / CoefficientFormPDE",
+                "Coefficient Form PDE"
+              ],
+              "materials": [],
+              "mesh": [
+                "mesh1",
+                "mesh2"
+              ],
+              "studies": [
+                "std1 / eigv / Eigenvalue",
+                "std2 / eigv / Eigenvalue",
+                "std1",
+                "std2",
+                "Eigenvalue"
+              ],
+              "results": [
+                "pg1",
+                "surf1"
+              ],
+              "boundary_conditions": [
+                "pol1 / source",
+                "surf1 / expr"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u540c\\u9891\\u9f13\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").physics().create(\"c\", \"CoefficientFormPDE\", \"geom1\");",
+                "model.component(\"comp1\").physics(\"c\").prop(\"EquationForm\").set(\"form\", \"Automatic\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"eigv\", \"Eigenvalue\");",
+                "model.component(\"comp1\").geom(\"geom1\").create(\"pol1\", \"Polygon\");",
+                "model.component(\"comp1\").geom(\"geom1\").feature(\"pol1\").set(\"source\", \"table\");"
+              ],
+              "evidence_score": 17
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## isospectral_drums.java\n/*\n * isospectral_drums.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 14 2026, 16:58 by COMSOL 6.4.0.293. */\npublic class isospectral_drums {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u540c\\u9891\\u9f13\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 2);\n\n    model.component(\"comp1\").mesh().create(\"mesh1\");\n\n    model.component(\"comp1\").physics().create"
         },
         {
           "name": "isospectral_drums.zh_CN.mph",
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
           },
           "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
         }
@@ -283,7 +404,8 @@
               ],
               "physics": [
                 "c / CoefficientFormPDE",
-                "c2 / CoefficientFormPDE"
+                "c2 / CoefficientFormPDE",
+                "Coefficient Form PDE"
               ],
               "materials": [],
               "mesh": [
@@ -292,7 +414,8 @@
               ],
               "studies": [
                 "std1 / eigv / Eigenvalue",
-                "std2 / eigv / Eigenvalue"
+                "std2 / eigv / Eigenvalue",
+                "Eigenvalue"
               ],
               "results": [
                 "pg1",
@@ -317,7 +440,7 @@
                 "model.component('comp1').geom('geom1').create('pol1', 'Polygon');",
                 "model.component('comp1').geom('geom1').feature('pol1').set('source', 'table');"
               ],
-              "evidence_score": 13
+              "evidence_score": 15
             }
           },
           "preview": "function out = model\n%\n% isospectral_drums.m\n%\n% Model exported on Jun 14 2026, 16:58 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'54' '0c'}), 'unicode')  native2unicod"
@@ -345,7 +468,8 @@
               ],
               "physics": [
                 "c / CoefficientFormPDE",
-                "c2 / CoefficientFormPDE"
+                "c2 / CoefficientFormPDE",
+                "Coefficient Form PDE"
               ],
               "materials": [],
               "mesh": [
@@ -356,7 +480,8 @@
                 "std1 / eigv / Eigenvalue",
                 "std2 / eigv / Eigenvalue",
                 "std1",
-                "std2"
+                "std2",
+                "Eigenvalue"
               ],
               "results": [
                 "pg1",
@@ -381,7 +506,7 @@
                 "model.component(\"comp1\").geom(\"geom1\").create(\"pol1\", \"Polygon\");",
                 "model.component(\"comp1\").geom(\"geom1\").feature(\"pol1\").set(\"source\", \"table\");"
               ],
-              "evidence_score": 15
+              "evidence_score": 17
             }
           },
           "preview": "/*\n * isospectral_drums.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 14 2026, 16:58 by COMSOL 6.4.0.293. */\npublic class isospectral_drums {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u540c\\u9891\\u9f13\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 2);\n\n    model.component(\"comp1\").mesh().create(\"mesh1\");\n\n    model.component(\"comp1\").physics().create(\"c\", \"CoefficientFormPDE\""
@@ -409,7 +534,8 @@
               "theory_keywords": [],
               "content_summary": [],
               "evidence_score": 0
-            }
+            },
+            "simple_summary": "models.mph.isospectral_drums.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
           },
           "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
         },
@@ -434,7 +560,8 @@
               "theory_keywords": [],
               "content_summary": [],
               "evidence_score": 0
-            }
+            },
+            "simple_summary": "models.mph.isospectral_drums.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
           },
           "preview": "PDF detected. Text extraction requires pypdf or pdfplumber."
         }
@@ -443,6 +570,16 @@
       "constraints_or_metadata": [],
       "other": []
     },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.mph.isospectral_drums.pdf",
+        "summary": "models.mph.isospectral_drums.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+      },
+      {
+        "name": "models.mph.isospectral_drums.zh_CN.pdf",
+        "summary": "models.mph.isospectral_drums.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+      }
+    ],
     "recommendations": [
       "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
       "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
@@ -462,6 +599,16 @@
       "Train and validate the surrogate model."
     ]
   },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.mph.isospectral_drums.pdf",
+      "summary": "models.mph.isospectral_drums.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    },
+    {
+      "name": "models.mph.isospectral_drums.zh_CN.pdf",
+      "summary": "models.mph.isospectral_drums.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    }
+  ],
   "thoughts": [
     "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
     "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
@@ -506,7 +653,8 @@
           ],
           "physics": [
             "c / CoefficientFormPDE",
-            "c2 / CoefficientFormPDE"
+            "c2 / CoefficientFormPDE",
+            "Coefficient Form PDE"
           ],
           "materials": [],
           "mesh": [
@@ -517,7 +665,8 @@
             "std1 / eigv / Eigenvalue",
             "std2 / eigv / Eigenvalue",
             "std1",
-            "std2"
+            "std2",
+            "Eigenvalue"
           ],
           "results": [
             "pg1",
@@ -542,7 +691,7 @@
             "model.component(\"comp1\").geom(\"geom1\").create(\"pol1\", \"Polygon\");",
             "model.component(\"comp1\").geom(\"geom1\").feature(\"pol1\").set(\"source\", \"table\");"
           ],
-          "evidence_score": 15
+          "evidence_score": 17
         }
       }
     },
@@ -597,7 +746,8 @@
           ],
           "physics": [
             "c / CoefficientFormPDE",
-            "c2 / CoefficientFormPDE"
+            "c2 / CoefficientFormPDE",
+            "Coefficient Form PDE"
           ],
           "materials": [],
           "mesh": [
@@ -606,7 +756,8 @@
           ],
           "studies": [
             "std1 / eigv / Eigenvalue",
-            "std2 / eigv / Eigenvalue"
+            "std2 / eigv / Eigenvalue",
+            "Eigenvalue"
           ],
           "results": [
             "pg1",
@@ -631,7 +782,7 @@
             "model.component('comp1').geom('geom1').create('pol1', 'Polygon');",
             "model.component('comp1').geom('geom1').feature('pol1').set('source', 'table');"
           ],
-          "evidence_score": 13
+          "evidence_score": 15
         }
       }
     },
@@ -641,7 +792,72 @@
       "size_bytes": 3609752,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "isospectral_drums.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 7885
+          },
+          {
+            "name": "isospectral_drums.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 9653
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [
+            "pol1 / Polygon",
+            "geom1 / pol1 / source",
+            "geom2 / pol1 / source"
+          ],
+          "physics": [
+            "c / CoefficientFormPDE",
+            "c2 / CoefficientFormPDE",
+            "Coefficient Form PDE"
+          ],
+          "materials": [],
+          "mesh": [
+            "mesh1",
+            "mesh2"
+          ],
+          "studies": [
+            "std1 / eigv / Eigenvalue",
+            "std2 / eigv / Eigenvalue",
+            "std1",
+            "std2",
+            "Eigenvalue"
+          ],
+          "results": [
+            "pg1",
+            "surf1"
+          ],
+          "boundary_conditions": [
+            "pol1 / source",
+            "surf1 / expr"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u540c\\u9891\\u9f13\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").physics().create(\"c\", \"CoefficientFormPDE\", \"geom1\");",
+            "model.component(\"comp1\").physics(\"c\").prop(\"EquationForm\").set(\"form\", \"Automatic\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"eigv\", \"Eigenvalue\");",
+            "model.component(\"comp1\").geom(\"geom1\").create(\"pol1\", \"Polygon\");",
+            "model.component(\"comp1\").geom(\"geom1\").feature(\"pol1\").set(\"source\", \"table\");"
+          ],
+          "evidence_score": 17
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
     },
     {
@@ -650,7 +866,25 @@
       "size_bytes": 3638362,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
       }
     },
     {
@@ -675,7 +909,8 @@
           "theory_keywords": [],
           "content_summary": [],
           "evidence_score": 0
-        }
+        },
+        "simple_summary": "models.mph.isospectral_drums.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
       }
     },
     {
@@ -700,14 +935,187 @@
           "theory_keywords": [],
           "content_summary": [],
           "evidence_score": 0
-        }
+        },
+        "simple_summary": "models.mph.isospectral_drums.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
       }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：c / CoefficientFormPDE",
+      "识别到物理场证据：c2 / CoefficientFormPDE",
+      "识别到物理场证据：Coefficient Form PDE",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。",
+      "结果节点可用于确定导出量和训练目标。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "同频鼓 主要研究模型中的主要物理现象和输出量，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Coefficient Form PDE，并采用 Eigenvalue 研究。",
+    "primary_physics": "Coefficient Form PDE",
+    "study_type": "Eigenvalue",
+    "judgement_rule": "若 PDF 强调自定义方程、薛定谔方程、能级、波函数或特征值，优先判断为系数形式 PDE；再用脚本中的 CoefficientFormPDE 校验。",
+    "evidence": [
+      "脚本/文本识别到的物理场: c / CoefficientFormPDE, c2 / CoefficientFormPDE, Coefficient Form PDE",
+      "识别到的研究类型: std1 / eigv / Eigenvalue, std2 / eigv / Eigenvalue, std1, std2, Eigenvalue"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "models.mph.isospectral_drums.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber.",
+      "models.mph.isospectral_drums.zh_CN.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber."
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "parameterized_geometry",
+        "modeling_content": "先建立参数化基准几何，再按 PDF/脚本证据替换为案例几何。",
+        "matlab_action": "model.param.set(...) + model.component('comp1').geom('geom1').create(...)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：pol1 / Polygon；geom1 / pol1 / source；geom2 / pol1 / source",
+      "已识别物理场证据：c / CoefficientFormPDE；c2 / CoefficientFormPDE；Coefficient Form PDE"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "needs_more_case_evidence_before_training",
+    "readiness_score": 45,
+    "candidate_inputs": [],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。",
+      "未识别到足够输入参数，需要补充参数表或从 LiveLink/Java 脚本导出参数。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 65,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: c / CoefficientFormPDE, c2 / CoefficientFormPDE, Coefficient Form PDE.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations.",
+      "Use the learned study types as solver starting points: std1 / eigv / Eigenvalue, std2 / eigv / Eigenvalue, std1, std2, Eigenvalue.",
+      "Use detected result nodes as candidate validation and training targets: pg1, surf1."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target."
+    ],
+    "parameter_sweep_ideas": [
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\COMSOL\\同频鼓"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=6, MATLAB=1, Java=1, PDF=2, MPH=2, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 17 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=needs_more_case_evidence_before_training, 分数=45"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
     }
   ],
   "post_learning_summary": {
     "kind": "post_case_learning_summary",
     "title": "同频鼓",
-    "summary": "已学习 同频鼓 的 6 个文件；训练阶段=modeling_logic_learning_ready；参数数量=0；内容证据=15 条。",
+    "summary": "已学习 同频鼓 的 6 个文件；训练阶段=modeling_logic_learning_ready；参数数量=0；内容证据=17 条。",
     "learned_modeling_logic": [
       "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
       "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
@@ -720,7 +1128,7 @@
       "LiveLink MATLAB or COMSOL Java script structure.",
       "Theory and workflow evidence from PDF documents.",
       "Original MPH files for later COMSOL-side verification.",
-      "15 条内容级模型树证据。"
+      "17 条内容级模型树证据。"
     ],
     "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
     "reusable_confidence": "medium",
@@ -732,7 +1140,7 @@
       },
       {
         "step": "2. 内容级模型树抽取",
-        "evidence": "抽取到模型树证据 15 条；几何=3，物理场=2，材料=0，网格=2，研究=4，结果=2。",
+        "evidence": "抽取到模型树证据 17 条；几何=3，物理场=3，材料=0，网格=2，研究=5，结果=2。",
         "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
       },
       {

@@ -1,15 +1,19 @@
 from __future__ import annotations
 
 import argparse
+import base64
+import hashlib
 import json
+import re
 import socket
 import sys
 import traceback
 import webbrowser
 from dataclasses import asdict
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
@@ -18,25 +22,121 @@ if str(SRC) not in sys.path:
 
 from comsol_small_model.constraints import validate_constraints
 from comsol_small_model.article_knowledge import summarize_article_docx
+from comsol_small_model.augmentation_retrain import prepare_augmentation_retrain
 from comsol_small_model.case_knowledge import summarize_case_directory
-from comsol_small_model.case_memory import generate_model_plan, remember_case
+from comsol_small_model.case_memory import (
+    generate_model_plan,
+    refresh_knowledge_system,
+    remember_case,
+    remember_learning_summary,
+    remember_physics_correction,
+    sync_template_validations,
+)
+from comsol_small_model.closure_audit import build_closure_audit
 from comsol_small_model.code_generator import generate_comsol_code_from_memory
+from comsol_small_model.code_workspace import modify_code_file, read_code_file
+from comsol_small_model.execution_jobs import (
+    DEFAULT_JOB_DIR,
+    JobStore,
+    create_job,
+    create_approved_package_job,
+    create_constraint_template_job,
+    create_thermal_augmentation_job,
+    create_thermal_augmentation_retrain_job,
+    create_matched_template_job,
+    create_thermal_sweep_training_job,
+    create_joule_heat_benchmark_job,
+    load_execution_node_config,
+    process_next_job,
+    rebuild_artifact_index,
+    summarize_artifacts,
+)
 from comsol_small_model.file_reader import (
     build_learning_summary,
+    summarize_collection,
     summarize_file,
     summarize_files,
+    summarize_uploaded_binary,
     summarize_uploaded_text,
     summarize_uploaded_texts,
 )
-from comsol_small_model.instruction_agent import respond_to_instruction
+from comsol_small_model.instruction_agent import ANSWER_POLICY, respond_to_instruction
 from comsol_small_model.livelink_builder import build_livelink_script_from_constraints
 from comsol_small_model.matlab_reader import inspect_matlab_file
+from comsol_small_model.holdout_independence import build_holdout_independence_report
+from comsol_small_model.mesh_convergence import assess_mesh_convergence
+from comsol_small_model.parameter_coverage import assess_parameter_coverage
+from comsol_small_model.reference_checks import evaluate_reference_case
+from comsol_small_model.reference_artifacts import list_reference_reports, write_reference_report
+from comsol_small_model.reference_comparison import (
+    compare_comsol_observation_to_reference,
+    compare_comsol_results_csv_to_reference,
+)
+from comsol_small_model.staged_modeling import approve_current_step, create_staged_workflow, final_modeling_package
+from comsol_small_model.surrogate_runtime import (
+    extract_joule_rectangle_prediction_inputs,
+    extract_thermal_actuator_prediction_inputs,
+    extract_thermal_plate_prediction_inputs,
+    detect_joule_rectangle_scope_changes,
+    is_joule_rectangle_prediction_request,
+    is_thermal_actuator_prediction_request,
+    is_thermal_actuator_augmentation_request,
+    latest_validated_thermal_model,
+    predict_registered_surrogate,
+    predict_validated_surrogate,
+    write_registered_augmentation_plan,
+    write_thermal_augmentation_plan,
+)
+from comsol_small_model.surrogate_runtime_audit import (
+    audit_registered_surrogates,
+    write_runtime_audit,
+)
+from comsol_small_model.template_parameters import derive_constraints, extract_text_overrides
+from comsol_small_model.thermal_sweep import write_thermal_sweep_matlab
+from comsol_small_model.training_roadmap import build_training_roadmap
+from comsol_small_model.validated_templates import select_validated_template
 from comsol_small_model.work_feedback import append_work_log, build_work_feedback
+from comsol_small_model.workchain_package import (
+    archive_reference_workchain_package,
+    create_reference_workchain_package,
+    list_reference_workchain_packages,
+    validate_reference_workchain_package,
+    validate_reference_workchain_archive,
+)
 
 
 GENERATED_DIR = ROOT / "generated"
 MODELS_DIR = ROOT / "models"
 WORK_LOG_PATH = GENERATED_DIR / "work_logs.jsonl"
+JOBS_DIR = GENERATED_DIR / "execution_jobs"
+WORKER_STATUS_PATH = JOBS_DIR / "worker_status.json"
+BUSBAR_BENCHMARK_DIR = GENERATED_DIR / "benchmarks" / "busbar_joule_heat"
+SURROGATE_REGISTRY_PATH = GENERATED_DIR / "models" / "surrogate_registry.json"
+LEGACY_SURROGATE_REGISTRY_PATH = GENERATED_DIR / "surrogate_registry.json"
+SURROGATE_RUNTIME_AUDIT_PATH = SURROGATE_REGISTRY_PATH.with_name("surrogate_runtime_audit.json")
+JOULE_RECTANGLE_MODEL_ID = "joule_rectangle_validated_surrogate"
+GECKO_FOOT_MODEL_ID = "gecko_foot_surrogate"
+THERMAL_ACTUATOR_MODEL_ID = "thermal_actuator_voltage_dense_poly_warningfree_tmax_surrogate"
+THERMAL_ACTUATOR_SIMPLIFIED_MODEL_ID = "thermal_actuator_simplified_multioutput_surrogate"
+CIRCUIT_FEM_RESISTOR_MODEL_ID = "circuit_fem_resistor_multioutput_surrogate"
+MAST_DIAGONAL_MOUNTING_MODEL_ID = "mast_diagonal_mounting_stiffness_surrogate"
+HEAT_CONVECTION_2D_MODEL_ID = "heat_convection_2d_surrogate"
+ELECTRIC_FIELD_CONCENTRIC_CYLINDERS_MODEL_ID = "electric_field_concentric_cylinders_surrogate"
+CAPACITOR_DC_PERMITTIVITY_MODEL_ID = "capacitor_dc_permittivity_surrogate"
+SIMPLE_RESISTOR_CONDUCTIVITY_MODEL_ID = "simple_resistor_conductivity_surrogate"
+HEAT_RADIATION_1D_MODEL_ID = "heat_radiation_1d_emissivity_surrogate"
+TAPERED_CANTILEVER_FORCE_MODEL_ID = "tapered_cantilever_force_surrogate"
+LID_DRIVEN_CAVITY_REYNOLDS_MODEL_ID = "lid_driven_cavity_reynolds_surrogate"
+ROOM_ACOUSTIC_TARGET_MODE_MODEL_ID = "room_acoustic_target_mode_surrogate"
+EFFECTIVE_DIFFUSIVITY_1D_MODEL_ID = "effective_diffusivity_1d_surrogate"
+FRESNEL_EQUATIONS_RF_MODEL_ID = "fresnel_equations_rf_surrogate"
+MAGNETIC_FIELD_INFINITE_CONDUCTOR_MODEL_ID = "magnetic_field_infinite_conductor_surrogate"
+HELMHOLTZ_COIL_MODEL_ID = "helmholtz_coil_surrogate"
+PARALLEL_WIRES_FORCE_MODEL_ID = "parallel_wires_force_surrogate"
+THERMOELECTRIC_GENERATOR_MODEL_ID = "thermoelectric_generator_surrogate"
+PN_JUNCTION_CARRIER_MODEL_ID = "pn_junction_carrier_surrogate"
+PN_JUNCTION_CURRENT_DENSITY_MODEL_ID = "pn_junction_current_density_surrogate"
+POWER_INDUCTOR_FREQUENCY_MODEL_ID = "power_inductor_frequency_dense_surrogate"
 
 
 class AppHandler(BaseHTTPRequestHandler):
@@ -46,8 +146,50 @@ class AppHandler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         if parsed.path == "/":
             self._send_html(CONVERSATIONAL_INDEX)
+        elif parsed.path == "/api/health":
+            self._send_json(_health_payload())
         elif parsed.path == "/api/default-constraints":
             self._send_json(json.loads((ROOT / "configs" / "thermal_constraints.json").read_text(encoding="utf-8")))
+        elif parsed.path == "/api/jobs":
+            limit = int(parse_qs(parsed.query).get("limit", [30])[0])
+            self._send_json({"ok": True, "jobs": JobStore(JOBS_DIR).list(limit), "node": load_execution_node_config(ROOT / "configs" / "execution_node.json")})
+        elif parsed.path == "/api/artifacts":
+            limit = int(parse_qs(parsed.query).get("limit", [200])[0])
+            self._send_json({"ok": True, "artifact_index": rebuild_artifact_index(JOBS_DIR, limit=limit)})
+        elif parsed.path == "/api/artifacts/recent":
+            limit = int(parse_qs(parsed.query).get("limit", [8])[0])
+            self._send_json({"ok": True, "summary": summarize_artifacts(JOBS_DIR, limit=limit)})
+        elif parsed.path == "/api/knowledge/template-validations":
+            memory = json.loads((GENERATED_DIR / "case_memory" / "case_memory.json").read_text(encoding="utf-8"))
+            self._send_json({"ok": True, "template_validations": memory.get("template_validations", [])})
+        elif parsed.path == "/api/training/roadmap":
+            self._send_json({"ok": True, "roadmap": build_training_roadmap(GENERATED_DIR / "case_memory" / "case_memory.json")})
+        elif parsed.path == "/api/training/closure-audit":
+            self._send_json({"ok": True, "audit": build_closure_audit(GENERATED_DIR, ROOT / "training_program.json")})
+        elif parsed.path == "/api/surrogates/registry":
+            registries = _registered_surrogate_registry_paths()
+            models: dict[str, object] = {}
+            for registry_path in registries:
+                registry = json.loads(registry_path.read_text(encoding="utf-8"))
+                for item in registry.get("models", []):
+                    if isinstance(item, dict):
+                        models.setdefault(str(item.get("id", "")), item)
+            self._send_json({
+                "ok": True,
+                "registry": {"schema": "comsol-surrogate-registry", "schemaVersion": "1.0.0", "models": list(models.values())},
+                "paths": [str(path) for path in registries],
+            })
+        elif parsed.path == "/api/reference-reports":
+            limit = int(parse_qs(parsed.query).get("limit", [30])[0])
+            self._send_json({"ok": True, "reports": list_reference_reports(GENERATED_DIR / "reference_reports", limit=limit)})
+        elif parsed.path == "/api/workchain-packages":
+            limit = int(parse_qs(parsed.query).get("limit", [30])[0])
+            self._send_json({"ok": True, "packages": list_reference_workchain_packages(GENERATED_DIR / "workchain_packages", limit=limit)})
+        elif parsed.path.startswith("/api/jobs/"):
+            job_id = parsed.path.removeprefix("/api/jobs/").strip()
+            self._send_json({"ok": True, "job": JobStore(JOBS_DIR).get(job_id)})
+        elif parsed.path == "/api/benchmarks/busbar-joule-heat":
+            self._send_json({"ok": True, "capabilities": _load_busbar_benchmark_capabilities()})
         else:
             self.send_error(404, "Not found")
 
@@ -62,12 +204,58 @@ class AppHandler(BaseHTTPRequestHandler):
                 self._inspect_matlab(payload)
             elif parsed.path == "/api/validate-constraints":
                 self._validate_constraints(payload)
+            elif parsed.path == "/api/reference-check":
+                self._evaluate_reference_check(payload)
+            elif parsed.path == "/api/reference-compare":
+                self._compare_reference_observation(payload)
+            elif parsed.path == "/api/reference-compare-csv":
+                self._compare_reference_results_csv(payload)
+            elif parsed.path == "/api/workchain/assemble":
+                self._assemble_workchain_package(payload)
+            elif parsed.path == "/api/workchain/validate":
+                self._validate_workchain_package(payload)
+            elif parsed.path == "/api/workchain/archive":
+                self._archive_workchain_package(payload)
+            elif parsed.path == "/api/workchain/archive/validate":
+                self._validate_workchain_archive(payload)
             elif parsed.path == "/api/generate-matlab":
                 self._generate_matlab(payload)
             elif parsed.path == "/api/generate-comsol-code":
                 self._generate_comsol_code(payload)
+            elif parsed.path == "/api/read-code":
+                self._read_code(payload)
+            elif parsed.path == "/api/modify-code":
+                self._modify_code(payload)
             elif parsed.path == "/api/train":
                 self._train(payload)
+            elif parsed.path == "/api/train-with-comsol-holdout":
+                self._train_with_comsol_holdout(payload)
+            elif parsed.path == "/api/inspect-training-csv":
+                self._inspect_training_csv(payload)
+            elif parsed.path == "/api/training/prepare-thermal-sweep":
+                self._prepare_thermal_sweep(payload)
+            elif parsed.path == "/api/training/mesh-convergence":
+                self._assess_mesh_convergence(payload)
+            elif parsed.path == "/api/training/parameter-coverage":
+                self._assess_parameter_coverage(payload)
+            elif parsed.path == "/api/training/holdout-independence":
+                self._assess_holdout_independence(payload)
+            elif parsed.path == "/api/training/prepare-augmentation-retrain":
+                self._prepare_augmentation_retrain(payload)
+            elif parsed.path == "/api/benchmarks/busbar-joule-heat/predict":
+                self._predict_busbar_joule_heat(payload)
+            elif parsed.path == "/api/surrogates/thermal-plate/predict":
+                self._predict_thermal_plate(payload)
+            elif parsed.path == "/api/surrogates/registered/predict":
+                self._predict_registered_surrogate(payload)
+            elif parsed.path == "/api/surrogates/registered/augmentation-plan":
+                self._create_registered_augmentation_plan(payload)
+            elif parsed.path == "/api/surrogates/thermal-plate/augmentation-plan":
+                self._create_thermal_augmentation_plan(payload)
+            elif parsed.path == "/api/surrogates/thermal-plate/augmentation-queue":
+                self._queue_thermal_augmentation(payload)
+            elif parsed.path == "/api/surrogates/thermal-plate/augmentation-retrain":
+                self._queue_thermal_augmentation_retrain(payload)
             elif parsed.path == "/api/read-file":
                 self._read_file(payload)
             elif parsed.path == "/api/read-files":
@@ -86,6 +274,46 @@ class AppHandler(BaseHTTPRequestHandler):
                 self._learn_article(payload)
             elif parsed.path == "/api/plan-model":
                 self._plan_model(payload)
+            elif parsed.path == "/api/knowledge-system":
+                self._knowledge_system(payload)
+            elif parsed.path == "/api/knowledge/sync-template-validations":
+                self._send_json({"ok": True, "sync": sync_template_validations(JOBS_DIR / "artifact_index.json")})
+            elif parsed.path == "/api/staged-workflow":
+                self._staged_workflow(payload)
+            elif parsed.path == "/api/approve-staged-step":
+                self._approve_staged_step(payload)
+            elif parsed.path == "/api/finalize-staged-workflow":
+                self._finalize_staged_workflow(payload)
+            elif parsed.path == "/api/staged-workflow/queue-execution":
+                self._queue_staged_package_execution(payload)
+            elif parsed.path == "/api/jobs":
+                self._create_execution_job(payload)
+            elif parsed.path == "/api/jobs/joule-heat-benchmark":
+                self._create_joule_heat_benchmark(payload)
+            elif parsed.path == "/api/jobs/constraint-template":
+                self._create_constraint_template_job(payload)
+            elif parsed.path == "/api/jobs/match-template":
+                self._create_matched_template_job(payload)
+            elif parsed.path == "/api/jobs/thermal-sweep-training":
+                self._create_thermal_sweep_training_job(payload)
+            elif parsed.path == "/api/templates/derive":
+                self._derive_template(payload)
+            elif parsed.path == "/api/templates/derive-and-queue":
+                self._derive_and_queue_template(payload)
+            elif parsed.path == "/api/templates/extract-overrides":
+                self._extract_template_overrides(payload)
+            elif parsed.path == "/api/templates/extract-derive-and-queue":
+                self._extract_derive_and_queue(payload)
+            elif parsed.path == "/api/templates/match-extract-derive-and-queue":
+                self._match_extract_derive_and_queue(payload)
+            elif parsed.path == "/api/jobs/process-next":
+                self._process_next_job(payload)
+            elif parsed.path.startswith("/api/jobs/") and parsed.path.endswith("/retry"):
+                job_id = parsed.path.removeprefix("/api/jobs/").removesuffix("/retry").strip("/")
+                self._send_json({"ok": True, "job": JobStore(JOBS_DIR).requeue(job_id)})
+            elif parsed.path.startswith("/api/jobs/") and parsed.path.endswith("/approve-review"):
+                job_id = parsed.path.removeprefix("/api/jobs/").removesuffix("/approve-review").strip("/")
+                self._send_json({"ok": True, "job": JobStore(JOBS_DIR).approve_execution_review(job_id)})
             else:
                 self.send_error(404, "Not found")
         except Exception as exc:  # noqa: BLE001
@@ -137,9 +365,33 @@ class AppHandler(BaseHTTPRequestHandler):
         )
         self._send_json({"ok": True, **result.as_dict()})
 
+    def _read_code(self, payload: dict[str, object]) -> None:
+        path = _resolve_user_path(str(payload.get("path", "")))
+        result = read_code_file(path)
+        self._send_json({"ok": True, "code": result.as_dict()})
+
+    def _modify_code(self, payload: dict[str, object]) -> None:
+        path = _resolve_user_path(str(payload.get("path", "")))
+        output_raw = str(payload.get("output_path", "")).strip()
+        output_path = None
+        if output_raw:
+            output_path = Path(output_raw)
+            if not output_path.is_absolute():
+                output_path = (ROOT / output_path).resolve()
+        result = modify_code_file(
+            path,
+            str(payload.get("instruction", "")),
+            find_text=str(payload.get("find_text", "")),
+            replace_text=str(payload.get("replace_text", "")),
+            append_text=str(payload.get("append_text", "")),
+            output_path=output_path,
+            overwrite=bool(payload.get("overwrite", False)),
+        )
+        self._send_json({"ok": True, "edit": result.as_dict()})
+
     def _train(self, payload: dict[str, object]) -> None:
         try:
-            from comsol_small_model.surrogate import train_surrogate
+            from comsol_small_model.surrogate import auto_train_surrogate, train_surrogate
         except ModuleNotFoundError as exc:
             raise RuntimeError(
                 f"Missing dependency {exc.name}. Run: pip install -r requirements.txt"
@@ -153,8 +405,301 @@ class AppHandler(BaseHTTPRequestHandler):
         if not model_name.endswith(".joblib"):
             model_name += ".joblib"
         model_path = MODELS_DIR / model_name
+        auto = bool(payload.get("auto", False)) or not input_columns or not output_columns
+        if auto:
+            report, inspection = auto_train_surrogate(
+                csv_path,
+                model_path,
+                input_columns=input_columns or None,
+                output_columns=output_columns or None,
+            )
+            self._send_json(
+                {
+                    "ok": True,
+                    "model_path": str(model_path),
+                    "report": asdict(report),
+                    "inspection": inspection,
+                    "auto_selected": True,
+                }
+            )
+            return
         report = train_surrogate(csv_path, model_path, input_columns, output_columns)
-        self._send_json({"ok": True, "model_path": str(model_path), "report": asdict(report)})
+        self._send_json({"ok": True, "model_path": str(model_path), "report": asdict(report), "auto_selected": False})
+
+    def _evaluate_reference_check(self, payload: dict[str, object]) -> None:
+        case_type = str(payload.get("case_type", "")).strip()
+        parameters = payload.get("parameters_si", {})
+        if not case_type or not isinstance(parameters, dict):
+            raise ValueError("case_type and parameters_si JSON object are required")
+        report = evaluate_reference_case(case_type, parameters)
+        self._send_json({"ok": True, "report": report, "artifact": write_reference_report(report, GENERATED_DIR / "reference_reports")})
+
+    def _compare_reference_observation(self, payload: dict[str, object]) -> None:
+        parameters = payload.get("parameters_si", {})
+        if not isinstance(parameters, dict):
+            raise ValueError("parameters_si must be a JSON object")
+        report = compare_comsol_observation_to_reference(
+            str(payload.get("case_type", "")).strip(),
+            parameters,
+            reference_key=str(payload.get("reference_key", "")).strip(),
+            observed_value=float(payload.get("observed_value")),
+            observed_unit=str(payload.get("observed_unit", "")),
+            relative_error_threshold_percent=float(payload.get("relative_error_threshold_percent", 5.0)),
+        )
+        self._send_json({"ok": True, "report": report, "artifact": write_reference_report(report, GENERATED_DIR / "reference_reports")})
+
+    def _compare_reference_results_csv(self, payload: dict[str, object]) -> None:
+        parameters = payload.get("parameters_si", {})
+        if not isinstance(parameters, dict):
+            raise ValueError("parameters_si must be a JSON object")
+        report = compare_comsol_results_csv_to_reference(
+            _resolve_user_path(str(payload.get("results_csv", ""))),
+            observed_result_name=str(payload.get("observed_result_name", "")).strip(),
+            case_type=str(payload.get("case_type", "")).strip(),
+            parameters_si=parameters,
+            reference_key=str(payload.get("reference_key", "")).strip(),
+            relative_error_threshold_percent=float(payload.get("relative_error_threshold_percent", 5.0)),
+            observed_unit=str(payload.get("observed_unit", "")),
+        )
+        self._send_json({"ok": True, "report": report, "artifact": write_reference_report(report, GENERATED_DIR / "reference_reports")})
+
+    def _assemble_workchain_package(self, payload: dict[str, object]) -> None:
+        raw_paths = payload.get("reference_report_paths", [])
+        if not isinstance(raw_paths, list):
+            raise ValueError("reference_report_paths must be a JSON array")
+        package = create_reference_workchain_package(
+            [_resolve_user_path(str(path)) for path in raw_paths],
+            GENERATED_DIR / "workchain_packages",
+            title=str(payload.get("title", "physics_reference_validation")),
+        )
+        self._send_json({"ok": True, "package": package})
+
+    def _validate_workchain_package(self, payload: dict[str, object]) -> None:
+        package_path = _resolve_user_path(str(payload.get("package_path", "")))
+        self._send_json({"ok": True, "report": validate_reference_workchain_package(package_path)})
+
+    def _archive_workchain_package(self, payload: dict[str, object]) -> None:
+        package_path = _resolve_user_path(str(payload.get("package_path", "")))
+        archive = archive_reference_workchain_package(package_path, GENERATED_DIR / "workchain_archives")
+        self._send_json({"ok": True, "archive": archive})
+
+    def _validate_workchain_archive(self, payload: dict[str, object]) -> None:
+        archive_path = _resolve_user_path(str(payload.get("archive_path", "")))
+        self._send_json({"ok": True, "report": validate_reference_workchain_archive(archive_path)})
+
+    def _assess_mesh_convergence(self, payload: dict[str, object]) -> None:
+        records = payload.get("records", [])
+        if not isinstance(records, list):
+            raise ValueError("records must be a JSON array")
+        report = assess_mesh_convergence(
+            records,
+            output_name=str(payload.get("output_name", "quantity_of_interest")).strip() or "quantity_of_interest",
+            relative_change_threshold_percent=float(payload.get("relative_change_threshold_percent", 1.0)),
+        )
+        self._send_json({"ok": True, "report": report})
+
+    def _assess_parameter_coverage(self, payload: dict[str, object]) -> None:
+        import pandas as pd
+
+        csv_path = _resolve_user_path(str(payload.get("csv_path", "")))
+        ranges = payload.get("parameter_ranges", {})
+        if not isinstance(ranges, dict):
+            raise ValueError("parameter_ranges must be a JSON object")
+        report = assess_parameter_coverage(pd.read_csv(csv_path), ranges, bins=int(payload.get("bins", 5)))
+        self._send_json({"ok": True, "report": report})
+
+    def _assess_holdout_independence(self, payload: dict[str, object]) -> None:
+        report = build_holdout_independence_report(
+            _resolve_user_path(str(payload.get("training_csv", ""))),
+            _resolve_user_path(str(payload.get("holdout_csv", ""))),
+            _split_columns(str(payload.get("input_columns", ""))),
+            training_manifest=_optional_user_path(payload.get("training_manifest")),
+            holdout_manifest=_optional_user_path(payload.get("holdout_manifest")),
+        )
+        self._send_json({"ok": True, "report": report})
+
+    def _prepare_augmentation_retrain(self, payload: dict[str, object]) -> None:
+        output_path = _resolve_user_path(str(payload.get("output_csv", "generated/merged_augmentation_training.csv")))
+        report = prepare_augmentation_retrain(
+            _resolve_user_path(str(payload.get("training_csv", ""))),
+            _resolve_user_path(str(payload.get("augmentation_csv", ""))),
+            _resolve_user_path(str(payload.get("previous_holdout_csv", ""))),
+            _resolve_user_path(str(payload.get("fresh_holdout_csv", ""))),
+            _split_columns(str(payload.get("input_columns", ""))),
+            output_path,
+        )
+        self._send_json({"ok": True, "report": report})
+
+    def _inspect_training_csv(self, payload: dict[str, object]) -> None:
+        try:
+            from comsol_small_model.surrogate import inspect_training_csv
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(
+                f"Missing dependency {exc.name}. Run: pip install -r requirements.txt"
+            ) from exc
+
+        csv_path = _resolve_user_path(str(payload.get("csv_path", "")))
+        input_columns = _split_columns(str(payload.get("input_columns", "")))
+        output_columns = _split_columns(str(payload.get("output_columns", "")))
+        inspection = inspect_training_csv(
+            csv_path,
+            input_columns=input_columns or None,
+            output_columns=output_columns or None,
+        )
+        self._send_json({"ok": True, "inspection": inspection})
+
+    def _train_with_comsol_holdout(self, payload: dict[str, object]) -> None:
+        try:
+            from comsol_small_model.surrogate import train_surrogate_with_comsol_holdout
+            from comsol_small_model.surrogate_model_card import register_general_surrogate, write_general_surrogate_model_card
+            from comsol_small_model.surrogate_validation import validate_surrogate_holdout_relative
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(f"Missing dependency {exc.name}. Run: pip install -r requirements.txt") from exc
+
+        csv_path = _resolve_user_path(str(payload.get("csv_path", "")))
+        holdout_path = _resolve_user_path(str(payload.get("holdout_csv_path", "")))
+        inputs = _split_columns(str(payload.get("input_columns", "")))
+        outputs = _split_columns(str(payload.get("output_columns", "")))
+        if not inputs or not outputs:
+            raise ValueError("input_columns and output_columns are required for independent holdout training")
+        threshold = float(payload.get("max_relative_error_percent", 5.0))
+        model_name = _safe_file_name(str(payload.get("model_name") or "validated_surrogate.joblib"))
+        if not model_name.endswith(".joblib"):
+            model_name += ".joblib"
+        MODELS_DIR.mkdir(exist_ok=True)
+        model_path = MODELS_DIR / model_name
+        selected = train_surrogate_with_comsol_holdout(csv_path, holdout_path, model_path, inputs, outputs)
+        validation_dir = GENERATED_DIR / "surrogate_validations"
+        validation = validate_surrogate_holdout_relative(model_path, holdout_path, max_relative_error_percent=threshold, output_path=validation_dir / f"{model_path.stem}_holdout_validation.json")
+        card = write_general_surrogate_model_card(
+            model_name=Path(model_name).stem,
+            model_path=model_path,
+            training_csv=csv_path,
+            holdout_csv=holdout_path,
+            input_columns=inputs,
+            output_columns=outputs,
+            physical_scope=str(payload.get("physical_scope", "")).strip(),
+            validation=validation,
+            output_dir=GENERATED_DIR / "model_cards",
+        )
+        registry = register_general_surrogate(
+            model_name=Path(model_name).stem,
+            model_path=model_path,
+            card=card,
+            validation=validation,
+            registry_path=SURROGATE_REGISTRY_PATH,
+        )
+        runtime_audit = audit_registered_surrogates(
+            SURROGATE_REGISTRY_PATH,
+            simulate_relocation=True,
+        )
+        write_runtime_audit(runtime_audit, SURROGATE_RUNTIME_AUDIT_PATH)
+        self._send_json({"ok": True, "model_path": str(model_path), "selection": selected, "validation": validation, "model_card": card, "registry": registry, "runtime_audit": runtime_audit})
+
+    def _prepare_thermal_sweep(self, payload: dict[str, object]) -> None:
+        spec_path = ROOT / "configs" / "thermal_plate_sweep_training.json"
+        output_dir = GENERATED_DIR / "training_sweeps"
+        result = write_thermal_sweep_matlab(
+            spec_path,
+            output_dir / "run_thermal_plate_sweep.m",
+            output_dir / "thermal_plate_sweep.csv",
+        )
+        self._send_json({"ok": True, **result, "next_action": "Run the generated MATLAB script with the local COMSOL LiveLink node, then inspect and train the CSV."})
+
+    def _predict_busbar_joule_heat(self, payload: dict[str, object]) -> None:
+        from comsol_small_model.surrogate import predict
+
+        voltage_mv = float(payload.get("Vtot_mV"))
+        htc_w_m2k = float(payload.get("htc_W_m2K"))
+        capabilities = _load_busbar_benchmark_capabilities()
+        estimator = capabilities["fast_estimator"]
+        ranges = estimator["validated_ranges"]
+        in_range = (
+            ranges["Vtot_mV"][0] <= voltage_mv <= ranges["Vtot_mV"][1]
+            and ranges["htc_W_m2K"][0] <= htc_w_m2k <= ranges["htc_W_m2K"][1]
+        )
+        if not in_range:
+            self._send_json(
+                {
+                    "ok": False,
+                    "error": "输入超出已验证代理模型范围，请改用 COMSOL 真实求解。",
+                    "validated_ranges": ranges,
+                },
+                status=400,
+            )
+            return
+        prediction = predict(BUSBAR_BENCHMARK_DIR / estimator["model"], [voltage_mv, htc_w_m2k])
+        self._send_json(
+            {
+                "ok": True,
+                "benchmark": "busbar_joule_heat",
+                "inputs": {"Vtot_mV": voltage_mv, "htc_W_m2K": htc_w_m2k},
+                "prediction": prediction,
+                "validated_ranges": ranges,
+                "holdout_relative_error_percent": estimator["holdout_relative_error_percent"],
+                "guidance": "此结果仅适用于当前母线板几何、材料与边界条件；发生变化时请执行 COMSOL 求解。",
+            }
+        )
+
+    def _predict_thermal_plate(self, payload: dict[str, object]) -> None:
+        raw_path = str(payload.get("model_path", "")).strip()
+        model_path = _resolve_user_path(raw_path) if raw_path else latest_validated_thermal_model(JOBS_DIR)
+        inputs = {
+            "L_m": payload.get("L_m"),
+            "W_m": payload.get("W_m"),
+            "k_W_mK": payload.get("k_W_mK"),
+            "T_hot_K": payload.get("T_hot_K"),
+            "T_cold_K": payload.get("T_cold_K"),
+        }
+        self._send_json(predict_validated_surrogate(model_path, inputs))
+
+    def _predict_registered_surrogate(self, payload: dict[str, object]) -> None:
+        model_id = str(payload.get("model_id", "")).strip()
+        raw_inputs = payload.get("inputs", {})
+        if not model_id:
+            raise ValueError("model_id is required")
+        if not isinstance(raw_inputs, dict):
+            raise ValueError("inputs must be a JSON object")
+        result = predict_registered_surrogate(_registered_surrogate_registry_path(model_id), model_id, raw_inputs)
+        self._send_json(result, status=200 if result.get("ok") else 400)
+
+    def _create_registered_augmentation_plan(self, payload: dict[str, object]) -> None:
+        model_id = str(payload.get("model_id", "")).strip()
+        raw_inputs = payload.get("inputs", {})
+        if not model_id or not isinstance(raw_inputs, dict):
+            raise ValueError("model_id and JSON object inputs are required")
+        plan = write_registered_augmentation_plan(
+            _registered_surrogate_registry_path(model_id),
+            model_id,
+            raw_inputs,
+            GENERATED_DIR / "augmentation_plans",
+        )
+        self._send_json({"ok": True, "plan": plan})
+
+    def _create_thermal_augmentation_plan(self, payload: dict[str, object]) -> None:
+        raw_path = str(payload.get("model_path", "")).strip()
+        model_path = _resolve_user_path(raw_path) if raw_path else latest_validated_thermal_model(JOBS_DIR)
+        inputs = {
+            "L_m": payload.get("L_m"),
+            "W_m": payload.get("W_m"),
+            "k_W_mK": payload.get("k_W_mK"),
+            "T_hot_K": payload.get("T_hot_K"),
+            "T_cold_K": payload.get("T_cold_K"),
+        }
+        plan = write_thermal_augmentation_plan(model_path, inputs, GENERATED_DIR / "augmentation_plans")
+        self._send_json({"ok": True, "plan": plan})
+
+    def _queue_thermal_augmentation(self, payload: dict[str, object]) -> None:
+        plan_path = _resolve_user_path(str(payload.get("plan_path", "")))
+        job = create_thermal_augmentation_job(plan_path, job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "job": job})
+
+    def _queue_thermal_augmentation_retrain(self, payload: dict[str, object]) -> None:
+        job_id = str(payload.get("augmentation_job_id", "")).strip()
+        if not job_id:
+            raise ValueError("augmentation_job_id is required")
+        job = create_thermal_augmentation_retrain_job(job_id, job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "job": job})
 
     def _read_file(self, payload: dict[str, object]) -> None:
         path = _resolve_user_path(str(payload.get("path", "")))
@@ -173,8 +718,11 @@ class AppHandler(BaseHTTPRequestHandler):
 
     def _read_uploaded_file(self, payload: dict[str, object]) -> None:
         name = str(payload.get("name", "uploaded.txt"))
-        content = str(payload.get("content", ""))
-        summary = summarize_uploaded_text(name, content)
+        encoded = str(payload.get("content_base64", ""))
+        if encoded:
+            summary = summarize_uploaded_binary(name, base64.b64decode(encoded, validate=True))
+        else:
+            summary = summarize_uploaded_text(name, str(payload.get("content", "")))
         self._send_json({"ok": True, "summary": summary.as_dict()})
 
     def _read_uploaded_files(self, payload: dict[str, object]) -> None:
@@ -185,8 +733,15 @@ class AppHandler(BaseHTTPRequestHandler):
         for file in files:
             if not isinstance(file, dict):
                 raise ValueError("each uploaded file must be an object")
-            normalized.append({"name": str(file.get("name", "uploaded.txt")), "content": str(file.get("content", ""))})
-        summary = summarize_uploaded_texts(normalized)
+            name = str(file.get("name", "uploaded.txt"))
+            encoded = str(file.get("content_base64", ""))
+            if encoded:
+                normalized.append(
+                    summarize_uploaded_binary(name, base64.b64decode(encoded, validate=True)).as_dict()
+                )
+            else:
+                normalized.append(summarize_uploaded_text(name, str(file.get("content", ""))).as_dict())
+        summary = summarize_collection(normalized)
         self._send_json({"ok": True, "summary": summary})
 
     def _instruction(self, payload: dict[str, object]) -> None:
@@ -204,21 +759,304 @@ class AppHandler(BaseHTTPRequestHandler):
                 )
             except Exception as exc:  # noqa: BLE001
                 model_plan = {"error": str(exc), "matched_cases": [], "case_count": 0}
-        response = respond_to_instruction(instruction, file_summary, model_plan)
+        joule_inputs = extract_joule_rectangle_prediction_inputs(instruction)
+        actuator_inputs = extract_thermal_actuator_prediction_inputs(instruction)
+        circuit_resistor_inputs = _extract_circuit_fem_resistor_inputs(instruction)
+        mast_inputs = _extract_mast_diagonal_mounting_inputs(instruction)
+        heat_convection_inputs = _extract_heat_convection_2d_inputs(instruction)
+        electric_field_inputs = _extract_electric_field_concentric_cylinders_inputs(instruction)
+        capacitor_inputs = _extract_capacitor_dc_permittivity_inputs(instruction)
+        simple_resistor_inputs = _extract_simple_resistor_conductivity_inputs(instruction)
+        heat_radiation_inputs = _extract_heat_radiation_1d_inputs(instruction)
+        tapered_cantilever_inputs = _extract_tapered_cantilever_force_inputs(instruction)
+        lid_driven_cavity_inputs = _extract_lid_driven_cavity_reynolds_inputs(instruction)
+        room_acoustic_inputs = _extract_room_acoustic_target_mode_inputs(instruction)
+        effective_diffusivity_inputs = _extract_effective_diffusivity_1d_inputs(instruction)
+        fresnel_inputs = _extract_fresnel_equations_rf_inputs(instruction)
+        magnetic_field_inputs = _extract_magnetic_field_infinite_conductor_inputs(instruction)
+        helmholtz_inputs = _extract_helmholtz_coil_inputs(instruction)
+        parallel_wires_inputs = _extract_parallel_wires_force_inputs(instruction)
+        thermoelectric_inputs = _extract_thermoelectric_generator_inputs(instruction)
+        pn_junction_inputs = _extract_pn_junction_carrier_inputs(instruction)
+        pn_junction_current_density_inputs = _extract_pn_junction_current_density_inputs(instruction)
+        power_inductor_inputs = _extract_power_inductor_frequency_inputs(instruction)
+        thermal_inputs = extract_thermal_plate_prediction_inputs(instruction)
+        gecko_inputs = _extract_gecko_foot_inputs(instruction)
+        joule_scope_changes = detect_joule_rectangle_scope_changes(instruction)
+        if _is_execution_review_approval_request(instruction):
+            response = _approve_execution_review_from_chat(instruction)
+        elif _is_execution_status_query(instruction):
+            response = _execution_status_dialogue(_health_payload())
+        elif _is_validated_surrogate_catalog_request(instruction):
+            response = _validated_surrogate_catalog_dialogue()
+        elif _is_chat_code_read_request(instruction):
+            response = _code_read_dialogue(_chat_code_read_result(instruction))
+        elif _is_gecko_foot_request(instruction) and gecko_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(GECKO_FOOT_MODEL_ID),
+                GECKO_FOOT_MODEL_ID,
+                gecko_inputs,
+            )
+            response = _gecko_foot_prediction_dialogue(prediction)
+        elif _is_gecko_foot_request(instruction):
+            response = _gecko_foot_missing_inputs_dialogue()
+        elif _is_mast_diagonal_mounting_request(instruction) and mast_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(MAST_DIAGONAL_MOUNTING_MODEL_ID),
+                MAST_DIAGONAL_MOUNTING_MODEL_ID,
+                mast_inputs,
+            )
+            response = _mast_diagonal_mounting_prediction_dialogue(prediction)
+        elif _is_mast_diagonal_mounting_request(instruction):
+            response = _mast_diagonal_mounting_missing_inputs_dialogue()
+        elif _is_heat_convection_2d_request(instruction) and heat_convection_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(HEAT_CONVECTION_2D_MODEL_ID),
+                HEAT_CONVECTION_2D_MODEL_ID,
+                heat_convection_inputs,
+            )
+            response = _heat_convection_2d_prediction_dialogue(prediction)
+        elif _is_heat_convection_2d_request(instruction):
+            response = _heat_convection_2d_missing_inputs_dialogue()
+        elif _is_electric_field_concentric_cylinders_request(instruction) and electric_field_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(ELECTRIC_FIELD_CONCENTRIC_CYLINDERS_MODEL_ID),
+                ELECTRIC_FIELD_CONCENTRIC_CYLINDERS_MODEL_ID,
+                electric_field_inputs,
+            )
+            response = _electric_field_concentric_cylinders_prediction_dialogue(prediction)
+        elif _is_electric_field_concentric_cylinders_request(instruction):
+            response = _electric_field_concentric_cylinders_missing_inputs_dialogue()
+        elif _is_capacitor_dc_permittivity_request(instruction) and capacitor_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(CAPACITOR_DC_PERMITTIVITY_MODEL_ID),
+                CAPACITOR_DC_PERMITTIVITY_MODEL_ID,
+                capacitor_inputs,
+            )
+            response = _capacitor_dc_permittivity_prediction_dialogue(prediction)
+        elif _is_capacitor_dc_permittivity_request(instruction):
+            response = _capacitor_dc_permittivity_missing_inputs_dialogue()
+        elif _is_simple_resistor_conductivity_request(instruction) and simple_resistor_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(SIMPLE_RESISTOR_CONDUCTIVITY_MODEL_ID),
+                SIMPLE_RESISTOR_CONDUCTIVITY_MODEL_ID,
+                simple_resistor_inputs,
+            )
+            response = _simple_resistor_conductivity_prediction_dialogue(prediction)
+        elif _is_simple_resistor_conductivity_request(instruction):
+            response = _simple_resistor_conductivity_missing_inputs_dialogue()
+        elif _is_heat_radiation_1d_request(instruction) and heat_radiation_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(HEAT_RADIATION_1D_MODEL_ID),
+                HEAT_RADIATION_1D_MODEL_ID,
+                heat_radiation_inputs,
+            )
+            response = _heat_radiation_1d_prediction_dialogue(prediction)
+        elif _is_heat_radiation_1d_request(instruction):
+            response = _heat_radiation_1d_missing_inputs_dialogue()
+        elif _is_tapered_cantilever_force_request(instruction) and tapered_cantilever_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(TAPERED_CANTILEVER_FORCE_MODEL_ID),
+                TAPERED_CANTILEVER_FORCE_MODEL_ID,
+                tapered_cantilever_inputs,
+            )
+            response = _tapered_cantilever_force_prediction_dialogue(prediction)
+        elif _is_tapered_cantilever_force_request(instruction):
+            response = _tapered_cantilever_force_missing_inputs_dialogue()
+        elif _is_lid_driven_cavity_reynolds_request(instruction) and lid_driven_cavity_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(LID_DRIVEN_CAVITY_REYNOLDS_MODEL_ID),
+                LID_DRIVEN_CAVITY_REYNOLDS_MODEL_ID,
+                lid_driven_cavity_inputs,
+            )
+            response = _lid_driven_cavity_reynolds_prediction_dialogue(prediction)
+        elif _is_lid_driven_cavity_reynolds_request(instruction):
+            response = _lid_driven_cavity_reynolds_missing_inputs_dialogue()
+        elif _is_room_acoustic_target_mode_request(instruction) and room_acoustic_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(ROOM_ACOUSTIC_TARGET_MODE_MODEL_ID),
+                ROOM_ACOUSTIC_TARGET_MODE_MODEL_ID,
+                room_acoustic_inputs,
+            )
+            response = _room_acoustic_target_mode_prediction_dialogue(prediction)
+        elif _is_room_acoustic_target_mode_request(instruction):
+            response = _room_acoustic_target_mode_missing_inputs_dialogue()
+        elif _is_effective_diffusivity_1d_request(instruction) and effective_diffusivity_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(EFFECTIVE_DIFFUSIVITY_1D_MODEL_ID),
+                EFFECTIVE_DIFFUSIVITY_1D_MODEL_ID,
+                effective_diffusivity_inputs,
+            )
+            response = _effective_diffusivity_1d_prediction_dialogue(prediction)
+        elif _is_effective_diffusivity_1d_request(instruction):
+            response = _effective_diffusivity_1d_missing_inputs_dialogue()
+        elif _is_fresnel_equations_rf_request(instruction) and fresnel_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(FRESNEL_EQUATIONS_RF_MODEL_ID),
+                FRESNEL_EQUATIONS_RF_MODEL_ID,
+                fresnel_inputs,
+            )
+            response = _fresnel_equations_rf_prediction_dialogue(prediction)
+        elif _is_fresnel_equations_rf_request(instruction):
+            response = _fresnel_equations_rf_missing_inputs_dialogue()
+        elif _is_magnetic_field_infinite_conductor_request(instruction) and magnetic_field_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(MAGNETIC_FIELD_INFINITE_CONDUCTOR_MODEL_ID),
+                MAGNETIC_FIELD_INFINITE_CONDUCTOR_MODEL_ID,
+                magnetic_field_inputs,
+            )
+            response = _magnetic_field_infinite_conductor_prediction_dialogue(prediction)
+        elif _is_magnetic_field_infinite_conductor_request(instruction):
+            response = _magnetic_field_infinite_conductor_missing_inputs_dialogue()
+        elif _is_helmholtz_coil_request(instruction) and helmholtz_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(HELMHOLTZ_COIL_MODEL_ID),
+                HELMHOLTZ_COIL_MODEL_ID,
+                helmholtz_inputs,
+            )
+            response = _helmholtz_coil_prediction_dialogue(prediction)
+        elif _is_helmholtz_coil_request(instruction):
+            response = _helmholtz_coil_missing_inputs_dialogue()
+        elif _is_parallel_wires_force_request(instruction) and parallel_wires_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(PARALLEL_WIRES_FORCE_MODEL_ID),
+                PARALLEL_WIRES_FORCE_MODEL_ID,
+                parallel_wires_inputs,
+            )
+            response = _parallel_wires_force_prediction_dialogue(prediction)
+        elif _is_parallel_wires_force_request(instruction):
+            response = _parallel_wires_force_missing_inputs_dialogue()
+        elif _is_thermoelectric_generator_request(instruction) and thermoelectric_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(THERMOELECTRIC_GENERATOR_MODEL_ID),
+                THERMOELECTRIC_GENERATOR_MODEL_ID,
+                thermoelectric_inputs,
+            )
+            response = _thermoelectric_generator_prediction_dialogue(prediction)
+        elif _is_thermoelectric_generator_request(instruction):
+            response = _thermoelectric_generator_missing_inputs_dialogue()
+        elif _is_pn_junction_current_density_request(instruction) and pn_junction_current_density_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(PN_JUNCTION_CURRENT_DENSITY_MODEL_ID),
+                PN_JUNCTION_CURRENT_DENSITY_MODEL_ID,
+                pn_junction_current_density_inputs,
+            )
+            response = _pn_junction_current_density_prediction_dialogue(prediction)
+        elif _is_pn_junction_current_density_request(instruction):
+            response = _pn_junction_current_density_missing_inputs_dialogue()
+        elif _is_pn_junction_carrier_request(instruction) and pn_junction_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(PN_JUNCTION_CARRIER_MODEL_ID),
+                PN_JUNCTION_CARRIER_MODEL_ID,
+                pn_junction_inputs,
+            )
+            response = _pn_junction_carrier_prediction_dialogue(prediction)
+        elif _is_pn_junction_carrier_request(instruction):
+            response = _pn_junction_carrier_missing_inputs_dialogue()
+        elif _is_circuit_fem_resistor_request(instruction) and circuit_resistor_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(CIRCUIT_FEM_RESISTOR_MODEL_ID),
+                CIRCUIT_FEM_RESISTOR_MODEL_ID,
+                circuit_resistor_inputs,
+            )
+            response = _circuit_fem_resistor_prediction_dialogue(prediction)
+        elif _is_circuit_fem_resistor_request(instruction):
+            response = _circuit_fem_resistor_missing_inputs_dialogue()
+        elif _is_simplified_thermal_actuator_request(instruction) and actuator_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(THERMAL_ACTUATOR_SIMPLIFIED_MODEL_ID),
+                THERMAL_ACTUATOR_SIMPLIFIED_MODEL_ID,
+                actuator_inputs,
+            )
+            response = _thermal_actuator_simplified_prediction_dialogue(prediction)
+        elif _is_simplified_thermal_actuator_request(instruction):
+            response = _thermal_actuator_simplified_missing_inputs_dialogue()
+        elif is_thermal_actuator_augmentation_request(instruction) and actuator_inputs:
+            plan = write_registered_augmentation_plan(
+                _registered_surrogate_registry_path(THERMAL_ACTUATOR_MODEL_ID),
+                THERMAL_ACTUATOR_MODEL_ID,
+                actuator_inputs,
+                GENERATED_DIR / 'augmentation_plans',
+            )
+            response = _thermal_actuator_augmentation_dialogue(plan)
+        elif actuator_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(THERMAL_ACTUATOR_MODEL_ID),
+                THERMAL_ACTUATOR_MODEL_ID,
+                actuator_inputs,
+            )
+            response = _thermal_actuator_prediction_dialogue(prediction)
+        elif is_thermal_actuator_prediction_request(instruction):
+            response = _thermal_actuator_missing_inputs_dialogue()
+        elif is_joule_rectangle_prediction_request(instruction) and joule_scope_changes:
+            response = _joule_rectangle_scope_change_dialogue(joule_scope_changes)
+        elif joule_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(JOULE_RECTANGLE_MODEL_ID),
+                JOULE_RECTANGLE_MODEL_ID,
+                joule_inputs,
+            )
+            response = _joule_rectangle_prediction_dialogue(prediction)
+        elif is_joule_rectangle_prediction_request(instruction):
+            response = _joule_rectangle_missing_voltage_dialogue()
+        elif _is_power_inductor_frequency_request(instruction) and power_inductor_inputs:
+            prediction = predict_registered_surrogate(
+                _registered_surrogate_registry_path(POWER_INDUCTOR_FREQUENCY_MODEL_ID),
+                POWER_INDUCTOR_FREQUENCY_MODEL_ID,
+                power_inductor_inputs,
+            )
+            response = _power_inductor_frequency_prediction_dialogue(prediction)
+        elif _is_power_inductor_frequency_request(instruction):
+            response = _power_inductor_frequency_missing_inputs_dialogue()
+        elif thermal_inputs:
+            prediction = predict_validated_surrogate(latest_validated_thermal_model(JOBS_DIR), thermal_inputs)
+            response = _thermal_prediction_dialogue(prediction)
+        else:
+            response = respond_to_instruction(instruction, file_summary, model_plan)
+        correction_memory = None
+        correction = response.get("physics_correction") if isinstance(response, dict) else None
+        if isinstance(correction, dict) and correction.get("corrected_physics"):
+            memory_path = str(payload.get("memory_path", "generated/case_memory/case_memory.json"))
+            correction_memory = remember_physics_correction(
+                requirement=str(correction.get("requirement", instruction)),
+                corrected_physics=str(correction.get("corrected_physics", "")),
+                rationale=str(correction.get("rationale", "")),
+                memory_path=memory_path,
+            )
+            response["correction_memory"] = {
+                "path": correction_memory["memory_path"],
+                "correction_count": correction_memory["correction_count"],
+                "corrected_physics": correction_memory["correction"]["corrected_physics"],
+            }
         self._send_json({"ok": True, "response": response})
 
     def _learning_summary(self, payload: dict[str, object]) -> None:
         file_summary = payload.get("file_summary")
         if not isinstance(file_summary, dict):
             raise ValueError("file_summary must be an object")
-        self._send_json({"ok": True, "summary": build_learning_summary(file_summary)})
+        learning = build_learning_summary(file_summary)
+        response: dict[str, object] = {"ok": True, "summary": learning}
+        if bool(payload.get("remember", True)):
+            remembered = remember_learning_summary(
+                file_summary,
+                memory_path=str(payload.get("memory_path", "generated/case_memory/case_memory.json")),
+                title=str(payload.get("title", "")).strip(),
+            )
+            response["memory"] = {
+                "path": remembered["memory_path"],
+                "case_count": remembered["case_count"],
+                "entry_title": remembered["entry"]["title"],
+                "quality": remembered["entry"].get("quality", {}),
+            }
+        self._send_json(response)
 
     def _learn_case(self, payload: dict[str, object]) -> None:
         case_dir = _resolve_user_path(str(payload.get("case_dir", "")))
         title = str(payload.get("title", "")).strip() or None
         output_dir = str(payload.get("output_dir", "generated/case_knowledge"))
         memory_path = str(payload.get("memory_path", "generated/case_memory/case_memory.json"))
-        result = summarize_case_directory(case_dir, title=title, output_dir=output_dir)
+        prompt_summary = str(payload.get("prompt_summary", "")).strip()
+        result = summarize_case_directory(case_dir, title=title, output_dir=output_dir, prompt_summary=prompt_summary)
         memory = remember_case(result["card"], memory_path)
         summary = result["card"].get("post_learning_summary", {})
         self._send_json(
@@ -239,7 +1077,18 @@ class AppHandler(BaseHTTPRequestHandler):
         output_dir = str(payload.get("output_dir", "generated/article_knowledge"))
         memory_path = str(payload.get("memory_path", "generated/case_memory/case_memory.json"))
         result = summarize_article_docx(article_path, output_dir=output_dir, memory_path=memory_path)
-        self._send_json({"ok": True, "card": result["card"], "outputs": result["outputs"]})
+        self._send_json(
+            {
+                "ok": True,
+                "card": result["card"],
+                "outputs": result["outputs"],
+                "memory": {
+                    "path": result["memory"]["memory_path"],
+                    "case_count": result["memory"]["case_count"],
+                    "quality": result["memory"]["entry"].get("quality", {}),
+                },
+            }
+        )
 
     def _plan_model(self, payload: dict[str, object]) -> None:
         requirement = str(payload.get("requirement", "")).strip()
@@ -248,6 +1097,123 @@ class AppHandler(BaseHTTPRequestHandler):
         memory_path = str(payload.get("memory_path", "generated/case_memory/case_memory.json"))
         top_k = int(payload.get("top_k", 5))
         self._send_json({"ok": True, "plan": generate_model_plan(requirement, memory_path, top_k)})
+
+    def _knowledge_system(self, payload: dict[str, object]) -> None:
+        memory_path = str(payload.get("memory_path", "generated/case_memory/case_memory.json"))
+        self._send_json({"ok": True, **refresh_knowledge_system(memory_path)})
+
+    def _staged_workflow(self, payload: dict[str, object]) -> None:
+        requirement = str(payload.get("requirement", "")).strip()
+        if not requirement:
+            raise ValueError("requirement is empty")
+        workflow = create_staged_workflow(
+            requirement,
+            memory_path=str(payload.get("memory_path", "generated/case_memory/case_memory.json")),
+            output_dir=str(payload.get("output_dir", GENERATED_DIR / "staged_workflows")),
+            top_k=int(payload.get("top_k", 5)),
+        )
+        self._send_json({"ok": True, "workflow": workflow})
+
+    def _approve_staged_step(self, payload: dict[str, object]) -> None:
+        workflow_path = _resolve_user_path(str(payload.get("workflow_path", "")))
+        workflow = approve_current_step(
+            workflow_path,
+            approved=bool(payload.get("approved", True)),
+            comment=str(payload.get("comment", "")),
+            output_dir=workflow_path.parent,
+        )
+        self._send_json({"ok": True, "workflow": workflow})
+
+    def _finalize_staged_workflow(self, payload: dict[str, object]) -> None:
+        workflow_path = _resolve_user_path(str(payload.get("workflow_path", "")))
+        result = final_modeling_package(workflow_path, output_dir=workflow_path.parent)
+        self._send_json({"ok": True, **result})
+
+    def _queue_staged_package_execution(self, payload: dict[str, object]) -> None:
+        package_path = _resolve_user_path(str(payload.get("package_path", "")))
+        job = create_approved_package_job(package_path, job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "job": job, "package_path": str(package_path)})
+
+    def _create_execution_job(self, payload: dict[str, object]) -> None:
+        job = create_job(
+            str(payload.get("requirement", "")),
+            job_type=str(payload.get("job_type", "comsol_modeling")),
+            job_dir=JOBS_DIR,
+            memory_path=str(payload.get("memory_path", "generated/case_memory/case_memory.json")),
+            metadata=payload.get("metadata") if isinstance(payload.get("metadata"), dict) else None,
+        )
+        self._send_json({"ok": True, "job": job})
+
+    def _create_joule_heat_benchmark(self, payload: dict[str, object]) -> None:
+        job = create_joule_heat_benchmark_job(
+            job_dir=JOBS_DIR,
+            memory_path=str(payload.get("memory_path", "generated/case_memory/case_memory.json")),
+        )
+        self._send_json({"ok": True, "job": job})
+
+    def _create_constraint_template_job(self, payload: dict[str, object]) -> None:
+        template_path = _resolve_user_path(str(payload.get("template_path", "")))
+        job = create_constraint_template_job(template_path, job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "job": job, "template_path": str(template_path)})
+
+    def _create_matched_template_job(self, payload: dict[str, object]) -> None:
+        job = create_matched_template_job(str(payload.get("requirement", "")), job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "job": job, "template_match": job.get("template_match", {})})
+
+    def _create_thermal_sweep_training_job(self, payload: dict[str, object]) -> None:
+        job = create_thermal_sweep_training_job(job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "job": job})
+
+    def _derive_template(self, payload: dict[str, object]) -> None:
+        source = _resolve_user_path(str(payload.get("template_path", "")))
+        overrides = payload.get("overrides", {})
+        if not isinstance(overrides, dict):
+            raise ValueError("overrides must be an object")
+        result = derive_constraints(source, overrides, GENERATED_DIR / "derived_constraints")
+        self._send_json({"ok": True, **result})
+
+    def _derive_and_queue_template(self, payload: dict[str, object]) -> None:
+        source = _resolve_user_path(str(payload.get("template_path", "")))
+        overrides = payload.get("overrides", {})
+        if not isinstance(overrides, dict):
+            raise ValueError("overrides must be an object")
+        result = derive_constraints(source, overrides, GENERATED_DIR / "derived_constraints")
+        job = create_constraint_template_job(result["path"], job_dir=JOBS_DIR)
+        self._send_json({"ok": True, **result, "job": job})
+
+    def _extract_template_overrides(self, payload: dict[str, object]) -> None:
+        source = _resolve_user_path(str(payload.get("template_path", "")))
+        result = extract_text_overrides(str(payload.get("requirement", "")), source)
+        self._send_json({"ok": True, **result})
+
+    def _extract_derive_and_queue(self, payload: dict[str, object]) -> None:
+        source = _resolve_user_path(str(payload.get("template_path", "")))
+        extracted = extract_text_overrides(str(payload.get("requirement", "")), source)
+        if not extracted["overrides"]:
+            raise ValueError("No supported parameter with an explicit value and unit was found.")
+        result = derive_constraints(source, extracted["overrides"], GENERATED_DIR / "derived_constraints")
+        job = create_constraint_template_job(result["path"], job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "extracted": extracted, **result, "job": job})
+
+    def _match_extract_derive_and_queue(self, payload: dict[str, object]) -> None:
+        requirement = str(payload.get("requirement", "")).strip()
+        match = select_validated_template(requirement, ROOT)
+        if not match.get("matched"):
+            raise ValueError(str(match.get("reason", "No validated template matched the requirement.")))
+        source = Path(str(match["template_path"]))
+        extracted = extract_text_overrides(requirement, source)
+        if not extracted["overrides"]:
+            raise ValueError("A validated template matched, but no explicit supported parameter value was found in the instruction.")
+        result = derive_constraints(source, extracted["overrides"], GENERATED_DIR / "derived_constraints")
+        job = create_constraint_template_job(result["path"], job_dir=JOBS_DIR)
+        self._send_json({"ok": True, "template_match": match, "extracted": extracted, **result, "job": job})
+
+    def _process_next_job(self, payload: dict[str, object]) -> None:
+        job = process_next_job(
+            job_dir=JOBS_DIR,
+            node_config_path=ROOT / "configs" / "execution_node.json",
+        )
+        self._send_json({"ok": True, "job": job, "node": load_execution_node_config(ROOT / "configs" / "execution_node.json")})
 
     def _read_json(self) -> dict[str, object]:
         length = int(self.headers.get("Content-Length", "0"))
@@ -291,6 +1257,177 @@ def _constraints_from_payload(payload: dict[str, object]) -> dict[str, object]:
     return json.loads(text)
 
 
+def _health_payload() -> dict[str, object]:
+    config = load_execution_node_config(ROOT / "configs" / "execution_node.json")
+    memory_path = GENERATED_DIR / "case_memory" / "case_memory.json"
+    server_host = str(config.get("comsol_server_host", "localhost"))
+    server_port = int(config.get("comsol_server_port", 2036))
+    return {
+        "ok": True,
+        "service": "comsol-training-small-model",
+        "web_root": str(ROOT),
+        "knowledge_memory_available": memory_path.is_file(),
+        "execution_node": {
+            "enabled": bool(config.get("enabled", False)),
+            "external_execution_allowed": bool(config.get("allow_external_execution", False)),
+            "comsol_server_host": server_host,
+            "comsol_server_port": server_port,
+            "server_reachable": _server_reachable(server_host, server_port),
+            "auto_start_server": bool(config.get("start_comsol_server", True)),
+            "multi_connection": bool(config.get("comsol_server_multi_connection", True)),
+        },
+        "execution_worker": _worker_status(),
+        "surrogate_runtime": _surrogate_runtime_audit_status(),
+    }
+
+
+def _surrogate_runtime_audit_status(
+    path: str | Path | None = None,
+    registry_path: str | Path | None = None,
+    legacy_registry_path: str | Path | None = None,
+) -> dict[str, object]:
+    report_path = Path(path) if path is not None else SURROGATE_RUNTIME_AUDIT_PATH
+    current_registry_path = (
+        Path(registry_path)
+        if registry_path is not None
+        else SURROGATE_REGISTRY_PATH
+    )
+    legacy_path = (
+        Path(legacy_registry_path)
+        if legacy_registry_path is not None
+        else LEGACY_SURROGATE_REGISTRY_PATH
+    )
+    if not report_path.is_file():
+        return {
+            "available": False,
+            "healthy": False,
+            "report_path": str(report_path),
+            "state": "not_audited",
+        }
+    try:
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        expected_fingerprint = str(report.get("registry_sha256", ""))
+        current_fingerprint = (
+            hashlib.sha256(current_registry_path.read_bytes()).hexdigest()
+            if current_registry_path.is_file()
+            else ""
+        )
+        audit_matches_registry = bool(expected_fingerprint) and expected_fingerprint == current_fingerprint
+        registry_conflicts = _legacy_registry_conflicts(current_registry_path, legacy_path)
+        report_passed = bool(report.get("overall_passed"))
+        healthy = report_passed and audit_matches_registry and not registry_conflicts
+        if healthy:
+            state = "passed"
+        elif registry_conflicts:
+            state = "registry_split"
+        elif report_passed:
+            state = "stale"
+        else:
+            state = "failed"
+        return {
+            "available": True,
+            "healthy": healthy,
+            "state": state,
+            "report_path": str(report_path),
+            "registry_path": str(current_registry_path),
+            "audit_matches_registry": audit_matches_registry,
+            "registry_sha256": current_fingerprint,
+            "audited_registry_sha256": expected_fingerprint,
+            "legacy_registry_path": str(legacy_path),
+            "legacy_registry_conflicts": registry_conflicts,
+            "generated_at": report.get("generated_at", ""),
+            "registered_models": int(report.get("registered_models", 0)),
+            "validated_models": int(report.get("validated_models", 0)),
+            "superseded_models": int(report.get("superseded_models", 0)),
+            "active_unvalidated_models": int(report.get("active_unvalidated_models", 0)),
+            "passed": int(report.get("passed", 0)),
+            "failed": int(report.get("failed", 0)),
+            "missing_artifacts": int(report.get("missing_artifacts", 0)),
+            "feature_name_warning_count": int(report.get("feature_name_warning_count", 0)),
+            "dependency_warning_count": int(report.get("warning_count", 0)),
+            "compatibility_notices": report.get("compatibility_notices", []),
+            "relocation_tested": bool(report.get("relocation_tested")),
+            "relocation_failures": int(report.get("relocation_failures", 0)),
+        }
+    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+        return {
+            "available": False,
+            "healthy": False,
+            "report_path": str(report_path),
+            "state": "unreadable",
+        }
+
+
+def _legacy_registry_conflicts(canonical_path: Path, legacy_path: Path) -> list[str]:
+    if not legacy_path.is_file():
+        return []
+    try:
+        canonical = json.loads(canonical_path.read_text(encoding="utf-8"))
+        legacy = json.loads(legacy_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return ["__unreadable_registry__"]
+    canonical_by_id = {
+        str(item.get("id", "")): item
+        for item in canonical.get("models", [])
+        if isinstance(item, dict)
+    }
+    conflicts = []
+    for item in legacy.get("models", []):
+        if not isinstance(item, dict):
+            continue
+        model_id = str(item.get("id", ""))
+        canonical_item = canonical_by_id.get(model_id)
+        if canonical_item is None or canonical_item != item:
+            conflicts.append(model_id or "__missing_model_id__")
+    return sorted(set(conflicts))
+
+
+def _worker_status() -> dict[str, object]:
+    queue = _execution_queue_counts()
+    if not WORKER_STATUS_PATH.is_file():
+        return {"online": False, "state": "not_started", "queue": queue}
+    try:
+        data = json.loads(WORKER_STATUS_PATH.read_text(encoding="utf-8"))
+        updated_at = datetime.fromisoformat(str(data.get("updated_at", "")).replace("Z", "+00:00"))
+        age_seconds = max(0.0, (datetime.now(timezone.utc) - updated_at).total_seconds())
+        return {
+            "online": data.get("state") == "running" and age_seconds <= 15.0,
+            "state": data.get("state", "unknown"),
+            "pid": data.get("pid"),
+            "age_seconds": round(age_seconds, 1),
+            "last_job_id": data.get("last_job_id", ""),
+            "last_job_status": data.get("last_job_status", ""),
+            "queue": queue,
+        }
+    except (OSError, ValueError, TypeError, json.JSONDecodeError):
+        return {"online": False, "state": "unreadable", "queue": queue}
+
+
+def _execution_queue_counts() -> dict[str, object]:
+    try:
+        jobs = JobStore(JOBS_DIR).list(200)
+        awaiting = [job for job in jobs if job.get("status") == "awaiting_model_review"]
+        return {
+            "queued": sum(1 for job in jobs if job.get("status") == "queued"),
+            "running": sum(1 for job in jobs if job.get("status") in {"preparing", "running"}),
+            "awaiting_review": len(awaiting),
+            "awaiting_review_jobs": [
+                {"id": str(job.get("id", "")), "requirement": str(job.get("payload", {}).get("requirement", ""))[:160]}
+                for job in awaiting[:3]
+            ],
+        }
+    except (OSError, ValueError):
+        return {"queued": 0, "running": 0, "awaiting_review": 0, "awaiting_review_jobs": []}
+
+
+def _server_reachable(host: str, port: int) -> bool:
+    try:
+        with socket.create_connection((host, port), timeout=0.5):
+            return True
+    except OSError:
+        return False
+
+
 def _resolve_user_path(value: str) -> Path:
     if not value:
         raise ValueError("path is empty")
@@ -300,6 +1437,18 @@ def _resolve_user_path(value: str) -> Path:
     if not path.exists():
         raise FileNotFoundError(str(path))
     return path
+
+
+def _optional_user_path(value: object) -> Path | None:
+    text = str(value or "").strip()
+    return _resolve_user_path(text) if text else None
+
+
+def _load_busbar_benchmark_capabilities() -> dict[str, object]:
+    path = BUSBAR_BENCHMARK_DIR / "benchmark_capabilities.json"
+    if not path.is_file():
+        raise FileNotFoundError(f"焦耳热标杆能力清单不存在：{path}")
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _safe_file_name(value: str) -> str:
@@ -317,6 +1466,1076 @@ def _split_columns(value: str) -> list[str]:
 
 def _split_lines(value: str) -> list[str]:
     return [part.strip() for part in value.replace(";", "\n").splitlines() if part.strip()]
+
+
+def _thermal_actuator_augmentation_dialogue(plan: dict[str, object]) -> dict[str, object]:
+    samples = plan.get("recommended_comsol_samples", []) if isinstance(plan.get("recommended_comsol_samples"), list) else []
+    return {
+        "intent": ["surrogate_augmentation_plan", "comsol_resolve_required"],
+        "assistant_message": (
+            f"已为超出验证范围的微执行器工况生成 COMSOL 补样计划，共 {len(samples)} 个建议工况。\n\n"
+            "判断依据：原代理模型不能对超范围输入外推；计划以目标工况为中心，在超出范围的参数附近增加真实 COMSOL 样本。\n\n"
+            "下一步：使用同一几何、材料、电-热耦合和边界条件运行这些工况，合并 CSV 后必须使用新的独立留出集重新验证。"
+        ),
+        "explanation_sections": [
+            {"title": "建议 COMSOL 补样", "items": [str(item) for item in samples]},
+            {"title": "计划文件", "items": [str(plan.get("path", ""))]},
+        ],
+        "suggested_tool": "COMSOL 参数扫描补样",
+        "response_policy": {"general_rule": "超范围时创建补样计划，不输出外推温度。", "theory_rule": "新数据必须来自同一物理模型的真实求解。", "physics_rule": "保持微执行器电-热耦合与对流边界不变，才能扩展原代理模型。"},
+    }
+
+
+def _is_power_inductor_frequency_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("功率电感器", "功率电感", "power inductor", "power_inductor"))
+
+
+def _extract_power_inductor_frequency_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(
+        r"(?:频率|frequency|freq|\bf\b)\s*(?:为|是|=|:|：)?\s*"
+        r"([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)\s*(kHz|MHz|Hz)?",
+        str(instruction or ""),
+        flags=re.IGNORECASE,
+    )
+    if not match:
+        return {}
+    value = float(match.group(1))
+    unit = (match.group(2) or "Hz").lower()
+    multiplier = {"hz": 1.0, "khz": 1e3, "mhz": 1e6}[unit]
+    return {"frequency_Hz": value * multiplier}
+
+
+def _power_inductor_frequency_missing_inputs_dialogue() -> dict[str, object]:
+    return {
+        "intent": ["validated_surrogate_prediction", "missing_prediction_inputs"],
+        "assistant_message": "要预测功率电感器频率响应，请提供频率，例如 10 kHz。",
+        "explanation_sections": [
+            {"title": "已验证范围", "items": ["频率：500-20000 Hz", "输出：电感与等效电导"]}
+        ],
+    }
+
+
+def _power_inductor_frequency_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {
+            "intent": ["validated_surrogate_prediction", "comsol_resolve_required"],
+            "assistant_message": (
+                "该频率超出功率电感器代理模型的已验证范围 500-20000 Hz，不能外推；"
+                "请使用相同 COMSOL 模型补充真实频率扫描后再训练。"
+            ),
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    candidates = validation.get("candidate_reports", {}) if isinstance(validation.get("candidate_reports"), dict) else {}
+    selected_name = str(validation.get("selected_model", "log_frequency_log_output"))
+    selected_metrics = candidates.get(selected_name, {}) if isinstance(candidates.get(selected_name), dict) else {}
+    return {
+        "intent": ["validated_surrogate_prediction", "power_inductor_frequency"],
+        "assistant_message": (
+            f"结论：在该频率下，预测电感为 {float(outputs.get('inductance_H', 0.0)):.9g} H，"
+            f"等效电导为 {float(outputs.get('conductance_S', 0.0)):.9g} S。\n\n"
+            "判断依据：固定功率电感器几何、材料、端口、网格和研究设置，"
+            "使用真实 COMSOL 频率扫描训练的对数频率-对数输出代理。\n\n"
+            "适用范围：500-20000 Hz；改变几何、材料、端口或研究设置，或超出频率范围时必须重新运行 COMSOL。"
+        ),
+        "explanation_sections": [
+            {"title": "独立 COMSOL 验证", "items": [
+                f"训练样本：{validation.get('training_rows', '未知')}，留出样本：{validation.get('holdout_rows', '未知')}",
+                f"选定模型：{selected_name}",
+                f"最大相对误差：{selected_metrics.get('max_relative_error_percent', '未知')}%",
+                f"验证通过：{'是' if validation.get('passed') else '否'}",
+            ]}
+        ],
+    }
+
+def _is_validated_surrogate_catalog_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("已验证代理模型", "可用代理模型", "当前代理模型", "已训练模型"))
+
+
+def _validated_surrogate_catalog_dialogue() -> dict[str, object]:
+    registry_path = SURROGATE_REGISTRY_PATH
+    try:
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        models = registry.get("models", []) if isinstance(registry, dict) else []
+    except (OSError, json.JSONDecodeError):
+        models = []
+    validated = [item for item in models if isinstance(item, dict) and item.get("validation_passed")]
+    items = []
+    for item in validated:
+        ranges = item.get("validated_input_ranges", {})
+        items.append(f"{item.get('id', 'unknown')} / {item.get('name', '未命名模型')}：输入范围 {ranges}")
+    return {
+        "intent": ["validated_surrogate_catalog"],
+        "assistant_message": f"当前共有 {len(validated)} 个已通过独立 COMSOL 验证的本地代理模型。它们只能在各自声明的输入范围内用于快速比较，超出范围、改变几何、材料或边界时必须回到 COMSOL。",
+        "explanation_sections": [{"title": "可用模型与范围", "items": items or ["暂无已验证代理模型"]}],
+    }
+
+def _is_heat_convection_2d_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("稳态传导", "二维传导", "heat_convection_2d", "对流换热系数", "传导-对流"))
+
+
+def _extract_heat_convection_2d_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:对流换热系数|换热系数|\bh\b)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"convection_coefficient_W_m2_K": float(match.group(1))} if match else {}
+
+
+def _heat_convection_2d_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测二维稳态传导-对流温度，请提供对流换热系数 h，单位为 W/(m2*K)。", "explanation_sections": [{"title": "已验证范围", "items": ["h: 500-1000 W/(m2*K)"]}]}
+
+
+def _heat_convection_2d_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "该对流换热系数超出 h=500-1000 W/(m2*K) 的已验证范围，不能外推；请补充真实 COMSOL 扫描。"}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    return {"intent": ["validated_surrogate_prediction", "heat_convection_2d"], "assistant_message": f"结论：测点 (0.6 m, 0.2 m) 温度为 {float(outputs.get('temperature_at_0p6_0p2_K', 0.0)):.3f} K；最高温度为 {float(outputs.get('maximum_temperature_K', 0.0)):.3f} K。\n\n判断依据：固定二维稳态传导、导热系数、定温边界和环境温度，只改变对流换热系数；h 增大时边界散热增强，测点温度降低。\n\n适用范围：h=500-1000 W/(m2*K)，改变几何、材料或边界时需重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+
+def _is_electric_field_concentric_cylinders_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("同心圆柱", "圆柱电场", "concentric_cylinders", "静电场"))
+
+
+def _extract_electric_field_concentric_cylinders_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:内圆柱电势|电压|电势|v0|\bv\b)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"voltage_V": float(match.group(1))} if match else {}
+
+
+def _electric_field_concentric_cylinders_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测同心圆柱之间的静电场，请提供内圆柱电势 V0，单位为 V。", "explanation_sections": [{"title": "已验证范围", "items": ["V0: 50-150 V", "内半径 0.1 m、外半径 1 m，外圆柱接地，输出 r=0.5 m 处的电势和径向电场"]}]}
+
+
+def _electric_field_concentric_cylinders_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "输入电势超出 V0=50-150 V 的已验证范围，不能外推。请运行真实 COMSOL 静电扫描补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    return {"intent": ["validated_surrogate_prediction", "electric_field_concentric_cylinders"], "assistant_message": f"结论：r=0.5 m 处电势为 {float(outputs.get('potential_mid_V', 0.0)):.3f} V；径向电场为 {float(outputs.get('electric_field_mid_V_m', 0.0)):.3f} V/m。\n\n判断依据：模型固定同心圆柱几何，外圆柱接地，只改变内圆柱电势；在该线性静电问题中，电势和电场随 V0 同比例变化。\n\n适用范围：V0=50-150 V。改变半径、介质、边界或加入电荷耦合后，必须重新用 COMSOL 求解。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+
+def _is_capacitor_dc_permittivity_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("计算电容", "电容预测", "介电常数", "capacitor_dc", "电容器"))
+
+
+def _extract_capacitor_dc_permittivity_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:相对介电常数|介电常数|epsilon_r|epsr|εr)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"relative_permittivity": float(match.group(1))} if match else {}
+
+
+def _capacitor_dc_permittivity_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测该三维电容器的 Maxwell 电容，请提供石英域的相对介电常数 εr。", "explanation_sections": [{"title": "已验证范围", "items": ["εr: 2-8", "固定三维几何、端子、接地与网格"]}]}
+
+
+def _capacitor_dc_permittivity_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "相对介电常数超出 εr=2-8 的已验证范围，不能外推。请运行真实 COMSOL 静电扫描补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    return {"intent": ["validated_surrogate_prediction", "capacitor_dc_permittivity"], "assistant_message": f"结论：预测 Maxwell 电容为 {float(outputs.get('capacitance_F', 0.0)):.6e} F。\n\n判断依据：保持电容器几何、端子和接地不变时，介质极化决定电位移通量；相对介电常数提高，电容随之增大。\n\n适用范围：εr=2-8。改变几何、介质分布、端子或边界后，必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+
+def _is_simple_resistor_conductivity_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("计算导线电阻", "导线电阻", "导体电阻", "simple_resistor"))
+
+
+def _extract_simple_resistor_conductivity_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:电导率|conductivity|sigma|σ)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"conductivity_S_m": float(match.group(1))} if match else {}
+
+
+def _simple_resistor_conductivity_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测该三维导线的电阻，请提供材料电导率 sigma，单位为 S/m。", "explanation_sections": [{"title": "已验证范围", "items": ["sigma: 3e7-7e7 S/m", "固定几何、1 A 端子、接地和网格"]}]}
+
+
+def _simple_resistor_conductivity_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "电导率超出 sigma=3e7-7e7 S/m 的已验证范围，不能外推。请运行真实 COMSOL 电流场扫描补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    return {"intent": ["validated_surrogate_prediction", "simple_resistor_conductivity"], "assistant_message": f"结论：预测导线电阻为 {float(outputs.get('resistance_ohm', 0.0)):.6e} ohm。\n\n判断依据：在固定几何、端子电流和边界下，欧姆定律给出电阻与电导率成反比；电导率提高会降低电阻。\n\n适用范围：sigma=3e7-7e7 S/m。改变几何、端子电流、温度或接触条件后，必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+
+def _is_heat_radiation_1d_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("稳态辐射传热", "辐射传热", "发射率", "heat_radiation_1d"))
+
+
+def _extract_heat_radiation_1d_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:发射率|emissivity|epsilon|ε)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"emissivity": float(match.group(1))} if match else {}
+
+
+def _heat_radiation_1d_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测一维稳态辐射传热的辐射端温度，请提供表面发射率 ε。", "explanation_sections": [{"title": "已验证范围", "items": ["ε: 0.2-0.98", "左端 1000 K、环境 300 K、几何和网格固定"]}]}
+
+
+def _heat_radiation_1d_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "发射率超出 ε=0.2-0.98 的已验证范围，不能外推。请运行真实 COMSOL 辐射传热扫描补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    return {"intent": ["validated_surrogate_prediction", "heat_radiation_1d"], "assistant_message": f"结论：预测辐射端温度为 {float(outputs.get('radiating_end_temperature_K', 0.0)):.3f} K。\n\n判断依据：表面对环境辐射热流与发射率及绝对温度四次方有关；在固定左端温度与环境温度下，发射率增大将增强散热并降低辐射端温度。\n\n适用范围：ε=0.2-0.98。改变几何、端温、环境温度或加入对流后，必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def _is_pn_junction_current_density_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return bool(
+        re.search(r"p\s*[-‐‑–—]?\s*n\s*结", text)
+        and any(token in text for token in ("电流密度", "current density", "semi.jx", "i-v", "iv曲线"))
+    )
+
+
+def _extract_pn_junction_current_density_inputs(instruction: str) -> dict[str, float]:
+    return _extract_pn_junction_carrier_inputs(instruction)
+
+
+def _pn_junction_current_density_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent":["validated_surrogate_prediction","missing_prediction_inputs"],"assistant_message":"要预测一维 P-N 结的截面电流密度，请提供正向偏压，单位为 V。\n\n示例：P-N 结电流密度，偏压=0.3 V。","explanation_sections":[{"title":"已验证范围","items":["偏压：0.05-0.5 V","输出为 x=2.5 um 的 x 向总电流密度 semi.JX，单位 A/m^2","固定 Tl=300 K、Na=Nd=1e15 1/cm^3、几何、接触与网格"]}]}
+
+
+def _pn_junction_current_density_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent":["validated_surrogate_prediction","comsol_resolve_required"],"assistant_message":"偏压超出 0.05-0.5 V 的独立 COMSOL 验证范围，不能外推。请运行真实半导体漂移-扩散求解补样。","explanation_sections":[{"title":"已验证范围","items":[str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    current_density = float(outputs.get("current_density_at_x_2_5um_A_m2", 0.0))
+    return {"intent":["validated_surrogate_prediction","pn_junction_current_density"],"assistant_message":f"结论：预测 x=2.5 um 截面的 x 向总电流密度 semi.JX 为 {current_density:.6e} A/m^2。\n\n判断依据：正向偏压降低结区势垒，电子与空穴注入增强，电流密度随偏压跨数量级增长；模型对电流密度绝对值取 log10 拟合，并恢复 COMSOL 的负 x 方向符号。\n\n适用范围：正向偏压 0.05-0.5 V。该输出是单位截面积的截面电流密度，不是未定义截面积下的总端子电流；改变掺杂、温度、几何、接触或载流子模型时必须重新运行 COMSOL。"}
+
+def _is_pn_junction_carrier_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return bool(
+        re.search(r"p\s*[-‐‑–—]?\s*n\s*结", text)
+        or any(token in text for token in ("pn_junction", "结区载流子"))
+    )
+
+
+def _extract_pn_junction_carrier_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:偏压|电压|bias|va)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"bias_V": float(match.group(1))} if match else {}
+
+
+def _pn_junction_carrier_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent":["validated_surrogate_prediction","missing_prediction_inputs"],"assistant_message":"要预测一维 P-N 结结区的电子和空穴浓度，请提供正向偏压，单位为 V。\n\n示例：P-N 结，偏压=0.3 V。","explanation_sections":[{"title":"已验证范围","items":["偏压：0-0.5 V","Tl=300 K、Na=Nd=1e15 1/cm^3、几何、材料、网格和金属接触固定"]}]}
+
+
+def _pn_junction_carrier_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent":["validated_surrogate_prediction","comsol_resolve_required"],"assistant_message":"偏压超出 0-0.5 V 的独立 COMSOL 验证范围，不能外推。请运行真实半导体漂移-扩散求解补样。","explanation_sections":[{"title":"已验证范围","items":[str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    n = float(outputs.get("electron_density_at_junction_cm3", 0.0)); p = float(outputs.get("hole_density_at_junction_cm3", 0.0))
+    return {"intent":["validated_surrogate_prediction","pn_junction_carriers"],"assistant_message":f"结论：预测结区电子浓度为 {n:.6e} 1/cm^3，空穴浓度为 {p:.6e} 1/cm^3。\n\n判断依据：正向偏压降低 P-N 结势垒并增强少数载流子注入，因此结区载流子浓度随偏压呈近似指数增长；模型在 log10 浓度空间拟合，并以独立 COMSOL 偏压点验证。\n\n适用范围：正向偏压 0-0.5 V。当前模型只验证了结区载流子浓度，未验证端子 I-V 电流；改变掺杂、温度、材料寿命、几何或接触条件时必须重新运行 COMSOL。"}
+def _is_thermoelectric_generator_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("热电发电机", "thermoelectric_generator", "热电开路电压"))
+
+
+def _extract_thermoelectric_generator_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:热端温度|t0|hot\s*temperature)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"hot_temperature_degC": float(match.group(1))} if match else {}
+
+
+def _thermoelectric_generator_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测热电发电机的开路电压，请提供热端温度，单位为 degC。\n\n示例：热电发电机，热端温度=150 degC。", "explanation_sections": [{"title": "已验证范围", "items": ["热端温度：100-200 degC", "冷端固定 0 degC，几何、端子、材料和温度相关物性固定"]}]}
+
+
+def _thermoelectric_generator_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "热端温度超出 100-200 degC 的独立 COMSOL 验证范围，不能外推。请运行真实热-电耦合求解补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    voltage = float(outputs.get("open_circuit_voltage_V", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "thermoelectric_generator"], "assistant_message": f"结论：预测浮动端开路电压为 {voltage:.6e} V。\n\n判断依据：热端与固定冷端形成温差，温差通过 Seebeck 效应产生电势；本案例材料的 Seebeck 系数、电导率和导热率均随温度变化，因此采用 COMSOL 数据验证的二次代理模型。负号表示相对于当前接地端的电势方向。\n\n适用范围：热端 100-200 degC、冷端 0 degC，且几何、材料、端子和温度相关物性不变。改变冷端温度、负载、材料、几何或接触热阻时必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_parallel_wires_force_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return ("平行载流导线" in text or "parallel_wires" in text) and any(token in text for token in ("电磁力", "受力", "force"))
+
+
+def _extract_parallel_wires_force_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:电流|current|i0)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"current_A": float(match.group(1))} if match else {}
+
+
+def _parallel_wires_force_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测平行载流导线的电磁力，请提供两根同向导线的共同电流，单位为 A。\n\n示例：平行载流导线电磁力，电流=1.5 A。", "explanation_sections": [{"title": "已验证范围", "items": ["共同电流：0.25-3 A", "导线半径、间距、方向、外域和力计算区域固定"]}]}
+
+
+def _parallel_wires_force_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "电流超出 0.25-3 A 的独立 COMSOL 验证范围，不能外推。请运行真实静磁场力计算补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    force_x = float(outputs.get("force_x_wire2_N", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "parallel_wires_force"], "assistant_message": f"结论：预测第二根导线的 x 向电磁力为 {force_x:.6e} N。\n\n判断依据：每根导线产生的磁场与其电流成正比，另一根导线的洛伦兹力还与自身电流相乘；在两根导线均采用同一同向电流时，力随电流平方变化。正 x 号表示当前坐标定义下的受力方向。\n\n适用范围：共同电流 0.25-3 A，导线半径、间距、方向、材料和计算域固定。若两根电流不相等、方向相反，或改变间距、介质磁导率与几何，则必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_helmholtz_coil_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("亥姆霍兹", "helmholtz", "双线圈中心磁场"))
+
+
+def _extract_helmholtz_coil_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:线圈电流|电流|current|i0)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"coil_current_mA": float(match.group(1))} if match else {}
+
+
+def _helmholtz_coil_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测亥姆霍兹线圈中心磁场，请提供两个同向等电流线圈的电流，单位为 mA。\n\n示例：亥姆霍兹线圈，电流=0.25 mA。", "explanation_sections": [{"title": "已验证范围", "items": ["线圈电流：0.05-0.6 mA", "双线圈几何、材料、中心测点、无限元域和边界固定"]}]}
+
+
+def _helmholtz_coil_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "线圈电流超出 0.05-0.6 mA 的独立 COMSOL 验证范围，不能外推。请运行真实三维磁场求解补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    center_by = float(outputs.get("center_By_T", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "helmholtz_coil"], "assistant_message": f"结论：预测两线圈中心的 By 为 {center_by:.6e} T。\n\n判断依据：亥姆霍兹结构由两个同向等电流圆线圈叠加磁场，中心附近具有较高均匀性；在固定几何与线性材料下，中心 By 与线圈电流成正比。负号表示场沿当前坐标系的 -y 方向。\n\n适用范围：每个线圈电流 0.05-0.6 mA，两个线圈同向等电流。改变匝数、间距、线圈形状、材料、测点或电流方向时必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_magnetic_field_infinite_conductor_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("无限导体", "长直导线磁场", "infinite_conductor", "导体磁场"))
+
+
+def _extract_magnetic_field_infinite_conductor_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:电流|current|i0)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"current_A": float(match.group(1))} if match else {}
+
+
+def _magnetic_field_infinite_conductor_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测无限导体的磁感应强度，请提供导体电流，单位为 A。\n\n示例：无限导体磁场，电流=2 A。", "explanation_sections": [{"title": "已验证范围", "items": ["电流：0.25-5 A", "导体半径 1 cm、外域半径 10 cm、测点距中心 5 cm，几何和边界固定"]}]}
+
+
+def _magnetic_field_infinite_conductor_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "电流超出 0.25-5 A 的独立 COMSOL 验证范围，不能外推。请运行真实静磁场求解补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    magnetic_flux_density = float(outputs.get("magnetic_flux_density_at_5cm_T", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "magnetic_field_infinite_conductor"], "assistant_message": f"结论：预测距导体中心 5 cm 处磁感应强度为 {magnetic_flux_density:.6e} T。\n\n判断依据：固定圆导体半径和观察位置时，静磁场由电流密度激励；在线性磁性假设下，磁感应强度与电流成正比。结果来自真实 COMSOL 静态扫描的区间内预测。\n\n适用范围：电流 0.25-5 A，导体半径 1 cm、外域半径 10 cm、测点 5 cm 固定。改变几何、测点、材料磁导率或加入铁磁非线性时必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_fresnel_equations_rf_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("菲涅尔", "fresnel", "te反射", "tm反射", "s偏振", "p偏振"))
+
+
+def _extract_fresnel_equations_rf_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:入射角|incident\s*angle|alpha|α)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"incident_angle_deg": float(match.group(1))} if match else {}
+
+
+def _fresnel_equations_rf_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测菲涅尔方程模型的 TE/TM 功率反射率，请提供入射角，单位为 deg。\n\n示例：菲涅尔反射，入射角=45 deg。", "explanation_sections": [{"title": "已验证范围", "items": ["入射角：0-75 deg", "空气 n=1、无损介质 n=1.5、频率 f0 与平面界面固定"]}]}
+
+
+def _fresnel_equations_rf_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "入射角超出 0-75 deg 的独立 COMSOL 验证范围，不能外推。请运行真实电磁波频域求解补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_absolute_validation", {}) if isinstance(validation.get("per_output_absolute_validation"), dict) else {}
+    quality = [f"{name} 最大绝对误差：{item.get('max_absolute_error', '未知')}" for name, item in metrics.items() if isinstance(item, dict)]
+    te = float(outputs.get("TE_reflectance", 0.0))
+    tm = float(outputs.get("TM_reflectance", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "fresnel_equations_rf"], "assistant_message": f"结论：预测 TE 功率反射率为 {te:.6f}，TM 功率反射率为 {tm:.6f}。\n\n判断依据：在空气 n=1 到无损介质 n=1.5 的固定平面界面上，TE 与 TM 的边界连续条件不同；TM 在约 56 度的布儒斯特角附近反射接近零。该结果来自真实 COMSOL 频域扫描的区间内插值。\n\n适用范围：入射角 0-75 deg，频率、折射率、界面和偏振定义固定。改变折射率、材料损耗、频率、几何或边界条件时必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_effective_diffusivity_1d_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("有效扩散系数", "多孔扩散", "effective_diffusivity", "等效扩散"))
+
+
+def _extract_effective_diffusivity_1d_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:d1|有效扩散系数|扩散系数)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"D1_m2_s": float(match.group(1))} if match else {}
+
+
+def _effective_diffusivity_1d_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent":["validated_surrogate_prediction","missing_prediction_inputs"],"assistant_message":"要预测一维等效多孔扩散模型的内部浓度，请提供有效扩散系数 D1，单位 m^2/s。\n\n示例：多孔扩散，D1=2.15e-6 m^2/s。","explanation_sections":[{"title":"已验证范围","items":["D1：1e-6-4e-6 m^2/s","固定孔隙率 epsilon=0.383、传质系数、几何、网格和 100 ms 观测时刻"]}]}
+
+
+def _effective_diffusivity_1d_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent":["validated_surrogate_prediction","comsol_resolve_required"],"assistant_message":"D1 超出 1e-6-4e-6 m^2/s 的独立 COMSOL 验证范围，不能外推。请运行真实瞬态传质求解补样。","explanation_sections":[{"title":"已验证范围","items":[str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    concentration = float(outputs.get("concentration_x0p2mm_t100ms_mol_m3", 0.0))
+    return {"intent":["validated_surrogate_prediction","effective_diffusivity_1d"],"assistant_message":f"结论：预测 x=0.2 mm、t=100 ms 处浓度为 {concentration:.6e} mol/m^3。\n\n判断依据：在固定孔隙率和边界传质条件下，D1 增大意味着更快的等效扩散，固定位置在该时刻的浓度随之提高；该结果来自真实 COMSOL 瞬态扫描的区间内插值。\n\n适用范围：D1=1e-6-4e-6 m^2/s。改变孔隙率、传质系数、初始浓度、几何或观测时刻时必须重新运行 COMSOL。","explanation_sections":[{"title":"独立 COMSOL 验证","items":quality or ["验证通过"]}]}
+def _is_room_acoustic_target_mode_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("房间特征模态", "房间声学模态", "eigenmodes_of_room", "目标模态频率"))
+
+
+def _extract_room_acoustic_target_mode_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:声速|sound\s*speed|c)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"sound_speed_m_s": float(match.group(1))} if match else {}
+
+
+def _room_acoustic_target_mode_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测房间声学的目标模态频率，请提供空气声速，单位 m/s。\n\n示例：房间特征模态，声速=343 m/s。", "explanation_sections": [{"title": "已验证范围", "items": ["声速：300-380 m/s", "固定房间几何、空气密度、网格和压力声学特征频率研究", "输出为基准声速 343 m/s 时靠近 90 Hz 的同一目标模态，不是首阶模态"]}]}
+
+
+def _room_acoustic_target_mode_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "声速超出 300-380 m/s 的独立 COMSOL 验证范围，不能外推。请运行真实压力声学特征频率求解。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    frequency = float(outputs.get("tracked_eigenfrequency_Hz", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "room_acoustic_target_mode"], "assistant_message": f"结论：预测房间声学目标模态频率为 {frequency:.6f} Hz。\n\n判断依据：在固定几何、边界、网格和空气密度下，压力声学特征频率与声速成正比；模型通过靠近缩放目标频率的规则追踪同一模态。\n\n适用范围：声速 300-380 m/s。该结果不是首阶模态；改变房间几何、壁面条件、空气密度或追踪的模态时必须重新运行 COMSOL。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_lid_driven_cavity_reynolds_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("顶盖驱动方腔流", "lid_driven_cavity", "方腔流"))
+
+
+def _extract_lid_driven_cavity_reynolds_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:reynolds(?:\s*number)?|雷诺数|\bre\b)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"Re": float(match.group(1))} if match else {}
+
+
+def _lid_driven_cavity_reynolds_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测顶盖驱动方腔流的采样点速度，请提供 Reynolds 数 Re。\n\n示例：顶盖驱动方腔流，Re=500。", "explanation_sections": [{"title": "已验证范围", "items": ["Re：50-800", "二维单位方腔、单位顶盖速度、密度 1、黏度 1/Re、固定网格和压力点约束"]}]}
+
+
+def _lid_driven_cavity_reynolds_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "Re 超出 50-800 的独立 COMSOL 验证范围，不能外推。请执行真实 COMSOL 方腔流扫描补样。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    speed = float(outputs.get("speed_mid_upper_m_s", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "lid_driven_cavity_reynolds"], "assistant_message": f"结论：预测方腔内采样点 (x=0.5, y=0.75) 的速度模为 {speed:.6f} m/s。\n\n判断依据：顶盖滑移驱动形成腔内回流，Re 增大等效于黏度降低，速度场会改变；该模型使用真实 COMSOL 扫描数据进行区间内局部插值。\n\n适用范围：Re=50-800。改变顶盖速度、方腔尺寸、网格、流体密度、边界或研究类型时，必须重新进行 COMSOL 求解。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_tapered_cantilever_force_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("锥形悬臂梁", "tapered_cantilever", "悬臂梁位移"))
+
+
+def _extract_tapered_cantilever_force_inputs(instruction: str) -> dict[str, float]:
+    match = re.search(r"(?:边界力|线载荷|force|载荷)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", str(instruction or ""), flags=re.IGNORECASE)
+    return {"boundary_force_N_m": float(match.group(1))} if match else {}
+
+
+def _tapered_cantilever_force_missing_inputs_dialogue() -> dict[str, object]:
+    return {"intent": ["validated_surrogate_prediction", "missing_prediction_inputs"], "assistant_message": "要预测锥形悬臂梁的受力工况端部位移，请提供边界线载荷，单位 N/m。\n\n示例：锥形悬臂梁，边界力=10000000 N/m。", "explanation_sections": [{"title": "已验证范围", "items": ["边界力：5e6-1.5e7 N/m", "固定二维锥形几何、钢材 E=210 GPa、nu=0.3、约束、重力和网格"]}]}
+
+
+def _tapered_cantilever_force_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        return {"intent": ["validated_surrogate_prediction", "comsol_resolve_required"], "assistant_message": "边界力超出 5e6-1.5e7 N/m 的独立 COMSOL 验证范围，不能外推。请在真实 COMSOL 中完成载荷扫描后补充 CSV 训练数据。", "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}]}
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{item.get('max_relative_error_percent', '未知')}%" for name, item in metrics.items() if isinstance(item, dict)]
+    displacement = float(outputs.get("force_case_tip_displacement_m", 0.0))
+    return {"intent": ["validated_surrogate_prediction", "tapered_cantilever_force"], "assistant_message": f"结论：预测受力工况下悬臂梁端部位移为 {displacement:.6e} m。\n\n判断依据：该二维锥形梁采用小变形线弹性固体力学，固定材料、几何、约束和重力后，端部位移与边界线载荷成正比。\n\n适用范围：边界力 5e6-1.5e7 N/m。改变材料、厚度、几何、支撑条件或进入大变形后，必须重新进行 COMSOL 求解。", "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}]}
+def _is_gecko_foot_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    has_case = any(token in text for token in ("壁虎足", "gecko foot", "gecko_foot"))
+    asks_for_response = any(token in text for token in ("预测", "响应", "应力", "位移", "应变", "surrogate", "predict"))
+    return has_case and asks_for_response
+
+
+def _extract_gecko_foot_inputs(instruction: str) -> dict[str, float]:
+    text = str(instruction or "")
+
+    def find(patterns: tuple[str, ...], unit_pattern: str, scale: float = 1.0) -> float | None:
+        for pattern in patterns:
+            match = re.search(
+                rf"(?:{pattern})\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)\s*(?:{unit_pattern})?",
+                text,
+                flags=re.IGNORECASE,
+            )
+            if match:
+                return float(match.group(1)) * scale
+        return None
+
+    values = {
+        "Fc_uN": find((r"Fc(?:_uN)?", r"法向力", r"接触力"), r"uN|μN|微牛(?:顿)?", 1.0),
+        "Ff_uN": find((r"Ff(?:_uN)?", r"切向力", r"摩擦力"), r"uN|μN|微牛(?:顿)?", 1.0),
+        "theta_deg": find((r"theta(?:_deg)?", r"接触角", r"角度"), r"deg|°|度", 1.0),
+    }
+    return {name: value for name, value in values.items() if value is not None}
+
+
+def _gecko_foot_missing_inputs_dialogue() -> dict[str, object]:
+    return {
+        "intent": ["validated_surrogate_prediction", "missing_prediction_inputs"],
+        "assistant_message": (
+            "要预测壁虎足结构响应，请同时提供 Fc、Ff 和 theta。"
+            "Fc、Ff 单位为 uN，theta 单位为度。"
+            "例如：壁虎足预测，Fc=0.3 uN，Ff=0.25 uN，theta=60 度。"
+        ),
+        "explanation_sections": [
+            {
+                "title": "已验证范围",
+                "items": [
+                    "Fc：0.2-0.6 uN",
+                    "Ff：0.1-0.3 uN",
+                    "theta：30-90 度",
+                    "输出：最大 von Mises 应力、最大位移、最大主应变",
+                ],
+            }
+        ],
+        "suggested_tool": "壁虎足代理模型快速预测",
+        "response_policy": {"general_rule": "输入不完整时不输出数值。"},
+    }
+
+
+def _gecko_foot_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        rejected = prediction.get("out_of_range", {})
+        return {
+            "intent": ["validated_surrogate_prediction", "comsol_resolve_required"],
+            "assistant_message": (
+                "结论：请求工况超出壁虎足代理模型的已验证范围，不能进行外推预测。"
+                "请使用相同几何、材料、边界条件和研究设置的 COMSOL 模型补充真实样本。"
+            ),
+            "explanation_sections": [
+                {"title": "超范围参数", "items": [str(rejected)]},
+                {"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]},
+            ],
+            "suggested_tool": "COMSOL 参数扫描与补充验证",
+            "response_policy": {"general_rule": "超出范围时不输出代理数值。"},
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [
+        f"{name} 最大相对误差：{float(item.get('max_relative_error_percent')):.3f}%"
+        for name, item in metrics.items()
+        if isinstance(item, dict) and item.get("max_relative_error_percent") is not None
+    ]
+    return {
+        "intent": ["validated_surrogate_prediction", "gecko_foot_response"],
+        "assistant_message": (
+            "结论：壁虎足已验证范围内的代理预测为："
+            f"最大 von Mises 应力 {float(outputs.get('max_v_Mises_Pa', 0.0)):.6e} Pa，"
+            f"最大位移 {float(outputs.get('max_disp_m', 0.0)):.6e} m，"
+            f"最大主应变 {float(outputs.get('max_ep1', 0.0)):.6e}。"
+            "这些结果适合当前固定模型内的快速比较；改变几何、材料、边界条件或超出范围时必须回到 COMSOL。"
+        ),
+        "explanation_sections": [
+            {"title": "独立 COMSOL 验证", "items": [f"通过：{validation.get('passed', False)}", f"训练样本：{validation.get('training_rows', 0)}，留出样本：{validation.get('holdout_rows', 0)}", *quality]},
+            {"title": "适用范围", "items": [str(prediction.get("validated_ranges", {}))]},
+        ],
+        "suggested_tool": "壁虎足代理模型快速预测",
+        "response_policy": {"general_rule": "仅在模型卡声明范围内插值预测。"},
+    }
+
+
+def _is_mast_diagonal_mounting_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("通信塔桅", "塔桅刚度", "刚度比", "mast_diagonal_mounting"))
+
+
+def _extract_mast_diagonal_mounting_inputs(instruction: str) -> dict[str, float]:
+    text = str(instruction or "")
+    plate = re.search(r"(?:t_p|板厚)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", text, flags=re.IGNORECASE)
+    mount = re.search(r"(?:t_m|安装厚度|安装件厚度)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", text, flags=re.IGNORECASE)
+    if not plate or not mount:
+        return {}
+    return {"t_p_mm": float(plate.group(1)), "t_m_mm": float(mount.group(1))}
+
+
+def _mast_diagonal_mounting_missing_inputs_dialogue() -> dict[str, object]:
+    return {
+        "intent": ["validated_surrogate_prediction", "missing_prediction_inputs"],
+        "assistant_message": "要预测通信塔桅安装结构的刚度比，请同时提供板厚 t_p 与安装厚度 t_m，单位为 mm。",
+        "explanation_sections": [{"title": "已验证范围", "items": ["t_p: 10-12 mm", "t_m: 10-15 mm", "固定结构钢、安装拓扑、约束和载荷定义"]}],
+        "suggested_tool": "结构刚度比代理模型快速预测",
+        "response_policy": {"general_rule": "输入不完整时不输出数值。", "theory_rule": "刚度比由几何刚度和固定材料参数共同决定。", "physics_rule": "保持稳态固体力学模型、约束和载荷定义不变。"},
+    }
+
+
+def _mast_diagonal_mounting_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        rejected = prediction.get("out_of_range", {})
+        return {
+            "intent": ["validated_surrogate_prediction", "comsol_resolve_required"],
+            "assistant_message": f"结论：{', '.join(rejected) if isinstance(rejected, dict) else '几何参数'} 超出通信塔桅刚度比模型的已验证范围，不能进行外推预测。请执行真实 COMSOL 几何扫描补样。",
+            "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}],
+            "suggested_tool": "COMSOL 几何参数扫描",
+            "response_policy": {"general_rule": "超范围时不输出数值。", "theory_rule": "代理模型只能在独立验证的几何范围内插值。", "physics_rule": "几何变化需重建网格并重新求解结构响应。"},
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{values.get('max_relative_error_percent', '未知')}%" for name, values in metrics.items() if isinstance(values, dict)]
+    return {
+        "intent": ["validated_surrogate_prediction", "mast_diagonal_mounting_stiffness"],
+        "assistant_message": (
+            f"结论：在通信塔桅安装结构的已验证范围内，预测无量纲刚度比 S_R 为 {float(outputs.get('stiffness_ratio_1', 0.0)):.6f}。\n\n"
+            "判断依据：输入几何位于真实 COMSOL 几何扫描范围内；每个样本均重建几何和网格后进行稳态固体力学求解。\n\n"
+            "使用建议：适合比较 t_p=10-12 mm、t_m=10-15 mm 内的相对刚度；改变材料、载荷定义、约束或安装拓扑时必须回到 COMSOL。"
+        ),
+        "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}],
+        "suggested_tool": "结构刚度比代理模型快速预测",
+        "response_policy": {"general_rule": "仅回答当前固定塔桅结构的刚度比预测。", "theory_rule": "输出为刚度与理想刚度之比。", "physics_rule": "板厚和安装厚度改变结构变形能力，进而改变刚度比。"},
+    }
+
+def _is_circuit_fem_resistor_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(token in text for token in ("电阻 fem", "场路耦合", "circuit_fem_resistor", "电阻器代理"))
+
+
+def _extract_circuit_fem_resistor_inputs(instruction: str) -> dict[str, float]:
+    text = str(instruction or "")
+    match = re.search(r"(?:sigma|电导率)\s*(?:为|是|=|:|：)?\s*([-+]?\d+(?:\.\d+)?)", text, flags=re.IGNORECASE)
+    return {"sigma_S_m": float(match.group(1))} if match else {}
+
+
+def _circuit_fem_resistor_missing_inputs_dialogue() -> dict[str, object]:
+    return {
+        "intent": ["validated_surrogate_prediction", "missing_prediction_inputs"],
+        "assistant_message": "要预测电阻 FEM 场路耦合模型，请提供电导率 sigma，单位为 S/m。",
+        "explanation_sections": [{"title": "已验证范围", "items": ["sigma: 800-1200 S/m", "固定圆柱几何、端子和电路拓扑"]}],
+        "suggested_tool": "场路耦合代理模型快速预测",
+        "response_policy": {"general_rule": "输入不完整时不输出数值。", "theory_rule": "电阻由材料电导率和固定几何共同确定。", "physics_rule": "保持 Electric Currents 与 Electrical Circuit 耦合不变。"},
+    }
+
+
+def _circuit_fem_resistor_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        rejected = prediction.get("out_of_range", {})
+        return {
+            "intent": ["validated_surrogate_prediction", "comsol_resolve_required"],
+            "assistant_message": f"结论：{', '.join(rejected) if isinstance(rejected, dict) else '电导率'} 超出电阻 FEM 场路耦合模型的已验证范围，不能进行外推预测。请执行真实 COMSOL 扫描补样。",
+            "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}],
+            "suggested_tool": "COMSOL 参数扫描补样",
+            "response_policy": {"general_rule": "超范围时不输出数值。", "theory_rule": "代理模型只能在独立验证的范围内插值。", "physics_rule": "改变电导率范围需重新确认场路耦合关系。"},
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    quality = [f"{name} 最大相对误差：{values.get('max_relative_error_percent', '未知')}%" for name, values in metrics.items() if isinstance(values, dict)]
+    return {
+        "intent": ["validated_surrogate_prediction", "circuit_fem_resistor_multioutput"],
+        "assistant_message": (
+            f"结论：在电阻 FEM 场路耦合模型的已验证范围内，场路耦合电阻为 {float(outputs.get('resistance_circuit_ohm', 0.0)):.6f} ohm；"
+            f"解析电阻为 {float(outputs.get('resistance_analytic_ohm', 0.0)):.6f} ohm。\n\n"
+            "判断依据：仅改变电导率，圆柱几何、端子、电路拓扑和稳态研究保持不变；代理模型由真实 COMSOL 扫描和独立留出点验证。\n\n"
+            "使用建议：适合在 800-1200 S/m 内快速比较；改变几何、R1/R2、端子或电路连接时必须重新运行 COMSOL。"
+        ),
+        "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}],
+        "suggested_tool": "场路耦合代理模型快速预测",
+        "response_policy": {"general_rule": "仅回答固定场路耦合模型的电阻预测。", "theory_rule": "比较有限元场路耦合电阻与解析电阻。", "physics_rule": "导电率增大时固定几何下的等效电阻下降。"},
+    }
+
+def _is_simplified_thermal_actuator_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return "热微执行器的简化模型" in text or "热微执行器简化模型" in text or "thermal_actuator_simplified" in text
+
+
+def _thermal_actuator_simplified_missing_inputs_dialogue() -> dict[str, object]:
+    return {
+        "intent": ["validated_surrogate_prediction", "missing_prediction_inputs"],
+        "assistant_message": "要预测热微执行器简化模型，请同时提供 DV、htc_s 和 htc_us。该模型固定为电-热-结构稳态耦合，输出最高温度、最大位移和焦耳热功率。",
+        "explanation_sections": [{"title": "已验证范围", "items": ["DV: 4.5-5.5 V", "htc_s: 15000-25000 W/(m2*K)", "htc_us: 400 W/(m2*K)"]}],
+        "suggested_tool": "多输出代理模型快速预测",
+        "response_policy": {"general_rule": "输入不完整时不输出数值。", "theory_rule": "三个输入共同决定电热源与对流散热。", "physics_rule": "该模型同时计算焦耳热、固体传热和热变形。"},
+    }
+
+
+def _thermal_actuator_simplified_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    if not prediction.get("ok"):
+        rejected = prediction.get("out_of_range", {})
+        return {
+            "intent": ["validated_surrogate_prediction", "comsol_resolve_required"],
+            "assistant_message": f"结论：{', '.join(rejected) if isinstance(rejected, dict) else '输入参数'} 超出热微执行器简化模型的已验证范围，不能进行外推预测。请执行真实 COMSOL 扫描补样。",
+            "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}],
+            "suggested_tool": "COMSOL 真实求解",
+            "response_policy": {"general_rule": "超范围时不输出数值。", "theory_rule": "代理模型只能插值。", "physics_rule": "电热与热变形耦合在范围外需重新求解。"},
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    metrics = validation.get("per_output_relative_validation", {}) if isinstance(validation.get("per_output_relative_validation"), dict) else {}
+    items = [
+        f"最高温度：{float(outputs.get('Tmax_K', 0.0)):.2f} K",
+        f"最大位移：{float(outputs.get('umax_m', 0.0)):.3e} m",
+        f"焦耳热功率：{float(outputs.get('joule_power_W', 0.0)):.5f} W",
+    ]
+    quality = [f"{name} 最大相对误差：{values.get('max_relative_error_percent', '未知')}%" for name, values in metrics.items() if isinstance(values, dict)]
+    return {
+        "intent": ["validated_surrogate_prediction", "thermal_actuator_simplified_multioutput"],
+        "assistant_message": "结论：在热微执行器简化模型的已验证范围内，" + "；".join(items) + "。\n\n判断依据：输入处于独立 COMSOL 留出集验证过的参数范围，模型保持电流-传热-结构耦合、几何、材料和边界不变。\n\n使用建议：可用于该固定模型的快速比较；改变几何、材料、边界或 htc_us 时必须回到 COMSOL。",
+        "explanation_sections": [{"title": "独立 COMSOL 验证", "items": quality or ["验证通过"]}],
+        "suggested_tool": "多输出代理模型快速预测",
+        "response_policy": {"general_rule": "仅回答当前简化微执行器预测。", "theory_rule": "预测基于独立 COMSOL 工况验证后的插值。", "physics_rule": "焦耳热升温会引起热变形，因此同时返回温度、位移和功率。"},
+    }
+
+def _thermal_actuator_missing_inputs_dialogue() -> dict[str, object]:
+    return {
+        "intent": ["validated_surrogate_prediction", "missing_prediction_inputs"],
+        "assistant_message": (
+            "要预测微执行器焦耳热的最高温度，请同时提供驱动电压 DV、htc_s 和 htc_us。\n\n"
+            "判断依据：该模型是三输入代理模型；缺少任一对流边界参数就不能唯一确定稳态温度场。\n\n"
+            "示例：微执行器焦耳热温度预测，DV=3 V，htc_s=20000，htc_us=400。"
+        ),
+        "explanation_sections": [{"title": "已验证输入范围", "items": ["DV: 2-5 V", "htc_s: 15000-25000 W/(m²·K)", "htc_us: 300-500 W/(m²·K)"]}],
+        "suggested_tool": "代理模型快速预测",
+        "response_policy": {"general_rule": "参数不完整时不输出数值预测。", "theory_rule": "温度场由电热源和两个对流边界共同决定。", "physics_rule": "该能力对应微执行器电-热耦合稳态模型。"},
+    }
+
+
+def _thermal_actuator_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    if not prediction.get("ok"):
+        rejected = prediction.get("out_of_range", {})
+        rejected_names = ", ".join(rejected) if isinstance(rejected, dict) else "输入参数"
+        return {
+            "intent": ["validated_surrogate_prediction", "comsol_resolve_required"],
+            "assistant_message": (
+                f"结论：{rejected_names} 超出微执行器案例的已验证范围，不能给出可靠的代理温度预测。\n\n"
+                "判断依据：该代理模型只在既定几何、电-热耦合、材料和对流边界下完成过 COMSOL 扫描与独立验证；外推可能进入高温失控区。\n\n"
+                "建议：保持同一案例模型执行真实 COMSOL 求解，并将新工况加入 CSV 后重新进行独立验证。"
+            ),
+            "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}],
+            "suggested_tool": "COMSOL 真实求解",
+            "response_policy": {"general_rule": "超范围时不输出数值预测。", "theory_rule": "代理模型只能在训练覆盖范围内插值。", "physics_rule": "高电压下焦耳热会导致明显非线性温升，应回到 COMSOL 电-热耦合求解。"},
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    tmax = float(outputs.get("Tmax_K", 0.0))
+    per_output = validation.get("per_output", {}) if isinstance(validation.get("per_output"), dict) else {}
+    metrics = per_output.get("Tmax_K", {}) if isinstance(per_output.get("Tmax_K"), dict) else {}
+    return {
+        "intent": ["validated_surrogate_prediction"],
+        "assistant_message": (
+            f"结论：在该微执行器焦耳热案例的已验证范围内，预测最高温度为 {tmax:.2f} K。\n\n"
+            "判断依据：DV、htc_s 和 htc_us 均位于真实 COMSOL 参数扫描范围内，且代理模型使用未参与训练的 COMSOL 点独立验证。\n\n"
+            "使用建议：可用于当前结构与边界下的快速参数比较；更改几何、材料、物理场或超出范围时必须重新执行 COMSOL。"
+        ),
+        "explanation_sections": [{"title": "独立 COMSOL 验证", "items": [f"通过：{validation.get('passed', False)}", f"Tmax RMSE：{metrics.get('rmse', '未知')} K", f"Tmax MAE：{metrics.get('mae', '未知')} K"]}],
+        "suggested_tool": "代理模型快速预测",
+        "response_policy": {"general_rule": "仅回答当前微执行器温度预测。", "theory_rule": "预测基于已验证工作区内的数值插值。", "physics_rule": "电流产生焦耳热并与固体传热、对流边界共同决定稳态最高温度。"},
+    }
+
+def _thermal_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    if not prediction.get("ok"):
+        rejected = prediction.get("out_of_range", {})
+        rejected_names = ", ".join(rejected) if isinstance(rejected, dict) else "输入参数"
+        return {
+            "intent": ["validated_surrogate_prediction", "comsol_resolve_required"],
+            "assistant_message": (
+                f"结论：{rejected_names} 超出已验证代理模型的训练范围，不能用小模型给出可靠温度预测。\n\n"
+                "判断依据：该代理模型只对已完成 COMSOL 扫描和独立验证的参数范围有效；外推会掩盖边界条件或几何变化带来的误差。\n\n"
+                "建议：执行一次真实 COMSOL 求解，并将新工况结果加入参数扫描数据后重新训练。"
+            ),
+            "explanation_sections": [{"title": "已验证范围", "items": [str(prediction.get("validated_ranges", {}))]}],
+            "suggested_tool": "COMSOL 真实求解",
+            "response_policy": {"general_rule": "当前输入超出范围，因此不输出数值预测。", "theory_rule": "代理模型只能在训练覆盖范围内插值使用。", "physics_rule": "几何或边界变化需由 COMSOL 方程重新求解。"},
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    tmax = float(outputs.get("Tmax_K", 0.0))
+    tavg = float(outputs.get("Tavg_K", 0.0))
+    max_error = validation.get("max_absolute_error", {}) if isinstance(validation.get("max_absolute_error"), dict) else {}
+    return {
+        "intent": ["validated_surrogate_prediction"],
+        "assistant_message": (
+            f"结论：在当前二维稳态传热模型的已验证范围内，预测最高温度为 {tmax:.3f} K，平均温度为 {tavg:.3f} K。\n\n"
+            "判断依据：输入参数位于 COMSOL 参数扫描范围内，且该代理模型经过独立 COMSOL 工况验证。\n\n"
+            "使用建议：可用于快速比较方案；最终定稿、几何改变或边界条件改变时，应执行 COMSOL 真实求解。"
+        ),
+        "explanation_sections": [{"title": "独立 COMSOL 验证", "items": [f"通过：{validation.get('passed', False)}", f"最大绝对误差：{max_error}"]}],
+        "suggested_tool": "代理模型快速预测",
+        "response_policy": {"general_rule": "仅回答当前传热预测任务。", "theory_rule": "预测基于已验证范围内的插值。", "physics_rule": "温度由固体传热控制方程的 COMSOL 扫描数据学习得到。"},
+    }
+
+
+def _is_execution_status_query(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(
+        token in text
+        for token in ("执行队列", "队列状态", "任务状态", "节点状态", "worker状态", "comsol连接", "执行状态", "运行状态")
+    )
+
+
+def _is_execution_review_approval_request(instruction: str) -> bool:
+    text = str(instruction or "").lower()
+    return any(
+        token in text
+        for token in ("批准执行复核", "批准当前待复核", "批准执行任务", "允许任务执行", "批准队列任务")
+    )
+
+
+def _is_chat_code_read_request(instruction: str) -> bool:
+    text = str(instruction or "")
+    wants_reading = any(
+        token in text.lower()
+        for token in ("读取代码", "读取matlab", "读取java", "分析代码", "检查代码", "read code", "analyze code")
+    )
+    has_supported_path = bool(
+        re.search(r"[A-Za-z]:[\\/][^\r\n<>|?*\"']+?\.(?:m|java)\b", text, flags=re.IGNORECASE)
+    )
+    return wants_reading and has_supported_path
+
+
+def _chat_code_read_result(instruction: str) -> dict[str, object]:
+    match = re.search(
+        r"[A-Za-z]:[\\/][^\r\n<>|?*\"']+?\.(?:m|java)\b",
+        str(instruction or ""),
+        flags=re.IGNORECASE,
+    )
+    if not match:
+        raise ValueError("未识别到 MATLAB 或 Java 代码路径")
+    return read_code_file(_resolve_user_path(match.group(0))).as_dict()
+
+
+def _code_read_dialogue(result: dict[str, object]) -> dict[str, object]:
+    analysis = result.get("analysis", {}) if isinstance(result.get("analysis"), dict) else {}
+    kind = "MATLAB" if result.get("kind") == "matlab" else "Java"
+    capabilities = []
+    labels = (
+        ("has_parameters", "参数"),
+        ("has_geometry", "几何"),
+        ("has_physics", "物理场"),
+        ("has_materials", "材料"),
+        ("has_mesh", "网格"),
+        ("has_study", "求解研究"),
+        ("has_results", "结果后处理"),
+    )
+    for key, label in labels:
+        if analysis.get(key):
+            capabilities.append(label)
+    functions = analysis.get("functions", []) if isinstance(analysis.get("functions"), list) else []
+    classes = analysis.get("classes", []) if isinstance(analysis.get("classes"), list) else []
+    features = analysis.get("comsol_features", {}) if isinstance(analysis.get("comsol_features"), dict) else {}
+    physics = features.get("physics", []) if isinstance(features.get("physics"), list) else []
+    suggestions = analysis.get("suggestions", []) if isinstance(analysis.get("suggestions"), list) else []
+    structure = "、".join(capabilities) if capabilities else "未识别到完整的 COMSOL 建模结构"
+    api_note = "已识别到 COMSOL API 调用。" if analysis.get("has_comsol_api") else "未识别到 COMSOL API 调用，可能是辅助脚本或需要结合其他文件判断。"
+    detail_items = [
+        f"文件：{result.get('path', '')}",
+        f"类型：{kind}，共 {result.get('line_count', 0)} 行",
+        f"COMSOL API：{'是' if analysis.get('has_comsol_api') else '否'}",
+        f"识别模块：{structure}",
+    ]
+    if functions:
+        detail_items.append("函数：" + "、".join(str(item) for item in functions[:6]))
+    if classes:
+        detail_items.append("类：" + "、".join(str(item) for item in classes[:4]))
+    if physics:
+        detail_items.append("物理场代码：" + "；".join(str(item) for item in physics[:3]))
+    chinese_suggestions = [
+        "建议补充模型保存或导出步骤。" if "model.save" in item else
+        "建议核对边界实体编号，避免未经验证的选择。" if "boundary selections" in item else
+        "建议补充结果或派生值导出，以便生成训练数据。" if "result or derived-value" in item else
+        "建议增加 CSV 或表格导出，便于后续训练。"
+        for item in suggestions[:3]
+    ]
+    return {
+        "intent": ["code_reading", "comsol_code_analysis"],
+        "assistant_message": (
+            f"结论：已读取 {kind} 代码，{api_note}\n\n"
+            f"代码建模逻辑：该文件包含 {structure}。"
+            + (f"已识别物理场定义：{'; '.join(str(item) for item in physics[:2])}。" if physics else "")
+            + "\n\n判断依据：根据代码中的 COMSOL 模型树调用、参数设置和求解/后处理节点进行识别。"
+        ),
+        "explanation_sections": [
+            {"title": "代码识别结果", "items": detail_items},
+            *([{"title": "建议", "items": chinese_suggestions}] if chinese_suggestions else []),
+        ],
+        "suggested_tool": "代码工作区",
+        "response_policy": ANSWER_POLICY,
+    }
+
+
+def _approve_execution_review_from_chat(instruction: str) -> dict[str, object]:
+    store = JobStore(JOBS_DIR)
+    job_id_match = re.search(r"\bjob_[A-Za-z0-9_]+\b", instruction)
+    awaiting = [job for job in store.list(200) if job.get("status") == "awaiting_model_review"]
+    target_id = job_id_match.group(0) if job_id_match else ""
+    if not target_id and len(awaiting) == 1:
+        target_id = str(awaiting[0]["id"])
+    if not target_id:
+        choices = [str(job.get("id", "")) for job in awaiting[:5]]
+        return {
+            "intent": ["execution_review_approval", "approval_target_required"],
+            "assistant_message": "结论：尚未执行批准操作。当前待复核任务不唯一或不存在，请明确提供任务 ID。\n\n"
+            + ("可批准任务：" + "、".join(choices) if choices else "当前没有待复核任务。"),
+            "explanation_sections": [],
+            "suggested_tool": "任务中心",
+            "response_policy": ANSWER_POLICY,
+        }
+    job = store.approve_execution_review(target_id)
+    return {
+        "intent": ["execution_review_approved"],
+        "assistant_message": (
+            f"结论：任务 {job['id']} 的模型复核已批准，已进入执行队列。\n\n"
+            "判断依据：该操作已将任务状态从待复核变为 queued；在线 worker 会按队列顺序处理，并在实际执行阶段按配置启动 COMSOL mphserver。"
+        ),
+        "explanation_sections": [{"title": "任务状态", "items": [f"状态：{job['status']}", f"日志：{job['log_path']}"]}],
+        "suggested_tool": "任务中心",
+        "response_policy": ANSWER_POLICY,
+    }
+
+
+def _execution_status_dialogue(health: dict[str, object]) -> dict[str, object]:
+    node = health.get("execution_node", {}) if isinstance(health.get("execution_node"), dict) else {}
+    worker = health.get("execution_worker", {}) if isinstance(health.get("execution_worker"), dict) else {}
+    queue = worker.get("queue", {}) if isinstance(worker.get("queue"), dict) else {}
+    surrogate = health.get("surrogate_runtime", {}) if isinstance(health.get("surrogate_runtime"), dict) else {}
+    worker_online = bool(worker.get("online"))
+    server_online = bool(node.get("server_reachable"))
+    queued = int(queue.get("queued", 0))
+    running = int(queue.get("running", 0))
+    awaiting_review = int(queue.get("awaiting_review", 0))
+    awaiting_jobs = queue.get("awaiting_review_jobs", []) if isinstance(queue.get("awaiting_review_jobs"), list) else []
+    next_step = "当前没有待执行任务。"
+    if awaiting_review:
+        next_step = f"有 {awaiting_review} 个任务等待模型复核；批准后才会进入执行队列。"
+    elif queued and worker_online and server_online:
+        next_step = f"有 {queued} 个已批准任务将由在线 worker 依次处理。"
+    elif queued:
+        next_step = "存在待执行任务，但执行节点或 COMSOL 连接未就绪。"
+    elif not server_online:
+        next_step = (
+            "当前没有待执行任务；已批准任务进入执行阶段时会自动启动 mphserver。"
+            if node.get("auto_start_server")
+            else "当前没有待执行任务；执行前需要手动启动 mphserver 或开启自动启动配置。"
+        )
+    server_note = ""
+    if not server_online and node.get("auto_start_server"):
+        server_note = "\n\n执行配置：mphserver 会在已批准任务进入实际执行阶段时按需自动启动。"
+    review_items = [
+        f"{item.get('id', '')}：{item.get('requirement', '')}"
+        for item in awaiting_jobs
+        if isinstance(item, dict)
+    ]
+    return {
+        "intent": ["execution_status"],
+        "assistant_message": (
+            f"结论：执行 worker {'在线' if worker_online else '未运行'}，COMSOL mphserver {'已连接' if server_online else '未连接'}。"
+            f"当前队列：待执行 {queued}，执行中 {running}，待复核 {awaiting_review}。\n\n"
+            f"下一步：{next_step}{server_note}"
+        ),
+        "explanation_sections": [
+            {
+                "title": "判断依据",
+                "items": [
+                    f"worker 状态：{worker.get('state', 'unknown')}",
+                    f"COMSOL 端口：{node.get('comsol_server_port', '')}",
+                    (
+                        f"已验证代理运行时：{surrogate.get('passed', 0)}/{surrogate.get('validated_models', 0)}"
+                        if surrogate.get("available")
+                        else "已验证代理运行时：尚无审计报告"
+                    ),
+                ],
+            },
+            *([{"title": "待复核任务", "items": review_items}] if review_items else []),
+        ],
+        "suggested_tool": "任务中心",
+        "response_policy": ANSWER_POLICY,
+    }
+
+
+def _joule_rectangle_prediction_dialogue(prediction: dict[str, object]) -> dict[str, object]:
+    validation = prediction.get("validation", {}) if isinstance(prediction.get("validation"), dict) else {}
+    scope = str(prediction.get("declared_scope", "二维铜矩形焦耳热模型的已登记范围"))
+    if not prediction.get("ok"):
+        rejected = prediction.get("out_of_range", {})
+        range_item = rejected.get("Vtot_V", {}) if isinstance(rejected, dict) else {}
+        requested_mv = float(range_item.get("value", 0.0)) * 1000.0
+        minimum_mv = float(range_item.get("min", 0.0)) * 1000.0
+        maximum_mv = float(range_item.get("max", 0.0)) * 1000.0
+        return {
+            "intent": ["validated_joule_surrogate", "comsol_resolve_required"],
+            "assistant_message": (
+                f"结论：请求电压 {requested_mv:g} mV 超出已验证范围 {minimum_mv:g}–{maximum_mv:g} mV，不能直接给出焦耳热温度预测。\n\n"
+                "判断依据：当前小模型只学习了固定二维铜矩形、固定材料与对流条件下的 COMSOL 数据；改变电压范围以外的工况属于外推。\n\n"
+                "下一步：用相同 COMSOL 模型补充该电压附近的真实求解结果，完成独立验证后再扩展代理模型。"
+            ),
+            "explanation_sections": [{"title": "模型适用范围", "items": [scope]}],
+            "suggested_tool": "COMSOL 补充求解",
+            "response_policy": ANSWER_POLICY,
+        }
+    outputs = prediction.get("prediction", {}) if isinstance(prediction.get("prediction"), dict) else {}
+    voltage_mv = float(prediction.get("inputs", {}).get("Vtot_V", 0.0)) * 1000.0
+    per_output = validation.get("per_output", {}) if isinstance(validation.get("per_output"), dict) else {}
+    tmax_rmse = per_output.get("Tmax_K", {}).get("rmse") if isinstance(per_output.get("Tmax_K"), dict) else None
+    error_note = f"独立 COMSOL 留出集的 Tmax RMSE 为 {float(tmax_rmse):.3f} K。" if tmax_rmse is not None else "已通过独立 COMSOL 留出集验证。"
+    return {
+        "intent": ["validated_joule_surrogate"],
+        "assistant_message": (
+            f"结论：在 {voltage_mv:g} mV 下，预测最高温度为 {float(outputs.get('Tmax_K', 0.0)):.3f} K，"
+            f"平均温度为 {float(outputs.get('Tavg_K', 0.0)):.3f} K。\n\n"
+            f"判断依据：该电压位于已训练并用独立 COMSOL 留出工况验证的范围内，{error_note}因此可用于当前固定模型的快速比较。\n\n"
+            "限制：几何、铜材料参数、对流边界或研究类型改变时，必须重新执行 COMSOL 求解。"
+        ),
+        "explanation_sections": [{"title": "独立 COMSOL 验证", "items": [f"通过：{validation.get('passed', False)}", f"留出样本：{validation.get('holdout_rows', 0)}", f"Tmax RMSE：{tmax_rmse if tmax_rmse is not None else '未记录'} K", f"RMSE 阈值：{validation.get('rmse_threshold_k', '')} K"]}, {"title": "模型适用范围", "items": [scope]}],
+        "suggested_tool": "已验证代理模型快速预测",
+        "response_policy": ANSWER_POLICY,
+    }
+
+
+def _joule_rectangle_missing_voltage_dialogue() -> dict[str, object]:
+    return {
+        "intent": ["validated_joule_surrogate", "missing_prediction_input"],
+        "assistant_message": (
+            "结论：可以使用已验证的焦耳热代理模型，但当前缺少端电压，不能计算温度。\n\n"
+            "判断依据：这个代理模型的唯一输入是端电压 Vtot；温升由焦耳热功率决定，必须给出数值和单位。\n\n"
+            "请补充：端电压，例如“在 0.5 mV 下预测焦耳热温度”。当前模型只适用于 100 mm × 50 mm 的二维铜矩形、固定对流条件，且电压范围为 0.1–1 mV。"
+        ),
+        "explanation_sections": [{"title": "缺少参数", "items": ["端电压 Vtot（单位：mV 或 V）"]}],
+        "suggested_tool": "补充预测参数",
+        "response_policy": ANSWER_POLICY,
+    }
+
+
+def _joule_rectangle_scope_change_dialogue(changes: list[str]) -> dict[str, object]:
+    return {
+        "intent": ["validated_joule_surrogate", "scope_change_requires_comsol"],
+        "assistant_message": (
+            "结论：当前请求改变了已验证焦耳热代理模型的物理范围，因此不输出温度预测。\n\n"
+            f"判断依据：{'; '.join(changes)}。代理模型只可对相同几何、材料和边界条件进行范围内插值。\n\n"
+            "下一步：请用对应的新条件完成 COMSOL 参数扫描，导出真实结果后再进行独立验证和代理模型扩展。"
+        ),
+        "explanation_sections": [{"title": "检测到的范围变化", "items": changes}],
+        "suggested_tool": "COMSOL 新工况求解",
+        "response_policy": ANSWER_POLICY,
+    }
+
+
+def _registered_surrogate_registry_path(model_id: str) -> Path:
+    for path in _registered_surrogate_registry_paths():
+        registry = json.loads(path.read_text(encoding="utf-8"))
+        if any(item.get("id") == model_id for item in registry.get("models", [])):
+            return path
+    raise FileNotFoundError(f"未找到已登记代理模型 {model_id} 的注册表。")
+
+
+def _registered_surrogate_registry_paths() -> list[Path]:
+    candidates = [SURROGATE_REGISTRY_PATH, LEGACY_SURROGATE_REGISTRY_PATH]
+    return [path for path in candidates if path.is_file()]
 
 
 def run(host: str = "127.0.0.1", port: int = 8765, open_browser: bool = False) -> None:
@@ -416,7 +2635,7 @@ INDEX_HTML = r"""<!doctype html>
     }
     h2 { margin: 0 0 14px; font-size: 17px; font-weight: 650; }
     label { display: block; margin: 10px 0 5px; color: var(--muted); font-size: 12px; }
-    input, textarea {
+    input, select, textarea {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -554,7 +2773,9 @@ INDEX_HTML = r"""<!doctype html>
     const output = document.getElementById("output");
     const statusBox = document.getElementById("status");
     const constraints = document.getElementById("constraints");
+    const STAGED_WORKFLOW_STORAGE_KEY = "comsol_training_active_staged_workflow";
     let lastFileSummary = null;
+    let activeStagedWorkflowPath = window.localStorage.getItem(STAGED_WORKFLOW_STORAGE_KEY) || "";
 
     async function request(path, body) {
       statusBox.className = "status";
@@ -569,6 +2790,35 @@ INDEX_HTML = r"""<!doctype html>
       statusBox.className = data.ok === false ? "status bad" : "status ok";
       statusBox.textContent = data.ok === false ? "failed" : "done";
       return data;
+    }
+
+    async function requestGet(path) {
+      setStatus("running", "");
+      const response = await fetch(path);
+      const data = await response.json();
+      renderJson(data);
+      setStatus(data.ok === false ? "failed" : "done", data.ok === false ? "bad" : "ok");
+      return data;
+    }
+
+    function setToolsCollapsed(collapsed) {
+      const app = document.querySelector(".app");
+      const toggle = document.getElementById("toolsToggle");
+      if (!app || !toggle) return;
+      app.classList.toggle("tools-collapsed", collapsed);
+      toggle.textContent = collapsed ? "\u2039" : "\u203a";
+      toggle.setAttribute("aria-expanded", String(!collapsed));
+      toggle.setAttribute("aria-label", collapsed ? "\u5c55\u5f00\u53f3\u4fa7\u680f" : "\u6536\u56de\u53f3\u4fa7\u680f");
+      toggle.title = collapsed ? "\u5c55\u5f00\u53f3\u4fa7\u680f" : "\u6536\u56de\u53f3\u4fa7\u680f";
+    }
+
+    function toggleToolsPanel() {
+      const app = document.querySelector(".app");
+      setToolsCollapsed(!app?.classList.contains("tools-collapsed"));
+    }
+
+    function initializeToolsPanel() {
+      setToolsCollapsed(false);
     }
 
     async function loadDefaults() {
@@ -592,6 +2842,18 @@ INDEX_HTML = r"""<!doctype html>
       return data;
     }
 
+    async function uploadPayload(file) {
+      if (!/\.(pdf|mph)$/i.test(file.name || "")) {
+        return {name: file.name, content: await file.text()};
+      }
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      let binary = "";
+      for (let offset = 0; offset < bytes.length; offset += 32768) {
+        binary += String.fromCharCode(...bytes.subarray(offset, offset + 32768));
+      }
+      return {name: file.name, content_base64: btoa(binary)};
+    }
+
     async function readUploadedFile() {
       const file = document.getElementById("uploadFile").files[0];
       if (!file) {
@@ -600,8 +2862,7 @@ INDEX_HTML = r"""<!doctype html>
         statusBox.textContent = "failed";
         return;
       }
-      const content = await file.text();
-      const data = await request("/api/read-uploaded-file", {name: file.name, content});
+      const data = await request("/api/read-uploaded-file", await uploadPayload(file));
       if (data.ok) {
         lastFileSummary = data.summary;
       }
@@ -695,7 +2956,7 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
       color: #fff;
       background: var(--warn);
     }
-    input, textarea {
+    input, select, textarea {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 7px;
@@ -720,6 +2981,10 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
       max-height: 100vh;
       min-height: 640px;
       overflow: hidden;
+      transition: grid-template-columns .18s ease;
+    }
+    .app.tools-collapsed {
+      grid-template-columns: 240px minmax(0, 1fr) 42px;
     }
     .rail {
       display: flex;
@@ -877,6 +3142,7 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
       gap: 6px;
     }
     .tools {
+      position: relative;
       border-left: 1px solid var(--line);
       background: #f4f5f4;
       overflow: auto;
@@ -886,10 +3152,55 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
       max-height: 100vh;
       overscroll-behavior: contain;
     }
+    .tools-toggle {
+      position: sticky;
+      top: 8px;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 34px;
+      margin: 8px 7px 0;
+      padding: 0;
+      border-radius: 7px;
+      color: var(--ink);
+      background: var(--surface);
+      border-color: var(--line);
+      font-size: 16px;
+      line-height: 1;
+    }
+    .app.tools-collapsed .tools {
+      overflow: hidden;
+    }
+    .app.tools-collapsed .tool-section {
+      display: none;
+    }
     .tool-section {
       padding: 16px;
       border-bottom: 1px solid var(--line);
     }
+    .tool-section > .tool-title {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 28px;
+      margin: -4px 0 10px;
+      padding: 4px 0;
+      user-select: none;
+    }
+    .tool-section > .tool-title::-webkit-details-marker { display: none; }
+    .tool-section > .tool-title::after {
+      content: "折叠";
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .tool-section:not([open]) > .tool-title::after { content: "打开"; }
+    .tool-section:not([open]) > :not(.tool-title) { display: none; }
     .tool-title {
       margin: 0 0 10px;
       font-size: 13px;
@@ -923,8 +3234,65 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
       white-space: pre-wrap;
       word-break: break-word;
     }
+    .progress-card {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fbfbfa;
+      white-space: normal;
+    }
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .progress-bar {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--surface-2);
+    }
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width .25s ease;
+    }
+    .progress-steps {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .progress-steps li {
+      margin: 4px 0;
+      color: var(--muted);
+    }
+    .progress-steps li.active {
+      color: var(--ink);
+      font-weight: 650;
+    }
+    .progress-steps li.done {
+      color: var(--accent-dark);
+    }
+    label[for="stagedRequirement"],
+    label[for="stagedWorkflowPath"],
+    label[for="approvalComment"],
+    #stagedRequirement,
+    #stagedWorkflowPath,
+    #approvalComment,
+    button[onclick="createStagedWorkflow()"],
+    button[onclick="approveStagedStep(true)"],
+    button[onclick="approveStagedStep(false)"],
+    button[onclick="finalizeStagedWorkflow()"] {
+      display: none !important;
+    }
     @media (max-width: 1180px) {
       .app { grid-template-columns: 210px minmax(0, 1fr); }
+      .app.tools-collapsed { grid-template-columns: 210px minmax(0, 1fr); }
       .tools {
         grid-column: 1 / -1;
         border-left: 0;
@@ -944,6 +3312,7 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
       .rail { display: none; }
       .chat { min-height: 100vh; }
       .tools { height: auto; max-height: none; }
+      .app.tools-collapsed .tool-section { display: block; }
       .messages { padding: 16px; }
       .message { grid-template-columns: 28px minmax(0, 1fr); gap: 9px; }
       .avatar { width: 28px; height: 28px; }
@@ -962,8 +3331,9 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
         <button class="thread" data-mode="modeling" onclick="selectThreadMode('modeling')">自动建模</button>
         <button class="thread" data-mode="reading" onclick="selectThreadMode('reading')">文件阅读</button>
         <button class="thread" data-mode="training" onclick="selectThreadMode('training')">代理模型训练</button>
+        <button class="thread" data-mode="execution" onclick="selectThreadMode('execution')">任务中心</button>
       </div>
-      <div class="rail-foot">本地运行：Python + COMSOL LiveLink MATLAB 脚本生成</div>
+      <div class="rail-foot" id="nodeStatus">本地节点：正在检查</div>
     </aside>
 
     <main class="chat">
@@ -993,8 +3363,9 @@ CONVERSATIONAL_INDEX = r"""<!doctype html>
     </main>
 
     <aside class="tools">
-      <section class="tool-section" id="tool-files">
-        <h2 class="tool-title">文件</h2>
+      <button class="tools-toggle" id="toolsToggle" onclick="toggleToolsPanel()" aria-label="收回右侧栏" title="收回右侧栏" aria-expanded="true">&rsaquo;</button>
+      <details class="tool-section" id="tool-files" data-tool-group="case-learning" open>
+        <summary class="tool-title">案例学习与文件</summary>
         <label for="filePath">路径，每行一个</label>
         <textarea id="filePath" oninput="syncCaseFieldsFromPaths()" onchange="syncCaseFieldsFromPaths()">../acoustic_rectangular_cavity/build_acoustic_rectangular_cavity.m
 examples/sample_comsol_data.csv
@@ -1014,37 +3385,142 @@ configs/thermal_constraints.json</textarea>
         <input id="caseSyncInfo" value="等待选择文件或输入路径" readonly>
         <div class="row">
           <button class="primary" onclick="learnCaseDirectory()">学习案例并输出总结</button>
+          <button onclick="buildKnowledgeSystem()">形成知识体系</button>
         </div>
         <label for="articlePath">文章/论文 Word 路径</label>
         <input id="articlePath" value="D:/桌面/COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究.docx">
         <div class="row">
           <button onclick="learnArticleDocument()">按文章生成建模修正方案</button>
         </div>
-      </section>
-      <section class="tool-section" id="tool-matlab">
-        <h2 class="tool-title">MATLAB</h2>
+      </details>
+      <details class="tool-section" id="tool-matlab" data-tool-group="model-generation">
+        <summary class="tool-title">模型生成与修改</summary>
         <label for="matlabPath">.m 路径</label>
         <input id="matlabPath" value="../acoustic_rectangular_cavity/build_acoustic_rectangular_cavity.m">
         <label for="codeRequirement">COMSOL 建模需求</label>
         <textarea id="codeRequirement">结合已学习案例和文章知识，生成一个 COMSOL 模型构建脚本，要求同时输出 LiveLink MATLAB 代码和 Java 代码，并标注需要人工复核的边界选择、材料和物理场。</textarea>
         <label for="existingComsolContent">现有 MATLAB/Java/模型摘要内容</label>
         <textarea id="existingComsolContent" placeholder="可粘贴已有 COMSOL MATLAB 脚本、Java 代码或 MPH 摘要；模型会根据学习库给出修正和完善建议。"></textarea>
+        <label for="codeFilePath">代码文件路径</label>
+        <input id="codeFilePath" value="generated/code/generated_comsol_model.m">
+        <label for="codeInstruction">代码修改指令</label>
+        <textarea id="codeInstruction" placeholder="例如：把结果导出增加为 CSV；或说明需要修改的 COMSOL 建模逻辑。"></textarea>
+        <label for="findText">查找文本</label>
+        <textarea id="findText" placeholder="可选：填写要替换的原始代码片段。"></textarea>
+        <label for="replaceText">替换文本 / 追加代码</label>
+        <textarea id="replaceText" placeholder="如果填写了查找文本，则作为替换内容；如果不填查找文本，则可作为追加代码。"></textarea>
+        <label for="codeOutputPath">输出路径</label>
+        <input id="codeOutputPath" value="generated/code/generated_comsol_model.codex_edit.m">
         <div class="row">
           <button onclick="inspectMatlab()">解析 MATLAB</button>
           <button class="primary" onclick="generateComsolCode()">生成 MATLAB + Java</button>
+          <button onclick="readCodeFile()">读取代码</button>
+          <button class="warning" onclick="modifyCodeFile()">修改代码并输出</button>
         </div>
-      </section>
-      <section class="tool-section" id="tool-constraints">
-        <h2 class="tool-title">约束</h2>
+        <label for="stagedRequirement">分步建模需求</label>
+        <textarea id="stagedRequirement">请将当前 COMSOL 建模任务拆分为物理场、材料、数据与结构、网格、求解、结果导出，并在每一步等待我批准后继续。</textarea>
+        <label for="stagedWorkflowPath">分步任务文件</label>
+        <input id="stagedWorkflowPath" value="">
+        <label for="approvalComment">审批意见</label>
+        <textarea id="approvalComment" placeholder="例如：物理场正确，可以继续；或说明需要修改的地方。"></textarea>
+        <div class="row">
+          <button onclick="createStagedWorkflow()">创建分步建模任务</button>
+          <button class="primary" onclick="approveStagedStep(true)">批准当前步骤</button>
+          <button onclick="approveStagedStep(false)">退回修改</button>
+          <button class="warning" onclick="finalizeStagedWorkflow()">生成完整建模包</button>
+        </div>
+      </details>
+      <details class="tool-section" id="tool-constraints" data-tool-group="model-constraints">
+        <summary class="tool-title">模型约束</summary>
         <textarea id="constraints"></textarea>
         <div class="row">
           <button onclick="loadDefaults()">载入示例</button>
           <button onclick="validateConstraints()">校验</button>
           <button class="warning" onclick="generateMatlab()">生成 MATLAB</button>
         </div>
-      </section>
-      <section class="tool-section" id="tool-training">
-        <h2 class="tool-title">训练</h2>
+      </details>
+      <details class="tool-section" id="tool-reference" data-tool-group="reference">
+        <summary class="tool-title">物理参考与对照</summary>
+        <label for="referenceCaseType">参考案例类型</label>
+        <select id="referenceCaseType" onchange="loadReferenceDefaults()">
+          <option value="laminar_pipe_poiseuille">圆管层流压降</option>
+          <option value="thermoacoustic_open_tube">热声开开管</option>
+          <option value="flow_heat_channel">流热通道</option>
+          <option value="acoustic_structure_cantilever">声-结构悬臂梁</option>
+          <option value="electrochemical_nernst">电化学 Nernst 平衡</option>
+          <option value="particle_stokes_settling">颗粒 Stokes 沉降</option>
+          <option value="rf_half_wave_resonator">射频半波谐振腔</option>
+          <option value="acoustic_rectangular_cavity">二维声学矩形腔</option>
+        </select>
+        <label for="referenceParameters">SI 参数 JSON</label>
+        <textarea id="referenceParameters">{"length_m":1,"diameter_m":0.01,"flow_rate_m3_s":1e-5,"viscosity_pa_s":0.001,"density_kg_m3":1000}</textarea>
+        <label for="referenceResultKey">参考结果字段</label>
+        <input id="referenceResultKey" value="pressure_drop_pa">
+        <label for="observedComsolValue">COMSOL 观测值</label>
+        <input id="observedComsolValue" inputmode="decimal" placeholder="从结果或导出表填入数值">
+        <label for="observedComsolUnit">观测单位</label>
+        <input id="observedComsolUnit" value="Pa" placeholder="例如 Pa、Hz、K、m/s 或 V">
+        <div class="row">
+          <input id="referenceComparisonThreshold" aria-label="参考比较误差阈值百分比" value="5" inputmode="decimal">
+          <button onclick="compareReferenceObservation()">对照 COMSOL 结果</button>
+        </div>
+        <label for="comsolResultsCsvPath">COMSOL 结果 CSV</label>
+        <input id="comsolResultsCsvPath" placeholder="含 name,value 列的导出 CSV 路径">
+        <label for="comsolObservedResultName">CSV 结果名称</label>
+        <input id="comsolObservedResultName" value="pressure_drop_pa">
+        <label for="workchainReportPaths">工作链参考报告路径</label>
+        <textarea id="workchainReportPaths" placeholder="每行一个已保存的参考报告 JSON 路径"></textarea>
+        <div class="row">
+          <button onclick="assembleReferenceWorkchain()">生成工作链包</button>
+          <button onclick="showReferenceWorkchains()">查看工作链包</button>
+        </div>
+        <label for="workchainPackagePath">工作链包路径</label>
+        <input id="workchainPackagePath" placeholder="要验证的工作链包 JSON 路径">
+        <div class="row">
+          <button onclick="validateReferenceWorkchain()">验证工作链包</button>
+          <button onclick="archiveReferenceWorkchain()">导出工作链 ZIP</button>
+        </div>
+        <label for="workchainArchivePath">工作链 ZIP 路径</label>
+        <input id="workchainArchivePath" placeholder="要验证的工作链 ZIP 路径">
+        <div class="row">
+          <button onclick="validateReferenceWorkchainArchive()">验证工作链 ZIP</button>
+        </div>
+        <div class="row">
+          <button onclick="compareReferenceResultsCsv()">从 CSV 对照</button>
+          <button onclick="showReferenceReports()">查看参考报告</button>
+        </div>
+        <div class="row">
+          <button onclick="evaluateReferenceCase()">计算物理参考</button>
+        </div>
+      </details>
+      <details class="tool-section" id="tool-closure-checks" data-tool-group="training-closure">
+        <summary class="tool-title">训练闭环检查</summary>
+        <label for="meshRecords">网格记录 JSON</label>
+        <textarea id="meshRecords">[{"hmax_m":0.01,"dofs":100,"output":10},{"hmax_m":0.005,"dofs":400,"output":10.08},{"hmax_m":0.0025,"dofs":1600,"output":10.085}]</textarea>
+        <div class="row">
+          <input id="meshOutputName" aria-label="网格收敛输出名称" value="quantity_of_interest">
+          <input id="meshThreshold" aria-label="网格收敛阈值百分比" value="1" inputmode="decimal">
+          <button onclick="checkMeshConvergence()">检查网格收敛</button>
+        </div>
+        <label for="coverageRanges">参数覆盖范围 JSON</label>
+        <textarea id="coverageRanges">{"k":[10,50],"Q":[1000,10000]}</textarea>
+        <div class="row">
+          <input id="coverageBins" aria-label="参数覆盖分箱数" value="5" inputmode="numeric">
+          <button onclick="checkParameterCoverage()">检查参数覆盖</button>
+          <button onclick="checkHoldoutIndependence()">检查留出独立性</button>
+        </div>
+        <label for="augmentationCsvPath">补充 COMSOL CSV</label>
+        <input id="augmentationCsvPath" placeholder="补充样本 CSV 路径">
+        <label for="previousHoldoutCsvPath">旧留出集 CSV</label>
+        <input id="previousHoldoutCsvPath" placeholder="重训前的留出集 CSV 路径">
+        <label for="freshHoldoutCsvPath">新留出集 CSV</label>
+        <input id="freshHoldoutCsvPath" placeholder="未参与训练的新 COMSOL 扫描 CSV 路径">
+        <div class="row">
+          <button onclick="prepareAugmentationRetrain()">准备补充样本重训</button>
+        </div>
+      </details>
+      <details class="tool-section" id="tool-training" data-tool-group="training">
+        <summary class="tool-title">训练与代理预测</summary>
         <label for="csvPath">CSV 路径</label>
         <input id="csvPath" value="examples/sample_comsol_data.csv">
         <label for="inputs">输入列</label>
@@ -1054,13 +3530,65 @@ configs/thermal_constraints.json</textarea>
         <label for="modelName">模型文件名</label>
         <input id="modelName" value="thermal_surrogate.joblib">
         <div class="row">
+          <button class="primary" onclick="queueThermalSweepTraining()">一键执行传热扫描训练</button>
+          <button onclick="prepareThermalSweep()">生成传热扫描脚本</button>
+          <button onclick="inspectTrainingCsv()">自动分析 CSV</button>
+          <button onclick="autoTrainModel()">自动训练</button>
           <button class="primary" onclick="trainModel()">训练模型</button>
         </div>
-      </section>
-      <section class="tool-section">
-        <h2 class="tool-title">原始响应</h2>
+        <label for="holdoutCsvPath">独立 COMSOL 留出集 CSV</label>
+        <input id="holdoutCsvPath" placeholder="必须是未参与训练的新 COMSOL 扫描数据">
+        <label for="physicalScope">物理适用范围</label>
+        <textarea id="physicalScope" placeholder="说明物理场、几何、材料、边界条件、研究类型和允许的参数变化。"></textarea>
+        <label for="relativeErrorThreshold">留出集最大相对误差阈值 (%)</label>
+        <input id="relativeErrorThreshold" value="5" inputmode="decimal">
+        <div class="row">
+          <button class="primary" onclick="trainWithComsolHoldout()">独立 COMSOL 验证训练</button>
+          <button onclick="showSurrogateRegistry()">查看已验证模型</button>
+          <button onclick="showClosureAudit()">查看闭环审计</button>
+        </div>
+        <label for="registeredModelId">已验证模型 ID</label>
+        <input id="registeredModelId" placeholder="先从代理模型注册表复制 ID">
+        <label for="registeredInputs">预测输入 JSON</label>
+        <textarea id="registeredInputs" placeholder='例如：{"k": 16, "Q": 8000, "h": 35, "L": 0.05}'></textarea>
+        <div class="row">
+          <button class="primary" onclick="predictRegisteredSurrogate()">受控代理预测</button>
+          <button onclick="createRegisteredAugmentationPlan()">生成补充 COMSOL 工况</button>
+        </div>
+        <label for="thermalSurrogateModel">已验证二维传热模型</label>
+        <input id="thermalSurrogateModel" value="">
+        <div class="row">
+          <input id="thermalL" aria-label="板长 L (m)" value="0.06" title="板长 L，单位 m">
+          <input id="thermalW" aria-label="板宽 W (m)" value="0.0225" title="板宽 W，单位 m">
+          <input id="thermalK" aria-label="导热系数 (W/(m K))" value="40" title="导热系数，单位 W/(m K)">
+        </div>
+        <div class="row">
+          <input id="thermalHot" aria-label="高温端 (K)" value="353.15" title="高温端温度，单位 K">
+          <input id="thermalCold" aria-label="低温端 (K)" value="283.15" title="低温端温度，单位 K">
+          <button class="primary" onclick="predictThermalPlate()">已验证模型快速预测</button>
+        </div>
+      </details>
+      <details class="tool-section" id="tool-execution" data-tool-group="execution">
+        <summary class="tool-title">训练与任务执行</summary>
+        <label for="executionRequirement">建模任务</label>
+        <textarea id="executionRequirement">建立母线板焦耳热标杆模型：电流场与固体传热通过 Joule Heating 耦合，输出温度与电流密度，并准备参数扫描 CSV。</textarea>
+        <div class="row">
+          <button class="primary" onclick="createJouleHeatBenchmark()">创建焦耳热标杆</button>
+          <button onclick="matchValidatedTemplate()">匹配已验证模板</button>
+          <button onclick="deriveAndQueueMatchedTemplate()">按文本改参数并入队</button>
+          <button onclick="createExecutionJob()">创建普通任务</button>
+        </div>
+        <div class="row">
+          <button onclick="processNextExecutionJob()">处理下一任务</button>
+          <button onclick="refreshExecutionJobs()">刷新任务状态</button>
+          <button onclick="showRecentArtifacts()">查看最近结果</button>
+        </div>
+        <div class="hint">任务默认只生成并校验脚本；配置 MATLAB LiveLink 路径并显式启用执行节点后，才会调用本机 COMSOL 许可证。</div>
+      </details>
+      <details class="tool-section" id="tool-results" data-tool-group="results">
+        <summary class="tool-title">结果与知识库</summary>
         <pre id="raw" class="raw">{}</pre>
-      </section>
+      </details>
     </aside>
   </div>
 
@@ -1068,12 +3596,64 @@ configs/thermal_constraints.json</textarea>
     const messages = document.getElementById("messages");
     const raw = document.getElementById("raw");
     const statusBox = document.getElementById("status");
+    const nodeStatus = document.getElementById("nodeStatus");
     const constraints = document.getElementById("constraints");
     let lastFileSummary = null;
+    let activeStagedWorkflowPath = "";
+
+    function stagedWorkflowPathInput() {
+      return document.getElementById("stagedWorkflowPath");
+    }
+
+    function syncStagedWorkflowPath(path) {
+      const value = String(path || "").trim();
+      if (!value) return;
+      activeStagedWorkflowPath = value;
+      window.localStorage.setItem(STAGED_WORKFLOW_STORAGE_KEY, value);
+      const input = stagedWorkflowPathInput();
+      if (input) input.value = value;
+    }
+
+    function activeWorkflowPath() {
+      const input = stagedWorkflowPathInput();
+      return String(activeStagedWorkflowPath || (input ? input.value : "") || "").trim();
+    }
+
+    function hasActiveStagedWorkflow() {
+      return Boolean(activeWorkflowPath());
+    }
+
+    if (activeStagedWorkflowPath) {
+      syncStagedWorkflowPath(activeStagedWorkflowPath);
+    }
 
     function setStatus(text, kind) {
       statusBox.textContent = text;
       statusBox.className = "status" + (kind ? " " + kind : "");
+    }
+
+    async function refreshNodeStatus() {
+      try {
+        const response = await fetch("/api/health");
+        const data = await response.json();
+        const worker = data.execution_worker || {};
+        const node = data.execution_node || {};
+        const surrogate = data.surrogate_runtime || {};
+        const queue = worker.queue || {};
+        const workerText = worker.online ? "执行 worker 在线" : "执行 worker 未运行";
+        const serverText = node.server_reachable ? "COMSOL 已连接" : "COMSOL 未连接";
+        const queueText = `队列 ${Number(queue.queued || 0)}，复核 ${Number(queue.awaiting_review || 0)}`;
+        const surrogateText = !surrogate.available
+          ? "代理未审计"
+          : surrogate.healthy
+            ? `代理 ${Number(surrogate.passed || 0)}/${Number(surrogate.validated_models || 0)}`
+            : surrogate.state === "stale"
+              ? "代理待重审"
+              : "代理异常";
+        nodeStatus.textContent = `本地节点：${workerText} | ${serverText} | ${queueText} | ${surrogateText}`;
+      } catch (error) {
+        nodeStatus.textContent = "本地节点：状态检查失败";
+      }
     }
 
     function escapeHtml(value) {
@@ -1092,6 +3672,55 @@ configs/thermal_constraints.json</textarea>
       jumpToLatestMessage();
     }
 
+    function startProgressCard(title, steps) {
+      const message = document.createElement("div");
+      message.className = "message assistant";
+      const stepHtml = steps
+        .map((step, index) => `<li data-step="${index}">${escapeHtml(step)}</li>`)
+        .join("");
+      message.innerHTML = `
+        <div class="avatar">AI</div>
+        <div class="bubble">
+          <div class="progress-card">
+            <div class="progress-head">
+              <strong>${escapeHtml(title)}</strong>
+              <span class="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <ol class="progress-steps">${stepHtml}</ol>
+            <div class="status progress-detail">正在准备...</div>
+          </div>
+        </div>`;
+      messages.appendChild(message);
+      jumpToLatestMessage();
+      return {
+        message,
+        steps,
+        update(percent, activeIndex, detail) {
+          const bounded = Math.max(0, Math.min(100, Number(percent) || 0));
+          message.querySelector(".progress-fill").style.width = `${bounded}%`;
+          message.querySelector(".progress-percent").textContent = `${Math.round(bounded)}%`;
+          message.querySelector(".progress-detail").textContent = detail || "";
+          message.querySelectorAll(".progress-steps li").forEach((item, index) => {
+            item.classList.toggle("done", index < activeIndex);
+            item.classList.toggle("active", index === activeIndex);
+          });
+          jumpToLatestMessage();
+        },
+        finish(detail) {
+          this.update(100, steps.length, detail || "已完成");
+        }
+      };
+    }
+
+    function renderServerProgress(progress) {
+      if (!Array.isArray(progress) || !progress.length) return "";
+      const rows = progress
+        .map(item => `<li><strong>${escapeHtml(item.percent || 0)}%</strong> ${escapeHtml(item.label || "")}<br><span>${escapeHtml(item.detail || "")}</span></li>`)
+        .join("");
+      return `<h3>加载进度</h3><ul>${rows}</ul>`;
+    }
+
     function jumpToLatestMessage() {
       const latest = messages.lastElementChild;
       if (latest) {
@@ -1106,9 +3735,21 @@ configs/thermal_constraints.json</textarea>
       raw.textContent = JSON.stringify(data, null, 2);
     }
 
+    function isLowValueWorkFeedback(feedback) {
+      const endpoint = String(feedback.endpoint || "");
+      const stagedEndpoints = new Set(["/api/staged-workflow", "/api/approve-staged-step", "/api/finalize-staged-workflow"]);
+      if (stagedEndpoints.has(endpoint)) return true;
+      if (endpoint === "/api/instruction") return true;
+      const summary = String(feedback.summary || "").trim();
+      const nextSteps = feedback.next_steps || [];
+      const onlyGenericNext = nextSteps.length === 1 && String(nextSteps[0] || "").trim() === "继续执行下一步建模或训练任务。";
+      return (!summary || summary === "操作已完成。") && onlyGenericNext;
+    }
+
     function summarizeWorkFeedback(data) {
       const feedback = data.work_feedback;
       if (!feedback) return "";
+      if (isLowValueWorkFeedback(feedback)) return "";
       const details = feedback.details || {};
       const next = (feedback.next_steps || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
       const detailLines = [];
@@ -1151,9 +3792,24 @@ configs/thermal_constraints.json</textarea>
           const items = (section.items || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
           return `<h3>${escapeHtml(section.title || "说明")}</h3><ul>${items}</ul>`;
         }).join("");
+        const policy = response.response_policy
+          ? `<h3>回答规则</h3><ul><li>${escapeHtml(response.response_policy.general_rule || "")}</li><li>${escapeHtml(response.response_policy.theory_rule || "")}</li><li>${escapeHtml(response.response_policy.physics_rule || "")}</li></ul>`
+          : "";
+        const correctionMemory = response.correction_memory
+          ? `<h3>纠错记忆</h3><ul><li>正确物理场：<code>${escapeHtml(response.correction_memory.corrected_physics || "")}</code></li><li>纠错记忆数量：${escapeHtml(response.correction_memory.correction_count || 0)}</li></ul>`
+          : "";
+        const clarification = (response.clarifying_questions || []).length
+          ? `<h3>需要你补充</h3><ul>${response.clarifying_questions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+          : "";
+        const assumptions = (response.assumptions || []).length
+          ? `<h3>当前假设</h3><ul>${response.assumptions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+          : "";
+        const risks = (response.risk_flags || []).length
+          ? `<h3>风险提示</h3><ul>${response.risk_flags.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+          : "";
         const intents = (response.intent || []).map(item => `<code>${escapeHtml(item)}</code>`).join(" ");
         const tool = response.suggested_tool ? `<p>建议工具：<code>${escapeHtml(response.suggested_tool)}</code></p>` : "";
-        return `<h3>COMSOL 训练讲解</h3>${paragraphs}${sections}<h3>识别到的任务</h3><p>${intents}</p>${tool}`;
+        return `<h3>COMSOL 训练讲解</h3>${paragraphs}${correctionMemory}${clarification}${assumptions}${risks}${policy}${sections}<h3>识别到的任务</h3><p>${intents}</p>${tool}`;
       }
       const intents = (response.intent || []).map(item => `<code>${escapeHtml(item)}</code>`).join(" ");
       const feedback = (response.feedback || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
@@ -1174,7 +3830,7 @@ configs/thermal_constraints.json</textarea>
         const kinds = Object.entries(details.kinds || {})
           .map(([kind, count]) => `<code>${escapeHtml(kind)}</code>: ${count}`)
           .join(" ");
-        return `<h3>已读取多个文件</h3><p>数量：${details.count || 0}</p><p>${kinds}</p><ul>${files}</ul>`;
+        return `<h3>已读取多个文件</h3><p>数量：${details.count || 0}</p><p>${kinds}</p><ul>${files}</ul>${pdfSimpleSummariesFromFiles(summary.files || [])}`;
       }
       let lines = [
         `<li>文件：<code>${escapeHtml(summary.name)}</code></li>`,
@@ -1187,7 +3843,20 @@ configs/thermal_constraints.json</textarea>
       if (summary.kind === "csv_table") {
         lines.push(`<li>列：<code>${escapeHtml((details.columns || []).join(", "))}</code></li>`);
       }
-      return `<h3>文件已读取</h3><ul>${lines.join("")}</ul><h3>预览</h3><p>${escapeHtml(summary.preview || "").slice(0, 1200)}</p>`;
+      const pdfSummaries = summary.kind === "pdf_document" ? pdfSimpleSummariesFromFiles([summary]) : "";
+      return `<h3>文件已读取</h3><ul>${lines.join("")}</ul>${pdfSummaries}<h3>预览</h3><p>${escapeHtml(summary.preview || "").slice(0, 1200)}</p>`;
+    }
+
+    function pdfSimpleSummariesFromFiles(files) {
+      const rows = (files || [])
+        .filter(file => file && file.kind === "pdf_document")
+        .map(file => {
+          const details = file.details || {};
+          const summary = details.simple_summary || `${file.name || "PDF"}: 已识别为 PDF 文件，但当前没有提取到简单总结。`;
+          return `<li><code>${escapeHtml(file.name || "")}</code><br>${escapeHtml(summary)}</li>`;
+        })
+        .join("");
+      return rows ? `<h3>每个 PDF 文件的简单总结</h3><ul>${rows}</ul>` : "";
     }
 
     function summarizeGeneric(title, data) {
@@ -1230,7 +3899,19 @@ configs/thermal_constraints.json</textarea>
         .join("");
       const recommendations = (summary.recommendations || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
       const workflow = (summary.workflow || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
-      return `<h3>COMSOL 文件学习总结</h3><ul>${counts}</ul><h3>建议</h3><ul>${recommendations}</ul><h3>实现路径</h3><ul>${workflow}</ul>`;
+      const pdfSummaries = pdfSimpleSummariesFromLearning(summary);
+      const memory = data.memory || {};
+      const memoryHtml = memory.path
+        ? `<h3>记忆库写入</h3><ul><li>条目：${escapeHtml(memory.entry_title || "")}</li><li>案例总数：${escapeHtml(memory.case_count || 0)}</li><li>质量分：${escapeHtml((memory.quality || {}).score || 0)}/100</li><li>路径：<code>${escapeHtml(memory.path)}</code></li></ul>`
+        : "";
+      return `<h3>COMSOL 文件学习总结</h3><ul>${counts}</ul>${pdfSummaries}${memoryHtml}<h3>建议</h3><ul>${recommendations}</ul><h3>实现路径</h3><ul>${workflow}</ul>`;
+    }
+
+    function pdfSimpleSummariesFromLearning(summary) {
+      const rows = (summary.pdf_simple_summaries || [])
+        .map(item => `<li><code>${escapeHtml(item.name || "")}</code><br>${escapeHtml(item.summary || "")}</li>`)
+        .join("");
+      return rows ? `<h3>每个 PDF 文件的简单总结</h3><ul>${rows}</ul>` : "";
     }
 
     function summarizeCaseLearningResponse(data) {
@@ -1273,7 +3954,8 @@ configs/thermal_constraints.json</textarea>
       const alignmentHtml = externalCases || docMatches || improvements
         ? `<h3>总知识库对齐</h3>${externalCases ? `<h3>相似 COMSOL 案例</h3><ul>${externalCases}</ul>` : ""}${docMatches ? `<h3>官方文档校对</h3><ul>${docMatches}</ul>` : ""}${improvements ? `<h3>训练完善建议</h3><ul>${improvements}</ul>` : ""}`
         : "";
-      return `<h3>案例学习完成</h3><p>${escapeHtml(summary.summary || "")}</p><ul><li>训练阶段：<code>${escapeHtml(card.training_stage || "")}</code></li><li>文件数：${escapeHtml(fileSummary.count || 0)}</li><li>MATLAB：${escapeHtml(fileSummary.matlab_files || 0)}，Java：${escapeHtml(fileSummary.java_files || 0)}，PDF：${escapeHtml(fileSummary.pdf_files || 0)}，MPH：${escapeHtml(fileSummary.mph_files || 0)}，CSV：${escapeHtml(fileSummary.csv_files || 0)}</li><li>记忆库案例数：${escapeHtml(memory.case_count || 0)}</li></ul>${contentHtml}${trace ? `<h3>学习过程/判断依据</h3><ul>${trace}</ul>` : ""}${alignmentHtml}${logic ? `<h3>学到的建模逻辑</h3><ul>${logic}</ul>` : ""}${params ? `<h3>提取参数</h3><ul>${params}</ul>` : ""}${assets ? `<h3>可复用资产</h3><ul>${assets}</ul>` : ""}${next ? `<h3>下一步</h3><ul>${next}</ul>` : ""}<h3>输出文件</h3><ul><li>JSON：<code>${escapeHtml(outputs.json || "")}</code></li><li>Markdown：<code>${escapeHtml(outputs.markdown || "")}</code></li><li>Index：<code>${escapeHtml(outputs.index || "")}</code></li></ul>`;
+      const pdfSummaries = pdfSimpleSummariesFromLearning(card);
+      return `<h3>案例学习完成</h3><p>${escapeHtml(summary.summary || "")}</p><ul><li>训练阶段：<code>${escapeHtml(card.training_stage || "")}</code></li><li>文件数：${escapeHtml(fileSummary.count || 0)}</li><li>MATLAB：${escapeHtml(fileSummary.matlab_files || 0)}，Java：${escapeHtml(fileSummary.java_files || 0)}，PDF：${escapeHtml(fileSummary.pdf_files || 0)}，MPH：${escapeHtml(fileSummary.mph_files || 0)}，CSV：${escapeHtml(fileSummary.csv_files || 0)}</li><li>记忆库案例数：${escapeHtml(memory.case_count || 0)}</li></ul>${contentHtml}${pdfSummaries}${trace ? `<h3>学习过程/判断依据</h3><ul>${trace}</ul>` : ""}${alignmentHtml}${logic ? `<h3>学到的建模逻辑</h3><ul>${logic}</ul>` : ""}${params ? `<h3>提取参数</h3><ul>${params}</ul>` : ""}${assets ? `<h3>可复用资产</h3><ul>${assets}</ul>` : ""}${next ? `<h3>下一步</h3><ul>${next}</ul>` : ""}<h3>输出文件</h3><ul><li>JSON：<code>${escapeHtml(outputs.json || "")}</code></li><li>Markdown：<code>${escapeHtml(outputs.markdown || "")}</code></li><li>Index：<code>${escapeHtml(outputs.index || "")}</code></li></ul>`;
     }
 
     function summarizeArticleLearningResponse(data) {
@@ -1327,6 +4009,20 @@ configs/thermal_constraints.json</textarea>
       if (!text) return;
       addMessage("user", escapeHtml(text));
       prompt.value = "";
+      if (hasActiveStagedWorkflow()) {
+        if (isRevisionMessage(text)) {
+          await approveStagedStep(false, text);
+          return;
+        }
+        if (isApprovalMessage(text)) {
+          await approveStagedStep(true, text);
+          return;
+        }
+      }
+      if (looksLikeStagedModelingTask(text)) {
+        await createStagedWorkflow(text);
+        return;
+      }
       const data = await request("/api/instruction", {instruction: text, file_summary: lastFileSummary});
       addMessage("assistant", summarizeInstructionResponse(data));
     }
@@ -1370,6 +4066,11 @@ configs/thermal_constraints.json</textarea>
           target: "tool-training",
           prompt: "根据 CSV 数据训练 COMSOL 代理模型，对比候选模型，输出 RMSE、MAE、R2、样本预测和后续改进建议。",
           message: "<h3>代理模型训练</h3><p>这个模式对应右侧训练工具。需要 CSV 参数扫描数据；没有 CSV 时，应先从案例学习和 COMSOL 参数扫描开始。</p>"
+        },
+        execution: {
+          target: "tool-execution",
+          prompt: "创建并处理母线板焦耳热标杆任务，先生成 MATLAB/Java 建模文件和执行包装脚本，再检查本机 COMSOL 执行节点配置。",
+          message: "<h3>任务中心</h3><p>这里管理可迁移的 COMSOL 任务。当前电脑作为执行节点；未来只需把执行节点迁到 Windows 服务器，网页和任务记录可以保留。</p>"
         }
       }[mode];
       if (!config) return;
@@ -1378,6 +4079,124 @@ configs/thermal_constraints.json</textarea>
         document.getElementById(config.target)?.scrollIntoView({behavior: "smooth", block: "start"});
       }
       addMessage("assistant", config.message);
+    }
+
+    function summarizeExecutionJob(data) {
+      if (!data.ok) return summarizeGeneric("执行任务", data);
+      const job = data.job;
+      if (!job) return "<h3>任务中心</h3><p>当前没有可处理的排队任务。</p>";
+      const result = job.result || {};
+      const outputs = ((result.generated_code || {}).outputs || {});
+      const readiness = result.execution_readiness || {};
+      const artifact = result.model_artifact || {};
+      const resultCsv = result.result_artifact || {};
+      const validation = result.result_validation || {};
+      const trainingDataset = result.training_dataset || {};
+      const mergedTrainingDataset = result.merged_training_dataset || {};
+      const trainingModel = result.training_model || {};
+      const trainingReport = result.training_report || {};
+      const augmentationDataset = result.augmentation_dataset || {};
+      const holdoutDataset = result.holdout_dataset || {};
+      const holdoutValidation = trainingReport.holdout_validation || {};
+      const modelCard = result.model_card || {};
+      const diagnosis = result.diagnosis || {};
+      const validationChecks = (validation.checks || []).map(check => `${check.name}: ${check.passed ? "通过" : "未通过"}`).join("；");
+      const diagnosisActions = (diagnosis.actions || []).map(action => `<li>${escapeHtml(action)}</li>`).join("");
+      const defaultStatusAdvice = {
+        queued: "任务已进入队列，等待执行节点处理。",
+        awaiting_model_review: "请核对命名选择集、边界条件和单位；确认后可批准执行复核。",
+        awaiting_execution_approval: "模型复核已通过，当前执行节点尚未允许外部 MATLAB/COMSOL 调用。",
+        awaiting_execution_configuration: "执行文件已准备，但执行节点配置尚未完成。",
+        completed: "MATLAB LiveLink 与 COMSOL 执行已完成，请查看 MPH 输出和日志。",
+        failed: "执行失败，请先查看任务日志和错误信息。"
+      }[job.status] || "正在处理任务。";
+      const statusAdvice = job.job_type === "thermal_sweep_training" && job.status === "completed"
+        ? "COMSOL 参数扫描、CSV 检查和本地代理模型训练已完成，可查看训练数据、模型文件与误差指标。"
+        : defaultStatusAdvice;
+      const reviewAction = job.status === "awaiting_model_review"
+        ? `<p><button class="primary" onclick='approveExecutionReview(${JSON.stringify(job.id || "")})'>批准执行复核并继续</button></p>`
+        : "";
+      const retryAction = job.status === "failed" && diagnosis.retry_recommended
+        ? `<p><button class="primary" onclick='retryExecutionJob(${JSON.stringify(job.id || "")})'>重新排队</button></p>`
+        : "";
+      const augmentationRetrainAction = job.job_type === "thermal_augmentation" && job.status === "completed" && augmentationDataset.path
+        ? `<p><button class="primary" onclick='queueThermalAugmentationRetrain(${JSON.stringify(job.id || "")})'>合并样本并进行独立验证重训</button></p>`
+        : "";
+      const diagnosisHtml = diagnosis.kind
+        ? `<h3>${escapeHtml(diagnosis.title || "失败诊断")}</h3><p>${escapeHtml(diagnosis.summary || "")}</p>${diagnosisActions ? `<ul>${diagnosisActions}</ul>` : ""}`
+        : "";
+      return `<h3>COMSOL 执行任务</h3><p>${escapeHtml(statusAdvice)}</p><ul><li>编号：<code>${escapeHtml(job.id || "")}</code></li><li>状态：<code>${escapeHtml(job.status || "")}</code></li><li>类型：${escapeHtml(job.job_type || "")}</li><li>日志：<code>${escapeHtml(job.log_path || "")}</code></li>${artifact.path ? `<li>MPH：<code>${escapeHtml(artifact.path)}</code></li>` : ""}${artifact.size_bytes ? `<li>模型大小：<code>${escapeHtml(String(artifact.size_bytes))} bytes</code></li>` : ""}${artifact.execution_duration_seconds ? `<li>执行耗时：<code>${escapeHtml(String(artifact.execution_duration_seconds))} s</code></li>` : ""}${resultCsv.path ? `<li>结果 CSV：<code>${escapeHtml(resultCsv.path)}</code></li>` : ""}${resultCsv.size_bytes ? `<li>CSV 大小：<code>${escapeHtml(String(resultCsv.size_bytes))} bytes</code></li>` : ""}${augmentationDataset.path ? `<li>补充 COMSOL 样本：<code>${escapeHtml(augmentationDataset.path)}</code>，${escapeHtml(String(augmentationDataset.sample_count || 0))} 组</li>` : ""}${mergedTrainingDataset.path ? `<li>合并训练数据：<code>${escapeHtml(mergedTrainingDataset.path)}</code>，${escapeHtml(String(mergedTrainingDataset.rows || 0))} 组</li>` : ""}${trainingDataset.path ? `<li>训练数据：<code>${escapeHtml(trainingDataset.path)}</code>，${escapeHtml(String(trainingDataset.sample_count || 0))} 组</li>` : ""}${holdoutDataset.path ? `<li>独立 COMSOL 验证：<code>${escapeHtml(holdoutDataset.path)}</code>，${escapeHtml(String(holdoutDataset.sample_count || holdoutDataset.rows || 0))} 组</li>` : ""}${trainingModel.path ? `<li>代理模型：<code>${escapeHtml(trainingModel.path)}</code></li>` : ""}${modelCard.markdown_path ? `<li>模型卡片：<code>${escapeHtml(modelCard.markdown_path)}</code></li>` : ""}${trainingReport.best_model ? `<li>训练结果：<code>${escapeHtml(trainingReport.best_model)}</code>，RMSE=<code>${escapeHtml(String(trainingReport.test_rmse))}</code></li>` : ""}${holdoutValidation.max_absolute_error ? `<li>独立验证：<code>${holdoutValidation.passed ? "通过" : "未通过"}</code>，最大绝对误差=<code>${escapeHtml(JSON.stringify(holdoutValidation.max_absolute_error))}</code></li>` : ""}${validation.kind ? `<li>物理校验：<code>${validation.passed ? "通过" : "未通过"}</code>${validationChecks ? `，${escapeHtml(validationChecks)}` : ""}</li>` : ""}${artifact.next_action ? `<li>建议：${escapeHtml(artifact.next_action)}</li>` : ""}${result.next_action ? `<li>下一动作：${escapeHtml(result.next_action)}</li>` : ""}${result.approved_package_path ? `<li>批准建模包：<code>${escapeHtml(result.approved_package_path)}</code></li>` : ""}${readiness.next_action ? `<li>任务动作：<code>${escapeHtml(readiness.next_action)}</code></li>` : ""}${outputs.matlab ? `<li>MATLAB：<code>${escapeHtml(outputs.matlab)}</code></li>` : ""}${outputs.java ? `<li>Java：<code>${escapeHtml(outputs.java)}</code></li>` : ""}${result.runner_path ? `<li>执行包装：<code>${escapeHtml(result.runner_path)}</code></li>` : ""}</ul>${diagnosisHtml}${augmentationRetrainAction}${reviewAction}${retryAction}${job.error ? `<h3>原始错误</h3><pre>${escapeHtml(job.error)}</pre>` : ""}`;
+    }
+
+    async function createJouleHeatBenchmark() {
+      const data = await request("/api/jobs/joule-heat-benchmark", {});
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function createExecutionJob() {
+      const requirement = document.getElementById("executionRequirement").value.trim();
+      const data = await request("/api/jobs", {requirement});
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function matchValidatedTemplate() {
+      const requirement = document.getElementById("executionRequirement").value.trim();
+      const data = await request("/api/jobs/match-template", {requirement});
+      if (data.ok && data.template_match) {
+        const match = data.template_match;
+        addMessage("assistant", `<h3>已验证模板匹配</h3><p>${escapeHtml(match.reason || "")}</p><ul><li>模板：<code>${escapeHtml(match.template_name || "")}</code></li><li>置信度：<code>${escapeHtml(String(match.confidence || ""))}</code></li><li>仍需确认：${escapeHtml((match.required_information || []).join("、"))}</li></ul>`);
+      }
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function deriveAndQueueMatchedTemplate() {
+      const requirement = document.getElementById("executionRequirement").value.trim();
+      const data = await request("/api/templates/match-extract-derive-and-queue", {requirement});
+      if (data.ok) {
+        const normalized = (data.provenance || []).map(item =>
+          `<li><code>${escapeHtml(item.parameter)}</code>：${escapeHtml(String(item.source_value))} ${escapeHtml(item.source_unit || "")} -> ${escapeHtml(String(item.normalized_value))} ${escapeHtml(item.normalized_unit || "")}</li>`
+        ).join("");
+        addMessage("assistant", `<h3>参数已提取并入队</h3><p>${escapeHtml(data.template_match?.template_name || "已验证模板")}</p><ul>${normalized || "<li>未提取到参数</li>"}</ul>`);
+      }
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function processNextExecutionJob() {
+      const data = await request("/api/jobs/process-next", {});
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function refreshExecutionJobs() {
+      const response = await fetch("/api/jobs");
+      const data = await response.json();
+      renderJson(data);
+      const jobs = (data.jobs || []).slice(0, 8).map(job => `<li><code>${escapeHtml(job.id || "")}</code>：<code>${escapeHtml(job.status || "")}</code></li>`).join("");
+      addMessage("assistant", `<h3>任务队列</h3><ul>${jobs || "<li>暂无任务</li>"}</ul>`);
+      return data;
+    }
+
+    async function showRecentArtifacts() {
+      const response = await fetch("/api/artifacts/recent?limit=8");
+      const data = await response.json();
+      renderJson(data);
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("最近结果", data));
+        return data;
+      }
+      const summary = data.summary || {};
+      const rows = (summary.recent || []).map(item => {
+        const values = Object.entries(item.result_values || {})
+          .map(([name, value]) => `<code>${escapeHtml(name)}=${escapeHtml(String(value))}</code>`)
+          .join(" ");
+        return `<li><strong>${escapeHtml(item.physics || "COMSOL")}</strong>：${values || "<code>无数值输出</code>"}<br><code>${escapeHtml(item.mph_path || "")}</code></li>`;
+      }).join("");
+      addMessage("assistant", `<h3>最近模型结果</h3><p>完成 ${escapeHtml(String(summary.completed_count || 0))} 项，失败 ${escapeHtml(String(summary.failed_count || 0))} 项。</p><ul>${rows || "<li>暂无已验证结果</li>"}</ul>`);
+      return data;
     }
 
     function clearChat() {
@@ -1396,6 +4215,200 @@ configs/thermal_constraints.json</textarea>
     async function inspectMatlab() {
       const data = await request("/api/inspect-matlab", {path: document.getElementById("matlabPath").value});
       addMessage("assistant", summarizeGeneric("MATLAB 解析", data));
+      return data;
+    }
+
+    function summarizeCodeReadResponse(data) {
+      if (!data.ok) return summarizeGeneric("代码读取", data);
+      const code = data.code || {};
+      const analysis = code.analysis || {};
+      const features = analysis.comsol_features || {};
+      const featureRows = Object.entries(features)
+        .map(([key, values]) => `<li>${escapeHtml(key)}：${escapeHtml((values || []).length)} 项</li>`)
+        .join("");
+      const suggestions = (analysis.suggestions || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      return `<h3>代码已读取</h3><ul><li>路径：<code>${escapeHtml(code.path || "")}</code></li><li>类型：<code>${escapeHtml(code.kind || "")}</code></li><li>行数：${escapeHtml(code.line_count || 0)}</li><li>COMSOL API：<code>${analysis.has_comsol_api ? "yes" : "no"}</code></li></ul>${featureRows ? `<h3>COMSOL 代码线索</h3><ul>${featureRows}</ul>` : ""}${suggestions ? `<h3>修改建议</h3><ul>${suggestions}</ul>` : ""}<h3>代码预览</h3><pre>${escapeHtml(code.preview || "").slice(0, 4000)}</pre>`;
+    }
+
+    function summarizeCodeEditResponse(data) {
+      if (!data.ok) return summarizeGeneric("代码修改", data);
+      const edit = data.edit || {};
+      const summary = (edit.summary || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const after = edit.analysis_after || {};
+      return `<h3>代码修改完成</h3><ul><li>源文件：<code>${escapeHtml(edit.source_path || "")}</code></li><li>输出文件：<code>${escapeHtml(edit.output_path || "")}</code></li><li>备份文件：<code>${escapeHtml(edit.backup_path || "")}</code></li><li>修改模式：<code>${escapeHtml(edit.mode || "")}</code></li><li>替换次数：${escapeHtml(edit.replacements || 0)}</li><li>COMSOL API：<code>${after.has_comsol_api ? "yes" : "no"}</code></li></ul>${summary ? `<h3>修改摘要</h3><ul>${summary}</ul>` : ""}<h3>输出预览</h3><pre>${escapeHtml(edit.preview || "").slice(0, 4000)}</pre>`;
+    }
+
+    async function readCodeFile() {
+      const data = await request("/api/read-code", {
+        path: document.getElementById("codeFilePath").value
+      });
+      addMessage("assistant", summarizeCodeReadResponse(data));
+      return data;
+    }
+
+    async function modifyCodeFile() {
+      const findText = document.getElementById("findText").value;
+      const replaceText = document.getElementById("replaceText").value;
+      const data = await request("/api/modify-code", {
+        path: document.getElementById("codeFilePath").value,
+        instruction: document.getElementById("codeInstruction").value,
+        find_text: findText,
+        replace_text: findText ? replaceText : "",
+        append_text: findText ? "" : replaceText,
+        output_path: document.getElementById("codeOutputPath").value
+      });
+      addMessage("assistant", summarizeCodeEditResponse(data));
+      return data;
+    }
+
+    function currentWorkflowStep(workflow) {
+      const steps = workflow.steps || [];
+      const index = Number(workflow.current_step || 0);
+      return steps[index] || steps[steps.length - 1] || {};
+    }
+
+    function workflowHasProblemStatus(workflow) {
+      const problemStatuses = new Set(["needs_revision", "failed", "error"]);
+      const status = String(workflow.status || "");
+      if (problemStatuses.has(status)) return true;
+      return (workflow.steps || []).some(item => problemStatuses.has(String(item.status || "")));
+    }
+
+    function shouldShowStagedStatuses(workflow) {
+      return workflowHasProblemStatus(workflow);
+    }
+
+    function shouldShowStagedProposal(workflow, step) {
+      return workflowHasProblemStatus(workflow) || String(step.status || "") === "needs_revision";
+    }
+
+    function stagedWorkflowLead(workflow, step) {
+      if (workflowHasProblemStatus(workflow)) {
+        return `这一步需要修正。我先指出问题和依据，修正后再继续。`;
+      }
+      if (String(workflow.status || "") === "complete") {
+        return "所有步骤已确认，可以生成完整 COMSOL 建模与求解方案。";
+      }
+      return `我先处理“${escapeHtml(step.title || "当前步骤")}”。你确认正确后，我再继续下一步。`;
+    }
+
+    function summarizeStagedWorkflowResponse(data) {
+      if (!data.ok) return summarizeGeneric("分步建模任务", data);
+      const workflow = data.workflow || {};
+      const step = currentWorkflowStep(workflow);
+      const outputs = workflow.outputs || {};
+      if (outputs.workflow) {
+        syncStagedWorkflowPath(outputs.workflow);
+      }
+      const proposal = (step.proposal || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const evidence = (step.evidence || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const questions = (step.approval_questions || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const statuses = (workflow.steps || []).map(item => `<li>${escapeHtml(item.index + 1)}. ${escapeHtml(item.title)}：<code>${escapeHtml(item.status)}</code></li>`).join("");
+      const statusHtml = shouldShowStagedStatuses(workflow) && statuses ? `<h3>步骤状态</h3><ul>${statuses}</ul>` : "";
+      const proposalHtml = shouldShowStagedProposal(workflow, step) && proposal ? `<h3>当前步骤建议</h3><ul>${proposal}</ul>` : "";
+      const judgmentHtml = !shouldShowStagedProposal(workflow, step) && proposal ? `<h3>我的判断</h3><ul>${proposal}</ul>` : "";
+      const diagnosticMeta = workflowHasProblemStatus(workflow) ? `<ul><li>状态：<code>${escapeHtml(workflow.status || "")}</code></li><li>任务文件：<code>${escapeHtml(outputs.workflow || "")}</code></li></ul>` : "";
+      return `<h3>${escapeHtml(step.title || "分步建模")}</h3><p>${stagedWorkflowLead(workflow, step)}</p>${diagnosticMeta}${statusHtml}${proposalHtml}${judgmentHtml}${evidence ? `<h3>判断依据</h3><ul>${evidence}</ul>` : ""}${questions ? `<h3>请你确认</h3><ul>${questions}</ul>` : ""}`;
+    }
+
+    function summarizeFinalPackageResponse(data) {
+      if (!data.ok) return summarizeGeneric("完整建模包", data);
+      const outputs = data.outputs || {};
+      const pkg = data.package || {};
+      const readiness = ((pkg.generated_code || {}).generation_readiness || {});
+      const handoff = pkg.execution_handoff || {};
+      const material = pkg.material_readiness || {};
+      const overall = pkg.modeling_readiness || {};
+      const sequence = (pkg.modeling_sequence || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const checks = (pkg.verification_checklist || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const unresolved = (handoff.unresolved_requirements || readiness.unresolved_requirements || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const queueAction = outputs.json && handoff.ready_to_solve
+        ? `<p><button class="primary" onclick='queueStagedPackageExecution(${JSON.stringify(outputs.json)})'>加入执行队列</button></p>`
+        : "";
+      const materialRisks = (material.risks || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const materialNotice = materialRisks ? `<h3>材料物性仍需确认</h3><ul>${materialRisks}</ul>` : "";
+      const overallBlockers = (overall.blockers || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const overallNotice = overallBlockers ? `<h3>整体建模就绪检查</h3><p>可进入完整建模：<code>${escapeHtml(overall.ready_for_modeling || false)}</code></p><ul>${overallBlockers}</ul>` : "";
+      const handoffNotice = !handoff.ready_to_solve && handoff.next_action ? `<p>下一步：<code>${escapeHtml(handoff.next_action)}</code></p>` : "";
+      return `<h3>完整 COMSOL 建模包已生成</h3><ul><li>MATLAB：<code>${escapeHtml(outputs.matlab || "")}</code></li><li>Java：<code>${escapeHtml(outputs.java || "")}</code></li><li>验证报告：<code>${escapeHtml(outputs.verification || "")}</code></li><li>JSON：<code>${escapeHtml(outputs.json || "")}</code></li><li>Markdown：<code>${escapeHtml(outputs.markdown || "")}</code></li><li>可打开：<code>${escapeHtml(handoff.ready_to_open || readiness.ready_to_open || false)}</code></li><li>可直接求解：<code>${escapeHtml(handoff.ready_to_solve || false)}</code></li></ul>${handoffNotice}${overallNotice}${materialNotice}${queueAction}${unresolved ? `<h3>求解前必须完成</h3><ul>${unresolved}</ul>` : ""}${sequence ? `<h3>最终建模顺序</h3><ul>${sequence}</ul>` : ""}${checks ? `<h3>求解前复核清单</h3><ul>${checks}</ul>` : ""}`;
+    }
+
+    function looksLikeStagedModelingTask(text) {
+      const value = String(text || "").toLowerCase();
+      const hasComsol = value.includes("comsol") || value.includes("建模") || value.includes("模型");
+      const hasModeling = value.includes("物理场") || value.includes("材料") || value.includes("求解") || value.includes("网格") || value.includes("边界") || value.includes("study") || value.includes("solver") || value.includes("physics");
+      const asksBuild = value.includes("建立") || value.includes("构建") || value.includes("生成") || value.includes("完成") || value.includes("build") || value.includes("create") || value.includes("model");
+      return hasComsol && (hasModeling || asksBuild);
+    }
+
+    function isApprovalMessage(text) {
+      return /(批准|同意|正确|可以|继续|下一步|进行下一步|继续工作|通过|确认|不需要|无需|不用|没问题|没有问题|approve|yes|ok|continue)/i.test(String(text || ""));
+    }
+
+    function isRevisionMessage(text) {
+      return /(退回|不正确|错误|修改|重做|不通过|需要改|不是|不对|revise|wrong|no)/i.test(String(text || ""));
+    }
+
+    async function createStagedWorkflow(requirementText) {
+      const requirement = requirementText || document.getElementById("codeRequirement").value || document.getElementById("prompt").value;
+      const data = await request("/api/staged-workflow", {requirement});
+      if (data.ok) {
+        syncStagedWorkflowPath((data.workflow || {}).outputs?.workflow || "");
+      }
+      addMessage("assistant", summarizeStagedWorkflowResponse(data));
+      return data;
+    }
+
+    async function approveStagedStep(approved, commentText) {
+      syncStagedWorkflowPath(activeWorkflowPath());
+      const data = await request("/api/approve-staged-step", {
+        workflow_path: activeWorkflowPath(),
+        approved,
+        comment: commentText || ""
+      });
+      addMessage("assistant", summarizeStagedWorkflowResponse(data));
+      const workflow = data.workflow || {};
+      if (data.ok && workflow.status === "complete") {
+        await finalizeStagedWorkflow();
+      }
+      return data;
+    }
+
+    async function finalizeStagedWorkflow() {
+      const data = await request("/api/finalize-staged-workflow", {
+        workflow_path: activeWorkflowPath()
+      });
+      addMessage("assistant", summarizeFinalPackageResponse(data));
+      if (data.ok) {
+        activeStagedWorkflowPath = "";
+        window.localStorage.removeItem(STAGED_WORKFLOW_STORAGE_KEY);
+        const input = stagedWorkflowPathInput();
+        if (input) input.value = "";
+      }
+      return data;
+    }
+
+    async function queueStagedPackageExecution(packagePath) {
+      const data = await request("/api/staged-workflow/queue-execution", {package_path: packagePath});
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function approveExecutionReview(jobId) {
+      const reviewed = await request(`/api/jobs/${encodeURIComponent(jobId)}/approve-review`, {});
+      if (!reviewed.ok) {
+        addMessage("assistant", summarizeExecutionJob(reviewed));
+        return reviewed;
+      }
+      addMessage("assistant", summarizeExecutionJob(reviewed));
+      window.setTimeout(refreshExecutionJobs, 1200);
+      return reviewed;
+    }
+
+    async function retryExecutionJob(jobId) {
+      const data = await request(`/api/jobs/${encodeURIComponent(jobId)}/retry`, {});
+      addMessage("assistant", summarizeExecutionJob(data));
+      if (data.ok) window.setTimeout(refreshExecutionJobs, 1200);
       return data;
     }
 
@@ -1462,9 +4475,14 @@ configs/thermal_constraints.json</textarea>
       if (caseTitle) caseTitleInput.value = caseTitle;
     }
 
-    function setInputValue(id, value) {
+    function setInputValue(id, value, force = false) {
       const input = document.getElementById(id);
-      if (input && value) input.value = value;
+      if (input && (value || force)) input.value = value || "";
+    }
+
+    function setTextareaValue(id, value, force = false) {
+      const input = document.getElementById(id);
+      if (input && (value || force)) input.value = value || "";
     }
 
     function extensionOf(path) {
@@ -1476,6 +4494,56 @@ configs/thermal_constraints.json</textarea>
     function firstPathByExtension(paths, extensions) {
       const wanted = new Set(extensions);
       return paths.find(path => wanted.has(extensionOf(path))) || "";
+    }
+
+    function pathsByExtension(paths, extensions) {
+      const wanted = new Set(extensions);
+      return paths.filter(path => wanted.has(extensionOf(path)));
+    }
+
+    function isDefaultGeneratedPath(value) {
+      const text = String(value || "");
+      return !text || text.includes("generated_comsol_model") || text.includes(".codex_edit");
+    }
+
+    function fillRightPanelFromSelection(paths) {
+      if (!paths.length) return;
+      const normalized = paths.map(normalizePathForUi).filter(Boolean);
+      const dir = normalized.length > 1 ? commonDirectory(normalized) : parentDirectory(normalized[0]);
+      const titleSource = dir || normalized[0];
+      const caseTitle = caseTitleFromPath(titleSource);
+      const matlabPath = firstPathByExtension(normalized, [".m"]);
+      const javaPath = firstPathByExtension(normalized, [".java"]);
+      const csvPath = firstPathByExtension(normalized, [".csv"]);
+      const jsonPath = firstPathByExtension(normalized, [".json"]);
+      const codeSourcePath = matlabPath || javaPath || firstPathByExtension(normalized, [".txt", ".md"]);
+      syncRelatedFieldsFromPaths(normalized);
+      if (codeSourcePath) setInputValue("codeFilePath", codeSourcePath);
+      if (isDefaultGeneratedPath(document.getElementById("codeOutputPath")?.value)) {
+        setInputValue("codeOutputPath", `generated/code/${caseTitle}.codex_edit.m`);
+      }
+      if (jsonPath && /constraint|约束|config/i.test(baseName(jsonPath))) {
+        setCaseSyncInfo([document.getElementById("caseSyncInfo")?.value || "", `约束文件：${baseName(jsonPath)}`]);
+      }
+      setTextareaValue(
+        "codeRequirement",
+        `结合案例《${caseTitle}》的文件证据，读取 PDF、MATLAB、Java、MPH 和数据文件，判断物理场、材料、几何、边界条件、网格、研究类型和结果输出，并生成可复核的 COMSOL MATLAB/Java 建模代码。`,
+        true
+      );
+      setTextareaValue(
+        "stagedRequirement",
+        `针对案例《${caseTitle}》分步完成 COMSOL 建模：先判断物理场，再确认材料、几何结构、边界条件、网格、求解和结果导出；每一步等待我确认后继续。`,
+        true
+      );
+      const selectedSummary = [
+        `案例名称：${caseTitle}`,
+        dir ? `案例目录：${dir}` : "",
+        matlabPath ? `MATLAB 文件：${matlabPath}` : "",
+        javaPath ? `Java 文件：${javaPath}` : "",
+        csvPath ? `CSV 文件：${csvPath}` : "",
+        jsonPath ? `JSON/约束文件：${jsonPath}` : "",
+      ].filter(Boolean).join("\\n");
+      setTextareaValue("existingComsolContent", selectedSummary, true);
     }
 
     function setCaseSyncInfo(parts) {
@@ -1511,6 +4579,37 @@ configs/thermal_constraints.json</textarea>
       ]);
     }
 
+    function syncRightPanelFromSummary(summary) {
+      if (!summary) return;
+      const files = summary.kind === "file_collection" ? (summary.files || []) : [summary];
+      const names = files.map(file => file.name || "").filter(Boolean);
+      if (names.length && !splitPathList(document.getElementById("filePath").value).length) {
+        fillRightPanelFromSelection(names);
+      }
+      const scriptFiles = files.filter(file => ["matlab_livelink", "matlab_text", "comsol_java", "text", "json"].includes(file.kind));
+      const preview = scriptFiles
+        .map(file => {
+          const details = file.details || {};
+          const extract = details.content_extract || {};
+          const physics = (extract.physics || []).slice(0, 8).join(", ");
+          const studies = (extract.studies || []).slice(0, 8).join(", ");
+          return [
+            `文件：${file.name || ""}`,
+            `类型：${file.kind || ""}`,
+            physics ? `物理场证据：${physics}` : "",
+            studies ? `研究类型证据：${studies}` : "",
+            file.preview ? `预览：${String(file.preview).slice(0, 1200)}` : "",
+          ].filter(Boolean).join("\\n");
+        })
+        .join("\\n\\n---\\n\\n");
+      if (preview) setTextareaValue("existingComsolContent", preview, true);
+      const csvSummary = findCsvSummary(summary);
+      if (csvSummary?.name && !document.getElementById("csvPath").value) {
+        setInputValue("csvPath", csvSummary.name);
+      }
+      syncTrainingColumnsFromSummary(summary);
+    }
+
     function syncTrainingColumnsFromSummary(summary) {
       const csvSummary = findCsvSummary(summary);
       const columns = csvSummary?.details?.columns || [];
@@ -1538,7 +4637,7 @@ configs/thermal_constraints.json</textarea>
     function syncCaseFieldsFromPaths() {
       const paths = splitPathList(document.getElementById("filePath").value);
       if (!paths.length) return;
-      syncRelatedFieldsFromPaths(paths);
+      fillRightPanelFromSelection(paths);
     }
 
     function syncCaseFieldsFromUpload() {
@@ -1549,7 +4648,7 @@ configs/thermal_constraints.json</textarea>
         .filter(Boolean);
       if (relativePaths.length) {
         const dir = relativePaths.length > 1 ? commonDirectory(relativePaths) : parentDirectory(relativePaths[0]);
-        syncRelatedFieldsFromPaths(relativePaths);
+        fillRightPanelFromSelection(relativePaths);
         return;
       }
       const names = files.map(file => file.name || "").filter(Boolean);
@@ -1559,6 +4658,7 @@ configs/thermal_constraints.json</textarea>
       setInputValue("matlabPath", firstPathByExtension(names, [".m"]));
       setInputValue("csvPath", firstPathByExtension(names, [".csv"]));
       setInputValue("modelName", `${caseTitle}_surrogate.joblib`);
+      fillRightPanelFromSelection(names);
       setCaseSyncInfo([
         `已选择 ${files.length} 个上传文件`,
         firstPathByExtension(names, [".m"]) ? `MATLAB：${firstPathByExtension(names, [".m"])}` : "",
@@ -1574,10 +4674,22 @@ configs/thermal_constraints.json</textarea>
       const data = await request(endpoint, body);
       if (data.ok) {
         lastFileSummary = data.summary;
-        syncTrainingColumnsFromSummary(lastFileSummary);
+        syncRightPanelFromSummary(lastFileSummary);
       }
       addMessage("assistant", summarizeFileResponse(data));
       return data;
+    }
+
+    async function uploadPayload(file) {
+      if (!/\.(pdf|mph)$/i.test(file.name || "")) {
+        return {name: file.name, content: await file.text()};
+      }
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      let binary = "";
+      for (let offset = 0; offset < bytes.length; offset += 32768) {
+        binary += String.fromCharCode(...bytes.subarray(offset, offset + 32768));
+      }
+      return {name: file.name, content_base64: btoa(binary)};
     }
 
     async function readUploadedFile() {
@@ -1592,14 +4704,14 @@ configs/thermal_constraints.json</textarea>
       }
       const payloadFiles = [];
       for (const file of files) {
-        payloadFiles.push({name: file.name, content: await file.text()});
+        payloadFiles.push(await uploadPayload(file));
       }
       const endpoint = payloadFiles.length > 1 ? "/api/read-uploaded-files" : "/api/read-uploaded-file";
       const body = payloadFiles.length > 1 ? {files: payloadFiles} : payloadFiles[0];
       const data = await request(endpoint, body);
       if (data.ok) {
         lastFileSummary = data.summary;
-        syncTrainingColumnsFromSummary(lastFileSummary);
+        syncRightPanelFromSummary(lastFileSummary);
       }
       addMessage("assistant", summarizeFileResponse(data));
       return data;
@@ -1613,18 +4725,114 @@ configs/thermal_constraints.json</textarea>
         addMessage("assistant", summarizeLearningResponse(data));
         return data;
       }
-      const data = await request("/api/learning-summary", {file_summary: lastFileSummary});
+      const data = await request("/api/learning-summary", {
+        file_summary: lastFileSummary,
+        remember: true,
+        title: document.getElementById("caseTitle").value,
+      });
       addMessage("assistant", summarizeLearningResponse(data));
+      return data;
+    }
+
+    function enhanceCaseLearningHtml(data, html) {
+      if (!data || !data.ok) return html;
+      const card = data.card || {};
+      const deep = card.deep_learning_plan || {};
+      const principles = card.modeling_principles || {};
+      const extension = card.case_extension || {};
+      const progressHtml = renderServerProgress(card.learning_progress || []);
+      if (!deep.kind && !principles.kind && !extension.kind && !progressHtml) return html;
+      const principleRows = ["core_sequence", "physics_reasoning", "automation_evidence", "verification_logic"]
+        .map(key => {
+          const rows = (principles[key] || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+          return rows ? `<h3>${escapeHtml(key)}</h3><ul>${rows}</ul>` : "";
+        })
+        .join("");
+      const principlesHtml = principles.kind
+        ? `<h3>建模原理学习结果</h3><p>准备度：<code>${escapeHtml(principles.readiness || "")}</code></p>${principleRows}`
+        : "";
+      const deepInputs = (deep.candidate_inputs || []).slice(0, 16).map(item => `<code>${escapeHtml(item)}</code>`).join(" ");
+      const deepOutputs = (deep.candidate_outputs || []).slice(0, 16).map(item => `<code>${escapeHtml(item)}</code>`).join(" ");
+      const deepWorkflow = (deep.workflow || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const deepModels = (deep.model_candidates || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const deepLimits = (deep.limitations || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const deepHtml = deep.kind
+        ? `<h3>深度学习训练能力</h3><ul><li>准备度：<code>${escapeHtml(deep.readiness || "")}</code></li><li>准备度评分：${escapeHtml(deep.readiness_score || 0)}</li><li>候选输入：${deepInputs || "<code>未识别</code>"}</li><li>候选输出：${deepOutputs || "<code>未识别</code>"}</li></ul>${deepModels ? `<h3>候选训练模型</h3><ul>${deepModels}</ul>` : ""}${deepWorkflow ? `<h3>训练流程</h3><ul>${deepWorkflow}</ul>` : ""}${deepLimits ? `<h3>训练限制</h3><ul>${deepLimits}</ul>` : ""}`
+        : "";
+      const extensionRows = [
+        ["transferable_knowledge", "可迁移知识"],
+        ["extension_questions", "延伸问题"],
+        ["new_model_directions", "新建模方向"],
+        ["parameter_sweep_ideas", "参数扫描想法"],
+        ["code_generation_ideas", "代码生成思路"],
+        ["risk_checks", "复核风险"]
+      ].map(([key, title]) => {
+        const rows = (extension[key] || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+        return rows ? `<h3>${escapeHtml(title)}</h3><ul>${rows}</ul>` : "";
+      }).join("");
+      const extensionHtml = extension.kind
+        ? `<h3>思考与延伸</h3><p>准备度：<code>${escapeHtml(extension.readiness || "")}</code>，评分：${escapeHtml(extension.readiness_score || 0)}</p>${extensionRows}`
+        : "";
+      return `${html}${progressHtml}${principlesHtml}${extensionHtml}${deepHtml}`;
+    }
+
+    function summarizeKnowledgeSystemResponse(data) {
+      if (!data.ok) {
+        return summarizeGeneric("知识体系构建", data);
+      }
+      const system = data.knowledge_system || {};
+      const domains = (system.domains || [])
+        .slice(0, 10)
+        .map(domain => {
+          const physics = (domain.core_physics || []).slice(0, 5).map(item => `<code>${escapeHtml(item.name)}</code>`).join(" ");
+          const outputs = (domain.typical_outputs || []).slice(0, 5).map(item => `<code>${escapeHtml(item.name)}</code>`).join(" ");
+          return `<li><strong>${escapeHtml(domain.domain || "")}</strong>：案例 ${escapeHtml(domain.case_count || 0)} 个；物理场 ${physics || "<code>未识别</code>"}；输出 ${outputs || "<code>未识别</code>"}</li>`;
+        })
+        .join("");
+      const workflow = (system.global_modeling_workflow || [])
+        .map(item => `<li><strong>${escapeHtml(item.stage || "")}</strong>：${escapeHtml(item.description || "")}</li>`)
+        .join("");
+      const strategy = (system.training_strategy || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const gaps = (system.common_gaps || []).slice(0, 8).map(item => `<li>${escapeHtml(item.gap || "")} × ${escapeHtml(item.count || 0)}</li>`).join("");
+      return `<h3>COMSOL 自主知识体系已形成</h3><p>${escapeHtml(system.capability_summary || "")}</p><ul><li>案例数量：${escapeHtml(system.case_count || 0)}</li><li>领域数量：${escapeHtml(system.domain_count || 0)}</li><li>记忆库：<code>${escapeHtml(data.memory_path || "")}</code></li></ul>${domains ? `<h3>领域知识结构</h3><ul>${domains}</ul>` : ""}${workflow ? `<h3>全局建模流程</h3><ul>${workflow}</ul>` : ""}${strategy ? `<h3>训练与完善策略</h3><ul>${strategy}</ul>` : ""}${gaps ? `<h3>常见缺口</h3><ul>${gaps}</ul>` : ""}`;
+    }
+
+    async function buildKnowledgeSystem() {
+      const progress = startProgressCard("知识体系构建进度", [
+        "读取案例记忆库",
+        "归纳领域、参数和物理场",
+        "形成全局建模流程",
+        "整理训练策略和常见缺口"
+      ]);
+      progress.update(15, 0, "正在读取本地案例记忆库...");
+      window.setTimeout(() => progress.update(38, 1, "正在统计领域、物理场、参数和结果输出..."), 120);
+      window.setTimeout(() => progress.update(68, 2, "正在归纳 COMSOL 建模工作流..."), 260);
+      const data = await request("/api/knowledge-system", {});
+      progress.finish(data.ok ? "知识体系已刷新，可用于后续建模方案和代码生成。" : "知识体系构建失败，请查看错误信息。");
+      addMessage("assistant", summarizeKnowledgeSystemResponse(data));
       return data;
     }
 
     async function learnCaseDirectory() {
       syncCaseTitleFromCaseDir();
+      const progress = startProgressCard("案例学习加载进度", [
+        "读取案例目录",
+        "扫描 PDF/MATLAB/Java/MPH/CSV 文件",
+        "抽取 COMSOL 模型树、参数和物理场证据",
+        "生成深度学习训练计划",
+        "写入案例记忆库并输出总结"
+      ]);
+      progress.update(8, 0, "正在读取右侧案例目录和案例名称...");
+      window.setTimeout(() => progress.update(24, 1, "正在扫描案例文件类型和数量..."), 120);
+      window.setTimeout(() => progress.update(46, 2, "正在提取参数、几何、物理场、网格、研究和结果线索..."), 280);
+      window.setTimeout(() => progress.update(68, 3, "正在判断是否具备 CSV 代理模型训练条件..."), 520);
       const data = await request("/api/learn-case", {
         case_dir: document.getElementById("caseDir").value,
-        title: document.getElementById("caseTitle").value
+        title: document.getElementById("caseTitle").value,
+        prompt_summary: document.getElementById("prompt").value
       });
-      addMessage("assistant", summarizeCaseLearningResponse(data));
+      progress.finish(data.ok ? "案例学习已完成，已生成总结和训练能力评估。" : "案例学习失败，请查看错误信息。");
+      addMessage("assistant", enhanceCaseLearningHtml(data, summarizeCaseLearningResponse(data)));
       return data;
     }
 
@@ -1668,24 +4876,518 @@ configs/thermal_constraints.json</textarea>
       return data;
     }
 
+    function summarizeTrainingInspection(data) {
+      if (!data.ok) {
+        return summarizeGeneric("CSV 训练分析", data);
+      }
+      const inspection = data.inspection || {};
+      const inputs = (inspection.inferred_input_columns || []).map(item => `<code>${escapeHtml(item)}</code>`).join(" ");
+      const outputs = (inspection.inferred_output_columns || []).map(item => `<code>${escapeHtml(item)}</code>`).join(" ");
+      const warnings = (inspection.warnings || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const limitations = (inspection.limitations || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      const plan = (inspection.automation_plan || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      return `<h3>CSV 训练能力分析</h3><ul><li>行数：${escapeHtml(inspection.rows || 0)}</li><li>数值列：${escapeHtml((inspection.numeric_columns || []).length)}</li><li>可自动训练：<code>${inspection.ready_for_training ? "yes" : "no"}</code></li><li>推断输入：${inputs || "<code>未识别</code>"}</li><li>推断输出：${outputs || "<code>未识别</code>"}</li></ul>${warnings ? `<h3>数据警告</h3><ul>${warnings}</ul>` : ""}${limitations ? `<h3>限制</h3><ul>${limitations}</ul>` : ""}${plan ? `<h3>自动化计划</h3><ul>${plan}</ul>` : ""}`;
+    }
+
+    async function inspectTrainingCsv() {
+      const data = await request("/api/inspect-training-csv", {
+        csv_path: document.getElementById("csvPath").value,
+        input_columns: document.getElementById("inputs").value,
+        output_columns: document.getElementById("outputs").value
+      });
+      const inspection = data.inspection || {};
+      if (data.ok && inspection.ready_for_training) {
+        setInputValue("inputs", (inspection.inferred_input_columns || []).join(" "));
+        setInputValue("outputs", (inspection.inferred_output_columns || []).join(" "));
+      }
+      addMessage("assistant", summarizeTrainingInspection(data));
+      return data;
+    }
+
+    async function prepareThermalSweep() {
+      const data = await request("/api/training/prepare-thermal-sweep", {});
+      if (data.ok) {
+        setInputValue("csvPath", data.csv_path || "generated/training_sweeps/thermal_plate_sweep.csv");
+        setInputValue("inputs", ((data.spec || {}).inputs || []).join(" "));
+        setInputValue("outputs", ((data.spec || {}).outputs || []).join(" "));
+        setInputValue("modelName", "thermal_plate_surrogate.joblib");
+        addMessage("assistant", `<h3>传热扫描已准备</h3><ul><li>样本数：${escapeHtml(String(data.sample_count || 0))}</li><li>MATLAB：<code>${escapeHtml(data.script_path || "")}</code></li><li>训练 CSV：<code>${escapeHtml(data.csv_path || "")}</code></li></ul>`);
+      } else {
+        addMessage("assistant", summarizeGeneric("传热扫描准备", data));
+      }
+      return data;
+    }
+
+    async function queueThermalSweepTraining() {
+      const data = await request("/api/jobs/thermal-sweep-training", {});
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function predictThermalPlate() {
+      const data = await request("/api/surrogates/thermal-plate/predict", {
+        model_path: document.getElementById("thermalSurrogateModel").value.trim(),
+        L_m: Number(document.getElementById("thermalL").value),
+        W_m: Number(document.getElementById("thermalW").value),
+        k_W_mK: Number(document.getElementById("thermalK").value),
+        T_hot_K: Number(document.getElementById("thermalHot").value),
+        T_cold_K: Number(document.getElementById("thermalCold").value)
+      });
+      const validation = data.validation || {};
+      if (!data.ok) {
+        const out = Object.entries(data.out_of_range || {})
+          .map(([name, item]) => `<li><code>${escapeHtml(name)}</code>=${escapeHtml(String(item.value))}，已验证范围 ${escapeHtml(String(item.min))} - ${escapeHtml(String(item.max))}</li>`)
+          .join("");
+        addMessage("assistant", `<h3>需要 COMSOL 真实求解</h3><p>${escapeHtml(data.guidance || data.error || "输入不满足代理模型适用范围。")}</p>${out ? `<ul>${out}</ul>` : ""}<p><button class="primary" onclick="createThermalAugmentationPlan()">生成补充 COMSOL 扫描计划</button></p>`);
+        return data;
+      }
+      const prediction = data.prediction || {};
+      addMessage("assistant", `<h3>二维传热快速预测</h3><p>模型：<code>${escapeHtml(data.model_name || "")}</code></p><ul><li>最高温度：<strong>${escapeHtml(Number(prediction.Tmax_K).toFixed(3))} K</strong></li><li>平均温度：<strong>${escapeHtml(Number(prediction.Tavg_K).toFixed(3))} K</strong></li><li>独立 COMSOL 验证：<code>${validation.passed ? "通过" : "未记录"}</code>，最大绝对误差 <code>${escapeHtml(JSON.stringify(validation.max_absolute_error || {}))}</code></li></ul><p>${escapeHtml(data.guidance || "")}</p>`);
+      return data;
+    }
+
+    async function createThermalAugmentationPlan() {
+      const data = await request("/api/surrogates/thermal-plate/augmentation-plan", {
+        model_path: document.getElementById("thermalSurrogateModel").value.trim(),
+        L_m: Number(document.getElementById("thermalL").value),
+        W_m: Number(document.getElementById("thermalW").value),
+        k_W_mK: Number(document.getElementById("thermalK").value),
+        T_hot_K: Number(document.getElementById("thermalHot").value),
+        T_cold_K: Number(document.getElementById("thermalCold").value)
+      });
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("补充扫描计划", data));
+        return data;
+      }
+      const plan = data.plan || {};
+      const rows = (plan.recommended_comsol_samples || [])
+        .map((item, index) => `<li>工况 ${index + 1}: <code>${escapeHtml(JSON.stringify(item))}</code></li>`)
+        .join("");
+      addMessage("assistant", `<h3>COMSOL 补充扫描计划</h3><p>${escapeHtml(plan.reason || "")}</p><ul>${rows}</ul><p>计划文件：<code>${escapeHtml(plan.path || "")}</code></p><p><button class="primary" onclick='queueThermalAugmentation(${JSON.stringify(plan.path || "")})'>执行补充 COMSOL 扫描</button></p>`);
+      return data;
+    }
+
+    async function queueThermalAugmentation(planPath) {
+      const data = await request("/api/surrogates/thermal-plate/augmentation-queue", {plan_path: planPath});
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function queueThermalAugmentationRetrain(augmentationJobId) {
+      const data = await request("/api/surrogates/thermal-plate/augmentation-retrain", {augmentation_job_id: augmentationJobId});
+      addMessage("assistant", summarizeExecutionJob(data));
+      return data;
+    }
+
+    async function autoTrainModel() {
+      document.getElementById("inputs").value = document.getElementById("inputs").value.trim();
+      document.getElementById("outputs").value = document.getElementById("outputs").value.trim();
+      return trainModel(true);
+    }
+
     async function trainModel() {
+      const auto = arguments.length > 0 ? Boolean(arguments[0]) : false;
+      const progress = startProgressCard("代理模型训练加载进度", [
+        "读取 CSV 训练数据",
+        "检查输入列和输出列",
+        "划分训练集和测试集",
+        "比较 baseline、Ridge、RandomForest、MLP",
+        "保存最优模型和训练报告"
+      ]);
+      progress.update(10, 0, "正在读取 CSV 路径和训练列配置...");
+      window.setTimeout(() => progress.update(28, 1, "正在检查缺失值、重复行和列有效性..."), 120);
+      window.setTimeout(() => progress.update(48, 2, "正在划分训练集和测试集..."), 280);
+      window.setTimeout(() => progress.update(72, 3, "正在训练并比较多个候选模型..."), 520);
       const data = await request("/api/train", {
         csv_path: document.getElementById("csvPath").value,
         input_columns: document.getElementById("inputs").value,
         output_columns: document.getElementById("outputs").value,
-        model_name: document.getElementById("modelName").value
+        model_name: document.getElementById("modelName").value,
+        auto
       });
+      progress.finish(data.ok ? "训练完成，已保存最优代理模型。" : "训练失败，请查看错误信息和数据列配置。");
       const report = data.report || {};
+      const inspectionHtml = data.inspection ? summarizeTrainingInspection({ok: true, inspection: data.inspection}) : "";
       const candidateRows = (report.candidate_reports || [])
         .map(item => `<li><code>${escapeHtml(item.name)}</code> RMSE=${escapeHtml(item.test_rmse)} R2=${escapeHtml(item.test_r2)}</li>`)
         .join("");
       const summaryRows = (report.training_summary || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
       const recommendationRows = (report.recommendations || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
       const html = data.ok
-        ? `<h3>训练完成</h3><p>模型：<code>${escapeHtml(data.model_path)}</code></p><p>最佳候选：<code>${escapeHtml(report.best_model)}</code></p><p>测试 RMSE：<code>${escapeHtml(report.test_rmse)}</code>，MAE：<code>${escapeHtml(report.test_mae)}</code>，R2：<code>${escapeHtml(report.test_r2)}</code></p>${summaryRows ? `<h3>训练总结</h3><ul>${summaryRows}</ul>` : ""}${candidateRows ? `<h3>候选模型对比</h3><ul>${candidateRows}</ul>` : ""}${recommendationRows ? `<h3>后续建议</h3><ul>${recommendationRows}</ul>` : ""}`
+        ? `<h3>训练完成</h3><p>模型：<code>${escapeHtml(data.model_path)}</code></p><p>最佳候选：<code>${escapeHtml(report.best_model)}</code></p><p>测试 RMSE：<code>${escapeHtml(report.test_rmse)}</code>，MAE：<code>${escapeHtml(report.test_mae)}</code>，R2：<code>${escapeHtml(report.test_r2)}</code></p>${inspectionHtml}${summaryRows ? `<h3>训练总结</h3><ul>${summaryRows}</ul>` : ""}${candidateRows ? `<h3>候选模型对比</h3><ul>${candidateRows}</ul>` : ""}${recommendationRows ? `<h3>后续建议</h3><ul>${recommendationRows}</ul>` : ""}`
         : summarizeGeneric("训练", data);
       addMessage("assistant", html);
       return data;
+    }
+
+    function parseClosureJson(elementId, label) {
+      try {
+        return JSON.parse(document.getElementById(elementId).value);
+      } catch (error) {
+        addMessage("assistant", `<h3>${escapeHtml(label)}格式错误</h3><p>请输入合法 JSON。</p>`);
+        return null;
+      }
+    }
+
+    async function checkMeshConvergence() {
+      const records = parseClosureJson("meshRecords", "网格记录");
+      if (!records || !Array.isArray(records)) return null;
+      const data = await request("/api/training/mesh-convergence", {
+        records,
+        output_name: document.getElementById("meshOutputName").value.trim(),
+        relative_change_threshold_percent: Number(document.getElementById("meshThreshold").value)
+      });
+      addMessage("assistant", data.ok ? `<h3>网格收敛检查</h3><p>结论：<strong>${data.report?.passed ? "通过" : "未通过"}</strong></p><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("网格收敛检查", data));
+      return data;
+    }
+
+    async function checkParameterCoverage() {
+      const ranges = parseClosureJson("coverageRanges", "参数覆盖范围");
+      if (!ranges || Array.isArray(ranges) || typeof ranges !== "object") return null;
+      const data = await request("/api/training/parameter-coverage", {
+        csv_path: document.getElementById("csvPath").value,
+        parameter_ranges: ranges,
+        bins: Number(document.getElementById("coverageBins").value)
+      });
+      addMessage("assistant", data.ok ? `<h3>参数覆盖检查</h3><p>结论：<strong>${data.report?.passed ? "通过" : "存在稀疏区或越界"}</strong></p><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("参数覆盖检查", data));
+      return data;
+    }
+
+    async function checkHoldoutIndependence() {
+      const data = await request("/api/training/holdout-independence", {
+        training_csv: document.getElementById("csvPath").value,
+        holdout_csv: document.getElementById("holdoutCsvPath").value,
+        input_columns: document.getElementById("inputs").value
+      });
+      addMessage("assistant", data.ok ? `<h3>留出集独立性检查</h3><p>结论：<strong>${data.report?.passed ? "通过" : "未通过"}</strong></p><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("留出集独立性检查", data));
+      return data;
+    }
+
+    async function prepareAugmentationRetrain() {
+      const data = await request("/api/training/prepare-augmentation-retrain", {
+        training_csv: document.getElementById("csvPath").value,
+        augmentation_csv: document.getElementById("augmentationCsvPath").value,
+        previous_holdout_csv: document.getElementById("previousHoldoutCsvPath").value,
+        fresh_holdout_csv: document.getElementById("freshHoldoutCsvPath").value,
+        input_columns: document.getElementById("inputs").value
+      });
+      addMessage("assistant", data.ok ? `<h3>补充样本重训已准备</h3><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("补充样本重训", data));
+      return data;
+    }
+
+    function loadReferenceDefaults() {
+      const examples = {
+        laminar_pipe_poiseuille: {length_m: 1, diameter_m: 0.01, flow_rate_m3_s: 1e-5, viscosity_pa_s: 0.001, density_kg_m3: 1000},
+        thermoacoustic_open_tube: {length_m: 0.5, temperature_k: 293.15},
+        flow_heat_channel: {mass_flow_rate_kg_s: 0.001, heat_capacity_j_kg_k: 4182, inlet_temperature_k: 293.15, wall_temperature_k: 333.15, heat_transfer_coefficient_w_m2_k: 120, wetted_perimeter_m: 0.02, length_m: 0.2},
+        acoustic_structure_cantilever: {length_m: 0.03, width_m: 0.005, thickness_m: 0.0005, youngs_modulus_pa: 1.69e11, density_kg_m3: 2330},
+        electrochemical_nernst: {standard_potential_v: 0.34, temperature_k: 298.15, electron_count: 1, oxidized_activity: 1, reduced_activity: 0.1},
+        particle_stokes_settling: {particle_diameter_m: 1e-5, particle_density_kg_m3: 2500, fluid_density_kg_m3: 1000, dynamic_viscosity_pa_s: 0.001, gravity_m_s2: 9.80665},
+        rf_half_wave_resonator: {length_m: 0.1, relative_permittivity: 1, relative_permeability: 1},
+        acoustic_rectangular_cavity: {length_x_m: 0.4, length_y_m: 0.3, sound_speed_m_s: 343, mode_m: 1, mode_n: 0}
+      };
+      const type = document.getElementById("referenceCaseType").value;
+      document.getElementById("referenceParameters").value = JSON.stringify(examples[type] || {}, null, 2);
+      const resultKeys = {
+        laminar_pipe_poiseuille: "pressure_drop_pa",
+        thermoacoustic_open_tube: "fundamental_frequency_hz",
+        flow_heat_channel: "outlet_temperature_k",
+        acoustic_structure_cantilever: "first_bending_frequency_hz",
+        electrochemical_nernst: "equilibrium_potential_v",
+        particle_stokes_settling: "terminal_velocity_m_s",
+        rf_half_wave_resonator: "fundamental_frequency_hz",
+        acoustic_rectangular_cavity: "eigenfrequency_hz"
+      };
+      document.getElementById("referenceResultKey").value = resultKeys[type] || "";
+      document.getElementById("comsolObservedResultName").value = resultKeys[type] || "";
+      const units = {laminar_pipe_poiseuille: "Pa", thermoacoustic_open_tube: "Hz", flow_heat_channel: "K", acoustic_structure_cantilever: "Hz", electrochemical_nernst: "V", particle_stokes_settling: "m/s", rf_half_wave_resonator: "Hz", acoustic_rectangular_cavity: "Hz"};
+      document.getElementById("observedComsolUnit").value = units[type] || "";
+    }
+
+    async function evaluateReferenceCase() {
+      let parameters;
+      try {
+        parameters = JSON.parse(document.getElementById("referenceParameters").value);
+      } catch (error) {
+        addMessage("assistant", "<h3>物理参考参数格式错误</h3><p>请输入 JSON 对象，并使用 SI 单位，例如圆管层流的直径单位为 m、体积流量单位为 m^3/s。</p>");
+        return null;
+      }
+      if (!parameters || Array.isArray(parameters) || typeof parameters !== "object") {
+        addMessage("assistant", "<h3>物理参考参数无效</h3><p>参数必须是 JSON 对象。</p>");
+        return null;
+      }
+      const data = await request("/api/reference-check", {
+        case_type: document.getElementById("referenceCaseType").value,
+        parameters_si: parameters
+      });
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("物理参考计算", data));
+        return data;
+      }
+      const report = data.report || {};
+      const reference = report.reference || {};
+      const assumptions = (reference.assumptions || []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      addMessage("assistant", `<h3>物理参考结果</h3><p><strong>状态：</strong>仅理论/守恒基准，尚非 COMSOL 实机结果。</p><p><strong>类型：</strong><code>${escapeHtml(report.case_type || "")}</code></p><p><strong>数值：</strong><code>${escapeHtml(JSON.stringify(reference))}</code></p>${assumptions ? `<h3>适用假设</h3><ul>${assumptions}</ul>` : ""}<p><strong>COMSOL 对照：</strong>${escapeHtml(report.next_comsol_check || "")}</p>`);
+      return data;
+    }
+
+    async function compareReferenceObservation() {
+      const parameters = parseClosureJson("referenceParameters", "physical reference parameters");
+      const observedValue = Number(document.getElementById("observedComsolValue").value);
+      if (!parameters || Array.isArray(parameters) || typeof parameters !== "object" || !Number.isFinite(observedValue)) {
+        addMessage("assistant", "<h3>Reference comparison information is incomplete</h3><p>Provide SI parameter JSON and a finite COMSOL observation.</p>");
+        return null;
+      }
+      const data = await request("/api/reference-compare", {
+        case_type: document.getElementById("referenceCaseType").value,
+        parameters_si: parameters,
+        reference_key: document.getElementById("referenceResultKey").value.trim(),
+        observed_value: observedValue,
+        observed_unit: document.getElementById("observedComsolUnit").value.trim(),
+        relative_error_threshold_percent: Number(document.getElementById("referenceComparisonThreshold").value)
+      });
+      addMessage("assistant", data.ok ? `<h3>COMSOL reference comparison</h3><p><strong>${data.report?.passed ? "Within threshold" : "Outside threshold"}</strong></p><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("COMSOL reference comparison", data));
+      return data;
+    }
+
+    async function compareReferenceResultsCsv() {
+      const parameters = parseClosureJson("referenceParameters", "physical reference parameters");
+      if (!parameters || Array.isArray(parameters) || typeof parameters !== "object") return null;
+      const data = await request("/api/reference-compare-csv", {
+        results_csv: document.getElementById("comsolResultsCsvPath").value,
+        observed_result_name: document.getElementById("comsolObservedResultName").value.trim(),
+        case_type: document.getElementById("referenceCaseType").value,
+        parameters_si: parameters,
+        reference_key: document.getElementById("referenceResultKey").value.trim(),
+        observed_unit: document.getElementById("observedComsolUnit").value.trim(),
+        relative_error_threshold_percent: Number(document.getElementById("referenceComparisonThreshold").value)
+      });
+      addMessage("assistant", data.ok ? `<h3>COMSOL CSV reference comparison</h3><p><strong>${data.report?.passed ? "Within threshold" : "Outside threshold"}</strong></p><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("COMSOL CSV reference comparison", data));
+      return data;
+    }
+
+    async function showReferenceReports() {
+      const data = await requestGet("/api/reference-reports?limit=20");
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("Reference reports", data));
+        return data;
+      }
+      const rows = (data.reports || []).map(item => `<li><code>${escapeHtml(item.id || "")}</code><br>${escapeHtml(item.case_type || item.kind || "")}<br><code>${escapeHtml(item.path || "")}</code></li>`).join("");
+      addMessage("assistant", `<h3>Reference reports</h3>${rows ? `<ul>${rows}</ul>` : "<p>No saved reference reports.</p>"}`);
+      return data;
+    }
+
+    async function assembleReferenceWorkchain() {
+      const paths = document.getElementById("workchainReportPaths").value.split(/\r?\n/).map(item => item.trim()).filter(Boolean);
+      if (!paths.length) {
+        addMessage("assistant", "<h3>Workchain package needs reports</h3><p>Provide one saved reference report path per line.</p>");
+        return null;
+      }
+      const data = await request("/api/workchain/assemble", {reference_report_paths: paths});
+      addMessage("assistant", data.ok ? `<h3>Workchain package created</h3><p><code>${escapeHtml(data.package?.path || "")}</code></p>` : summarizeGeneric("Workchain package", data));
+      return data;
+    }
+
+    async function showReferenceWorkchains() {
+      const data = await requestGet("/api/workchain-packages?limit=20");
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("Workchain packages", data));
+        return data;
+      }
+      const rows = (data.packages || []).map(item => `<li><code>${escapeHtml(item.id || "")}</code><br>${escapeHtml(item.title || "")} (${escapeHtml(String(item.report_count || 0))})<br><code>${escapeHtml(item.path || "")}</code></li>`).join("");
+      addMessage("assistant", `<h3>Workchain packages</h3>${rows ? `<ul>${rows}</ul>` : "<p>No saved workchain packages.</p>"}`);
+      return data;
+    }
+
+    async function validateReferenceWorkchain() {
+      const packagePath = document.getElementById("workchainPackagePath").value.trim();
+      if (!packagePath) {
+        addMessage("assistant", "<h3>Workchain package path is required</h3>");
+        return null;
+      }
+      const data = await request("/api/workchain/validate", {package_path: packagePath});
+      addMessage("assistant", data.ok ? `<h3>Workchain package validation</h3><p><strong>${data.report?.passed ? "Passed" : "Failed"}</strong></p><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("Workchain package validation", data));
+      return data;
+    }
+
+    async function archiveReferenceWorkchain() {
+      const packagePath = document.getElementById("workchainPackagePath").value.trim();
+      if (!packagePath) {
+        addMessage("assistant", "<h3>Workchain package path is required</h3>");
+        return null;
+      }
+      const data = await request("/api/workchain/archive", {package_path: packagePath});
+      addMessage("assistant", data.ok ? `<h3>Workchain ZIP created</h3><p><code>${escapeHtml(data.archive?.archive_path || "")}</code></p>` : summarizeGeneric("Workchain ZIP", data));
+      return data;
+    }
+
+    async function validateReferenceWorkchainArchive() {
+      const archivePath = document.getElementById("workchainArchivePath").value.trim();
+      if (!archivePath) {
+        addMessage("assistant", "<h3>Workchain archive path is required</h3>");
+        return null;
+      }
+      const data = await request("/api/workchain/archive/validate", {archive_path: archivePath});
+      addMessage("assistant", data.ok ? `<h3>Workchain ZIP validation</h3><p><strong>${data.report?.passed ? "Passed" : "Failed"}</strong></p><p><code>${escapeHtml(JSON.stringify(data.report || {}))}</code></p>` : summarizeGeneric("Workchain ZIP validation", data));
+      return data;
+    }
+
+    async function trainWithComsolHoldout() {
+      const holdoutPath = document.getElementById("holdoutCsvPath").value.trim();
+      const scope = document.getElementById("physicalScope").value.trim();
+      if (!holdoutPath) {
+        addMessage("assistant", "<h3>缺少独立验证数据</h3><p>请先填写未参与训练的新 COMSOL 扫描 CSV。随机切分不能替代独立 COMSOL 留出集。</p>");
+        return null;
+      }
+      if (!scope) {
+        addMessage("assistant", "<h3>缺少物理适用范围</h3><p>请说明物理场、几何、材料、边界条件和研究类型；否则模型即使误差较小，也不能安全用于新问题。</p>");
+        return null;
+      }
+      const threshold = Number(document.getElementById("relativeErrorThreshold").value);
+      const data = await request("/api/train-with-comsol-holdout", {
+        csv_path: document.getElementById("csvPath").value,
+        holdout_csv_path: holdoutPath,
+        input_columns: document.getElementById("inputs").value,
+        output_columns: document.getElementById("outputs").value,
+        model_name: document.getElementById("modelName").value,
+        physical_scope: scope,
+        max_relative_error_percent: threshold
+      });
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("独立 COMSOL 验证训练", data));
+        return data;
+      }
+      const validation = data.validation || {};
+      const selection = data.selection || {};
+      const card = data.model_card || {};
+      const registry = data.registry || {};
+      const registryEntry = registry.entry || {};
+      const unscored = (validation.unscored_outputs || []).join("、");
+      addMessage("assistant", `<h3>独立 COMSOL 验证训练完成</h3><ul><li>选定模型：<code>${escapeHtml(selection.best_model || "")}</code></li><li>训练样本：${escapeHtml(String(selection.rows || 0))}</li><li>独立留出集：${escapeHtml(String(selection.holdout_rows || 0))}</li><li>验证状态：<strong>${validation.passed ? "通过" : "未通过"}</strong></li><li>最大相对误差：<code>${escapeHtml(JSON.stringify(validation.max_relative_error_percent || {}))}</code></li><li>阈值：<code>${escapeHtml(String(validation.threshold_relative_error_percent || ""))}%</code></li><li>注册状态：<code>${escapeHtml(registryEntry.status || "")}</code></li></ul>${unscored ? `<p>以下输出包含零值，不能只用相对误差判断：<code>${escapeHtml(unscored)}</code>。请补充绝对误差判据。</p>` : ""}<p>模型卡：<code>${escapeHtml(card.markdown_path || "")}</code></p><p>${validation.passed ? "该模型仅可在模型卡记录的适用范围内用于快速比较，不是工程认证。" : "请补充 COMSOL 样本、调整模型或收紧适用范围后重新训练。"}</p>`);
+      return data;
+    }
+
+    async function showSurrogateRegistry() {
+      const data = await requestGet("/api/surrogates/registry");
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("代理模型注册表", data));
+        return data;
+      }
+      const entries = ((data.registry || {}).models || []).map(item => {
+        const lifecycle = item.lifecycle_status === "superseded"
+          ? `<br><span>历史版本，已由 <code>${escapeHtml(item.superseded_by || "")}</code> 替代。</span>`
+          : "";
+        return `<li><code>${escapeHtml(item.name || item.id || "")}</code>：<strong>${escapeHtml(item.status || "")}</strong><br>ID：<code>${escapeHtml(item.id || "")}</code>${lifecycle}<br><span>${escapeHtml(item.release_note || "")}</span></li>`;
+      }).join("");
+      addMessage("assistant", `<h3>代理模型注册表</h3><p>路径：<code>${escapeHtml(data.path || "")}</code></p>${entries ? `<ul>${entries}</ul>` : "<p>尚无完成独立 COMSOL 验证的模型记录。</p>"}`);
+      return data;
+    }
+
+    async function showClosureAudit() {
+      const data = await requestGet("/api/training/closure-audit");
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("闭环审计", data));
+        return data;
+      }
+      const audit = data.audit || {};
+      const gaps = (audit.evidence_gaps || []).map(item => `<li><code>${escapeHtml(item.model_id || "")}</code> 缺少 <code>${escapeHtml(item.missing || "")}</code></li>`).join("");
+      const superseded = audit.superseded_models || [];
+      const activeUnvalidated = audit.active_unvalidated_models || [];
+      addMessage("assistant", `<h3>训练闭环审计</h3><ul><li>计划任务：${escapeHtml(String(audit.task_total || 0))}</li><li>任务状态：<code>${escapeHtml(JSON.stringify(audit.task_statuses || {}))}</code></li><li>注册模型：${escapeHtml(String(audit.registered_models || 0))}</li><li>活动未验证模型：${escapeHtml(String(activeUnvalidated.length))}</li><li>历史替代模型：${escapeHtml(String(superseded.length))}</li><li>可在声明范围内预测：<code>${escapeHtml((audit.ready_for_scoped_prediction || []).join("、") || "无")}</code></li></ul>${gaps ? `<h3>证据缺口</h3><ul>${gaps}</ul>` : ""}<p>${escapeHtml(audit.guidance || "")}</p>`);
+      return data;
+    }
+
+    async function predictRegisteredSurrogate() {
+      const modelId = document.getElementById("registeredModelId").value.trim();
+      let inputs;
+      try {
+        inputs = JSON.parse(document.getElementById("registeredInputs").value);
+      } catch (error) {
+        addMessage("assistant", "<h3>预测输入格式错误</h3><p>请输入 JSON 对象，例如 {&quot;k&quot;: 16, &quot;Q&quot;: 8000}。</p>");
+        return null;
+      }
+      if (!modelId || !inputs || Array.isArray(inputs) || typeof inputs !== "object") {
+        addMessage("assistant", "<h3>缺少预测信息</h3><p>请从注册表填写模型 ID，并提供与模型输入列一致的 JSON 对象。</p>");
+        return null;
+      }
+      const data = await request("/api/surrogates/registered/predict", {model_id: modelId, inputs});
+      if (!data.ok) {
+        addMessage("assistant", `<h3>不能使用代理预测</h3><p>${escapeHtml(data.guidance || data.error || "该模型未满足受控预测条件。")}</p>`);
+        return data;
+      }
+      const prediction = data.prediction || {};
+      addMessage("assistant", `<h3>受控代理预测</h3><ul><li>模型 ID：<code>${escapeHtml(data.model_id || "")}</code></li><li>注册状态：<code>${escapeHtml(data.registry_status || "")}</code></li><li>预测结果：<code>${escapeHtml(JSON.stringify(prediction))}</code></li></ul><p>物理适用范围：${escapeHtml(data.declared_scope || "未记录")}</p><p>${escapeHtml(data.guidance || "")}</p>`);
+      return data;
+    }
+
+    async function createRegisteredAugmentationPlan() {
+      const modelId = document.getElementById("registeredModelId").value.trim();
+      let inputs;
+      try {
+        inputs = JSON.parse(document.getElementById("registeredInputs").value);
+      } catch (error) {
+        addMessage("assistant", "<h3>补充工况输入格式错误</h3><p>请输入 JSON 对象，并确保字段名称与模型输入列一致。</p>");
+        return null;
+      }
+      const data = await request("/api/surrogates/registered/augmentation-plan", {model_id: modelId, inputs});
+      if (!data.ok) {
+        addMessage("assistant", `<h3>不能生成补充工况</h3><p>${escapeHtml(data.error || "输入可能尚未越界，或模型未通过独立验证。")}</p>`);
+        return data;
+      }
+      const plan = data.plan || {};
+      const rows = (plan.recommended_comsol_samples || []).map((item, index) => `<li>工况 ${index + 1}：<code>${escapeHtml(JSON.stringify(item))}</code></li>`).join("");
+      addMessage("assistant", `<h3>补充 COMSOL 工况已生成</h3><p>${escapeHtml(plan.reason || "")}</p><ul>${rows}</ul><p>计划文件：<code>${escapeHtml(plan.path || "")}</code></p><p>该计划需要由模型卡对应的 COMSOL 模板执行，再用新的独立留出集重新验证。</p>`);
+      return data;
+    }
+
+    async function predictBusbarTemperature() {
+      const voltage = Number(document.getElementById("busbarVoltage").value);
+      const htc = Number(document.getElementById("busbarHtc").value);
+      const data = await request("/api/benchmarks/busbar-joule-heat/predict", {
+        Vtot_mV: voltage,
+        htc_W_m2K: htc
+      });
+      if (!data.ok) {
+        addMessage("assistant", summarizeGeneric("焦耳热快速预测", data));
+        return data;
+      }
+      const prediction = data.prediction || {};
+      const ranges = data.validated_ranges || {};
+      addMessage("assistant", `<h3>焦耳热快速预测</h3><p>在 <code>${escapeHtml(voltage)}</code> mV 和 <code>${escapeHtml(htc)}</code> W/(m²·K) 下，预测最高温度为 <strong>${escapeHtml(Number(prediction.Tmax_C).toFixed(2))} °C</strong>。</p><p>独立 COMSOL 验证相对误差：${escapeHtml(Number(data.holdout_relative_error_percent).toFixed(2))}% 。</p><p>适用范围：电压 ${escapeHtml((ranges.Vtot_mV || []).join("-"))} mV；换热系数 ${escapeHtml((ranges.htc_W_m2K || []).join("-"))} W/(m²·K)。</p><p>${escapeHtml(data.guidance || "")}</p>`);
+      return data;
+    }
+
+    function setToolsCollapsed(collapsed) {
+      const app = document.querySelector(".app");
+      const toggle = document.getElementById("toolsToggle");
+      if (!app || !toggle) return;
+      app.classList.toggle("tools-collapsed", collapsed);
+      toggle.textContent = collapsed ? "\u2039" : "\u203a";
+      toggle.setAttribute("aria-expanded", String(!collapsed));
+      toggle.setAttribute("aria-label", collapsed ? "\u5c55\u5f00\u53f3\u4fa7\u680f" : "\u6536\u56de\u53f3\u4fa7\u680f");
+      toggle.title = collapsed ? "\u5c55\u5f00\u53f3\u4fa7\u680f" : "\u6536\u56de\u53f3\u4fa7\u680f";
+    }
+
+    function toggleToolsPanel() {
+      const app = document.querySelector(".app");
+      setToolsCollapsed(!app?.classList.contains("tools-collapsed"));
+    }
+
+    function initializeToolsPanel() {
+      setToolsCollapsed(false);
+      const groups = Array.from(document.querySelectorAll(".tool-section[data-tool-group]"));
+      const saved = window.localStorage.getItem("comsol-tool-groups");
+      let state = {};
+      try { state = saved ? JSON.parse(saved) : {}; } catch (error) { state = {}; }
+      groups.forEach(group => {
+        const key = group.dataset.toolGroup;
+        if (Object.prototype.hasOwnProperty.call(state, key)) group.open = Boolean(state[key]);
+        group.addEventListener("toggle", () => {
+          const next = {};
+          groups.forEach(item => { next[item.dataset.toolGroup] = item.open; });
+          window.localStorage.setItem("comsol-tool-groups", JSON.stringify(next));
+        });
+      });
     }
 
     document.getElementById("prompt").addEventListener("keydown", event => {
@@ -1696,8 +5398,11 @@ configs/thermal_constraints.json</textarea>
     });
 
     addWelcome();
+    initializeToolsPanel();
     initializeCaseFieldSync();
     loadDefaults();
+    refreshNodeStatus();
+    window.setInterval(refreshNodeStatus, 15000);
   </script>
 </body>
 </html>

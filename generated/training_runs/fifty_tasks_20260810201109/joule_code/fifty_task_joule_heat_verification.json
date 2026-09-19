@@ -1,0 +1,39 @@
+{
+  "kind": "generated_comsol_code_verification",
+  "status": "review_required",
+  "ready_to_open": true,
+  "ready_to_solve": false,
+  "structural_checks": {
+    "matlab_has_model_creation": true,
+    "matlab_has_geometry": true,
+    "matlab_has_material": true,
+    "matlab_has_physics": true,
+    "matlab_has_mesh": true,
+    "matlab_has_study": true,
+    "java_has_model_creation": true,
+    "java_has_geometry": true,
+    "java_has_physics": true,
+    "matlab_has_expected_study": true,
+    "java_has_expected_study": true
+  },
+  "unresolved_requirements": [
+    "确认生成几何中的材料域和边界选择集。",
+    "在 COMSOL 中核对物理接口名称是否与已安装模块一致。",
+    "把已批准边界条件绑定到经过核对的命名选择集。"
+  ],
+  "approved_domains": [
+    "heat_transfer"
+  ],
+  "boundary_families": [
+    "固定温度/给定温度",
+    "热通量或热源",
+    "绝热/对称",
+    "对流换热",
+    "表面对表面或环境辐射"
+  ],
+  "instructions": [
+    "先在 COMSOL with MATLAB 或 COMSOL Java 环境中运行到几何构建结束。",
+    "核对命名选择集、材料域、边界条件和单位。",
+    "清空 unresolved_requirements 后再启用基准求解。"
+  ]
+}

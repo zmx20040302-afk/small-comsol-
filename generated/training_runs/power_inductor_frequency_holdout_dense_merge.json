@@ -1,0 +1,28 @@
+{
+  "kind": "power_inductor_frequency_dataset_merge",
+  "created_at": "2026-09-03T13:00:50.320335+00:00",
+  "merge": {
+    "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\power_inductor_frequency_holdout_dense.csv",
+    "source_paths": [
+      "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\power_inductor_frequency_holdout_combined.csv",
+      "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\power_inductor_frequency_holdout_extension.csv"
+    ],
+    "rows": 12,
+    "frequency_min_Hz": 750.0,
+    "frequency_max_Hz": 16000.0,
+    "frequencies_Hz": [
+      750.0,
+      800.0,
+      1100.0,
+      1500.0,
+      1750.0,
+      3000.0,
+      3500.0,
+      7000.0,
+      7500.0,
+      9000.0,
+      15000.0,
+      16000.0
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "source": "D:/桌面/codex/案例下载/电气/计算电容/capacitor_dc.mph",
+  "label": "capacitor_dc.mph",
+  "parameters": {},
+  "components": {
+    "tag": "comp1",
+    "geometry": [
+      "geom1"
+    ],
+    "materials": [
+      "mat1"
+    ],
+    "physics": [
+      "es"
+    ],
+    "meshes": [
+      "mesh1"
+    ],
+    "couplings": [
+      "builder_intop1",
+      "builder_integrate1",
+      "builder_intop2",
+      "builder_intop3"
+    ]
+  },
+  "studies": [
+    "std1"
+  ],
+  "result_groups": [
+    "pg1",
+    "pg2"
+  ],
+  "datasets": [
+    "dset1",
+    "dset2",
+    "cpl1"
+  ],
+  "tables": [
+    "tbl1"
+  ],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

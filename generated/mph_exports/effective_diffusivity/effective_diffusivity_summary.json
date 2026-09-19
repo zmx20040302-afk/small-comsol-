@@ -1,0 +1,68 @@
+{
+  "source": "D:/桌面/codex/案例下载/COMSOL/多孔材料的有效扩散系数/effective_diffusivity.mph",
+  "label": "effective_diffusivity.mph",
+  "parameters": {
+    "D2": "1e-5[m^2/s]",
+    "c_max": "3[mol/m^3]",
+    "k_f": "5[m/s]",
+    "a": "1000",
+    "epsilon": "0.383",
+    "D1": "2.15e-6[m^2/s]"
+  },
+  "components": [
+    {
+      "tag": "comp1",
+      "geometry": [
+        "geom1"
+      ],
+      "materials": [],
+      "physics": [
+        "tds"
+      ],
+      "meshes": [
+        "mesh1"
+      ],
+      "couplings": [
+        "aveop1",
+        "builder_integrate1",
+        "builder_integrate2"
+      ]
+    },
+    {
+      "tag": "comp2",
+      "geometry": [
+        "geom2"
+      ],
+      "materials": [],
+      "physics": [
+        "tds2"
+      ],
+      "meshes": [
+        "mesh2"
+      ],
+      "couplings": [
+        "builder_integrate3",
+        "builder_integrate4"
+      ]
+    }
+  ],
+  "studies": [
+    "std1",
+    "std2"
+  ],
+  "result_groups": [
+    "pg1",
+    "pg2",
+    "pg3"
+  ],
+  "datasets": [
+    "dset1",
+    "dset2",
+    "dset3"
+  ],
+  "tables": [
+    "tbl1"
+  ],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

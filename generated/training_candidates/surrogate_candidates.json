@@ -1,0 +1,1563 @@
+{
+  "kind": "comsol-surrogate-candidate-ranking",
+  "created_at": "2026-08-24T11:18:21.916920+00:00",
+  "case_count": 892,
+  "tier_counts": {
+    "A": 10,
+    "B": 742,
+    "C": 140
+  },
+  "candidates": [
+    {
+      "title": "如何生成随机非均匀材料数据6.2",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\如何生成随机非均匀材料数据6.2.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\如何生成随机非均匀材料数据6.2",
+      "tier": "A",
+      "score": 26,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "ht / HeatTransfer",
+        "solid / SolidMechanics"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "N",
+        "b",
+        "D"
+      ],
+      "results": [
+        "pg1",
+        "slc1",
+        "surf1"
+      ],
+      "detected_output_expressions": [
+        "ht.ntflux"
+      ],
+      "evidence": {
+        "mph_files": 5,
+        "matlab_files": 5,
+        "java_files": 5,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 3 个可扫描参数",
+        "已识别 3 个结果量",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "circuit_fem_resistor",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\circuit_fem_resistor.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\电阻 FEM 场路耦合",
+      "tier": "A",
+      "score": 24,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "ec / ConductiveMedia",
+        "cir / Circuit",
+        "Electric Currents"
+      ],
+      "studies": [
+        "Stationary"
+      ],
+      "parameters": [
+        "sigma",
+        "R1",
+        "R2",
+        "L",
+        "r"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "cir.v_0",
+        "cir.v_1",
+        "cir.v_2",
+        "cir.v_3",
+        "comp2.cir2.v_0",
+        "comp2.cir2.v_1",
+        "comp2.cir2.v_2",
+        "comp2.cir2.v_3",
+        "((cir.v_2-cir.v_1)/cir.R1.v)*R1",
+        "((comp2.cir2.v_2-comp2.cir2.v_1)/comp2.cir2.R1.v)*R1",
+        "L/(pi*r^2*sigma)"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 5 个可扫描参数",
+        "脚本中识别到 11 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "如何在求解后自动导出图像仅6.3",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\如何在求解后自动导出图像仅6.3.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\如何在求解后自动导出图像仅6.3",
+      "tier": "A",
+      "score": 24,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "spf / LaminarFlow",
+        "tds / DilutedSpecies"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "c0",
+        "D",
+        "h_max",
+        "U_mean",
+        "a",
+        "alpha"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "S_outlet"
+      ],
+      "evidence": {
+        "mph_files": 2,
+        "matlab_files": 2,
+        "java_files": 2,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "微混合器",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\微混合器.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\微混合器",
+      "tier": "A",
+      "score": 24,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "spf / LaminarFlow",
+        "tds / DilutedSpecies"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "c0",
+        "D",
+        "h_max",
+        "U_mean",
+        "a",
+        "alpha"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "S_outlet"
+      ],
+      "evidence": {
+        "mph_files": 4,
+        "matlab_files": 2,
+        "java_files": 2,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "微混合器 - 批处理和集群版本",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\微混合器_-_批处理和集群版本.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\微混合器 - 批处理和集群版本",
+      "tier": "A",
+      "score": 24,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "spf / LaminarFlow",
+        "tds / DilutedSpecies"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "c0",
+        "D",
+        "h_max",
+        "U_mean",
+        "a",
+        "alpha"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "S_outlet"
+      ],
+      "evidence": {
+        "mph_files": 4,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "求解模型后保存数据的作业序列6.3",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\求解模型后保存数据的作业序列6.3.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\求解模型后保存数据的作业序列6.3",
+      "tier": "A",
+      "score": 24,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "spf / LaminarFlow",
+        "tds / DilutedSpecies"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "c0",
+        "D",
+        "h_max",
+        "U_mean",
+        "a",
+        "alpha"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "S_outlet"
+      ],
+      "evidence": {
+        "mph_files": 2,
+        "matlab_files": 2,
+        "java_files": 2,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "通信塔桅斜撑支架的刚度分析",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\通信塔桅斜撑支架的刚度分析.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\通信塔桅斜撑支架的刚度分析",
+      "tier": "A",
+      "score": 24,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "solid / SolidMechanics"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "F",
+        "h_t",
+        "r_t",
+        "t_t",
+        "t_p",
+        "r_p",
+        "r_ph",
+        "o_p",
+        "t_m",
+        "w_m",
+        "r_mh",
+        "o_mh",
+        "o_m"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "S_R"
+      ],
+      "evidence": {
+        "mph_files": 4,
+        "matlab_files": 2,
+        "java_files": 2,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 13 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "自然对流传热",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\自然对流传热.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\自然对流传热",
+      "tier": "A",
+      "score": 23,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "spf / LaminarFlow",
+        "ht / HeatTransferInFluids"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "v_in",
+        "T_in",
+        "T_heat"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "DeltaT"
+      ],
+      "evidence": {
+        "mph_files": 2,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 3 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "通信塔桅零件的灵敏度分析",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\通信塔桅零件的灵敏度分析.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\通信塔桅零件的灵敏度分析",
+      "tier": "A",
+      "score": 21,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "solid / SolidMechanics"
+      ],
+      "studies": [
+        "std1 / stat / Stationary",
+        "std1",
+        "Stationary"
+      ],
+      "parameters": [
+        "F"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "S_R"
+      ],
+      "evidence": {
+        "mph_files": 2,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 1 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "thermoelastic_damping_3d",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\thermoelastic_damping_3d.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\MEMS 谐振器的热弹性阻尼",
+      "tier": "A",
+      "score": 20,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "solid / SolidMechanics",
+        "ht / HeatTransfer",
+        "Heat Transfer",
+        "Solid Mechanics"
+      ],
+      "studies": [
+        "Stationary",
+        "Eigenvalue",
+        "Eigenfrequency"
+      ],
+      "parameters": [
+        "E0",
+        "rho0",
+        "nu0",
+        "alpha0",
+        "Cp0",
+        "kappa0"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "solid.Q_eig"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "特征值或通用 PDE 模型应单独设计训练目标"
+      ],
+      "recommended_action": "可先生成 12-24 点小型 COMSOL 扫描计划，并保留独立留出集。"
+    },
+    {
+      "title": "argon_gec_ccp",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\argon_gec_ccp.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\GEC CCP 反应器，氩化学",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [],
+      "studies": [
+        "Stationary",
+        "Time Dependent",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "L",
+        "R1",
+        "R2",
+        "Hd",
+        "dThick",
+        "f0",
+        "P0"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "ptp.mct1.Va_per",
+        "ptp.mct1.Vdcb_per"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 7 个可扫描参数",
+        "脚本中识别到 2 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "biased_resonator_2d_pull_in_pull_out",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\biased_resonator_2d_pull_in_pull_out.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\偏压谐振器的吸合和释放分析 - 二维",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Solid Mechanics",
+        "Electrostatics"
+      ],
+      "studies": [
+        "Stationary"
+      ],
+      "parameters": [
+        "Vdc",
+        "l_b",
+        "t_b",
+        "l_e",
+        "gap",
+        "vrel"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "Vdc"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "billet_induction_heating",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\billet_induction_heating.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\钢坯感应加热",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields",
+        "Heat Transfer"
+      ],
+      "studies": [
+        "Stationary",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "h_coil",
+        "r_coil",
+        "R_coil",
+        "T_in",
+        "N_coil",
+        "u_trans",
+        "T_amb",
+        "emissivity",
+        "dx_part",
+        "dy_part",
+        "rot_part",
+        "f0",
+        "a",
+        "b"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "mf.PCoil_1+mf.PCoil_2+mf.PCoil_3",
+        "-ht.ntflux",
+        "ht.ntflux"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 14 个可扫描参数",
+        "脚本中识别到 3 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "billet_induction_heating_embedded",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\billet_induction_heating_embedded.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\钢坯感应加热",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields",
+        "Heat Transfer"
+      ],
+      "studies": [
+        "Stationary",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "h_coil",
+        "r_coil",
+        "R_coil",
+        "T_in",
+        "N_coil",
+        "u_trans",
+        "T_amb",
+        "emissivity",
+        "dx_part",
+        "dy_part",
+        "rot_part",
+        "f0",
+        "a",
+        "b",
+        "r"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "mf.PCoil_1+mf.PCoil_2+mf.PCoil_3",
+        "-ht.ntflux",
+        "ht.ntflux"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 15 个可扫描参数",
+        "脚本中识别到 3 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "capacitance_matrix_2spheres",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\capacitance_matrix_2spheres.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\两个球体的电容矩阵",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Electrostatics"
+      ],
+      "studies": [
+        "Stationary",
+        "Parametric Sweep"
+      ],
+      "parameters": [
+        "a",
+        "b",
+        "c",
+        "N",
+        "PortName",
+        "C11",
+        "C22"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "es.C",
+        "es.Cinv",
+        "C11",
+        "C22",
+        "C12",
+        "C11+C12",
+        "C22+C12"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 7 个可扫描参数",
+        "脚本中识别到 7 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "ccp_ion_energy_distribution_function",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\ccp_ion_energy_distribution_function.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\电容耦合等离子体反应器中的离子能量分布函数",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Particle Tracing"
+      ],
+      "studies": [
+        "Stationary",
+        "Time Dependent"
+      ],
+      "parameters": [
+        "r0",
+        "h0",
+        "r1",
+        "h1",
+        "Prf",
+        "f0",
+        "p0"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "ptp.mct1.Va_per",
+        "ptp.mct1.Vdcb_per"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 7 个可扫描参数",
+        "脚本中识别到 2 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "force_calculation_02_magnetic_force_bem",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\force_calculation_02_magnetic_force_bem.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\电磁力验证系列",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields",
+        "Electrostatics"
+      ],
+      "studies": [
+        "Parametric Sweep",
+        "Stationary"
+      ],
+      "parameters": [
+        "Rl",
+        "Rd",
+        "Rr",
+        "Rrf",
+        "hf",
+        "Ap",
+        "Brz"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "sqrt((mfncbe.Forcex_BEM_rod-1[N])^2+mfncbe.Forcey_BEM_rod^2+mfncbe.Forcez_BEM_rod^2)",
+        "sqrt((mfncbe.Forcex_BEM_probe-1[N])^2+mfncbe.Forcey_BEM_probe^2+mfncbe.Forcez_BEM_probe^2)",
+        "sqrt((mfnc.Forcex_FEM_rod-1[N])^2+mfnc.Forcey_FEM_rod^2+mfnc.Forcez_FEM_rod^2)",
+        "sqrt((mfnc.Forcex_FEM_probe-1[N])^2+mfnc.Forcey_FEM_probe^2+mfnc.Forcez_FEM_probe^2)"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 7 个可扫描参数",
+        "脚本中识别到 4 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "force_calculation_03_magnetic_torque_bem",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\force_calculation_03_magnetic_torque_bem.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\电磁力验证系列",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields",
+        "Electrostatics"
+      ],
+      "studies": [
+        "Parametric Sweep",
+        "Stationary"
+      ],
+      "parameters": [
+        "Rl",
+        "Ra",
+        "Rr",
+        "Rrf",
+        "Cs",
+        "hf",
+        "Ap",
+        "cf",
+        "Br",
+        "Brx",
+        "Brz"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "sqrt(mfncbe.Torquex_BEM_rod^2+(mfncbe.Torquey_BEM_rod-1[N*m])^2+mfncbe.Torquez_BEM_rod^2)",
+        "sqrt(mfncbe.Torquex_BEM_probe^2+(mfncbe.Torquey_BEM_probe-1[N*m])^2+mfncbe.Torquez_BEM_probe^2)",
+        "sqrt(mfnc.Torquex_FEM_rod^2+(mfnc.Torquey_FEM_rod-1[N*m])^2+mfnc.Torquez_FEM_rod^2)",
+        "sqrt(mfnc.Torquex_FEM_probe^2+(mfnc.Torquey_FEM_probe-1[N*m])^2+mfnc.Torquez_FEM_probe^2)"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 11 个可扫描参数",
+        "脚本中识别到 4 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "gan_double_heterostructure_led",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\gan_double_heterostructure_led.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\InGaNAlGaN 双异质结 LED",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [],
+      "studies": [
+        "Stationary",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "V_n",
+        "V_p",
+        "InGaN_bg",
+        "I_p",
+        "A_cross"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "semi.I0_2"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 5 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "gecko_foot",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\gecko_foot.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\壁虎足",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Solid Mechanics"
+      ],
+      "studies": [
+        "Stationary"
+      ],
+      "parameters": [
+        "Fc",
+        "Ff",
+        "theta",
+        "Dm",
+        "Hm",
+        "Wm",
+        "Dn",
+        "Hn",
+        "Wn",
+        "Area"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "max_v_Mises",
+        "max_disp",
+        "max_ep1"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 10 个可扫描参数",
+        "脚本中识别到 3 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "generator_2d",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\generator_2d.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\发电机二维模型",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary",
+        "Time Dependent"
+      ],
+      "parameters": [
+        "L",
+        "rpm",
+        "d_wire",
+        "N"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "rmm.Qh*L"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 4 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "heating_circuit",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\heating_circuit.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\加热电路",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Heat Transfer",
+        "Solid Mechanics",
+        "Electric Currents"
+      ],
+      "studies": [
+        "Stationary"
+      ],
+      "parameters": [
+        "V_in",
+        "d_layer",
+        "sigma_silver",
+        "sigma_nichrome",
+        "T_air",
+        "h_air",
+        "T_fluid",
+        "h_fluid"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "ht.q0",
+        "ecis.Qsh"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 8 个可扫描参数",
+        "脚本中识别到 2 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "induction_heating_curie_movement_1khz",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\induction_heating_curie_movement_1khz.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\包含居里温度和运动的感应加热",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Heat Transfer",
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary",
+        "Time Dependent",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "del_sat",
+        "sig",
+        "f",
+        "mur0",
+        "vel",
+        "t",
+        "Tc",
+        "J0"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "4*rmm.Qrh",
+        "J0"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 8 个可扫描参数",
+        "脚本中识别到 2 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "induction_heating_curie_movement_25khz",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\induction_heating_curie_movement_25khz.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\包含居里温度和运动的感应加热",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Heat Transfer",
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary",
+        "Time Dependent",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "del_sat",
+        "sig",
+        "f",
+        "mur0",
+        "vel",
+        "t",
+        "Tc",
+        "J0"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "4*rmm.Qrh",
+        "J0"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 8 个可扫描参数",
+        "脚本中识别到 2 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "isfet",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\isfet.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\离子敏场效应晶体管 (ISFET) 仿真",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Electrostatics",
+        "Global ODEs and DAEs"
+      ],
+      "studies": [
+        "Stationary"
+      ],
+      "parameters": [
+        "Vd",
+        "Vga",
+        "pHb",
+        "T0",
+        "V_therm",
+        "WAg",
+        "Eeq",
+        "DC",
+        "DA",
+        "DH",
+        "DOH",
+        "c0",
+        "cH_bulk",
+        "cOH_bulk",
+        "cC_bulk",
+        "cA_bulk",
+        "zC",
+        "zA",
+        "Istr_bulk",
+        "eps_H2O",
+        "xD",
+        "xS",
+        "epsr_st",
+        "Ci_st",
+        "h_max",
+        "h_max_surf",
+        "Ka",
+        "Kb",
+        "Ns"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "phil-phil_bulk_g"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 29 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "magnetic_diaphragm",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\magnetic_diaphragm.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\非线性铁磁薄膜",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary",
+        "Parametric Sweep"
+      ],
+      "parameters": [
+        "EM1_r_outer",
+        "EM1_r_core",
+        "diaphragm_r",
+        "diaphragm_thickness",
+        "gray_area_width",
+        "gap_distance",
+        "EM1_height",
+        "current_I",
+        "N_turn",
+        "pretension_disp",
+        "k",
+        "M_inf",
+        "H"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "mu0_const*(H+M_inf*tanh(k*H))"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 13 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "magnetic_prospecting_embedded",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\magnetic_prospecting_embedded.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\铁矿床的磁法勘探",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Electric Currents",
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary"
+      ],
+      "parameters": [
+        "x_area",
+        "y_area",
+        "z_area",
+        "z_air",
+        "x_ore",
+        "y_ore",
+        "z_ore",
+        "a_ore",
+        "b_ore",
+        "c_ore",
+        "alpha_ore",
+        "Bx_geo",
+        "By_geo",
+        "Bz_geo",
+        "image_scaling",
+        "dem_scaling",
+        "geomag_elevation",
+        "mur_magn",
+        "c_magn",
+        "Brx_magn",
+        "Bry_magn",
+        "Brz_magn",
+        "mur_ore",
+        "Br_magn",
+        "check"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "mfnc.normredB",
+        "mfnc.redBx",
+        "mfnc.redBy",
+        "mfnc.redBz"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 25 个可扫描参数",
+        "脚本中识别到 4 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "microwave_oven",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\microwave_oven.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\微波炉",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Heat Transfer",
+        "Electromagnetic Waves",
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary",
+        "Frequency Domain",
+        "Time Dependent",
+        "Parametric Sweep"
+      ],
+      "parameters": [
+        "wo",
+        "do",
+        "ho",
+        "wg",
+        "dg",
+        "hg",
+        "rp",
+        "hp",
+        "bp",
+        "rpot",
+        "T0",
+        "full_geometry"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "ht.Qtot"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 12 个可扫描参数",
+        "脚本中识别到 1 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "mutual_inductance",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\mutual_inductance.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\单导线之间的自感和互感",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "r_wire",
+        "R1",
+        "R2",
+        "M",
+        "I1",
+        "I2"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "mf.LCoil_1",
+        "2*mf.intWm/1[A^2]",
+        "mf.L_2_1",
+        "M",
+        "mf.LCoil_2",
+        "mf.L_1_2",
+        "mf.Bz/I2",
+        "mf.VCoil_2/1[A]/mf.iomega",
+        "mf.ICoil_2",
+        "-mf.iomega*withsol(",
+        "sol1",
+        ",mf.L_2_1)/(withsol(",
+        "sol2",
+        ",mf.RCoil_2)+withsol(",
+        ",mf.LCoil_2)*mf.iomega)*mf.ICoil_1"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 15 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    },
+    {
+      "title": "mutual_inductance_coil_group",
+      "card_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_knowledge\\mutual_inductance_coil_group.case.json",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\单导线和螺旋线圈的自感和互感",
+      "tier": "B",
+      "score": 22,
+      "training_stage": "modeling_logic_learning_ready",
+      "physics": [
+        "Magnetic Fields"
+      ],
+      "studies": [
+        "Stationary",
+        "Frequency Domain"
+      ],
+      "parameters": [
+        "r_wire",
+        "R1",
+        "R2",
+        "M",
+        "I1",
+        "I2"
+      ],
+      "results": [],
+      "detected_output_expressions": [
+        "mf.LCoil_1",
+        "2*mf.intWm/1[A^2]",
+        "mf.L_2_1",
+        "M",
+        "mf.LCoil_2",
+        "mf.L_1_2",
+        "20*mf.Bz/I2",
+        "mf.Bz/I2",
+        "mf.VCoil_2/1[A]/mf.iomega",
+        "mf.ICoil_2",
+        "-mf.iomega*withsol(",
+        "sol1",
+        ",mf.L_2_1)/(withsol(",
+        "sol2",
+        ",mf.RCoil_2)+withsol(",
+        ",mf.LCoil_2)*mf.iomega)*mf.ICoil_1"
+      ],
+      "evidence": {
+        "mph_files": 1,
+        "matlab_files": 1,
+        "java_files": 1,
+        "csv_files": 0
+      },
+      "reasons": [
+        "含 MPH 权威模型文件",
+        "含 MATLAB LiveLink 脚本",
+        "已识别研究类型",
+        "已识别 6 个可扫描参数",
+        "脚本中识别到 16 个数值输出表达式",
+        "稳态研究适合先做小型参数扫描"
+      ],
+      "cautions": [
+        "未识别可导出结果量",
+        "物理场不在首批低风险自动扫描范围"
+      ],
+      "recommended_action": "可读取脚本和模型树后生成扫描计划，但执行前需人工核对参数与结果表达式。"
+    }
+  ],
+  "policy": "候选评分只用于准备训练；真实 COMSOL CSV、独立留出集和物理范围验证后才能登记代理模型。"
+}

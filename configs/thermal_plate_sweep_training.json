@@ -1,0 +1,22 @@
+{
+  "kind": "comsol_thermal_plate_sweep_training_spec",
+  "model_name": "thermal_plate_surrogate",
+  "physics": "heat_transfer_solid_2d",
+  "inputs": ["L_m", "W_m", "k_W_mK", "T_hot_K", "T_cold_K"],
+  "outputs": ["Tmax_K", "Tavg_K"],
+  "sampling": {
+    "L_m": [0.04, 0.08],
+    "W_m": [0.015, 0.03],
+    "k_W_mK": [10.0, 25.0, 60.0],
+    "T_hot_K": [333.15, 373.15],
+    "T_cold_K": [273.15, 293.15]
+  },
+  "holdout_sampling": {
+    "L_m": [0.06],
+    "W_m": [0.0225],
+    "k_W_mK": [40.0],
+    "T_hot_K": [343.15, 363.15],
+    "T_cold_K": [278.15, 288.15]
+  },
+  "validation": ["temperature range check", "fresh COMSOL holdout", "holdout RMSE MAE R2"]
+}

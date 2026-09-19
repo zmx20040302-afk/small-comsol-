@@ -1,0 +1,40 @@
+{
+  "source": "D:/桌面/codex/案例下载/电气/计算导线电阻/simple_resistor.mph",
+  "label": "simple_resistor.mph",
+  "parameters": {},
+  "components": {
+    "tag": "comp1",
+    "geometry": [
+      "geom1"
+    ],
+    "materials": [
+      "mat1"
+    ],
+    "physics": [
+      "ec"
+    ],
+    "meshes": [
+      "mesh1"
+    ],
+    "couplings": [
+      "builder_intop1",
+      "builder_integrate1",
+      "builder_intop2",
+      "builder_intop3"
+    ]
+  },
+  "studies": [
+    "std1"
+  ],
+  "result_groups": [
+    "pg1"
+  ],
+  "datasets": [
+    "dset1"
+  ],
+  "tables": [
+    "tbl1"
+  ],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

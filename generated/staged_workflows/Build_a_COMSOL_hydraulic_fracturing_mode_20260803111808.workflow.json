@@ -1,0 +1,1703 @@
+{
+  "kind": "comsol_staged_modeling_workflow",
+  "workflow_id": "Build_a_COMSOL_hydraulic_fracturing_mode_20260803111808",
+  "created_at": "2026-08-03T11:18:08.966600+00:00",
+  "updated_at": "2026-08-03T11:18:45.249320+00:00",
+  "requirement": "Build a COMSOL hydraulic fracturing model for a single borehole under different confining stress conditions. 中文需求关键词：水力压裂 单孔 围压 主应力 天然裂缝 煤层 岩石裂隙流 多孔介质 裂缝拓展 损伤演化。 Use article parameters: square_side=300[mm] borehole_diameter=15[mm] stress_ratio_range=1.5~2.0 initial_pressure=0.1[MPa] mean_elastic_modulus=35.1[GPa] mean_compressive_strength=152[MPa] principal_stress_direction_135=135[deg] principal_stress_direction_180=180[deg] principal_stress_direction_90=90[deg]. Include features: 2D square domain central borehole natural fracture or weak-plane features coal/rock medium heterogeneous elastic modulus heterogeneous tensile/compressive strength Weibull random field distribution solid mechanics damage evolution pore/fluid pressure loading hydraulic fracture propagation outer boundary in-situ stress loading symmetric roller/fixed displacement support borehole injection pressure free triangular mesh local refinement near borehole and natural fractures time-dependent pressure/damage evolution parametric sweep over stress ratio and stress direction damage length vs time pressure field fracture path initiation pressure stress distribution fracture deflection and branching under natural fractures.",
+  "memory_path": "generated/case_memory/case_memory.json",
+  "status": "complete",
+  "current_step": 7,
+  "plan": {
+    "kind": "comsol_model_plan",
+    "requirement": "Build a COMSOL hydraulic fracturing model for a single borehole under different confining stress conditions. 中文需求关键词：水力压裂 单孔 围压 主应力 天然裂缝 煤层 岩石裂隙流 多孔介质 裂缝拓展 损伤演化。 Use article parameters: square_side=300[mm] borehole_diameter=15[mm] stress_ratio_range=1.5~2.0 initial_pressure=0.1[MPa] mean_elastic_modulus=35.1[GPa] mean_compressive_strength=152[MPa] principal_stress_direction_135=135[deg] principal_stress_direction_180=180[deg] principal_stress_direction_90=90[deg]. Include features: 2D square domain central borehole natural fracture or weak-plane features coal/rock medium heterogeneous elastic modulus heterogeneous tensile/compressive strength Weibull random field distribution solid mechanics damage evolution pore/fluid pressure loading hydraulic fracture propagation outer boundary in-situ stress loading symmetric roller/fixed displacement support borehole injection pressure free triangular mesh local refinement near borehole and natural fractures time-dependent pressure/damage evolution parametric sweep over stress ratio and stress direction damage length vs time pressure field fracture path initiation pressure stress distribution fracture deflection and branching under natural fractures.",
+    "inferred_domains": [
+      "structural",
+      "fluid"
+    ],
+    "case_count": 115,
+    "matched_cases": [
+      {
+        "title": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究",
+        "score": 67.81339611063653,
+        "quality": {
+          "score": 95,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "structural",
+          "fluid",
+          "optimization"
+        ]
+      },
+      {
+        "title": "岩石裂隙流",
+        "score": 26.01324490029408,
+        "quality": {
+          "score": 75,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": false,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少材料证据",
+            "缺少结果量证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "带轮应力",
+        "score": 7.636994336101661,
+        "quality": {
+          "score": 85,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少结果量证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "扳手的应力和应变",
+        "score": 6.437432590799961,
+        "quality": {
+          "score": 75,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": false,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少结果量证据",
+            "缺少参数证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "已验证：二维热应力矩形模板",
+        "score": 6.349389079621698,
+        "quality": {
+          "score": 90,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": false,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少来源文件记录",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": false,
+          "surrogate_ready": false
+        },
+        "training_stage": "execution_validated",
+        "domains": [
+          "heat_transfer",
+          "structural"
+        ]
+      },
+      {
+        "title": "如何生成随机非均匀材料数据6.2",
+        "score": 5.4692651680936,
+        "quality": {
+          "score": 95,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "受载弹簧 - 使用全局方程满足约束条件",
+        "score": 5.0055731996703,
+        "quality": {
+          "score": 85,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少结果量证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "COMSOL 物理场类型与选择指南",
+        "score": 4.912889112810202,
+        "quality": {
+          "score": 45,
+          "checks": {
+            "physics": true,
+            "geometry": false,
+            "materials": false,
+            "study": true,
+            "boundary_conditions": false,
+            "results": true,
+            "parameters": false,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少几何证据",
+            "缺少材料证据",
+            "缺少边界条件证据",
+            "缺少参数证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": false,
+          "surrogate_ready": false
+        },
+        "training_stage": "physics_selection_knowledge_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      }
+    ],
+    "knowledge_system_context": {
+      "kind": "knowledge_system_context",
+      "available": true,
+      "case_count": 115,
+      "domain_count": 8,
+      "capability_summary": "The local COMSOL knowledge system has learned 115 cases across 8 domains (geometry, structural, optimization, electromagnetics, acoustics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training.",
+      "matched_domains": [
+        {
+          "domain": "structural",
+          "case_count": 111,
+          "cases": [
+            "App 中用户定义的许可协议",
+            "Black-Scholes 方程",
+            "Blasius 边界层",
+            "COMSOL 物理场类型与选择指南",
+            "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究",
+            "KdV 方程和孤子",
+            "STL导入教程",
+            "“图像到曲线”插件示例6.2",
+            "两种载荷工况下的锥形悬臂梁",
+            "传输线参数计算器",
+            "传递和吸附",
+            "使用 Microsoft® Azure 运行 COMSOL® 软件"
+          ],
+          "core_physics": [
+            {
+              "name": "ht / HeatTransfer",
+              "count": 20
+            },
+            {
+              "name": "solid / SolidMechanics",
+              "count": 18
+            },
+            {
+              "name": "spf / LaminarFlow",
+              "count": 12
+            },
+            {
+              "name": "tds / DilutedSpecies",
+              "count": 11
+            },
+            {
+              "name": "Heat Transfer",
+              "count": 10
+            },
+            {
+              "name": "ec / ConductiveMedia",
+              "count": 9
+            },
+            {
+              "name": "c / CoefficientFormPDE",
+              "count": 5
+            },
+            {
+              "name": "ht / HeatTransferInFluids",
+              "count": 4
+            },
+            {
+              "name": "cb / CoefficientFormBoundaryPDE",
+              "count": 3
+            },
+            {
+              "name": "ge / GlobalEquations",
+              "count": 3
+            }
+          ],
+          "geometry_patterns": [
+            {
+              "name": "r1 / Rectangle",
+              "count": 31
+            },
+            {
+              "name": "geom1 / r1 / size",
+              "count": 22
+            },
+            {
+              "name": "wp1 / WorkPlane",
+              "count": 14
+            },
+            {
+              "name": "dif1 / Difference",
+              "count": 12
+            },
+            {
+              "name": "geom1 / wp1 / unite",
+              "count": 12
+            },
+            {
+              "name": "blk1 / Block",
+              "count": 11
+            },
+            {
+              "name": "c1 / Circle",
+              "count": 11
+            },
+            {
+              "name": "uni1 / Union",
+              "count": 10
+            },
+            {
+              "name": "cyl1 / Cylinder",
+              "count": 10
+            },
+            {
+              "name": "geom1 / cyl1 / r",
+              "count": 10
+            }
+          ],
+          "study_patterns": [
+            {
+              "name": "std1",
+              "count": 72
+            },
+            {
+              "name": "Stationary",
+              "count": 44
+            },
+            {
+              "name": "std1 / stat / Stationary",
+              "count": 39
+            },
+            {
+              "name": "std1 / time / Transient",
+              "count": 25
+            },
+            {
+              "name": "Eigenfrequency",
+              "count": 6
+            },
+            {
+              "name": "std1 / eig / Eigenfrequency",
+              "count": 5
+            },
+            {
+              "name": "Eigenvalue",
+              "count": 3
+            },
+            {
+              "name": "Time Dependent",
+              "count": 2
+            }
+          ],
+          "typical_outputs": [
+            {
+              "name": "Original MPH files for later COMSOL-side verification.",
+              "count": 105
+            },
+            {
+              "name": "LiveLink MATLAB or COMSOL Java script structure.",
+              "count": 96
+            },
+            {
+              "name": "Theory and workflow evidence from PDF documents.",
+              "count": 75
+            },
+            {
+              "name": "传热",
+              "count": 31
+            },
+            {
+              "name": "流体",
+              "count": 29
+            },
+            {
+              "name": "电磁",
+              "count": 23
+            },
+            {
+              "name": "pg1",
+              "count": 18
+            },
+            {
+              "name": "结构力学",
+              "count": 14
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Lp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rb",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "沉降 App（考虑颗粒大小分布）",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "Lh",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "square_side",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "borehole_diameter",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "stress_ratio_range",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "initial_pressure",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "mean_elastic_modulus",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "mean_compressive_strength",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "principal_stress_direction_135",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "principal_stress_direction_180",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "principal_stress_direction_90",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "d_rod",
+              "description": "Rod diameter",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_L",
+              "description": "C3 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_L",
+              "description": "C4 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_L",
+              "description": "C5 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "t_angle",
+              "description": "Transverse angle",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "s_angle",
+              "description": "Sagittal angle",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_xw",
+              "description": "C3 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_yw",
+              "description": "C3 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_zw",
+              "description": "C3 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_xw",
+              "description": "C4 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_yw",
+              "description": "C4 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_zw",
+              "description": "C4 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_xw",
+              "description": "C5 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_yw",
+              "description": "C5 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_zw",
+              "description": "C5 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "frq_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "Ri_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            }
+          ],
+          "modeling_logic": [
+            "Use structural cases as the first retrieval group when the requirement shares physics, geometry, or output targets.",
+            "Start from parameters and geometry, then add selections, materials, physics, mesh, study, and result export.",
+            "Prioritize learned physics interfaces: ht / HeatTransfer, solid / SolidMechanics, spf / LaminarFlow.",
+            "Reuse similar study patterns: std1, Stationary, std1 / stat / Stationary."
+          ]
+        },
+        {
+          "domain": "fluid",
+          "case_count": 49,
+          "cases": [
+            "App 中用户定义的许可协议",
+            "COMSOL 物理场类型与选择指南",
+            "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究",
+            "两种载荷工况下的锥形悬臂梁",
+            "传递和吸附",
+            "使用 PID 控制器的过程控制",
+            "使用网格划分序列",
+            "借助变形几何接口修改导入的 CAD 几何",
+            "化学蚀刻",
+            "受载弹簧 - 使用全局方程满足约束条件",
+            "变形曲面的泽尼克多项式拟合",
+            "四极透镜"
+          ],
+          "core_physics": [
+            {
+              "name": "solid / SolidMechanics",
+              "count": 18
+            },
+            {
+              "name": "spf / LaminarFlow",
+              "count": 12
+            },
+            {
+              "name": "tds / DilutedSpecies",
+              "count": 10
+            },
+            {
+              "name": "Heat Transfer",
+              "count": 6
+            },
+            {
+              "name": "ht / HeatTransfer",
+              "count": 6
+            },
+            {
+              "name": "ht / HeatTransferInFluids",
+              "count": 4
+            },
+            {
+              "name": "ec / ConductiveMedia",
+              "count": 4
+            },
+            {
+              "name": "acpr / PressureAcoustics",
+              "count": 3
+            },
+            {
+              "name": "Laminar Flow",
+              "count": 2
+            },
+            {
+              "name": "Optimization",
+              "count": 2
+            }
+          ],
+          "geometry_patterns": [
+            {
+              "name": "r1 / Rectangle",
+              "count": 16
+            },
+            {
+              "name": "geom1 / r1 / size",
+              "count": 12
+            },
+            {
+              "name": "dif1 / Difference",
+              "count": 7
+            },
+            {
+              "name": "c1 / Circle",
+              "count": 7
+            },
+            {
+              "name": "cyl1 / Cylinder",
+              "count": 6
+            },
+            {
+              "name": "geom1 / cyl1 / r",
+              "count": 6
+            },
+            {
+              "name": "geom1 / cyl1 / h",
+              "count": 6
+            },
+            {
+              "name": "geom1 / r1 / pos",
+              "count": 6
+            },
+            {
+              "name": "geom1 / imp1 / filename",
+              "count": 6
+            },
+            {
+              "name": "geom1 / c1 / r",
+              "count": 5
+            }
+          ],
+          "study_patterns": [
+            {
+              "name": "std1",
+              "count": 42
+            },
+            {
+              "name": "Stationary",
+              "count": 28
+            },
+            {
+              "name": "std1 / stat / Stationary",
+              "count": 25
+            },
+            {
+              "name": "std1 / time / Transient",
+              "count": 10
+            },
+            {
+              "name": "Eigenfrequency",
+              "count": 6
+            },
+            {
+              "name": "std1 / eig / Eigenfrequency",
+              "count": 5
+            },
+            {
+              "name": "Optimization",
+              "count": 2
+            },
+            {
+              "name": "std1 / freq / Frequency",
+              "count": 2
+            }
+          ],
+          "typical_outputs": [
+            {
+              "name": "LiveLink MATLAB or COMSOL Java script structure.",
+              "count": 46
+            },
+            {
+              "name": "Original MPH files for later COMSOL-side verification.",
+              "count": 46
+            },
+            {
+              "name": "Theory and workflow evidence from PDF documents.",
+              "count": 36
+            },
+            {
+              "name": "流体",
+              "count": 29
+            },
+            {
+              "name": "传热",
+              "count": 15
+            },
+            {
+              "name": "结构力学",
+              "count": 14
+            },
+            {
+              "name": "电磁",
+              "count": 9
+            },
+            {
+              "name": "声学",
+              "count": 8
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Lp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rb",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "Lh",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "square_side",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "borehole_diameter",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "stress_ratio_range",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "initial_pressure",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "mean_elastic_modulus",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "mean_compressive_strength",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "principal_stress_direction_135",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "principal_stress_direction_180",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "principal_stress_direction_90",
+              "description": "",
+              "source_cases": [
+                "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+              ]
+            },
+            {
+              "name": "c0",
+              "description": "\\u521d\\u59cb\\u6d53\\u5ea6",
+              "source_cases": [
+                "传递和吸附",
+                "如何在求解后自动导出图像仅6.3",
+                "微混合器",
+                "微混合器 - 批处理和集群版本",
+                "求解模型后保存数据的作业序列6.3"
+              ]
+            },
+            {
+              "name": "k_ads",
+              "description": "\\u6b63\\u53cd\\u5e94\\u901f\\u7387\\u5e38\\u6570",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "k_des",
+              "description": "\\u9006\\u53cd\\u5e94\\u901f\\u7387\\u5e38\\u6570",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "Gamma_s",
+              "description": "\\u6d3b\\u6027\\u4f4d\\u6d53\\u5ea6",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "Ds",
+              "description": "\\u8868\\u9762\\u6269\\u6563\\u7cfb\\u6570",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "D",
+              "description": "\\u6c14\\u4f53\\u6269\\u6563\\u7cfb\\u6570",
+              "source_cases": [
+                "传递和吸附",
+                "使用 PID 控制器的过程控制",
+                "化学蚀刻",
+                "如何在求解后自动导出图像仅6.3",
+                "如何生成随机非均匀材料数据6.2",
+                "微混合器"
+              ]
+            },
+            {
+              "name": "v_max",
+              "description": "\\u6700\\u5927\\u901f\\u5ea6",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "delta",
+              "description": "\\u901a\\u9053\\u5bbd\\u5ea6",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "v_in_top",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c_in_top",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c_in_inlet",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c00",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c_set",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_P_ctrl",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_I_ctrl",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_D_ctrl",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_D_ctrl_temp_param",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            }
+          ],
+          "modeling_logic": [
+            "Use fluid cases as the first retrieval group when the requirement shares physics, geometry, or output targets.",
+            "Start from parameters and geometry, then add selections, materials, physics, mesh, study, and result export.",
+            "Prioritize learned physics interfaces: solid / SolidMechanics, spf / LaminarFlow, tds / DilutedSpecies.",
+            "Reuse similar study patterns: std1, Stationary, std1 / stat / Stationary."
+          ]
+        }
+      ],
+      "global_modeling_workflow": [
+        {
+          "stage": "requirement",
+          "description": "Clarify target physics, dimensions, assumptions, inputs, outputs, and validation criteria.",
+          "case_evidence_count": 90
+        },
+        {
+          "stage": "evidence",
+          "description": "Retrieve similar cases and official/document evidence before creating a new model.",
+          "case_evidence_count": 108
+        },
+        {
+          "stage": "parameters",
+          "description": "Define reusable parameters, units, sweep ranges, and constraints.",
+          "case_evidence_count": 109
+        },
+        {
+          "stage": "geometry",
+          "description": "Build or import geometry, then create named selections for later boundary assignment.",
+          "case_evidence_count": 109
+        },
+        {
+          "stage": "physics",
+          "description": "Assign materials, physics interfaces, loads, boundary conditions, and initial values.",
+          "case_evidence_count": 109
+        },
+        {
+          "stage": "mesh_study",
+          "description": "Create mesh, study sequence, solver settings, and a baseline solve.",
+          "case_evidence_count": 0
+        },
+        {
+          "stage": "validation",
+          "description": "Export derived values/plots and compare against theory, case expectations, or experiments.",
+          "case_evidence_count": 75
+        },
+        {
+          "stage": "surrogate",
+          "description": "Only after COMSOL sweep CSV exists, train and validate a local surrogate model.",
+          "case_evidence_count": 108
+        }
+      ],
+      "training_strategy": [
+        "Current memory contains 115 cases: 96 support modeling-logic learning and 1 contain direct CSV surrogate-training evidence.",
+        "Treat PDF/MATLAB/Java/MPH evidence as modeling knowledge; treat CSV sweep tables as numerical training data.",
+        "When no CSV is available, generate COMSOL sweep scripts first, export inputs/outputs, then train baseline, ridge, random forest, and MLP candidates.",
+        "After each generated model is corrected in COMSOL, place the corrected MATLAB/Java/exported summary back into the case library and refresh this knowledge system."
+      ],
+      "common_gaps": [
+        {
+          "gap": "Missing parameter-sweep CSV for numerical surrogate training.",
+          "count": 106
+        },
+        {
+          "gap": "MPH files need COMSOL with MATLAB summaries for reliable internal settings.",
+          "count": 105
+        },
+        {
+          "gap": "No parameter table was detected; parameters may need manual extraction from scripts or PDFs.",
+          "count": 39
+        },
+        {
+          "gap": "复杂多物理场仍需要用户逐步确认耦合方向和边界条件。",
+          "count": 1
+        },
+        {
+          "gap": "文章不能替代 COMSOL 模型树；仍需通过 MATLAB/Java/MPH 摘要核对 API 与选择集。",
+          "count": 1
+        }
+      ],
+      "quality_audit": {
+        "kind": "case_memory_quality_audit",
+        "case_count": 115,
+        "average_quality_score": 60.7,
+        "high_quality_cases": 64,
+        "usable_modeling_cases": 65,
+        "surrogate_ready_cases": 0,
+        "issue_counts": [
+          {
+            "issue": "缺少参数扫描 CSV",
+            "count": 114
+          },
+          {
+            "issue": "缺少结果量证据",
+            "count": 89
+          },
+          {
+            "issue": "缺少材料证据",
+            "count": 76
+          },
+          {
+            "issue": "缺少参数证据",
+            "count": 40
+          },
+          {
+            "issue": "缺少研究/求解证据",
+            "count": 33
+          },
+          {
+            "issue": "缺少物理场证据",
+            "count": 32
+          },
+          {
+            "issue": "缺少几何证据",
+            "count": 32
+          },
+          {
+            "issue": "缺少边界条件证据",
+            "count": 28
+          },
+          {
+            "issue": "缺少来源文件记录",
+            "count": 6
+          }
+        ]
+      }
+    },
+    "physics_corrections": [],
+    "recommended_modeling_steps": [
+      "Clarify model objective, dimensionality, input parameters, outputs, and validation targets.",
+      "查看检索到的相似案例，并复用其参数命名、几何序列和 LiveLink API 调用模式。",
+      "Choose geometry strategy: reuse similar case script, import CAD, or generate parametric geometry.",
+      "Define materials, units, selections, and reusable parameter groups.",
+      "Add physics interfaces and boundary/initial conditions.",
+      "Create mesh and study sequence, then solve a baseline model.",
+      "Export derived values and plots for validation."
+    ],
+    "candidate_parameters": [
+      {
+        "name": "square_side",
+        "value": "300[mm]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "borehole_diameter",
+        "value": "15[mm]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "stress_ratio_range",
+        "value": "1.5~2.0",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "initial_pressure",
+        "value": "0.1[MPa]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "mean_elastic_modulus",
+        "value": "35.1[GPa]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "mean_compressive_strength",
+        "value": "152[MPa]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "principal_stress_direction_135",
+        "value": "135[deg]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "principal_stress_direction_180",
+        "value": "180[deg]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "principal_stress_direction_90",
+        "value": "90[deg]",
+        "description": "",
+        "source_case": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究"
+      },
+      {
+        "name": "rho",
+        "value": "1000[kg/m^3]",
+        "description": "",
+        "source_case": "岩石裂隙流"
+      },
+      {
+        "name": "mu",
+        "value": "0.001[Pa*s]",
+        "description": "",
+        "source_case": "岩石裂隙流"
+      },
+      {
+        "name": "beta",
+        "value": "170[deg]",
+        "description": "Contact angle, pulley/belt",
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "d",
+        "value": "5[cm]",
+        "description": "Pulley thickness",
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "P",
+        "value": "185[kW]",
+        "description": "Power at pulley shaft",
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "n",
+        "value": "1000",
+        "description": "Revolutions per minute",
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "omega",
+        "value": "2*pi[rad]*n/1[min]",
+        "description": "Angular velocity",
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "M",
+        "value": "P/omega",
+        "description": "Torque at pulley shaft",
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "R",
+        "value": "125[mm]",
+        "description": "Outer radius",
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "E",
+        "value": "210[GPa]",
+        "description": "杨氏模量",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "alpha",
+        "value": "12e-6[1/K]",
+        "description": "热膨胀系数",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "T_hot",
+        "value": "373.15[K]",
+        "description": "热端温度",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "T_cold",
+        "value": "293.15[K]",
+        "description": "冷端温度",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "N",
+        "value": "20",
+        "description": "Spatial frequency resolution",
+        "source_case": "如何生成随机非均匀材料数据6.2"
+      },
+      {
+        "name": "b",
+        "value": "1.8",
+        "description": "Spectral exponent",
+        "source_case": "如何生成随机非均匀材料数据6.2"
+      },
+      {
+        "name": "D",
+        "value": "2+(3-b)/2",
+        "description": "Fractal dimension",
+        "source_case": "如何生成随机非均匀材料数据6.2"
+      },
+      {
+        "name": "dh",
+        "value": "2[cm]",
+        "description": "",
+        "source_case": "受载弹簧 - 使用全局方程满足约束条件"
+      }
+    ],
+    "candidate_outputs": [
+      "max_displacement",
+      "max_von_mises_stress",
+      "reaction_force",
+      "pressure_drop",
+      "max_velocity",
+      "flow_rate"
+    ],
+    "analysis_path": [
+      "Baseline solve",
+      "Mesh refinement check",
+      "Parameter sweep",
+      "Result validation",
+      "Stress/displacement safety check",
+      "Pressure drop and flow uniformity analysis",
+      "Surrogate training dataset export"
+    ],
+    "training_path": [
+      "根据选定参数和范围创建或改写约束 JSON。",
+      "结合已校验约束和相似案例证据生成 LiveLink MATLAB 建模脚本。",
+      "运行 COMSOL 参数扫描并生成 CSV 数据。",
+      "使用选定输入列和输出列训练本地代理模型。",
+      "用未参与训练的 COMSOL 结果验证 RMSE、MAE、R2 和测试预测。",
+      "Search the master COMSOL case knowledge base for similar evidence before adapting settings.",
+      "Cross-check COMSOL API and feature usage against the official documentation index.",
+      "Keep unsupported settings marked as unknown until verified in COMSOL or by source evidence."
+    ],
+    "limitations": [
+      "Retrieved cases mainly support modeling logic; numerical training still needs CSV sweep data.",
+      "No external master case match was found; rely on local case memory and review settings manually.",
+      "No official documentation match was found; API usage should be checked before execution."
+    ],
+    "external_case_matches": [],
+    "official_doc_matches": []
+  },
+  "steps": [
+    {
+      "index": 0,
+      "id": "physics",
+      "title": "选择物理场",
+      "purpose": "Confirm physics interfaces, coupling assumptions, dependent variables, and boundary-condition families.",
+      "status": "approved",
+      "proposal": [
+        "选择结果：固体力学 + 达西定律/多孔介质流，必要时加入裂缝扩展模型",
+        "COMSOL 接口建议：Solid Mechanics + Darcy's Law 或 Porous Media Flow；若要模拟裂纹起裂和扩展，需要结合 Fracture Flow、Phase Field 或 Cohesive Zone 等裂缝描述方法",
+        "理论依据：主要物理量/未知量包括岩体位移和应力、孔隙压力以及裂缝扩展状态。地应力和煤层力学条件由固体力学平衡方程控制，压裂液压力和渗流由达西定律或多孔介质流控制，裂纹扩展需要断裂准则或相场/黏聚区模型描述。",
+        "复合场检查：该需求应按复合场判断，优先考虑：孔压-应力-裂缝耦合 + 流固耦合 + 热-结构耦合 / 热应力 + 非等温流动。 主物理场=Solid Mechanics；耦合物理场=Darcy's Law / Porous Media Flow、Fracture Flow、Phase Field or Cohesive Zone、Solid Mechanics、Moving Mesh、Heat Transfer in Fluids；多物理场节点=Poroelasticity、Fracture flow-stress coupling、Fluid-Structure Interaction、Thermal Expansion、Nonisothermal Flow；耦合变量=岩体位移/应力、孔隙压力、渗流速度、裂缝开度/损伤变量、注入压力、流体压力/剪切力、结构位移、移动网格。",
+        "边界条件判断：需要设置原位地应力或围压、钻孔内压/注入压力、外边界位移或应力约束、煤层渗透率/孔隙率，以及裂缝面压力或流体泄漏条件。",
+        "边界条件知识库：按当前需求，边界条件应优先按“水力压裂/孔压-应力耦合 + 固体力学 + 流体流动”来判断。 建议边界类型：外边界原位地应力、围压或位移约束、钻孔内壁注入压力或流量、煤层/岩体渗透率、孔隙率和初始孔隙压力、裂缝面压力、泄漏或损伤/相场边界、固定约束、位移约束。",
+        "初始条件建议：初始孔隙压力、初始地应力、初始位移为零或原位平衡状态、初始裂缝/损伤变量、初始位移、初始速度。",
+        "需要确认：确认是只模拟孔压-应力响应，还是要模拟真实裂纹扩展；若要裂纹路径，需要补充断裂能、抗拉强度、损伤准则或相场参数。",
+        "相似案例参考：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板。"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Stress/displacement safety check"
+      ],
+      "approval_questions": [
+        "物理场是否正确？是否需要耦合其他物理场？",
+        "边界条件类型是否已确认？"
+      ],
+      "approved_outputs": [
+        "approved_physics_interfaces",
+        "approved_couplings",
+        "boundary_condition_families"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "论文对象为固体-渗流-裂缝耦合；裂缝准则作为后续校准项。",
+        "timestamp": "2026-08-03T11:18:44.574845+00:00"
+      }
+    },
+    {
+      "index": 1,
+      "id": "materials",
+      "title": "确定材料",
+      "purpose": "Confirm material groups, property sources, units, nonlinear/anisotropic assumptions, and parameterization.",
+      "status": "approved",
+      "proposal": [
+        "材料与物性结论：材料与物性参数应优先按“结构力学材料 + 流体材料”配置。 Recognized material: Water.",
+        "已识别材料配置：Water: density=998[kg/m^3], dynamicviscosity=1e-3[Pa*s], thermalconductivity=0.6[W/(m*K)], heatcapacity=4182[J/(kg*K)]",
+        "必填物性参数：密度(rho, kg/m^3)；弹性模量(E, Pa)；泊松比(nu, 1)；动力黏度(mu, Pa*s)",
+        "可选/耦合物性：抗拉强度(ft)；抗压强度(fc)；断裂能(Gc)；比热容(Cp_f)；导热系数(k_f)；扩散系数(D)",
+        "温度/频率/方向依赖：弹性模量和强度可为空间随机场；复合材料或层状材料需要方向相关弹性矩阵。；黏度和密度可能随温度、浓度或压力变化；气体可压缩时需要状态方程。",
+        "待补充物性：泊松比",
+        "MATLAB 材料设置应使用 material.propertyGroup('def').set(...)，并先用 model.param.set(...) 定义带单位参数。"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "材料属性和单位是否可靠？",
+        "是否需要非线性、各向异性或温度相关材料？"
+      ],
+      "approved_outputs": [
+        "approved_materials",
+        "material_parameters",
+        "unit_checks"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "采用文章给出的煤岩非均质参数与水的密度、黏度；断裂参数待试验标定。",
+        "timestamp": "2026-08-03T11:18:44.589099+00:00"
+      }
+    },
+    {
+      "index": 2,
+      "id": "data_structure",
+      "title": "建模数据与结构",
+      "purpose": "Confirm geometry source, dimensionality, selections, imported data, parameters, and data needed for training.",
+      "status": "approved",
+      "proposal": [
+        "几何与参数结论：几何与参数应优先按“水力压裂单孔/裂隙几何 + 结构力学几何与参数”组织。",
+        "维度建议：2D 平面应变优先；需要厚度效应或三维钻孔时再升为 3D",
+        "几何要点：矩形或正方形煤/岩体代表试验工作面或局部煤层；中心或指定位置圆形钻孔；可选预制裂缝、弱面或自然裂隙线；外边界用于施加地应力、围压或位移约束；受力实体或梁/板结构；固定端",
+        "关键参数：square_side=300[mm], borehole_diameter=15[mm], stress_ratio_range=1.5~2.0, initial_pressure=0.1[MPa], mean_elastic_modulus=35.1[GPa], mean_compressive_strength=152[MPa], principal_stress_direction_135=135[deg], principal_stress_direction_180=180[deg]",
+        "选择集建议：命名钻孔边界；命名外边界四边；命名裂缝/弱面边界；命名煤岩基体域；命名固定约束边界；命名载荷边界",
+        "后续扫描变量：pinj、sigH、sigh、k_perm、rb、F0"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "几何/数据结构是否符合建模对象？",
+        "参数、选择集和导入数据是否完整？"
+      ],
+      "approved_outputs": [
+        "approved_geometry_or_data_structure",
+        "named_selections",
+        "input_parameters"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "采用二维平面应变、300 mm 正方形与15 mm中心孔。",
+        "timestamp": "2026-08-03T11:18:44.603775+00:00"
+      }
+    },
+    {
+      "index": 3,
+      "id": "mesh",
+      "title": "网格策略",
+      "purpose": "Confirm global/local mesh size, boundary layers, refinement targets, and mesh-independence checks.",
+      "status": "approved",
+      "proposal": [
+        "Start with a controlled mesh size parameter, then add local refinement where gradients are expected.",
+        "Plan at least one mesh refinement comparison before parameter sweeps."
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "网格尺度和局部加密区域是否合理？",
+        "是否需要边界层或网格无关性检查？"
+      ],
+      "approved_outputs": [
+        "approved_mesh_strategy",
+        "refinement_targets",
+        "mesh_validation_plan"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "在钻孔、预期裂缝尖端和天然裂缝附近局部加密。",
+        "timestamp": "2026-08-03T11:18:44.617051+00:00"
+      }
+    },
+    {
+      "index": 4,
+      "id": "study_solver",
+      "title": "求解分步",
+      "purpose": "Confirm study sequence, stationary/transient/eigen/frequency/parametric settings, and solver risks.",
+      "status": "approved",
+      "proposal": [
+        "Run a baseline solve before adding parameter sweeps or surrogate-training exports.",
+        "Use the study path suggested by memory: Baseline solve, Mesh refinement check, Parameter sweep, Result validation, Stress/displacement safety check, Pressure drop and flow uniformity analysis."
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Stress/displacement safety check"
+      ],
+      "approval_questions": [
+        "求解顺序是否合理？",
+        "是否先做基准求解再做参数扫描？"
+      ],
+      "approved_outputs": [
+        "approved_study_sequence",
+        "solver_settings",
+        "parameter_sweep_plan"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "先基准稳态地应力，再进行注入压力时变/参数扫描。",
+        "timestamp": "2026-08-03T11:18:44.631445+00:00"
+      }
+    },
+    {
+      "index": 5,
+      "id": "results_export",
+      "title": "结果与导出",
+      "purpose": "Confirm derived values, plots, CSV export columns, validation criteria, and surrogate-training outputs.",
+      "status": "approved",
+      "proposal": [
+        "Export derived values as CSV columns for validation and surrogate training.",
+        "Candidate outputs: max_displacement, max_von_mises_stress, reaction_force, pressure_drop, max_velocity, flow_rate."
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Stress/displacement safety check"
+      ],
+      "approval_questions": [
+        "输出量是否能验证模型？",
+        "CSV 列是否满足后续训练需求？"
+      ],
+      "approved_outputs": [
+        "approved_outputs",
+        "csv_export_columns",
+        "validation_targets"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "导出孔压、损伤变量、裂缝长度、起裂压力和应力场 CSV。",
+        "timestamp": "2026-08-03T11:18:44.644206+00:00"
+      }
+    },
+    {
+      "index": 6,
+      "id": "final_generation",
+      "title": "完整模型生成",
+      "purpose": "Generate final COMSOL MATLAB/Java modeling plan after all previous steps are approved.",
+      "status": "approved",
+      "proposal": [
+        "Generate the complete COMSOL model only after all previous steps are approved.",
+        "Final scripts should preserve comments for boundary IDs, selections, material data, and solver assumptions."
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究, 岩石裂隙流, 带轮应力, 扳手的应力和应变, 已验证：二维热应力矩形模板",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "所有步骤是否已确认？",
+        "是否可以生成完整 COMSOL MATLAB/Java 建模包？"
+      ],
+      "approved_outputs": [
+        "final_matlab_script",
+        "final_java_script",
+        "verification_report"
+      ],
+      "generated_outputs": {
+        "matlab": "generated\\demo_hydraulic_fracture_package\\final_code\\build_a_comsol_hydraulic_fracturing_mode_20260803111808.m",
+        "java": "generated\\demo_hydraulic_fracture_package\\final_code\\BuildAComsolHydraulicFracturingMode20260803111808.java",
+        "guidance": "generated\\demo_hydraulic_fracture_package\\final_code\\build_a_comsol_hydraulic_fracturing_mode_20260803111808_guidance.md",
+        "verification": "generated\\demo_hydraulic_fracture_package\\final_code\\build_a_comsol_hydraulic_fracturing_mode_20260803111808_verification.json"
+      },
+      "approval": {
+        "approved": true,
+        "comment": "Final MATLAB and Java files generated from approved workflow decisions.",
+        "timestamp": "2026-08-03T11:18:45.249320+00:00"
+      }
+    }
+  ],
+  "approval_log": [
+    {
+      "step_id": "physics",
+      "approved": true,
+      "comment": "论文对象为固体-渗流-裂缝耦合；裂缝准则作为后续校准项。",
+      "timestamp": "2026-08-03T11:18:44.574845+00:00"
+    },
+    {
+      "step_id": "materials",
+      "approved": true,
+      "comment": "采用文章给出的煤岩非均质参数与水的密度、黏度；断裂参数待试验标定。",
+      "timestamp": "2026-08-03T11:18:44.589099+00:00"
+    },
+    {
+      "step_id": "data_structure",
+      "approved": true,
+      "comment": "采用二维平面应变、300 mm 正方形与15 mm中心孔。",
+      "timestamp": "2026-08-03T11:18:44.603775+00:00"
+    },
+    {
+      "step_id": "mesh",
+      "approved": true,
+      "comment": "在钻孔、预期裂缝尖端和天然裂缝附近局部加密。",
+      "timestamp": "2026-08-03T11:18:44.617051+00:00"
+    },
+    {
+      "step_id": "study_solver",
+      "approved": true,
+      "comment": "先基准稳态地应力，再进行注入压力时变/参数扫描。",
+      "timestamp": "2026-08-03T11:18:44.631445+00:00"
+    },
+    {
+      "step_id": "results_export",
+      "approved": true,
+      "comment": "导出孔压、损伤变量、裂缝长度、起裂压力和应力场 CSV。",
+      "timestamp": "2026-08-03T11:18:44.644206+00:00"
+    }
+  ]
+}

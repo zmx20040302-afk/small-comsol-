@@ -1,0 +1,269 @@
+{
+  "kind": "comsol_case_csv_candidate_plan",
+  "created_at": "2026-08-23T04:10:05.621810+00:00",
+  "source_case_count": 709,
+  "candidate_count": 101,
+  "candidates": [
+    {
+      "title": "biased_resonator_2d_pull_in_pull_out",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\偏压谐振器的吸合和释放分析 - 二维",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Solid Mechanics"
+      ],
+      "domain": "structural",
+      "suggested_inputs": [
+        "l_e",
+        "gap",
+        "vrel"
+      ],
+      "suggested_outputs": [
+        "u_max_m",
+        "mises_max_Pa"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "electrostrictive_disc",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\电致伸缩盘",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Solid Mechanics"
+      ],
+      "domain": "structural",
+      "suggested_inputs": [
+        "E1",
+        "nu1",
+        "Ps"
+      ],
+      "suggested_outputs": [
+        "u_max_m",
+        "mises_max_Pa"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "hartmann_boundary_layer",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\哈特曼边界层",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Laminar Flow"
+      ],
+      "domain": "fluid",
+      "suggested_inputs": [
+        "visc",
+        "U0",
+        "Re"
+      ],
+      "suggested_outputs": [
+        "pressure_drop_Pa",
+        "outlet_flow_m3_s"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "iron_sphere_bfield_04_13mhz",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\磁场中的铁球",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Heat Transfer"
+      ],
+      "domain": "thermal",
+      "suggested_inputs": [
+        "B0",
+        "r0",
+        "sigma_air"
+      ],
+      "suggested_outputs": [
+        "Tmax_K",
+        "Tavg_K"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "layered_plate",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\多层板的热应力",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Solid Mechanics"
+      ],
+      "domain": "structural",
+      "suggested_inputs": [
+        "Tdeposition",
+        "Tepoxying",
+        "Temp"
+      ],
+      "suggested_outputs": [
+        "u_max_m",
+        "mises_max_Pa"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "magnetic_damping",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\振动导电固体的磁阻尼",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Solid Mechanics"
+      ],
+      "domain": "structural",
+      "suggested_inputs": [
+        "sigma",
+        "a_c",
+        "r0"
+      ],
+      "suggested_outputs": [
+        "u_max_m",
+        "mises_max_Pa"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "piezoelectric_hysteresis",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\压电陶瓷的滞回现象",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Solid Mechanics"
+      ],
+      "domain": "structural",
+      "suggested_inputs": [
+        "alpha",
+        "Ps",
+        "F0"
+      ],
+      "suggested_outputs": [
+        "u_max_m",
+        "mises_max_Pa"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "带轮应力",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\带轮应力",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Solid Mechanics"
+      ],
+      "domain": "structural",
+      "suggested_inputs": [
+        "beta",
+        "P",
+        "omega"
+      ],
+      "suggested_outputs": [
+        "u_max_m",
+        "mises_max_Pa"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "微执行器焦耳热 - 分布式参数版本",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\微执行器焦耳热 - 分布式参数版本",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Electric Currents",
+        "Heat Transfer"
+      ],
+      "domain": "electrothermal",
+      "suggested_inputs": [
+        "htc_s",
+        "htc_us",
+        "DV"
+      ],
+      "suggested_outputs": [
+        "Tmax_K",
+        "joule_power_W"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "热执行器",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\热执行器",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Electric Currents",
+        "Heat Transfer"
+      ],
+      "domain": "electrothermal",
+      "suggested_inputs": [
+        "htc_s",
+        "htc_us",
+        "DV"
+      ],
+      "suggested_outputs": [
+        "Tmax_K",
+        "joule_power_W"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "热烧蚀除料建模6.2",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\热烧蚀除料建模6.2",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Heat Transfer"
+      ],
+      "domain": "thermal",
+      "suggested_inputs": [
+        "H_v",
+        "rho",
+        "k"
+      ],
+      "suggested_outputs": [
+        "Tmax_K",
+        "Tavg_K"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    },
+    {
+      "title": "球对称传递",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\球对称传递",
+      "score": 102,
+      "risk": "baseline_review_required",
+      "physics": [
+        "Heat Transfer"
+      ],
+      "domain": "thermal",
+      "suggested_inputs": [
+        "rho",
+        "k",
+        "Qs"
+      ],
+      "suggested_outputs": [
+        "Tmax_K",
+        "Tavg_K"
+      ],
+      "sample_design": "3 levels per input plus separate midpoint holdout; verify baseline solve before queueing.",
+      "reason": "已检测到可支持自动扫描的单场或明确电-热耦合证据；仍需先通过一次 COMSOL 基准求解。"
+    }
+  ],
+  "workflow": [
+    "Validate source model with one baseline COMSOL solve.",
+    "Generate a bounded parameter sweep from the suggested inputs.",
+    "Export inputs and declared outputs to CSV.",
+    "Run data checks and reserve independent holdout points.",
+    "Train and register a surrogate only after holdout validation passes."
+  ]
+}

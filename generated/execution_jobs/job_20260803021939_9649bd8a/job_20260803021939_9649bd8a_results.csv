@@ -1,0 +1,3 @@
+name,expression,value
+u_max,"maxop1(solid.disp)",4.423086865032889e-05
+mises_max,"maxop1(solid.mises)",52524690.90107489

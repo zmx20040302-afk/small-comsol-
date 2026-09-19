@@ -1,0 +1,43 @@
+{
+  "source": "D:/桌面/codex/案例下载/电气/同心圆柱之间的电场/electric_field_concentric_cylinders.mph",
+  "label": "electric_field_concentric_cylinders.mph",
+  "parameters": {
+    "ri": "0.1[m]",
+    "ro": "1[m]",
+    "V0": "100[V]",
+    "q0": "1e-7[C/m]"
+  },
+  "components": {
+    "tag": "comp1",
+    "geometry": [
+      "geom1"
+    ],
+    "materials": [],
+    "physics": [
+      "es",
+      "es2"
+    ],
+    "meshes": [
+      "mesh1"
+    ],
+    "couplings": [
+      "builder_intop1",
+      "builder_intop2"
+    ]
+  },
+  "studies": [
+    "std1"
+  ],
+  "result_groups": [
+    "pg1",
+    "pg2",
+    "pg3",
+    "pg4"
+  ],
+  "datasets": [
+    "dset1"
+  ],
+  "tables": [],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

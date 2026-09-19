@@ -1,0 +1,30 @@
+{
+  "kind": "mph_code_export_and_learning",
+  "created_at": "2026-08-25T08:23:30.855810+00:00",
+  "source_mph": "D:\\桌面\\codex\\案例下载\\电气\\计算导线电阻\\simple_resistor.mph",
+  "output_dir": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor",
+  "server": {
+    "ready": true,
+    "host": "localhost",
+    "port": 2036,
+    "started_by_exporter": false
+  },
+  "matlab_exit_code": 0,
+  "stdout_tail": "\nMATLAB is now connected to a COMSOL Multiphysics Server at localhost:2036\n\nRun the commands below to access the COMSOL ModelUtil commands:\nimport com.comsol.model.util.*\nMATLAB_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor\\simple_resistor.m\nJAVA_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor\\simple_resistor.java\nSUMMARY_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor\\simple_resistor_summary.json\n",
+  "stderr_tail": "",
+  "matlab_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor\\simple_resistor.m",
+  "java_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor\\simple_resistor.java",
+  "summary_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor\\simple_resistor_summary.json",
+  "learning_outputs": {
+    "json": "generated\\case_knowledge\\simple_resistor.case.json",
+    "markdown": "generated\\case_knowledge\\simple_resistor.case.md",
+    "index": "generated\\case_knowledge\\case_knowledge_index.json"
+  },
+  "memory": {
+    "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\case_memory\\case_memory.json",
+    "case_count": 709
+  },
+  "ok": true,
+  "message": "MATLAB and Java code exported and learned successfully.",
+  "report_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\simple_resistor\\export_and_learning_report.json"
+}

@@ -1,0 +1,624 @@
+{
+  "kind": "fifty_training_tasks_run",
+  "created_at": "2026-08-10T12:09:09.722213+00:00",
+  "task_count": 60,
+  "passed": 60,
+  "failed": 0,
+  "records": [
+    {
+      "task": 1,
+      "name": "读取案例记忆",
+      "status": "passed",
+      "result": {
+        "keys": [
+          "count"
+        ]
+      }
+    },
+    {
+      "task": 2,
+      "name": "刷新知识系统",
+      "status": "passed",
+      "result": {
+        "case_count": 115
+      }
+    },
+    {
+      "task": 3,
+      "name": "质量审计",
+      "status": "passed",
+      "result": {
+        "kind": "case_memory_quality_audit",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 4,
+      "name": "读取训练路线",
+      "status": "passed",
+      "result": {
+        "case_count": 115
+      }
+    },
+    {
+      "task": 5,
+      "name": "检索传热案例",
+      "status": "passed",
+      "result": {
+        "kind": "case_memory_query",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 6,
+      "name": "检索结构案例",
+      "status": "passed",
+      "result": {
+        "kind": "case_memory_query",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 7,
+      "name": "检索流体案例",
+      "status": "passed",
+      "result": {
+        "kind": "case_memory_query",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 8,
+      "name": "检索电磁案例",
+      "status": "passed",
+      "result": {
+        "kind": "case_memory_query",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 9,
+      "name": "检索声学案例",
+      "status": "passed",
+      "result": {
+        "kind": "case_memory_query",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 10,
+      "name": "检索水力压裂案例",
+      "status": "passed",
+      "result": {
+        "kind": "case_memory_query",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 11,
+      "name": "材料物性-钢板传热",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“传热材料”配置。"
+      }
+    },
+    {
+      "task": 12,
+      "name": "材料物性-铝板瞬态冷却",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“传热材料”配置。 Recognized material: Aluminum."
+      }
+    },
+    {
+      "task": 13,
+      "name": "材料物性-煤岩力学",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“结构力学材料”配置。"
+      }
+    },
+    {
+      "task": 14,
+      "name": "材料物性-水流",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“流体材料”配置。 Recognized material: Water."
+      }
+    },
+    {
+      "task": 15,
+      "name": "材料物性-油流",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“流体材料 + 传热材料”配置。"
+      }
+    },
+    {
+      "task": 16,
+      "name": "材料物性-薄膜电阻",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“传热材料 + 电学材料”配置。"
+      }
+    },
+    {
+      "task": 17,
+      "name": "材料物性-复合材料",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“传热材料”配置。"
+      }
+    },
+    {
+      "task": 18,
+      "name": "材料物性-水力压裂",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“结构力学材料”配置。 Recognized material: Water."
+      }
+    },
+    {
+      "task": 19,
+      "name": "材料物性-声学介质",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“声学材料”配置。 Recognized material: Air."
+      }
+    },
+    {
+      "task": 20,
+      "name": "材料物性-电化学",
+      "status": "passed",
+      "result": {
+        "summary": "材料与物性参数应优先按“电学材料”配置。"
+      }
+    },
+    {
+      "task": 21,
+      "name": "几何参数-21",
+      "status": "passed",
+      "result": {
+        "summary": "当前需求还不能唯一确定几何模板，应先按通用参数化几何组织。"
+      }
+    },
+    {
+      "task": 22,
+      "name": "几何参数-22",
+      "status": "passed",
+      "result": {
+        "summary": "当前需求还不能唯一确定几何模板，应先按通用参数化几何组织。"
+      }
+    },
+    {
+      "task": 23,
+      "name": "几何参数-23",
+      "status": "passed",
+      "result": {
+        "summary": "当前需求还不能唯一确定几何模板，应先按通用参数化几何组织。"
+      }
+    },
+    {
+      "task": 24,
+      "name": "几何参数-24",
+      "status": "passed",
+      "result": {
+        "summary": "几何与参数应优先按“流体/传质通道几何与参数”组织。"
+      }
+    },
+    {
+      "task": 25,
+      "name": "几何参数-25",
+      "status": "passed",
+      "result": {
+        "summary": "几何与参数应优先按“水力压裂单孔/裂隙几何”组织。"
+      }
+    },
+    {
+      "task": 26,
+      "name": "几何参数-26",
+      "status": "passed",
+      "result": {
+        "summary": "几何与参数应优先按“结构力学几何与参数”组织。"
+      }
+    },
+    {
+      "task": 27,
+      "name": "几何参数-27",
+      "status": "passed",
+      "result": {
+        "summary": "当前需求还不能唯一确定几何模板，应先按通用参数化几何组织。"
+      }
+    },
+    {
+      "task": 28,
+      "name": "几何参数-28",
+      "status": "passed",
+      "result": {
+        "summary": "几何与参数应优先按“水力压裂单孔/裂隙几何”组织。"
+      }
+    },
+    {
+      "task": 29,
+      "name": "几何参数-29",
+      "status": "passed",
+      "result": {
+        "summary": "几何与参数应优先按“流体/传质通道几何与参数”组织。"
+      }
+    },
+    {
+      "task": 30,
+      "name": "几何参数-30",
+      "status": "passed",
+      "result": {
+        "summary": "当前需求还不能唯一确定几何模板，应先按通用参数化几何组织。"
+      }
+    },
+    {
+      "task": 31,
+      "name": "复合物理场-焦耳热：电流产生热量",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 32,
+      "name": "复合物理场-热应力：温度变化导致",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection",
+          "geometry_parameter_guidance"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 33,
+      "name": "复合物理场-自然对流：温度场和速",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 34,
+      "name": "复合物理场-水力压裂：固体力学、",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 35,
+      "name": "复合物理场-流固耦合：流体压力使",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection",
+          "geometry_parameter_guidance"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 36,
+      "name": "复合物理场-电化学传质：电流、浓",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 37,
+      "name": "复合物理场-声固耦合：结构振动激",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection",
+          "geometry_parameter_guidance"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 38,
+      "name": "复合物理场-热辐射：表面对环境辐",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 39,
+      "name": "复合物理场-反应传热：化学反应热",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 40,
+      "name": "复合物理场-多孔介质传热：渗流和",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 41,
+      "name": "边界条件-左端固定、右端施加载",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“固体力学”来判断。"
+      }
+    },
+    {
+      "task": 42,
+      "name": "边界条件-左边界固定温度、右边",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“传热”来判断。"
+      }
+    },
+    {
+      "task": 43,
+      "name": "边界条件-表面热通量和对流换热",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“传热”来判断。"
+      }
+    },
+    {
+      "task": 44,
+      "name": "边界条件-入口速度、出口压力和",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“流体流动 + 固体力学”来判断。"
+      }
+    },
+    {
+      "task": 45,
+      "name": "边界条件-电压、接地和电绝缘",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“电流/静电”来判断。"
+      }
+    },
+    {
+      "task": 46,
+      "name": "边界条件-煤层围压、钻孔注入压",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“水力压裂/孔压-应力耦合 + 固体力学 + 流体流动”来判断。"
+      }
+    },
+    {
+      "task": 47,
+      "name": "边界条件-初始温度和瞬态温升",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“传热”来判断。"
+      }
+    },
+    {
+      "task": 48,
+      "name": "边界条件-对称面和周期边界",
+      "status": "passed",
+      "result": {
+        "summary": "暂不能可靠判断边界条件类型，需要先确认主物理量、控制方程、几何边界含义和研究类型。"
+      }
+    },
+    {
+      "task": 49,
+      "name": "边界条件-接触面不穿透并允许分",
+      "status": "passed",
+      "result": {
+        "summary": "暂不能可靠判断边界条件类型，需要先确认主物理量、控制方程、几何边界含义和研究类型。"
+      }
+    },
+    {
+      "task": 50,
+      "name": "边界条件-左侧浓度、右侧无通量",
+      "status": "passed",
+      "result": {
+        "summary": "按当前需求，边界条件应优先按“稀物质传递”来判断。"
+      }
+    },
+    {
+      "task": 51,
+      "name": "生成热应力计划",
+      "status": "passed",
+      "result": {
+        "kind": "comsol_model_plan",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 52,
+      "name": "生成水力压裂计划",
+      "status": "passed",
+      "result": {
+        "kind": "comsol_model_plan",
+        "case_count": 115
+      }
+    },
+    {
+      "task": 53,
+      "name": "生成审查级 MATLAB/Java",
+      "status": "passed",
+      "result": {
+        "outputs": {
+          "matlab": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\fifty_tasks_20260810200902\\joule_code\\fifty_task_joule_heat.m",
+          "java": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\fifty_tasks_20260810200902\\joule_code\\FiftyTaskJouleHeat.java",
+          "guidance": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\fifty_tasks_20260810200902\\joule_code\\fifty_task_joule_heat_guidance.md",
+          "verification": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\fifty_tasks_20260810200902\\joule_code\\fifty_task_joule_heat_verification.json"
+        }
+      }
+    },
+    {
+      "task": 54,
+      "name": "读取最近生成代码",
+      "status": "passed",
+      "result": {
+        "kind": "matlab"
+      }
+    },
+    {
+      "task": 55,
+      "name": "检查示例 CSV",
+      "status": "passed",
+      "result": {
+        "kind": "csv_table"
+      }
+    },
+    {
+      "task": 56,
+      "name": "写出训练路线快照",
+      "status": "passed",
+      "result": {
+        "keys": [
+          "json",
+          "markdown"
+        ]
+      }
+    },
+    {
+      "task": 57,
+      "name": "主动澄清-物理场",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "physics_selection"
+        ],
+        "clarifying_questions": [
+          "主要未知量是什么，例如温度、位移/应力、压力/速度、浓度、电势/电流或声压？",
+          "研究类型是稳态、瞬态、频域、特征值，还是参数扫描？"
+        ],
+        "risk_flags": [
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 58,
+      "name": "主动澄清-代码生成",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "generate_comsol_model"
+        ],
+        "clarifying_questions": [
+          "请提供几何来源或尺寸、材料参数、边界/初始条件和目标输出；目前没有足够证据生成可执行模型。",
+          "模型维度是什么：1D、2D、轴对称还是 3D？"
+        ],
+        "risk_flags": [
+          "自动生成的 MATLAB/Java 只能在选择集、单位、物理接口和网格经过检查后执行。",
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 59,
+      "name": "主动澄清-代理训练",
+      "status": "passed",
+      "result": {
+        "intent": [
+          "generate_comsol_model",
+          "train_surrogate"
+        ],
+        "clarifying_questions": [
+          "请提供几何来源或尺寸、材料参数、边界/初始条件和目标输出；目前没有足够证据生成可执行模型。",
+          "模型维度是什么：1D、2D、轴对称还是 3D？",
+          "请提供 COMSOL 参数扫描 CSV，并说明输入列、输出列和单位；没有 CSV 只能学习建模逻辑，不能训练数值代理模型。"
+        ],
+        "risk_flags": [
+          "自动生成的 MATLAB/Java 只能在选择集、单位、物理接口和网格经过检查后执行。",
+          "代理模型只能在已验证的几何、材料、边界和参数范围内使用。",
+          "当前信息不足，建议先回答澄清问题，再进入下一步建模或代码生成。"
+        ]
+      }
+    },
+    {
+      "task": 60,
+      "name": "检查本地网页健康接口",
+      "status": "passed",
+      "result": {
+        "status": "reachable"
+      }
+    }
+  ],
+  "note": "本轮完成知识检索、理论判断、边界/材料/几何推理、代码审查和系统接口验证；未把未经过 COMSOL 实机求解的代码标记为可求解。"
+}

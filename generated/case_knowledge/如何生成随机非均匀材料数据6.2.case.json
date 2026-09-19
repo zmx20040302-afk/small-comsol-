@@ -2,7 +2,7 @@
   "kind": "comsol_case_card",
   "title": "如何生成随机非均匀材料数据6.2",
   "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\如何生成随机非均匀材料数据6.2",
-  "created_at": "2026-06-29T08:43:11.306701+00:00",
+  "created_at": "2026-07-06T09:38:34.813575+00:00",
   "training_stage": "modeling_logic_learning_ready",
   "file_summary": {
     "count": 16,
@@ -63,7 +63,8 @@
     ],
     "studies": [
       "std1 / stat / Stationary",
-      "std1"
+      "std1",
+      "Stationary"
     ],
     "results": [
       "pg1",
@@ -101,9 +102,9 @@
     ],
     "source_extracts": [
       {
-        "name": "random_material_percolation_volume_visualization.java",
-        "kind": "comsol_java",
-        "evidence_score": 22,
+        "name": "random_material_percolation_volume_visualization.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 25,
         "content_summary": [
           "import com.comsol.model.*;",
           "import com.comsol.model.util.*;",
@@ -129,7 +130,120 @@
         ],
         "studies": [
           "std1 / stat / Stationary",
-          "std1"
+          "std1",
+          "Stationary"
+        ],
+        "results": [],
+        "boundary_conditions": [
+          "temp1 / [4]",
+          "temp2 / [3]",
+          "temp1 / new int[]{4}",
+          "temp2 / new int[]{3}",
+          "temp1 / T0",
+          "stat / notlistsolnum",
+          "stat / notsolnum",
+          "stat / listsolnum",
+          "stat / solnum",
+          "st1 / study",
+          "st1 / studystep",
+          "v1 / control",
+          "fc1 / dtech",
+          "fc1 / initstep",
+          "fc1 / minstep",
+          "fc1 / maxiter",
+          "d1 / linsolver"
+        ],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "random_material_scatter_volume_plot.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 25,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.comments(\"Untitled\\n\\n\");",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+          "model.study().create(\"std1\");"
+        ],
+        "parameters": [],
+        "geometry": [
+          "blk1 / Block"
+        ],
+        "physics": [
+          "ht / HeatTransfer"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary",
+          "std1",
+          "Stationary"
+        ],
+        "results": [],
+        "boundary_conditions": [
+          "temp1 / [4]",
+          "temp2 / [3]",
+          "temp1 / new int[]{4}",
+          "temp2 / new int[]{3}",
+          "temp1 / T0",
+          "stat / notlistsolnum",
+          "stat / notsolnum",
+          "stat / listsolnum",
+          "stat / solnum",
+          "st1 / study",
+          "st1 / studystep",
+          "v1 / control",
+          "fc1 / dtech",
+          "fc1 / initstep",
+          "fc1 / minstep",
+          "fc1 / maxiter",
+          "d1 / linsolver"
+        ],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "random_material_percolation_volume_visualization.java",
+        "kind": "comsol_java",
+        "evidence_score": 23,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.comments(\"Untitled\\n\\n\");",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+          "model.study().create(\"std1\");"
+        ],
+        "parameters": [],
+        "geometry": [
+          "blk1 / Block"
+        ],
+        "physics": [
+          "ht / HeatTransfer"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary",
+          "std1",
+          "Stationary"
         ],
         "results": [],
         "boundary_conditions": [
@@ -156,7 +270,7 @@
       {
         "name": "random_material_scatter_volume_plot.java",
         "kind": "comsol_java",
-        "evidence_score": 22,
+        "evidence_score": 23,
         "content_summary": [
           "import com.comsol.model.*;",
           "import com.comsol.model.util.*;",
@@ -182,7 +296,8 @@
         ],
         "studies": [
           "std1 / stat / Stationary",
-          "std1"
+          "std1",
+          "Stationary"
         ],
         "results": [],
         "boundary_conditions": [
@@ -209,7 +324,7 @@
       {
         "name": "random_material_scatter_volume_plot.m",
         "kind": "matlab_livelink",
-        "evidence_score": 21,
+        "evidence_score": 22,
         "content_summary": [
           "import com.comsol.model.*",
           "import com.comsol.model.util.*",
@@ -234,7 +349,8 @@
           "mesh1"
         ],
         "studies": [
-          "std1 / stat / Stationary"
+          "std1 / stat / Stationary",
+          "Stationary"
         ],
         "results": [],
         "boundary_conditions": [
@@ -261,7 +377,7 @@
       {
         "name": "random_material_percolation_volume_visualization.m",
         "kind": "matlab_livelink",
-        "evidence_score": 20,
+        "evidence_score": 21,
         "content_summary": [
           "import com.comsol.model.*",
           "import com.comsol.model.util.*",
@@ -286,7 +402,8 @@
           "mesh1"
         ],
         "studies": [
-          "std1 / stat / Stationary"
+          "std1 / stat / Stationary",
+          "Stationary"
         ],
         "results": [],
         "boundary_conditions": [
@@ -310,9 +427,52 @@
         ]
       },
       {
+        "name": "wrench_random.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 12,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.comments(\"Untitled\\n\\n\");",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.component(\"comp1\").physics().create(\"solid\", \"SolidMechanics\", \"geom1\");",
+          "model.study().create(\"std1\");"
+        ],
+        "parameters": [],
+        "geometry": [
+          "imp1 / Import",
+          "geom1 / imp1 / filename"
+        ],
+        "physics": [
+          "solid / SolidMechanics"
+        ],
+        "materials": [
+          "mat1"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [
+          "std1 / stat / Stationary",
+          "std1",
+          "Stationary"
+        ],
+        "results": [],
+        "boundary_conditions": [
+          "imp1 / filename"
+        ],
+        "theory_keywords": [
+          "传热",
+          "电磁",
+          "多孔介质/裂隙"
+        ]
+      },
+      {
         "name": "wrench_random.m",
         "kind": "matlab_livelink",
-        "evidence_score": 10,
+        "evidence_score": 11,
         "content_summary": [
           "import com.comsol.model.*",
           "import com.comsol.model.util.*",
@@ -338,7 +498,8 @@
           "mesh1"
         ],
         "studies": [
-          "std1 / stat / Stationary"
+          "std1 / stat / Stationary",
+          "Stationary"
         ],
         "results": [],
         "boundary_conditions": [
@@ -353,7 +514,7 @@
       {
         "name": "wrench_random.java",
         "kind": "comsol_java",
-        "evidence_score": 9,
+        "evidence_score": 10,
         "content_summary": [
           "import com.comsol.model.*;",
           "import com.comsol.model.util.*;",
@@ -379,7 +540,8 @@
         ],
         "studies": [
           "std1 / stat / Stationary",
-          "std1"
+          "std1",
+          "Stationary"
         ],
         "results": [],
         "boundary_conditions": [],
@@ -388,6 +550,77 @@
           "电磁",
           "多孔介质/裂隙"
         ]
+      },
+      {
+        "name": "randomized_2D_data.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 8,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.comments(\"Untitled\\n\\n\");",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.result().dataset().create(\"grid1\", \"Grid2D\");",
+          "model.result().dataset(\"grid1\").set(\"source\", \"data\");"
+        ],
+        "parameters": [
+          "N",
+          "b"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [
+          "pg1",
+          "surf1"
+        ],
+        "boundary_conditions": [
+          "surf1 / colortable",
+          "surf1 / resolution",
+          "surf1 / expr"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "grid_based_3D_data_export.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 7,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.comments(\"Untitled\\n\\n\");",
+          "model.component().create(\"comp1\", true);",
+          "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+          "model.component(\"comp1\").mesh().create(\"mesh1\");",
+          "model.func().create(\"rn1\", \"Random\");",
+          "model.func(\"rn1\").set(\"type\", \"normal\");"
+        ],
+        "parameters": [
+          "N",
+          "b",
+          "D"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [
+          "pg1",
+          "slc1"
+        ],
+        "boundary_conditions": [
+          "slc1 / expr"
+        ],
+        "theory_keywords": []
       },
       {
         "name": "randomized_2D_data.java",
@@ -522,83 +755,8 @@
         "theory_keywords": []
       },
       {
-        "name": "grid_based_3D_data_export.mph",
-        "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
-      },
-      {
-        "name": "random_material_percolation_volume_visualization.mph",
-        "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
-      },
-      {
-        "name": "random_material_scatter_volume_plot.mph",
-        "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
-      },
-      {
-        "name": "randomized_2D_data.mph",
-        "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
-      },
-      {
         "name": "synthesized_data.txt",
         "kind": "text",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
-      },
-      {
-        "name": "wrench_random.mph",
-        "kind": "comsol_mph",
         "evidence_score": 0,
         "content_summary": [],
         "parameters": [],
@@ -613,8 +771,8 @@
       }
     ],
     "totals": {
-      "model_tree_items": 37,
-      "source_files_with_content": 10,
+      "model_tree_items": 38,
+      "source_files_with_content": 15,
       "source_files_checked": 16
     }
   },
@@ -628,45 +786,361 @@
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "grid_based_3D_data_export.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 3310
+              },
+              {
+                "name": "grid_based_3D_data_export.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 3688
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [
+                "N",
+                "b",
+                "D"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [
+                "pg1",
+                "slc1"
+              ],
+              "boundary_conditions": [
+                "slc1 / expr"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.comments(\"Untitled\\n\\n\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.func().create(\"rn1\", \"Random\");",
+                "model.func(\"rn1\").set(\"type\", \"normal\");",
+                "model.func(\"rn1\").label(\"Gaussian Random\");",
+                "model.func(\"rn1\").set(\"funcname\", \"g1\");",
+                "model.func(\"rn1\").set(\"nargs\", 3);",
+                "model.func().create(\"rn2\", \"Random\");"
+              ],
+              "evidence_score": 7
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## grid_based_3D_data_export.java\n/*\n * grid_based_3D_data_export.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:02 by COMSOL 6.4.0.293. */\npublic class grid_based_3D_data_export {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"c"
         },
         {
           "name": "random_material_percolation_volume_visualization.mph",
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "random_material_percolation_volume_visualization.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 20540
+              },
+              {
+                "name": "random_material_percolation_volume_visualization.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 19192
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [
+                "blk1 / Block"
+              ],
+              "physics": [
+                "ht / HeatTransfer"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary",
+                "std1",
+                "Stationary"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "temp1 / [4]",
+                "temp2 / [3]",
+                "temp1 / new int[]{4}",
+                "temp2 / new int[]{3}",
+                "temp1 / T0",
+                "stat / notlistsolnum",
+                "stat / notsolnum",
+                "stat / listsolnum",
+                "stat / solnum",
+                "st1 / study",
+                "st1 / studystep",
+                "v1 / control",
+                "fc1 / dtech",
+                "fc1 / initstep",
+                "fc1 / minstep",
+                "fc1 / maxiter",
+                "d1 / linsolver"
+              ],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.comments(\"Untitled\\n\\n\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+                "model.study(\"std1\").feature(\"stat\").activate(\"ht\", true);",
+                "model.func().create(\"int1\", \"Interpolation\");",
+                "model.func(\"int1\").set(\"source\", \"file\");"
+              ],
+              "evidence_score": 25
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## random_material_percolation_volume_visualization.java\n/*\n * random_material_percolation_volume_visualization.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:03 by COMSOL 6.4.0.293. */\npublic class random_material_percolation_volume_visualization {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n"
         },
         {
           "name": "random_material_scatter_volume_plot.mph",
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "random_material_scatter_volume_plot.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 34222
+              },
+              {
+                "name": "random_material_scatter_volume_plot.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 31809
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [
+                "blk1 / Block"
+              ],
+              "physics": [
+                "ht / HeatTransfer"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary",
+                "std1",
+                "Stationary"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "temp1 / [4]",
+                "temp2 / [3]",
+                "temp1 / new int[]{4}",
+                "temp2 / new int[]{3}",
+                "temp1 / T0",
+                "stat / notlistsolnum",
+                "stat / notsolnum",
+                "stat / listsolnum",
+                "stat / solnum",
+                "st1 / study",
+                "st1 / studystep",
+                "v1 / control",
+                "fc1 / dtech",
+                "fc1 / initstep",
+                "fc1 / minstep",
+                "fc1 / maxiter",
+                "d1 / linsolver"
+              ],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.comments(\"Untitled\\n\\n\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+                "model.study(\"std1\").feature(\"stat\").activate(\"ht\", true);",
+                "model.func().create(\"int1\", \"Interpolation\");",
+                "model.func(\"int1\").set(\"source\", \"file\");"
+              ],
+              "evidence_score": 25
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## random_material_scatter_volume_plot.java\n/*\n * random_material_scatter_volume_plot.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:03 by COMSOL 6.4.0.293. */\npublic class random_material_scatter_volume_plot {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.component().create(\"comp1\", "
         },
         {
           "name": "randomized_2D_data.mph",
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "randomized_2D_data.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 2840
+              },
+              {
+                "name": "randomized_2D_data.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 3264
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [
+                "N",
+                "b"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [
+                "pg1",
+                "surf1"
+              ],
+              "boundary_conditions": [
+                "surf1 / colortable",
+                "surf1 / resolution",
+                "surf1 / expr"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.comments(\"Untitled\\n\\n\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.result().dataset().create(\"grid1\", \"Grid2D\");",
+                "model.result().dataset(\"grid1\").set(\"source\", \"data\");",
+                "model.func().create(\"rn1\", \"Random\");",
+                "model.func(\"rn1\").set(\"funcname\", \"g1\");",
+                "model.func(\"rn1\").set(\"type\", \"normal\");",
+                "model.func().create(\"rn2\", \"Random\");"
+              ],
+              "evidence_score": 8
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## randomized_2D_data.java\n/*\n * randomized_2D_data.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:04 by COMSOL 6.4.0.293. */\npublic class randomized_2D_data {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create("
         },
         {
           "name": "wrench_random.mph",
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "wrench_random.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 24929
+              },
+              {
+                "name": "wrench_random.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 23721
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [
+                "imp1 / Import",
+                "geom1 / imp1 / filename"
+              ],
+              "physics": [
+                "solid / SolidMechanics"
+              ],
+              "materials": [
+                "mat1"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [
+                "std1 / stat / Stationary",
+                "std1",
+                "Stationary"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "imp1 / filename"
+              ],
+              "theory_keywords": [
+                "传热",
+                "电磁",
+                "多孔介质/裂隙"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.comments(\"Untitled\\n\\n\");",
+                "model.component().create(\"comp1\", true);",
+                "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+                "model.component(\"comp1\").mesh().create(\"mesh1\");",
+                "model.component(\"comp1\").physics().create(\"solid\", \"SolidMechanics\", \"geom1\");",
+                "model.study().create(\"std1\");",
+                "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+                "model.study(\"std1\").feature(\"stat\").activate(\"solid\", true);",
+                "model.component(\"comp1\").geom(\"geom1\").create(\"imp1\", \"Import\");",
+                "model.component(\"comp1\").geom(\"geom1\").feature(\"imp1\")"
+              ],
+              "evidence_score": 12
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## wrench_random.java\n/*\n * wrench_random.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:05 by COMSOL 6.4.0.293. */\npublic class wrench_random {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 3);\n\n "
         }
       ],
       "matlab_builders": [
@@ -792,7 +1266,8 @@
                 "mesh1"
               ],
               "studies": [
-                "std1 / stat / Stationary"
+                "std1 / stat / Stationary",
+                "Stationary"
               ],
               "results": [],
               "boundary_conditions": [
@@ -828,7 +1303,7 @@
                 "model.study('std1').feature('stat').activate('ht', true);",
                 "model.func.create('int1', 'Interpolation');"
               ],
-              "evidence_score": 20
+              "evidence_score": 21
             }
           },
           "preview": "function out = model\n%\n% random_material_percolation_volume_visualization.m\n%\n% Model exported on Jun 13 2026, 22:03 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'59' '8"
@@ -900,7 +1375,8 @@
                 "mesh1"
               ],
               "studies": [
-                "std1 / stat / Stationary"
+                "std1 / stat / Stationary",
+                "Stationary"
               ],
               "results": [],
               "boundary_conditions": [
@@ -937,7 +1413,7 @@
                 "model.study('std1').feature('stat').activate('ht', true);",
                 "model.func.create('int1', 'Interpolation');"
               ],
-              "evidence_score": 21
+              "evidence_score": 22
             }
           },
           "preview": "function out = model\n%\n% random_material_scatter_volume_plot.m\n%\n% Model exported on Jun 13 2026, 22:03 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'59' '82'}), 'unicod"
@@ -1054,7 +1530,8 @@
                 "mesh1"
               ],
               "studies": [
-                "std1 / stat / Stationary"
+                "std1 / stat / Stationary",
+                "Stationary"
               ],
               "results": [],
               "boundary_conditions": [
@@ -1079,7 +1556,7 @@
                 "model.study('std1').feature('stat').activate('solid', true);",
                 "model.component('comp1').geom('geom1').create('imp1', 'Import');"
               ],
-              "evidence_score": 10
+              "evidence_score": 11
             }
           },
           "preview": "function out = model\n%\n% wrench_random.m\n%\n% Model exported on Jun 13 2026, 22:05 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\COMSOL\\' native2unicode(hex2dec({'59' '82'}), 'unicode')  native2unicode(he"
@@ -1164,7 +1641,8 @@
               ],
               "studies": [
                 "std1 / stat / Stationary",
-                "std1"
+                "std1",
+                "Stationary"
               ],
               "results": [],
               "boundary_conditions": [
@@ -1201,7 +1679,7 @@
                 "model.func().create(\"int1\", \"Interpolation\");",
                 "model.func(\"int1\").set(\"source\", \"file\");"
               ],
-              "evidence_score": 22
+              "evidence_score": 23
             }
           },
           "preview": "/*\n * random_material_percolation_volume_visualization.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:03 by COMSOL 6.4.0.293. */\npublic class random_material_percolation_volume_visualization {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.component().create(\"comp1\", true);\n\n    model."
@@ -1234,7 +1712,8 @@
               ],
               "studies": [
                 "std1 / stat / Stationary",
-                "std1"
+                "std1",
+                "Stationary"
               ],
               "results": [],
               "boundary_conditions": [
@@ -1271,7 +1750,7 @@
                 "model.func().create(\"int1\", \"Interpolation\");",
                 "model.func(\"int1\").set(\"source\", \"file\");"
               ],
-              "evidence_score": 22
+              "evidence_score": 23
             }
           },
           "preview": "/*\n * random_material_scatter_volume_plot.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:03 by COMSOL 6.4.0.293. */\npublic class random_material_scatter_volume_plot {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom()."
@@ -1356,7 +1835,8 @@
               ],
               "studies": [
                 "std1 / stat / Stationary",
-                "std1"
+                "std1",
+                "Stationary"
               ],
               "results": [],
               "boundary_conditions": [],
@@ -1379,7 +1859,7 @@
                 "model.component(\"comp1\").geom(\"geom1\").create(\"imp1\", \"Import\");",
                 "model.component(\"comp1\").geom(\"geom1\").feature(\"imp1\")"
               ],
-              "evidence_score": 9
+              "evidence_score": 10
             }
           },
           "preview": "/*\n * wrench_random.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 13 2026, 22:05 by COMSOL 6.4.0.293. */\npublic class wrench_random {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5982\\u4f55\\u751f\\u6210\\u968f\\u673a\\u975e\\u5747\\u5300\\u6750\\u6599\\u6570\\u636e6.2\");\n\n    model.comments(\"Untitled\\n\\n\");\n\n    model.component().create(\"comp1\", true);\n\n    model.component(\"comp1\").geom().create(\"geom1\", 3);\n\n    model.component(\"co"
@@ -1413,6 +1893,7 @@
         }
       ]
     },
+    "pdf_simple_summaries": [],
     "recommendations": [
       "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
       "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
@@ -1431,6 +1912,7 @@
       "Train and validate the surrogate model."
     ]
   },
+  "pdf_simple_summaries": [],
   "thoughts": [
     "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
     "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
@@ -1563,7 +2045,60 @@
       "size_bytes": 121865,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "grid_based_3D_data_export.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 3310
+          },
+          {
+            "name": "grid_based_3D_data_export.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 3688
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [
+            "N",
+            "b",
+            "D"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [
+            "pg1",
+            "slc1"
+          ],
+          "boundary_conditions": [
+            "slc1 / expr"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.comments(\"Untitled\\n\\n\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.func().create(\"rn1\", \"Random\");",
+            "model.func(\"rn1\").set(\"type\", \"normal\");",
+            "model.func(\"rn1\").label(\"Gaussian Random\");",
+            "model.func(\"rn1\").set(\"funcname\", \"g1\");",
+            "model.func(\"rn1\").set(\"nargs\", 3);",
+            "model.func().create(\"rn2\", \"Random\");"
+          ],
+          "evidence_score": 7
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
     },
     {
@@ -1595,7 +2130,8 @@
           ],
           "studies": [
             "std1 / stat / Stationary",
-            "std1"
+            "std1",
+            "Stationary"
           ],
           "results": [],
           "boundary_conditions": [
@@ -1632,7 +2168,7 @@
             "model.func().create(\"int1\", \"Interpolation\");",
             "model.func(\"int1\").set(\"source\", \"file\");"
           ],
-          "evidence_score": 22
+          "evidence_score": 23
         }
       }
     },
@@ -1704,7 +2240,8 @@
             "mesh1"
           ],
           "studies": [
-            "std1 / stat / Stationary"
+            "std1 / stat / Stationary",
+            "Stationary"
           ],
           "results": [],
           "boundary_conditions": [
@@ -1740,7 +2277,7 @@
             "model.study('std1').feature('stat').activate('ht', true);",
             "model.func.create('int1', 'Interpolation');"
           ],
-          "evidence_score": 20
+          "evidence_score": 21
         }
       }
     },
@@ -1750,7 +2287,81 @@
       "size_bytes": 427598,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "random_material_percolation_volume_visualization.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 20540
+          },
+          {
+            "name": "random_material_percolation_volume_visualization.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 19192
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [
+            "blk1 / Block"
+          ],
+          "physics": [
+            "ht / HeatTransfer"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary",
+            "std1",
+            "Stationary"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "temp1 / [4]",
+            "temp2 / [3]",
+            "temp1 / new int[]{4}",
+            "temp2 / new int[]{3}",
+            "temp1 / T0",
+            "stat / notlistsolnum",
+            "stat / notsolnum",
+            "stat / listsolnum",
+            "stat / solnum",
+            "st1 / study",
+            "st1 / studystep",
+            "v1 / control",
+            "fc1 / dtech",
+            "fc1 / initstep",
+            "fc1 / minstep",
+            "fc1 / maxiter",
+            "d1 / linsolver"
+          ],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.comments(\"Untitled\\n\\n\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+            "model.study(\"std1\").feature(\"stat\").activate(\"ht\", true);",
+            "model.func().create(\"int1\", \"Interpolation\");",
+            "model.func(\"int1\").set(\"source\", \"file\");"
+          ],
+          "evidence_score": 25
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
     },
     {
@@ -1782,7 +2393,8 @@
           ],
           "studies": [
             "std1 / stat / Stationary",
-            "std1"
+            "std1",
+            "Stationary"
           ],
           "results": [],
           "boundary_conditions": [
@@ -1819,7 +2431,7 @@
             "model.func().create(\"int1\", \"Interpolation\");",
             "model.func(\"int1\").set(\"source\", \"file\");"
           ],
-          "evidence_score": 22
+          "evidence_score": 23
         }
       }
     },
@@ -1891,7 +2503,8 @@
             "mesh1"
           ],
           "studies": [
-            "std1 / stat / Stationary"
+            "std1 / stat / Stationary",
+            "Stationary"
           ],
           "results": [],
           "boundary_conditions": [
@@ -1928,7 +2541,7 @@
             "model.study('std1').feature('stat').activate('ht', true);",
             "model.func.create('int1', 'Interpolation');"
           ],
-          "evidence_score": 21
+          "evidence_score": 22
         }
       }
     },
@@ -1938,7 +2551,81 @@
       "size_bytes": 3583236,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "random_material_scatter_volume_plot.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 34222
+          },
+          {
+            "name": "random_material_scatter_volume_plot.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 31809
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [
+            "blk1 / Block"
+          ],
+          "physics": [
+            "ht / HeatTransfer"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary",
+            "std1",
+            "Stationary"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "temp1 / [4]",
+            "temp2 / [3]",
+            "temp1 / new int[]{4}",
+            "temp2 / new int[]{3}",
+            "temp1 / T0",
+            "stat / notlistsolnum",
+            "stat / notsolnum",
+            "stat / listsolnum",
+            "stat / solnum",
+            "st1 / study",
+            "st1 / studystep",
+            "v1 / control",
+            "fc1 / dtech",
+            "fc1 / initstep",
+            "fc1 / minstep",
+            "fc1 / maxiter",
+            "d1 / linsolver"
+          ],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.comments(\"Untitled\\n\\n\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").physics().create(\"ht\", \"HeatTransfer\", \"geom1\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+            "model.study(\"std1\").feature(\"stat\").activate(\"ht\", true);",
+            "model.func().create(\"int1\", \"Interpolation\");",
+            "model.func(\"int1\").set(\"source\", \"file\");"
+          ],
+          "evidence_score": 25
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
     },
     {
@@ -2052,7 +2739,61 @@
       "size_bytes": 89618,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "randomized_2D_data.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 2840
+          },
+          {
+            "name": "randomized_2D_data.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 3264
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [
+            "N",
+            "b"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [
+            "pg1",
+            "surf1"
+          ],
+          "boundary_conditions": [
+            "surf1 / colortable",
+            "surf1 / resolution",
+            "surf1 / expr"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.comments(\"Untitled\\n\\n\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 2);",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.result().dataset().create(\"grid1\", \"Grid2D\");",
+            "model.result().dataset(\"grid1\").set(\"source\", \"data\");",
+            "model.func().create(\"rn1\", \"Random\");",
+            "model.func(\"rn1\").set(\"funcname\", \"g1\");",
+            "model.func(\"rn1\").set(\"type\", \"normal\");",
+            "model.func().create(\"rn2\", \"Random\");"
+          ],
+          "evidence_score": 8
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
     },
     {
@@ -2106,7 +2847,8 @@
           ],
           "studies": [
             "std1 / stat / Stationary",
-            "std1"
+            "std1",
+            "Stationary"
           ],
           "results": [],
           "boundary_conditions": [],
@@ -2129,7 +2871,7 @@
             "model.component(\"comp1\").geom(\"geom1\").create(\"imp1\", \"Import\");",
             "model.component(\"comp1\").geom(\"geom1\").feature(\"imp1\")"
           ],
-          "evidence_score": 9
+          "evidence_score": 10
         }
       }
     },
@@ -2193,7 +2935,8 @@
             "mesh1"
           ],
           "studies": [
-            "std1 / stat / Stationary"
+            "std1 / stat / Stationary",
+            "Stationary"
           ],
           "results": [],
           "boundary_conditions": [
@@ -2218,7 +2961,7 @@
             "model.study('std1').feature('stat').activate('solid', true);",
             "model.component('comp1').geom('geom1').create('imp1', 'Import');"
           ],
-          "evidence_score": 10
+          "evidence_score": 11
         }
       }
     },
@@ -2228,14 +2971,296 @@
       "size_bytes": 28222433,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "wrench_random.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 24929
+          },
+          {
+            "name": "wrench_random.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 23721
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [
+            "imp1 / Import",
+            "geom1 / imp1 / filename"
+          ],
+          "physics": [
+            "solid / SolidMechanics"
+          ],
+          "materials": [
+            "mat1"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [
+            "std1 / stat / Stationary",
+            "std1",
+            "Stationary"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "imp1 / filename"
+          ],
+          "theory_keywords": [
+            "传热",
+            "电磁",
+            "多孔介质/裂隙"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.comments(\"Untitled\\n\\n\");",
+            "model.component().create(\"comp1\", true);",
+            "model.component(\"comp1\").geom().create(\"geom1\", 3);",
+            "model.component(\"comp1\").mesh().create(\"mesh1\");",
+            "model.component(\"comp1\").physics().create(\"solid\", \"SolidMechanics\", \"geom1\");",
+            "model.study().create(\"std1\");",
+            "model.study(\"std1\").create(\"stat\", \"Stationary\");",
+            "model.study(\"std1\").feature(\"stat\").activate(\"solid\", true);",
+            "model.component(\"comp1\").geom(\"geom1\").create(\"imp1\", \"Import\");",
+            "model.component(\"comp1\").geom(\"geom1\").feature(\"imp1\")"
+          ],
+          "evidence_score": 12
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 3 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：ht / HeatTransfer",
+      "识别到物理场证据：solid / SolidMechanics",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "材料节点已识别，生成脚本时应保留材料标签、属性组和单位。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。",
+      "结果节点可用于确定导出量和训练目标。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "如何生成随机非均匀材料数据6.2 主要研究温度场和热传递过程，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Heat Transfer，并采用 Stationary 研究。",
+    "primary_physics": "Heat Transfer",
+    "study_type": "Stationary",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Heat Transfer，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Stationary 确认。",
+    "evidence": [
+      "脚本/文本识别到的物理场: ht / HeatTransfer, solid / SolidMechanics",
+      "识别到的研究类型: std1 / stat / Stationary, std1, Stationary",
+      "理论关键词: 传热, 电磁, 多孔介质/裂隙"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "传热",
+      "电磁",
+      "多孔介质/裂隙"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "N",
+        "modeling_content": "Spatial frequency resolution",
+        "matlab_action": "model.param.set('N', value, description)"
+      },
+      {
+        "keyword": "b",
+        "modeling_content": "Spectral exponent",
+        "matlab_action": "model.param.set('b', value, description)"
+      },
+      {
+        "keyword": "D",
+        "modeling_content": "Fractal dimension",
+        "matlab_action": "model.param.set('D', value, description)"
+      },
+      {
+        "keyword": "Block",
+        "modeling_content": "三维块体/实体计算域",
+        "matlab_action": "model.component('comp1').geom('geom1').create(tag, 'Block')"
+      },
+      {
+        "keyword": "Import",
+        "modeling_content": "导入 CAD/STL/扫描数据几何",
+        "matlab_action": "model.component('comp1').geom('geom1').create(tag, 'Import')"
+      },
+      {
+        "keyword": "SolidMechanics",
+        "modeling_content": "结构力学物理场",
+        "matlab_action": "model.component('comp1').physics.create('solid','SolidMechanics','geom1')"
+      },
+      {
+        "keyword": "HeatTransfer",
+        "modeling_content": "传热物理场",
+        "matlab_action": "model.component('comp1').physics.create('ht','HeatTransferInSolids','geom1')"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：blk1 / Block；imp1 / Import；geom1 / imp1 / filename",
+      "已识别物理场证据：ht / HeatTransfer；solid / SolidMechanics",
+      "已识别参数：N、b、D"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "N",
+      "b",
+      "D"
+    ],
+    "candidate_outputs": [
+      "Tmax",
+      "Tavg",
+      "max_von_mises_stress",
+      "max_displacement"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 85,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: ht / HeatTransfer, solid / SolidMechanics.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations.",
+      "Use the learned study types as solver starting points: std1 / stat / Stationary, std1, Stationary.",
+      "Use detected result nodes as candidate validation and training targets: pg1, slc1, surf1."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 传热, 电磁, 多孔介质/裂隙?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to temperature sensitivity studies by sweeping heat source, convection coefficient, and thermal conductivity.",
+      "Couple heat transfer with structural stress or electric losses when the requirement includes deformation or Joule heating.",
+      "Extend to load-case comparison, stress concentration analysis, and displacement safety checks.",
+      "Build a corrected model workflow that separates geometry repair, material assignment, constraints, and load verification."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `N` around the learned value `20` and export target outputs to CSV.",
+      "Sweep `b` around the learned value `1.8` and export target outputs to CSV.",
+      "Sweep `D` around the learned value `2+(3-b)/2` and export target outputs to CSV.",
+      "Sweep heat source, heat-transfer coefficient, thermal conductivity, and ambient temperature.",
+      "Sweep load, Young's modulus, thickness, fixed constraints, and contact/fracture parameters.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\COMSOL\\如何生成随机非均匀材料数据6.2"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=16, MATLAB=5, Java=5, PDF=0, MPH=5, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 38 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
     }
   ],
   "post_learning_summary": {
     "kind": "post_case_learning_summary",
     "title": "如何生成随机非均匀材料数据6.2",
-    "summary": "已学习 如何生成随机非均匀材料数据6.2 的 16 个文件；训练阶段=modeling_logic_learning_ready；参数数量=3；内容证据=37 条。",
+    "summary": "已学习 如何生成随机非均匀材料数据6.2 的 16 个文件；训练阶段=modeling_logic_learning_ready；参数数量=3；内容证据=38 条。",
     "learned_modeling_logic": [
       "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
       "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
@@ -2248,7 +3273,7 @@
       "3 extracted parameters with values/descriptions.",
       "LiveLink MATLAB or COMSOL Java script structure.",
       "Original MPH files for later COMSOL-side verification.",
-      "37 条内容级模型树证据。"
+      "38 条内容级模型树证据。"
     ],
     "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
     "reusable_confidence": "medium",
@@ -2260,7 +3285,7 @@
       },
       {
         "step": "2. 内容级模型树抽取",
-        "evidence": "抽取到模型树证据 37 条；几何=3，物理场=2，材料=1，网格=1，研究=2，结果=3。",
+        "evidence": "抽取到模型树证据 38 条；几何=3，物理场=2，材料=1，网格=1，研究=3，结果=3。",
         "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
       },
       {

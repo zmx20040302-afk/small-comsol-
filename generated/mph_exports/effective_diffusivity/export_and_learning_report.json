@@ -1,0 +1,30 @@
+{
+  "kind": "mph_code_export_and_learning",
+  "created_at": "2026-08-25T10:03:52.890372+00:00",
+  "source_mph": "D:\\桌面\\codex\\案例下载\\COMSOL\\多孔材料的有效扩散系数\\effective_diffusivity.mph",
+  "output_dir": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity",
+  "server": {
+    "ready": true,
+    "host": "localhost",
+    "port": 2036,
+    "started_by_exporter": false
+  },
+  "matlab_exit_code": 0,
+  "stdout_tail": "\nMATLAB is now connected to a COMSOL Multiphysics Server at localhost:2036\n\nRun the commands below to access the COMSOL ModelUtil commands:\nimport com.comsol.model.util.*\nMATLAB_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity\\effective_diffusivity.m\nJAVA_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity\\effective_diffusivity.java\nSUMMARY_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity\\effective_diffusivity_summary.json\n",
+  "stderr_tail": "",
+  "matlab_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity\\effective_diffusivity.m",
+  "java_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity\\effective_diffusivity.java",
+  "summary_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity\\effective_diffusivity_summary.json",
+  "learning_outputs": {
+    "json": "generated\\case_knowledge\\effective_diffusivity.case.json",
+    "markdown": "generated\\case_knowledge\\effective_diffusivity.case.md",
+    "index": "generated\\case_knowledge\\case_knowledge_index.json"
+  },
+  "memory": {
+    "path": "generated\\case_memory\\case_memory.json",
+    "case_count": 709
+  },
+  "ok": true,
+  "message": "MATLAB and Java code exported and learned successfully.",
+  "report_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\effective_diffusivity\\export_and_learning_report.json"
+}

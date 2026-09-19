@@ -1,0 +1,1290 @@
+{
+  "kind": "comsol_case_card",
+  "title": "capacitive_micromachined_ultrasonic_transducer",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\电容式微机械超声换能器",
+  "created_at": "2026-08-20T12:24:16.593390+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 5,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1,
+      "pdf_document": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 1,
+    "pptx_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "l",
+      "value": "63.5[um]",
+      "description": "Length of device",
+      "source": "java_param_set"
+    },
+    {
+      "name": "l_et",
+      "value": "33[um]",
+      "description": "Length of top electrode",
+      "source": "java_param_set"
+    },
+    {
+      "name": "l_eb",
+      "value": "35[um]",
+      "description": "Length of bottom electrode",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_ox",
+      "value": "1[um]",
+      "description": "Thickness of oxide",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_m2",
+      "value": "0.64[um]",
+      "description": "Thickness of sacrificial metal, M2",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_m3",
+      "value": "0.64[um]",
+      "description": "Thickness of top electrode, M3",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_m4",
+      "value": "1.28[um]",
+      "description": "Thickness of support metal, M4",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_w",
+      "value": "3.4[um]",
+      "description": "Thickness of wall",
+      "source": "java_param_set"
+    },
+    {
+      "name": "w_ox",
+      "value": "11.25[um]",
+      "description": "Width of oxide around top electrode",
+      "source": "java_param_set"
+    },
+    {
+      "name": "l_v43",
+      "value": "12[um]",
+      "description": "Length of via 4-3",
+      "source": "java_param_set"
+    },
+    {
+      "name": "l_m4",
+      "value": "15[um]",
+      "description": "Length of support metal",
+      "source": "java_param_set"
+    },
+    {
+      "name": "w_b",
+      "value": "3.6[um]",
+      "description": "Width of support beam",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_np",
+      "value": "1[um]",
+      "description": "Thickness of nitride passivation layer",
+      "source": "java_param_set"
+    },
+    {
+      "name": "p_max",
+      "value": "1[MPa]",
+      "description": "Maximum pressure",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R_load",
+      "value": "1[Gohm]",
+      "description": "Load resistance",
+      "source": "java_param_set"
+    },
+    {
+      "name": "V_a",
+      "value": "5[V]",
+      "description": "Applied voltage",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "l",
+      "l_et",
+      "l_eb",
+      "t_ox",
+      "t_m2",
+      "t_m3",
+      "t_m4",
+      "t_w",
+      "w_ox",
+      "l_v43",
+      "l_m4",
+      "w_b",
+      "t_np",
+      "p_max",
+      "R_load",
+      "V_a"
+    ],
+    "geometry": [
+      "wp1 / WorkPlane",
+      "sq1 / Square",
+      "geom1 / wp1 / unite"
+    ],
+    "physics": [
+      "Solid Mechanics",
+      "Electrostatics"
+    ],
+    "materials": [],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [
+      "Eigenfrequency",
+      "Frequency Domain"
+    ],
+    "results": [],
+    "boundary_conditions": [
+      "wp1 / unite"
+    ],
+    "theory_keywords": [
+      "流体",
+      "电磁",
+      "结构力学",
+      "声学"
+    ],
+    "source_extracts": [
+      {
+        "name": "capacitive_micromachined_ultrasonic_transducer.java",
+        "kind": "comsol_java",
+        "evidence_score": 23,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"capacitive_micromachined_ultrasonic_transducer.mph\");",
+          "model.title(\"\\u7535\\u5bb9\\u5f0f\\u5fae\\u673a\\u68b0\\u8d85\\u58f0\\u6362\\u80fd\\u5668\");",
+          "model.param().set(\"l\", \"63.5[um]\", \"Length of device\");",
+          "model.param().set(\"l_et\", \"33[um]\", \"Length of top electrode\");",
+          "model.param().set(\"l_eb\", \"35[um]\", \"Length of bottom electrode\");",
+          "model.param().set(\"t_ox\", \"1[um]\", \"Thickness of oxide\");"
+        ],
+        "parameters": [
+          "l",
+          "l_et",
+          "l_eb",
+          "t_ox",
+          "t_m2",
+          "t_m3",
+          "t_m4",
+          "t_w",
+          "w_ox",
+          "l_v43",
+          "l_m4",
+          "w_b",
+          "t_np",
+          "p_max",
+          "R_load",
+          "V_a"
+        ],
+        "geometry": [
+          "wp1 / WorkPlane",
+          "sq1 / Square",
+          "geom1 / wp1 / unite"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "wp1 / unite"
+        ],
+        "theory_keywords": [
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 8,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          "Frequency Domain, Prestressed study.",
+          "of the geometric model are:",
+          "the model. The membrane is silicon nitride (yellow), the top electrode and supports are metal",
+          "Figure 2: This 3D plot shows boundary conditions used in the model. At the bottom surface of",
+          "Right) results in reduced electrode curvature and, consequently, increased Δdavg. The",
+          "The model geometry is fully parameterized to allow for easy changes in the device",
+          "structure to target a specific resonant frequency. The model solves a multiphysics problem"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Solid Mechanics",
+          "Electrostatics"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [
+          "Eigenfrequency",
+          "Frequency Domain"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学",
+          "流体",
+          "电磁",
+          "声学"
+        ]
+      },
+      {
+        "name": "capacitive_micromachined_ultrasonic_transducer.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "capacitive_micromachined_ultrasonic_transducer.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 0,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('capacitive_micromachined_ultrasonic_transducer.mph');",
+          "model.title([native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'5b' 'b9'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'5f' 'ae'}), 'unicode') native2unicode(hex2dec({'67' '3a'})",
+          "model.description([native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'5b' 'b9'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'5f' 'ae'}), 'unicode') native2unicode(hex2dec({'67' "
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "capacitive_micromachined_ultrasonic_transducer_summary.json",
+        "kind": "json",
+        "evidence_score": 0,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\"",
+          "\"result_groups\": ["
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 25,
+      "source_files_with_content": 2,
+      "source_files_checked": 5
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "5 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "capacitive_micromachined_ultrasonic_transducer.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "capacitive_micromachined_ultrasonic_transducer.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 16,
+            "physics": [
+              {
+                "tag": "es",
+                "interface": "Electrostatics",
+                "geom": "geom1"
+              },
+              {
+                "tag": "solid",
+                "interface": "SolidMechanics",
+                "geom": "geom1"
+              },
+              {
+                "tag": "cir",
+                "interface": "Circuit",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "stat",
+                "type": "Stationary"
+              },
+              {
+                "study": "std1",
+                "tag": "frlin",
+                "type": "Frequencylinearized"
+              },
+              {
+                "study": "std2",
+                "tag": "eig",
+                "type": "Eigenfrequency"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('capacitive_micromachined_ultrasonic_transducer.mph');",
+                "model.title([native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'5b' 'b9'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'5f' 'ae'}), 'unicode') native2unicode(hex2dec({'67' '3a'})",
+                "model.description([native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'5b' 'b9'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'5f' 'ae'}), 'unicode') native2unicode(hex2dec({'67' "
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "function out = model\n%\n% capacitive_micromachined_ultrasonic_transducer.m\n%\n% Model exported on Aug 20 2026, 20:24 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'un"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "capacitive_micromachined_ultrasonic_transducer.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 16,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "l",
+                "l_et",
+                "l_eb",
+                "t_ox",
+                "t_m2",
+                "t_m3",
+                "t_m4",
+                "t_w",
+                "w_ox",
+                "l_v43",
+                "l_m4",
+                "w_b",
+                "t_np",
+                "p_max",
+                "R_load",
+                "V_a"
+              ],
+              "geometry": [
+                "wp1 / WorkPlane",
+                "sq1 / Square",
+                "geom1 / wp1 / unite"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "wp1 / unite"
+              ],
+              "theory_keywords": [
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"capacitive_micromachined_ultrasonic_transducer.mph\");",
+                "model.title(\"\\u7535\\u5bb9\\u5f0f\\u5fae\\u673a\\u68b0\\u8d85\\u58f0\\u6362\\u80fd\\u5668\");",
+                "model.param().set(\"l\", \"63.5[um]\", \"Length of device\");",
+                "model.param().set(\"l_et\", \"33[um]\", \"Length of top electrode\");",
+                "model.param().set(\"l_eb\", \"35[um]\", \"Length of bottom electrode\");",
+                "model.param().set(\"t_ox\", \"1[um]\", \"Thickness of oxide\");",
+                "model.param().set(\"t_m2\", \"0.64[um]\", \"Thickness of sacrificial metal, M2\");",
+                "model.param().set(\"t_m3\", \"0.64[um]\", \"Thickness of top electrode, M3\");",
+                "model.param().set(\"t_m4\", \"1.28[um]\", \"Thickness of support metal, M4\");",
+                "model.param().set(\"t_w\", \"3.4[um]\", \"Thickness of wall\");"
+              ],
+              "evidence_score": 23
+            }
+          },
+          "preview": "/*\n * capacitive_micromachined_ultrasonic_transducer.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 20 2026, 20:24 by COMSOL 6.4.0.293. */\npublic class capacitive_micromachined_ultrasonic_transducer {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u7535\\u5bb9\\u5f0f\\u5fae\\u673a\\u68b0\\u8d85\\u58f0\\u6362\\u80fd\\u5668\");\n\n    model.label(\"capacitive_micromachined_ultrasonic_transducer.mph\");\n\n    model.title(\"\\u7535\\u5bb9\\u5f0"
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 30,
+            "extractor": "pypdf",
+            "preview_pages": 30,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Solid Mechanics",
+                "Electrostatics"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [
+                "Eigenfrequency",
+                "Frequency Domain"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学",
+                "流体",
+                "电磁",
+                "声学"
+              ],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                "Frequency Domain, Prestressed study.",
+                "of the geometric model are:",
+                "the model. The membrane is silicon nitride (yellow), the top electrode and supports are metal",
+                "Figure 2: This 3D plot shows boundary conditions used in the model. At the bottom surface of",
+                "Right) results in reduced electrode curvature and, consequently, increased Δdavg. The",
+                "The model geometry is fully parameterized to allow for easy changes in the device",
+                "structure to target a specific resonant frequency. The model solves a multiphysics problem",
+                "Frequency Domain, Prestressed study. The device is connected to an external circuit",
+                "Results and Discussion",
+                "The subsequent Eigenfrequency study shows an eigenmode at 7.5 MHz which closely",
+                "2 In the Select Physics tree, select AC/DC > Electromagnetics and Mechanics >"
+              ],
+              "evidence_score": 8
+            },
+            "simple_summary": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics、Electrostatics，研究类型线索为 Eigenfrequency、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Frequency Domain, Prestressed study."
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nCapacitive Micromachined Ultrasonic\nTransducer\n2 | CAPACITIVE MICROMACHINED ULTRASONIC TRANSDUCER\nIntroduction\nA capacitive micromachined ultrasonic transducer (CMUT) is a microscale transmitter-\nreceiver that converts an electrical signal to ultrasound or vice versa for high-resolution \nimaging applications. This model analyzes a CMUT receiver with a novel piston-shaped \nelectrode and suspend"
+        }
+      ],
+      "presentation_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "capacitive_micromachined_ultrasonic_transducer_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/电容式微机械超声换能器/capacitive_micromachined_ultrasonic_transducer.mph\",\n  \"label\": \"capacitive_micromachined_ultrasonic_transducer.mph\",\n  \"parameters\": {\n    \"l\": \"63.5[um]\",\n    \"l_et\": \"33[um]\",\n    \"l_eb\": \"35[um]\",\n    \"t_ox\": \"1[um]\",\n    \"t_m2\": \"0.64[um]\",\n    \"t_m3\": \"0.64[um]\",\n    \"t_m4\": \"1.28[um]\",\n    \"t_w\": \"3.4[um]\",\n    \"w_ox\": \"11.25[um]\",\n    \"l_v43\": \"12[um]\",\n    \"l_m4\": \"15[um]\",\n    \"w_b\": \"3.6[um]\",\n    \"t_np\": \"1[um]\",\n    \"p_max\": \"1[MPa]\",\n    \"R_load\": \"1[Gohm]\",\n    \"V_a\": \"5[V]\"\n  },\n  \"components\": {\n    \"tag\": \"comp1\",\n    \"geometry\":"
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf",
+        "summary": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics、Electrostatics，研究类型线索为 Eigenfrequency、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Frequency Domain, Prestressed study."
+      }
+    ],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf",
+      "summary": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics、Electrostatics，研究类型线索为 Eigenfrequency、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Frequency Domain, Prestressed study."
+    }
+  ],
+  "prompt_summary": "",
+  "thoughts": [
+    "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "capacitive_micromachined_ultrasonic_transducer.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 38446683,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+      }
+    },
+    {
+      "name": "capacitive_micromachined_ultrasonic_transducer.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 43458,
+      "details": {
+        "parameters": 16,
+        "physics": [
+          {
+            "tag": "es",
+            "interface": "Electrostatics",
+            "geom": "geom1"
+          },
+          {
+            "tag": "solid",
+            "interface": "SolidMechanics",
+            "geom": "geom1"
+          },
+          {
+            "tag": "cir",
+            "interface": "Circuit",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "stat",
+            "type": "Stationary"
+          },
+          {
+            "study": "std1",
+            "tag": "frlin",
+            "type": "Frequencylinearized"
+          },
+          {
+            "study": "std2",
+            "tag": "eig",
+            "type": "Eigenfrequency"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('capacitive_micromachined_ultrasonic_transducer.mph');",
+            "model.title([native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'5b' 'b9'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'5f' 'ae'}), 'unicode') native2unicode(hex2dec({'67' '3a'})",
+            "model.description([native2unicode(hex2dec({'75' '35'}), 'unicode') native2unicode(hex2dec({'5b' 'b9'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'5f' 'ae'}), 'unicode') native2unicode(hex2dec({'67' "
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "capacitive_micromachined_ultrasonic_transducer.java",
+      "kind": "comsol_java",
+      "size_bytes": 38957,
+      "details": {
+        "model_param_set": 16,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "l",
+            "l_et",
+            "l_eb",
+            "t_ox",
+            "t_m2",
+            "t_m3",
+            "t_m4",
+            "t_w",
+            "w_ox",
+            "l_v43",
+            "l_m4",
+            "w_b",
+            "t_np",
+            "p_max",
+            "R_load",
+            "V_a"
+          ],
+          "geometry": [
+            "wp1 / WorkPlane",
+            "sq1 / Square",
+            "geom1 / wp1 / unite"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "wp1 / unite"
+          ],
+          "theory_keywords": [
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"capacitive_micromachined_ultrasonic_transducer.mph\");",
+            "model.title(\"\\u7535\\u5bb9\\u5f0f\\u5fae\\u673a\\u68b0\\u8d85\\u58f0\\u6362\\u80fd\\u5668\");",
+            "model.param().set(\"l\", \"63.5[um]\", \"Length of device\");",
+            "model.param().set(\"l_et\", \"33[um]\", \"Length of top electrode\");",
+            "model.param().set(\"l_eb\", \"35[um]\", \"Length of bottom electrode\");",
+            "model.param().set(\"t_ox\", \"1[um]\", \"Thickness of oxide\");",
+            "model.param().set(\"t_m2\", \"0.64[um]\", \"Thickness of sacrificial metal, M2\");",
+            "model.param().set(\"t_m3\", \"0.64[um]\", \"Thickness of top electrode, M3\");",
+            "model.param().set(\"t_m4\", \"1.28[um]\", \"Thickness of support metal, M4\");",
+            "model.param().set(\"t_w\", \"3.4[um]\", \"Thickness of wall\");"
+          ],
+          "evidence_score": 23
+        }
+      }
+    },
+    {
+      "name": "capacitive_micromachined_ultrasonic_transducer_summary.json",
+      "kind": "json",
+      "size_bytes": 1986,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 2504540,
+      "details": {
+        "readable": true,
+        "pages": 30,
+        "extractor": "pypdf",
+        "preview_pages": 30,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Solid Mechanics",
+            "Electrostatics"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [
+            "Eigenfrequency",
+            "Frequency Domain"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学",
+            "流体",
+            "电磁",
+            "声学"
+          ],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            "Frequency Domain, Prestressed study.",
+            "of the geometric model are:",
+            "the model. The membrane is silicon nitride (yellow), the top electrode and supports are metal",
+            "Figure 2: This 3D plot shows boundary conditions used in the model. At the bottom surface of",
+            "Right) results in reduced electrode curvature and, consequently, increased Δdavg. The",
+            "The model geometry is fully parameterized to allow for easy changes in the device",
+            "structure to target a specific resonant frequency. The model solves a multiphysics problem",
+            "Frequency Domain, Prestressed study. The device is connected to an external circuit",
+            "Results and Discussion",
+            "The subsequent Eigenfrequency study shows an eigenmode at 7.5 MHz which closely",
+            "2 In the Select Physics tree, select AC/DC > Electromagnetics and Mechanics >"
+          ],
+          "evidence_score": 8
+        },
+        "simple_summary": "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics、Electrostatics，研究类型线索为 Eigenfrequency、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Frequency Domain, Prestressed study."
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 16 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：Solid Mechanics",
+      "识别到物理场证据：Electrostatics",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "capacitive_micromachined_ultrasonic_transducer 主要研究结构受力、变形或强度响应，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Solid Mechanics，并采用 Eigenfrequency 研究。",
+    "primary_physics": "Solid Mechanics",
+    "study_type": "Eigenfrequency",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Solid Mechanics，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Eigenfrequency 确认。",
+    "evidence": [
+      "PDF: Model created in COMSOL Multiphysics 6.4",
+      "PDF: Frequency Domain, Prestressed study.",
+      "PDF: of the geometric model are:",
+      "PDF: the model. The membrane is silicon nitride (yellow), the top electrode and supports are metal",
+      "脚本/文本识别到的物理场: Solid Mechanics, Electrostatics",
+      "识别到的研究类型: Eigenfrequency, Frequency Domain",
+      "理论关键词: 流体, 电磁, 结构力学, 声学"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "流体",
+      "电磁",
+      "结构力学",
+      "声学",
+      "models.mems.capacitive_micromachined_ultrasonic_transducer.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics、Electrostatics，研究类型线索为 Eigenfrequency、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Frequency Domain, Prestressed study."
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "l",
+        "modeling_content": "Length of device",
+        "matlab_action": "model.param.set('l', value, description)"
+      },
+      {
+        "keyword": "l_et",
+        "modeling_content": "Length of top electrode",
+        "matlab_action": "model.param.set('l_et', value, description)"
+      },
+      {
+        "keyword": "l_eb",
+        "modeling_content": "Length of bottom electrode",
+        "matlab_action": "model.param.set('l_eb', value, description)"
+      },
+      {
+        "keyword": "t_ox",
+        "modeling_content": "Thickness of oxide",
+        "matlab_action": "model.param.set('t_ox', value, description)"
+      },
+      {
+        "keyword": "t_m2",
+        "modeling_content": "Thickness of sacrificial metal, M2",
+        "matlab_action": "model.param.set('t_m2', value, description)"
+      },
+      {
+        "keyword": "t_m3",
+        "modeling_content": "Thickness of top electrode, M3",
+        "matlab_action": "model.param.set('t_m3', value, description)"
+      },
+      {
+        "keyword": "t_m4",
+        "modeling_content": "Thickness of support metal, M4",
+        "matlab_action": "model.param.set('t_m4', value, description)"
+      },
+      {
+        "keyword": "t_w",
+        "modeling_content": "Thickness of wall",
+        "matlab_action": "model.param.set('t_w', value, description)"
+      },
+      {
+        "keyword": "w_ox",
+        "modeling_content": "Width of oxide around top electrode",
+        "matlab_action": "model.param.set('w_ox', value, description)"
+      },
+      {
+        "keyword": "l_v43",
+        "modeling_content": "Length of via 4-3",
+        "matlab_action": "model.param.set('l_v43', value, description)"
+      },
+      {
+        "keyword": "l_m4",
+        "modeling_content": "Length of support metal",
+        "matlab_action": "model.param.set('l_m4', value, description)"
+      },
+      {
+        "keyword": "w_b",
+        "modeling_content": "Width of support beam",
+        "matlab_action": "model.param.set('w_b', value, description)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：wp1 / WorkPlane；sq1 / Square；geom1 / wp1 / unite",
+      "已识别物理场证据：Solid Mechanics；Electrostatics",
+      "已识别参数：l、l_et、l_eb、t_ox、t_m2、t_m3、t_m4、t_w、w_ox、l_v43、l_m4、w_b"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "l",
+      "l_et",
+      "l_eb",
+      "t_ox",
+      "t_m2",
+      "t_m3",
+      "t_m4",
+      "t_w",
+      "w_ox",
+      "l_v43",
+      "l_m4",
+      "w_b",
+      "t_np",
+      "p_max",
+      "R_load",
+      "V_a"
+    ],
+    "candidate_outputs": [
+      "max_von_mises_stress",
+      "max_displacement"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 85,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: Solid Mechanics, Electrostatics.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations.",
+      "Use the learned study types as solver starting points: Eigenfrequency, Frequency Domain."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 流体, 电磁, 结构力学, 声学?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to load-case comparison, stress concentration analysis, and displacement safety checks.",
+      "Build a corrected model workflow that separates geometry repair, material assignment, constraints, and load verification.",
+      "Extend to inlet/outlet sensitivity, pressure-drop prediction, and flow-uniformity analysis.",
+      "Add coupled transport, porous media, or nonisothermal flow when concentration or temperature fields are involved."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `l` around the learned value `63.5[um]` and export target outputs to CSV.",
+      "Sweep `l_et` around the learned value `33[um]` and export target outputs to CSV.",
+      "Sweep `l_eb` around the learned value `35[um]` and export target outputs to CSV.",
+      "Sweep `t_ox` around the learned value `1[um]` and export target outputs to CSV.",
+      "Sweep `t_m2` around the learned value `0.64[um]` and export target outputs to CSV.",
+      "Sweep `t_m3` around the learned value `0.64[um]` and export target outputs to CSV.",
+      "Sweep `t_m4` around the learned value `1.28[um]` and export target outputs to CSV.",
+      "Sweep `t_w` around the learned value `3.4[um]` and export target outputs to CSV.",
+      "Sweep load, Young's modulus, thickness, fixed constraints, and contact/fracture parameters.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\电容式微机械超声换能器"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=5, MATLAB=1, Java=1, PDF=1, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 25 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "capacitive_micromachined_ultrasonic_transducer",
+    "summary": "已学习 capacitive_micromachined_ultrasonic_transducer 的 5 个文件；训练阶段=modeling_logic_learning_ready；参数数量=16；内容证据=25 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "16 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification.",
+      "25 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 5 个案例文件；MATLAB=1，Java=1，PDF=1，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 25 条；几何=3，物理场=2，材料=0，网格=1，研究=2，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：capacitive_micromachined_ultrasonic_transducer.m, capacitive_micromachined_ultrasonic_transducer.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 16 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=1，MPH 模型=1。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 capacitive_micromachined_ultrasonic_transducer，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "capacitive_micromachined_ultrasonic_transducer modeling_logic_learning_ready PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. l Length of device 63.5[um] l_et Length of top electrode 33[um] l_eb Length of bottom electrode 35[um] t_ox Thickness of oxide 1[um] t_m2 Thickness of sacrificial metal, M2 0.64[um] t_m3 Thickness of top electrode, M3 0.64[um] t_m4 Thickness of support metal, M4 1.28[um] t_w Thickness of wall 3.4[um] w_ox Width of oxide around top electrode 11.25[um] l_v43 Length of via 4-3 12[um] l_m4 Length of support metal 15[um] w_b Width of support beam 3.6[um] t_np Thickness of nitride passivation layer 1[um] p_max Maximum pressure 1[MPa] R_load Load resistance 1[Gohm] V_a Applied voltage 5[V] capacitive_micromachined_ultrasonic_transducer.mph comsol_mph capacitive_micromachined_ultrasonic_transducer.m matlab_livelink capacitive_micromachined_ultrasonic_transducer.java comsol_java capacitive_micromachined_ultrasonic_transducer_summary.json json models.mems.capacitive_micromachined_ultrasonic_transducer.pdf pdf_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

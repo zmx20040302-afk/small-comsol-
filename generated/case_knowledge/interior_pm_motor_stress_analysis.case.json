@@ -1,0 +1,1461 @@
+{
+  "kind": "comsol_case_card",
+  "title": "interior_pm_motor_stress_analysis",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\内置式永磁电机的电磁和机械分析",
+  "created_at": "2026-08-22T05:32:24.023179+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 6,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1,
+      "pdf_document": 2
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 2,
+    "pptx_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "Np",
+      "value": "10",
+      "description": "Number of poles",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Ns",
+      "value": "12",
+      "description": "Number of slots",
+      "source": "java_param_set"
+    },
+    {
+      "name": "mag_h",
+      "value": "2.5[mm]",
+      "description": "Magnet height",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d_s",
+      "value": "10[mm]",
+      "description": "Shaft diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d_r",
+      "value": "60[mm]",
+      "description": "Rotor diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d_st",
+      "value": "100[mm]",
+      "description": "Stator diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "airgap",
+      "value": "0.7[mm]",
+      "description": "Size of airgap",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d_cont",
+      "value": "60.7[mm]",
+      "description": "Diameter of the stator-rotor continuity interface",
+      "source": "java_param_set"
+    },
+    {
+      "name": "L",
+      "value": "40[mm]",
+      "description": "Out-of-plane thickness of motor",
+      "source": "java_param_set"
+    },
+    {
+      "name": "w_rot",
+      "value": "20000[rpm]",
+      "description": "Rotational speed",
+      "source": "java_param_set"
+    },
+    {
+      "name": "tl",
+      "value": "mag_h/100",
+      "description": "Thickness of thin layer",
+      "source": "java_param_set"
+    },
+    {
+      "name": "f_el",
+      "value": "w_rot*Np/2",
+      "description": "Electrical frequency",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_ramp",
+      "value": "1/f_el/20",
+      "description": "Time for ramping speed",
+      "source": "java_param_set"
+    },
+    {
+      "name": "N_tsteps",
+      "value": "72",
+      "description": "Number of time steps",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Ipk",
+      "value": "5[A]",
+      "description": "Phase current peak",
+      "source": "java_param_set"
+    },
+    {
+      "name": "init_ang",
+      "value": "200[deg]",
+      "description": "Initial current angle for peak torque",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_step",
+      "value": "1/f_el/N_tsteps",
+      "description": "Time step",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t_end",
+      "value": "3/f_el",
+      "description": "Simulation time",
+      "source": "java_param_set"
+    },
+    {
+      "name": "t",
+      "value": "0[s]",
+      "description": "Time variable alias",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "Np",
+      "Ns",
+      "mag_h",
+      "d_s",
+      "d_r",
+      "d_st",
+      "airgap",
+      "d_cont",
+      "L",
+      "w_rot",
+      "tl",
+      "f_el",
+      "t_ramp",
+      "N_tsteps",
+      "Ipk",
+      "init_ang",
+      "t_step",
+      "t_end",
+      "t"
+    ],
+    "geometry": [],
+    "physics": [
+      "Solid Mechanics"
+    ],
+    "materials": [],
+    "mesh": [],
+    "studies": [
+      "Stationary",
+      "Time Dependent"
+    ],
+    "results": [],
+    "boundary_conditions": [],
+    "theory_keywords": [
+      "结构力学",
+      "电磁",
+      "流体"
+    ],
+    "source_extracts": [
+      {
+        "name": "interior_pm_motor_stress_analysis.java",
+        "kind": "comsol_java",
+        "evidence_score": 21,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"interior_pm_motor_stress_analysis.mph\");",
+          "model.title(\"\\u5185\\u7f6e\\u5f0f\\u6c38\\u78c1\\u7535\\u673a\\u7684\\u7535\\u78c1\\u548c\\u673a\\u68b0\\u5206\\u6790\");",
+          "model.param().set(\"Np\", \"10\", \"Number of poles\");",
+          "model.param().set(\"Ns\", \"12\", \"Number of slots\");",
+          "model.param().set(\"mag_h\", \"2.5[mm]\", \"Magnet height\");",
+          "model.param().set(\"d_s\", \"10[mm]\", \"Shaft diameter\");"
+        ],
+        "parameters": [
+          "Np",
+          "Ns",
+          "mag_h",
+          "d_s",
+          "d_r",
+          "d_st",
+          "airgap",
+          "d_cont",
+          "L",
+          "w_rot",
+          "tl",
+          "f_el",
+          "t_ramp",
+          "N_tsteps",
+          "Ipk",
+          "init_ang",
+          "t_step",
+          "t_end",
+          "t"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学",
+          "电磁"
+        ]
+      },
+      {
+        "name": "models.acdc.interior_pm_motor_stress_analysis.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 6,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          "a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+          "Figure 1: Geometry of the motor.",
+          "Moving Mesh",
+          "node with a Deforming Domain and a Rotating Boundary subnode. In addition, a Multiphysics",
+          "Couplings node is added. It contains the Magnetic Forces, Rotating Machinery multiphysics",
+          "Additional details about the interface can be found in the documentation for Multiphysics",
+          "MOVING MESH"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Solid Mechanics"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [
+          "Stationary",
+          "Time Dependent"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学",
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "models.sme.interior_pm_motor_stress_analysis.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 6,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          "a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+          "Figure 1: Geometry of the motor.",
+          "Moving Mesh",
+          "node with a Deforming Domain and a Rotating Boundary subnode. In addition, a Multiphysics",
+          "Couplings node is added. It contains the Magnetic Forces, Rotating Machinery multiphysics",
+          "Additional details about the interface can be found in the documentation for Multiphysics",
+          "MOVING MESH"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Solid Mechanics"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [
+          "Stationary",
+          "Time Dependent"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学",
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "interior_pm_motor_stress_analysis.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 2,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学",
+          "电磁"
+        ]
+      },
+      {
+        "name": "interior_pm_motor_stress_analysis.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 1,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('interior_pm_motor_stress_analysis.mph');",
+          "model.title([native2unicode(hex2dec({'51' '85'}), 'unicode') native2unicode(hex2dec({'7f' '6e'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'6c' '38'}), 'unicode') native2unicode(hex2dec({'78' 'c1'})",
+          "model.description([native2unicode(hex2dec({'51' '85'}), 'unicode') native2unicode(hex2dec({'7f' '6e'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'6c' '38'}), 'unicode') native2unicode(hex2dec({'78' "
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学"
+        ]
+      },
+      {
+        "name": "interior_pm_motor_stress_analysis_summary.json",
+        "kind": "json",
+        "evidence_score": 1,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\"",
+          "\"result_groups\": ["
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "结构力学"
+        ]
+      }
+    ],
+    "totals": {
+      "model_tree_items": 22,
+      "source_files_with_content": 6,
+      "source_files_checked": 6
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "6 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "interior_pm_motor_stress_analysis.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "interior_pm_motor_stress_analysis_parameters.txt",
+                "kind": "mph_text_sidecar",
+                "size_bytes": 703
+              }
+            ],
+            "sidecar_count": 1,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学",
+                "电磁"
+              ],
+              "content_summary": [],
+              "evidence_score": 2
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+          },
+          "preview": "## interior_pm_motor_stress_analysis_parameters.txt\nNp 10 \"Number of poles\"\nNs 12 \"Number of slots\"\nmag_h 2.5[mm] \"Magnet height\"\nd_s 10[mm] \"Shaft diameter\"\nd_r 60[mm] \"Rotor diameter\"\nd_st 100[mm] \"Stator diameter\"\nairgap 0.7[mm] \"Size of airgap\"\nd_cont 60.7[mm] \"Diameter of the stator-rotor continuity interface\"\nL 40[mm] \"Out-of-plane thickness of motor\"\nw_rot 20000[rpm] \"Rotational speed\"\ntl mag_h/100 \"Thickness of thin layer\"\nf_el w_rot*Np/2 \"Electrical frequency\"\nt_ramp 1/f_el/20 \"Time for ramping speed\"\nN_tsteps 72 \"Number of time steps\"\nIpk 5[A] \"Phase current peak\"\ninit_ang 200[deg] \""
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "interior_pm_motor_stress_analysis.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 19,
+            "physics": [
+              {
+                "tag": "solid",
+                "interface": "SolidMechanics",
+                "geom": "geom1"
+              },
+              {
+                "tag": "rmm",
+                "interface": "RotatingMachineryMagnetic",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "stat",
+                "type": "Stationary"
+              },
+              {
+                "study": "std1",
+                "tag": "time",
+                "type": "Transient"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg6",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg7",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg8",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup2D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('interior_pm_motor_stress_analysis.mph');",
+                "model.title([native2unicode(hex2dec({'51' '85'}), 'unicode') native2unicode(hex2dec({'7f' '6e'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'6c' '38'}), 'unicode') native2unicode(hex2dec({'78' 'c1'})",
+                "model.description([native2unicode(hex2dec({'51' '85'}), 'unicode') native2unicode(hex2dec({'7f' '6e'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'6c' '38'}), 'unicode') native2unicode(hex2dec({'78' "
+              ],
+              "evidence_score": 1
+            }
+          },
+          "preview": "function out = model\n%\n% interior_pm_motor_stress_analysis.m\n%\n% Model exported on Aug 22 2026, 13:32 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'unicode')  nati"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "interior_pm_motor_stress_analysis.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 19,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "Np",
+                "Ns",
+                "mag_h",
+                "d_s",
+                "d_r",
+                "d_st",
+                "airgap",
+                "d_cont",
+                "L",
+                "w_rot",
+                "tl",
+                "f_el",
+                "t_ramp",
+                "N_tsteps",
+                "Ipk",
+                "init_ang",
+                "t_step",
+                "t_end",
+                "t"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学",
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"interior_pm_motor_stress_analysis.mph\");",
+                "model.title(\"\\u5185\\u7f6e\\u5f0f\\u6c38\\u78c1\\u7535\\u673a\\u7684\\u7535\\u78c1\\u548c\\u673a\\u68b0\\u5206\\u6790\");",
+                "model.param().set(\"Np\", \"10\", \"Number of poles\");",
+                "model.param().set(\"Ns\", \"12\", \"Number of slots\");",
+                "model.param().set(\"mag_h\", \"2.5[mm]\", \"Magnet height\");",
+                "model.param().set(\"d_s\", \"10[mm]\", \"Shaft diameter\");",
+                "model.param().set(\"d_r\", \"60[mm]\", \"Rotor diameter\");",
+                "model.param().set(\"d_st\", \"100[mm]\", \"Stator diameter\");",
+                "model.param().set(\"airgap\", \"0.7[mm]\", \"Size of airgap\");",
+                "model.param().set(\"d_cont\", \"60.7[mm]\", \"Diameter of the stator-rotor continuity interface\");"
+              ],
+              "evidence_score": 21
+            }
+          },
+          "preview": "/*\n * interior_pm_motor_stress_analysis.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 22 2026, 13:32 by COMSOL 6.4.0.293. */\npublic class interior_pm_motor_stress_analysis {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u5185\\u7f6e\\u5f0f\\u6c38\\u78c1\\u7535\\u673a\\u7684\\u7535\\u78c1\\u548c\\u673a\\u68b0\\u5206\\u6790\");\n\n    model.label(\"interior_pm_motor_stress_analysis.mph\");\n\n    model.title(\"\\u5185\\u7f6e\\u5f0f\\u6c38\\u78c1\\u"
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.acdc.interior_pm_motor_stress_analysis.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 32,
+            "extractor": "pypdf",
+            "preview_pages": 32,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Solid Mechanics"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [
+                "Stationary",
+                "Time Dependent"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学",
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                "a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+                "Figure 1: Geometry of the motor.",
+                "Moving Mesh",
+                "node with a Deforming Domain and a Rotating Boundary subnode. In addition, a Multiphysics",
+                "Couplings node is added. It contains the Magnetic Forces, Rotating Machinery multiphysics",
+                "Additional details about the interface can be found in the documentation for Multiphysics",
+                "MOVING MESH",
+                "Rotating Boundary boundary condition is used to enable the sliding of the mesh.",
+                "STUDY",
+                "Results and Discussion",
+                "2 In the Select Physics tree, select Structural Mechanics > Electromagnetics–"
+              ],
+              "evidence_score": 6
+            },
+            "simple_summary": "models.acdc.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nElectromagnetic and Mechanical Analysis of an\nInterior Permanent Magnet Motor\n2 | ELECTROMAGNETIC AND MECHANICAL ANALYSIS OF AN INTERIOR PERMANENT \nIntroduction\nThe magnets in an Interior Permanent Magnet (IPM) motor are embedded in the rotor \ncore, where they form narrow regions known as bridges. The thickness of the magnetic \nbridge is an important parameter to consider in design, both from "
+        },
+        {
+          "name": "models.sme.interior_pm_motor_stress_analysis.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 32,
+            "extractor": "pypdf",
+            "preview_pages": 32,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Solid Mechanics"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [
+                "Stationary",
+                "Time Dependent"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学",
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                "a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+                "Figure 1: Geometry of the motor.",
+                "Moving Mesh",
+                "node with a Deforming Domain and a Rotating Boundary subnode. In addition, a Multiphysics",
+                "Couplings node is added. It contains the Magnetic Forces, Rotating Machinery multiphysics",
+                "Additional details about the interface can be found in the documentation for Multiphysics",
+                "MOVING MESH",
+                "Rotating Boundary boundary condition is used to enable the sliding of the mesh.",
+                "STUDY",
+                "Results and Discussion",
+                "2 In the Select Physics tree, select Structural Mechanics > Electromagnetics–"
+              ],
+              "evidence_score": 6
+            },
+            "simple_summary": "models.sme.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nElectromagnetic and Mechanical Analysis of an\nInterior Permanent Magnet Motor\n2 | ELECTROMAGNETIC AND MECHANICAL ANALYSIS OF AN INTERIOR PERMANENT \nIntroduction\nThe magnets in an Interior Permanent Magnet (IPM) motor are embedded in the rotor \ncore, where they form narrow regions known as bridges. The thickness of the magnetic \nbridge is an important parameter to consider in design, both from "
+        }
+      ],
+      "presentation_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "interior_pm_motor_stress_analysis_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "结构力学"
+              ],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 1
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/内置式永磁电机的电磁和机械分析/interior_pm_motor_stress_analysis.mph\",\n  \"label\": \"interior_pm_motor_stress_analysis.mph\",\n  \"parameters\": {\n    \"Np\": \"10\",\n    \"Ns\": \"12\",\n    \"mag_h\": \"2.5[mm]\",\n    \"d_s\": \"10[mm]\",\n    \"d_r\": \"60[mm]\",\n    \"d_st\": \"100[mm]\",\n    \"airgap\": \"0.7[mm]\",\n    \"d_cont\": \"60.7[mm]\",\n    \"L\": \"40[mm]\",\n    \"w_rot\": \"20000[rpm]\",\n    \"tl\": \"mag_h/100\",\n    \"f_el\": \"w_rot*Np/2\",\n    \"t_ramp\": \"1/f_el/20\",\n    \"N_tsteps\": \"72\",\n    \"Ipk\": \"5[A]\",\n    \"init_ang\": \"200[deg]\",\n    \"t_step\": \"1/f_el/N_tsteps\",\n    \"t_end\": \"3/f_el\",\n    \"t\": \"0[s]\"\n  },"
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.acdc.interior_pm_motor_stress_analysis.pdf",
+        "summary": "models.acdc.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+      },
+      {
+        "name": "models.sme.interior_pm_motor_stress_analysis.pdf",
+        "summary": "models.sme.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+      }
+    ],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.acdc.interior_pm_motor_stress_analysis.pdf",
+      "summary": "models.acdc.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+    },
+    {
+      "name": "models.sme.interior_pm_motor_stress_analysis.pdf",
+      "summary": "models.sme.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+    }
+  ],
+  "prompt_summary": "",
+  "thoughts": [
+    "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "interior_pm_motor_stress_analysis.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 589388417,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "interior_pm_motor_stress_analysis_parameters.txt",
+            "kind": "mph_text_sidecar",
+            "size_bytes": 703
+          }
+        ],
+        "sidecar_count": 1,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学",
+            "电磁"
+          ],
+          "content_summary": [],
+          "evidence_score": 2
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+      }
+    },
+    {
+      "name": "interior_pm_motor_stress_analysis.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 102106,
+      "details": {
+        "parameters": 19,
+        "physics": [
+          {
+            "tag": "solid",
+            "interface": "SolidMechanics",
+            "geom": "geom1"
+          },
+          {
+            "tag": "rmm",
+            "interface": "RotatingMachineryMagnetic",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "stat",
+            "type": "Stationary"
+          },
+          {
+            "study": "std1",
+            "tag": "time",
+            "type": "Transient"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg6",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg7",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg8",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup2D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('interior_pm_motor_stress_analysis.mph');",
+            "model.title([native2unicode(hex2dec({'51' '85'}), 'unicode') native2unicode(hex2dec({'7f' '6e'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'6c' '38'}), 'unicode') native2unicode(hex2dec({'78' 'c1'})",
+            "model.description([native2unicode(hex2dec({'51' '85'}), 'unicode') native2unicode(hex2dec({'7f' '6e'}), 'unicode') native2unicode(hex2dec({'5f' '0f'}), 'unicode') native2unicode(hex2dec({'6c' '38'}), 'unicode') native2unicode(hex2dec({'78' "
+          ],
+          "evidence_score": 1
+        }
+      }
+    },
+    {
+      "name": "interior_pm_motor_stress_analysis.java",
+      "kind": "comsol_java",
+      "size_bytes": 96714,
+      "details": {
+        "model_param_set": 19,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "Np",
+            "Ns",
+            "mag_h",
+            "d_s",
+            "d_r",
+            "d_st",
+            "airgap",
+            "d_cont",
+            "L",
+            "w_rot",
+            "tl",
+            "f_el",
+            "t_ramp",
+            "N_tsteps",
+            "Ipk",
+            "init_ang",
+            "t_step",
+            "t_end",
+            "t"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学",
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"interior_pm_motor_stress_analysis.mph\");",
+            "model.title(\"\\u5185\\u7f6e\\u5f0f\\u6c38\\u78c1\\u7535\\u673a\\u7684\\u7535\\u78c1\\u548c\\u673a\\u68b0\\u5206\\u6790\");",
+            "model.param().set(\"Np\", \"10\", \"Number of poles\");",
+            "model.param().set(\"Ns\", \"12\", \"Number of slots\");",
+            "model.param().set(\"mag_h\", \"2.5[mm]\", \"Magnet height\");",
+            "model.param().set(\"d_s\", \"10[mm]\", \"Shaft diameter\");",
+            "model.param().set(\"d_r\", \"60[mm]\", \"Rotor diameter\");",
+            "model.param().set(\"d_st\", \"100[mm]\", \"Stator diameter\");",
+            "model.param().set(\"airgap\", \"0.7[mm]\", \"Size of airgap\");",
+            "model.param().set(\"d_cont\", \"60.7[mm]\", \"Diameter of the stator-rotor continuity interface\");"
+          ],
+          "evidence_score": 21
+        }
+      }
+    },
+    {
+      "name": "interior_pm_motor_stress_analysis_summary.json",
+      "kind": "json",
+      "size_bytes": 2410,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学"
+          ],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 1
+        }
+      }
+    },
+    {
+      "name": "models.acdc.interior_pm_motor_stress_analysis.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 2298368,
+      "details": {
+        "readable": true,
+        "pages": 32,
+        "extractor": "pypdf",
+        "preview_pages": 32,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Solid Mechanics"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [
+            "Stationary",
+            "Time Dependent"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学",
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            "a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+            "Figure 1: Geometry of the motor.",
+            "Moving Mesh",
+            "node with a Deforming Domain and a Rotating Boundary subnode. In addition, a Multiphysics",
+            "Couplings node is added. It contains the Magnetic Forces, Rotating Machinery multiphysics",
+            "Additional details about the interface can be found in the documentation for Multiphysics",
+            "MOVING MESH",
+            "Rotating Boundary boundary condition is used to enable the sliding of the mesh.",
+            "STUDY",
+            "Results and Discussion",
+            "2 In the Select Physics tree, select Structural Mechanics > Electromagnetics–"
+          ],
+          "evidence_score": 6
+        },
+        "simple_summary": "models.acdc.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+      }
+    },
+    {
+      "name": "models.sme.interior_pm_motor_stress_analysis.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 2298734,
+      "details": {
+        "readable": true,
+        "pages": 32,
+        "extractor": "pypdf",
+        "preview_pages": 32,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Solid Mechanics"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [
+            "Stationary",
+            "Time Dependent"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "结构力学",
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            "a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+            "Figure 1: Geometry of the motor.",
+            "Moving Mesh",
+            "node with a Deforming Domain and a Rotating Boundary subnode. In addition, a Multiphysics",
+            "Couplings node is added. It contains the Magnetic Forces, Rotating Machinery multiphysics",
+            "Additional details about the interface can be found in the documentation for Multiphysics",
+            "MOVING MESH",
+            "Rotating Boundary boundary condition is used to enable the sliding of the mesh.",
+            "STUDY",
+            "Results and Discussion",
+            "2 In the Select Physics tree, select Structural Mechanics > Electromagnetics–"
+          ],
+          "evidence_score": 6
+        },
+        "simple_summary": "models.sme.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 19 个参数，可作为约束 JSON 和参数扫描变量。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：Solid Mechanics",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "interior_pm_motor_stress_analysis 主要研究结构受力、变形或强度响应，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Solid Mechanics，并采用 Time Dependent 研究。",
+    "primary_physics": "Solid Mechanics",
+    "study_type": "Time Dependent",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Solid Mechanics，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Time Dependent 确认。",
+    "evidence": [
+      "PDF: Model created in COMSOL Multiphysics 6.4",
+      "PDF: a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+      "PDF: Figure 1: Geometry of the motor.",
+      "PDF: Moving Mesh",
+      "脚本/文本识别到的物理场: Solid Mechanics",
+      "识别到的研究类型: Stationary, Time Dependent",
+      "理论关键词: 结构力学, 电磁, 流体"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "结构力学",
+      "电磁",
+      "流体",
+      "models.acdc.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results",
+      "models.sme.interior_pm_motor_stress_analysis.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Solid Mechanics，研究类型线索为 Stationary、Time Dependent；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；a mechanical and electromagnetic analysis of an IPM motor is demonstrated. The results"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "Np",
+        "modeling_content": "Number of poles",
+        "matlab_action": "model.param.set('Np', value, description)"
+      },
+      {
+        "keyword": "Ns",
+        "modeling_content": "Number of slots",
+        "matlab_action": "model.param.set('Ns', value, description)"
+      },
+      {
+        "keyword": "mag_h",
+        "modeling_content": "Magnet height",
+        "matlab_action": "model.param.set('mag_h', value, description)"
+      },
+      {
+        "keyword": "d_s",
+        "modeling_content": "Shaft diameter",
+        "matlab_action": "model.param.set('d_s', value, description)"
+      },
+      {
+        "keyword": "d_r",
+        "modeling_content": "Rotor diameter",
+        "matlab_action": "model.param.set('d_r', value, description)"
+      },
+      {
+        "keyword": "d_st",
+        "modeling_content": "Stator diameter",
+        "matlab_action": "model.param.set('d_st', value, description)"
+      },
+      {
+        "keyword": "airgap",
+        "modeling_content": "Size of airgap",
+        "matlab_action": "model.param.set('airgap', value, description)"
+      },
+      {
+        "keyword": "d_cont",
+        "modeling_content": "Diameter of the stator-rotor continuity interface",
+        "matlab_action": "model.param.set('d_cont', value, description)"
+      },
+      {
+        "keyword": "L",
+        "modeling_content": "Out-of-plane thickness of motor",
+        "matlab_action": "model.param.set('L', value, description)"
+      },
+      {
+        "keyword": "w_rot",
+        "modeling_content": "Rotational speed",
+        "matlab_action": "model.param.set('w_rot', value, description)"
+      },
+      {
+        "keyword": "tl",
+        "modeling_content": "Thickness of thin layer",
+        "matlab_action": "model.param.set('tl', value, description)"
+      },
+      {
+        "keyword": "f_el",
+        "modeling_content": "Electrical frequency",
+        "matlab_action": "model.param.set('f_el', value, description)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别物理场证据：Solid Mechanics",
+      "已识别参数：Np、Ns、mag_h、d_s、d_r、d_st、airgap、d_cont、L、w_rot、tl、f_el"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "Np",
+      "Ns",
+      "mag_h",
+      "d_s",
+      "d_r",
+      "d_st",
+      "airgap",
+      "d_cont",
+      "L",
+      "w_rot",
+      "tl",
+      "f_el",
+      "t_ramp",
+      "N_tsteps",
+      "Ipk",
+      "init_ang",
+      "t_step",
+      "t_end",
+      "t"
+    ],
+    "candidate_outputs": [
+      "max_von_mises_stress",
+      "max_displacement"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 65,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: Solid Mechanics.",
+      "Use the learned study types as solver starting points: Stationary, Time Dependent."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 结构力学, 电磁, 流体?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to load-case comparison, stress concentration analysis, and displacement safety checks.",
+      "Build a corrected model workflow that separates geometry repair, material assignment, constraints, and load verification.",
+      "Extend to inlet/outlet sensitivity, pressure-drop prediction, and flow-uniformity analysis.",
+      "Add coupled transport, porous media, or nonisothermal flow when concentration or temperature fields are involved."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `Np` around the learned value `10` and export target outputs to CSV.",
+      "Sweep `Ns` around the learned value `12` and export target outputs to CSV.",
+      "Sweep `mag_h` around the learned value `2.5[mm]` and export target outputs to CSV.",
+      "Sweep `d_s` around the learned value `10[mm]` and export target outputs to CSV.",
+      "Sweep `d_r` around the learned value `60[mm]` and export target outputs to CSV.",
+      "Sweep `d_st` around the learned value `100[mm]` and export target outputs to CSV.",
+      "Sweep `airgap` around the learned value `0.7[mm]` and export target outputs to CSV.",
+      "Sweep `d_cont` around the learned value `60.7[mm]` and export target outputs to CSV.",
+      "Sweep load, Young's modulus, thickness, fixed constraints, and contact/fracture parameters.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\内置式永磁电机的电磁和机械分析"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=6, MATLAB=1, Java=1, PDF=2, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 22 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "interior_pm_motor_stress_analysis",
+    "summary": "已学习 interior_pm_motor_stress_analysis 的 6 个文件；训练阶段=modeling_logic_learning_ready；参数数量=19；内容证据=22 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "19 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification.",
+      "22 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 6 个案例文件；MATLAB=1，Java=1，PDF=2，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 22 条；几何=0，物理场=1，材料=0，网格=0，研究=2，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：interior_pm_motor_stress_analysis.m, interior_pm_motor_stress_analysis.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 19 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=2，MPH 模型=1。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 interior_pm_motor_stress_analysis，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "interior_pm_motor_stress_analysis modeling_logic_learning_ready PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. Np Number of poles 10 Ns Number of slots 12 mag_h Magnet height 2.5[mm] d_s Shaft diameter 10[mm] d_r Rotor diameter 60[mm] d_st Stator diameter 100[mm] airgap Size of airgap 0.7[mm] d_cont Diameter of the stator-rotor continuity interface 60.7[mm] L Out-of-plane thickness of motor 40[mm] w_rot Rotational speed 20000[rpm] tl Thickness of thin layer mag_h/100 f_el Electrical frequency w_rot*Np/2 t_ramp Time for ramping speed 1/f_el/20 N_tsteps Number of time steps 72 Ipk Phase current peak 5[A] init_ang Initial current angle for peak torque 200[deg] t_step Time step 1/f_el/N_tsteps t_end Simulation time 3/f_el t Time variable alias 0[s] interior_pm_motor_stress_analysis.mph comsol_mph interior_pm_motor_stress_analysis.m matlab_livelink interior_pm_motor_stress_analysis.java comsol_java interior_pm_motor_stress_analysis_summary.json json models.acdc.interior_pm_motor_stress_analysis.pdf pdf_document models.sme.interior_pm_motor_stress_analysis.pdf pdf_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

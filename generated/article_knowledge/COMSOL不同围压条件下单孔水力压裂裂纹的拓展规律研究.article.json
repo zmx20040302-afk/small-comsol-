@@ -2,7 +2,7 @@
   "kind": "comsol_article_modeling_card",
   "title": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究",
   "source_path": "D:\\桌面\\COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究.docx",
-  "created_at": "2026-06-29T07:17:44.300810+00:00",
+  "created_at": "2026-08-03T11:20:48.700778+00:00",
   "paragraph_count": 23,
   "summary": "文章围绕煤层超高压水力压裂数值模拟，研究不同地应力条件、主应力方向、煤层非均匀性和天然裂缝对单孔裂纹起裂压力、扩展方向、损伤演化和裂缝长度的影响。",
   "modeling_requirement": "Build a COMSOL hydraulic fracturing model for a single borehole under different confining stress conditions. 中文需求关键词：水力压裂 单孔 围压 主应力 天然裂缝 煤层 岩石裂隙流 多孔介质 裂缝拓展 损伤演化。 Use article parameters: square_side=300[mm] borehole_diameter=15[mm] stress_ratio_range=1.5~2.0 initial_pressure=0.1[MPa] mean_elastic_modulus=35.1[GPa] mean_compressive_strength=152[MPa] principal_stress_direction_135=135[deg] principal_stress_direction_180=180[deg] principal_stress_direction_90=90[deg]. Include features: 2D square domain central borehole natural fracture or weak-plane features coal/rock medium heterogeneous elastic modulus heterogeneous tensile/compressive strength Weibull random field distribution solid mechanics damage evolution pore/fluid pressure loading hydraulic fracture propagation outer boundary in-situ stress loading symmetric roller/fixed displacement support borehole injection pressure free triangular mesh local refinement near borehole and natural fractures time-dependent pressure/damage evolution parametric sweep over stress ratio and stress direction damage length vs time pressure field fracture path initiation pressure stress distribution fracture deflection and branching under natural fractures.",
@@ -93,7 +93,7 @@
     ]
   },
   "correction_strategy": [
-    "Use the article parameters as the baseline constraints instead of generic thermal or structural defaults.",
+    "优先使用文章参数作为基准约束，而不是套用通用热学或结构默认值。",
     "Correct geometry to a 300 mm square domain with a 15 mm borehole and optional natural-fracture weak planes.",
     "Correct loads by sweeping principal stress ratio from 1.5 to 2.0 and stress directions such as 90, 135, and 180 degrees.",
     "Correct material definition by adding Weibull-distributed elastic modulus and strength rather than a single homogeneous material.",
@@ -152,93 +152,268 @@
     "kind": "article_memory_assisted_model_plan",
     "matched_cases": [
       {
+        "title": "COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究",
+        "score": 67.81339611063653,
+        "quality": {
+          "score": 95,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "structural",
+          "fluid",
+          "optimization"
+        ]
+      },
+      {
         "title": "岩石裂隙流",
-        "score": 5.760901812651248,
+        "score": 26.01324490029408,
+        "quality": {
+          "score": 75,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": false,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少材料证据",
+            "缺少结果量证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
         "training_stage": "modeling_logic_learning_ready",
         "domains": [
           "geometry",
+          "heat_transfer",
           "structural",
-          "fluid",
-          "optimization"
-        ]
-      },
-      {
-        "title": "dynamic_loaded_beam",
-        "score": 5.302434289526359,
-        "training_stage": "modeling_logic_learning_ready",
-        "domains": [
-          "geometry",
-          "structural",
-          "fluid",
-          "optimization"
-        ]
-      },
-      {
-        "title": "pulley_stress",
-        "score": 5.276939015148195,
-        "training_stage": "modeling_logic_learning_ready",
-        "domains": [
-          "geometry",
-          "structural",
-          "fluid",
-          "optimization"
-        ]
-      },
-      {
-        "title": "瞬态声压级6.3",
-        "score": 5.204828993353749,
-        "training_stage": "modeling_logic_learning_ready",
-        "domains": [
-          "geometry",
-          "structural",
+          "electromagnetics",
           "fluid",
           "acoustics",
           "optimization"
         ]
       },
       {
-        "title": "激波管",
-        "score": 5.1453125733564,
+        "title": "带轮应力",
+        "score": 7.636994336101661,
+        "quality": {
+          "score": 85,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少结果量证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
         "training_stage": "modeling_logic_learning_ready",
         "domains": [
           "geometry",
           "heat_transfer",
           "structural",
+          "electromagnetics",
           "fluid",
+          "acoustics",
           "optimization"
         ]
       },
       {
-        "title": "圆柱绕流",
-        "score": 5.082003561600919,
+        "title": "扳手的应力和应变",
+        "score": 6.437432590799961,
+        "quality": {
+          "score": 75,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": false,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少结果量证据",
+            "缺少参数证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
         "training_stage": "modeling_logic_learning_ready",
         "domains": [
           "geometry",
           "structural",
+          "electromagnetics",
           "fluid",
+          "acoustics",
           "optimization"
         ]
       },
       {
-        "title": "螺旋静态混合器",
-        "score": 5.067489992328232,
-        "training_stage": "modeling_logic_learning_ready",
+        "title": "已验证：二维热应力矩形模板",
+        "score": 6.349389079621698,
+        "quality": {
+          "score": 90,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": false,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少来源文件记录",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": false,
+          "surrogate_ready": false
+        },
+        "training_stage": "execution_validated",
         "domains": [
-          "geometry",
-          "structural",
-          "fluid",
-          "optimization"
+          "heat_transfer",
+          "structural"
         ]
       },
       {
-        "title": "真空干燥",
-        "score": 5.061957298559955,
+        "title": "如何生成随机非均匀材料数据6.2",
+        "score": 5.4692651680936,
+        "quality": {
+          "score": 95,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
         "training_stage": "modeling_logic_learning_ready",
         "domains": [
           "geometry",
           "heat_transfer",
           "structural",
+          "electromagnetics",
           "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "受载弹簧 - 使用全局方程满足约束条件",
+        "score": 5.0055731996703,
+        "quality": {
+          "score": 85,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少结果量证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "COMSOL 物理场类型与选择指南",
+        "score": 4.912889112810202,
+        "quality": {
+          "score": 45,
+          "checks": {
+            "physics": true,
+            "geometry": false,
+            "materials": false,
+            "study": true,
+            "boundary_conditions": false,
+            "results": true,
+            "parameters": false,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少几何证据",
+            "缺少材料证据",
+            "缺少边界条件证据",
+            "缺少参数证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": false,
+          "surrogate_ready": false
+        },
+        "training_stage": "physics_selection_knowledge_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
           "optimization"
         ]
       }
@@ -247,7 +422,7 @@
     "official_doc_matches": [],
     "recommended_modeling_steps": [
       "Clarify model objective, dimensionality, input parameters, outputs, and validation targets.",
-      "Review retrieved similar cases and reuse their parameter names, geometry sequence, and LiveLink API patterns.",
+      "查看检索到的相似案例，并复用其参数命名、几何序列和 LiveLink API 调用模式。",
       "Choose geometry strategy: reuse similar case script, import CAD, or generate parametric geometry.",
       "Define materials, units, selections, and reusable parameter groups.",
       "Add physics interfaces and boundary/initial conditions.",
@@ -322,176 +497,98 @@
         "source_case": "岩石裂隙流"
       },
       {
-        "name": "SpanWidth",
-        "value": "10[m]",
-        "description": "Width of one span",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "NumSpans",
-        "value": "8",
-        "description": "Number of spans",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "TotLength",
-        "value": "SpanWidth*NumSpans",
-        "description": "Total length of beam",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "BeamHeight",
-        "value": "0.3[m]",
-        "description": "Beam height",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "LoadIntensity",
-        "value": "0.1[MPa]",
-        "description": "Intensity of the pressure load",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "PulseWidth",
-        "value": "2[m]",
-        "description": "Width of load pulse",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "PulseSpacing",
-        "value": "20[m]",
-        "description": "Distance between load pulses",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "LoadSpeed",
-        "value": "20[m/s]",
-        "description": "Velocity of the load pulse",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "Tstep1",
-        "value": "1/(50*f0)",
-        "description": "Time step limit based on natural frequency",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "Tstep2",
-        "value": "PulseWidth/LoadSpeed/2",
-        "description": "Time step limit based on load velocity",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "Tstep",
-        "value": "min(Tstep1,Tstep2)",
-        "description": "Maximum time step",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "Tend",
-        "value": "TotLength/LoadSpeed",
-        "description": "Time when first load pulse reaches beam end",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "ElemPerSpan",
-        "value": "max(ceil(SpanWidth/PulseWidth*2),20)",
-        "description": "Number of elements along a span",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "CriticalSpeed",
-        "value": "f0*2*SpanWidth",
-        "description": "Estimated critical speed",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
-        "name": "f0",
-        "value": "sqrt(25e9[Pa]*BeamHeight^2/(12*2300[kg/m^3]*SpanWidth^4))*pi/2",
-        "description": "Estimate of first natural frequency",
-        "source_case": "dynamic_loaded_beam"
-      },
-      {
         "name": "beta",
         "value": "170[deg]",
         "description": "Contact angle, pulley/belt",
-        "source_case": "pulley_stress"
+        "source_case": "带轮应力"
       },
       {
         "name": "d",
         "value": "5[cm]",
         "description": "Pulley thickness",
-        "source_case": "pulley_stress"
+        "source_case": "带轮应力"
       },
       {
         "name": "P",
         "value": "185[kW]",
         "description": "Power at pulley shaft",
-        "source_case": "pulley_stress"
+        "source_case": "带轮应力"
       },
       {
         "name": "n",
         "value": "1000",
         "description": "Revolutions per minute",
-        "source_case": "pulley_stress"
+        "source_case": "带轮应力"
       },
       {
         "name": "omega",
         "value": "2*pi[rad]*n/1[min]",
         "description": "Angular velocity",
-        "source_case": "pulley_stress"
+        "source_case": "带轮应力"
       },
       {
         "name": "M",
         "value": "P/omega",
         "description": "Torque at pulley shaft",
-        "source_case": "pulley_stress"
+        "source_case": "带轮应力"
       },
       {
         "name": "R",
         "value": "125[mm]",
         "description": "Outer radius",
-        "source_case": "pulley_stress"
+        "source_case": "带轮应力"
+      },
+      {
+        "name": "E",
+        "value": "210[GPa]",
+        "description": "杨氏模量",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "alpha",
+        "value": "12e-6[1/K]",
+        "description": "热膨胀系数",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "T_hot",
+        "value": "373.15[K]",
+        "description": "热端温度",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "T_cold",
+        "value": "293.15[K]",
+        "description": "冷端温度",
+        "source_case": "已验证：二维热应力矩形模板"
       },
       {
         "name": "N",
-        "value": "9001",
-        "description": "number of samples",
-        "source_case": "瞬态声压级6.3"
+        "value": "20",
+        "description": "Spatial frequency resolution",
+        "source_case": "如何生成随机非均匀材料数据6.2"
       },
       {
-        "name": "Tf",
-        "value": "0.22[s]",
-        "description": "end time",
-        "source_case": "瞬态声压级6.3"
+        "name": "b",
+        "value": "1.8",
+        "description": "Spectral exponent",
+        "source_case": "如何生成随机非均匀材料数据6.2"
       },
       {
-        "name": "dt",
-        "value": "Tf/(N-1)",
-        "description": "time step",
-        "source_case": "瞬态声压级6.3"
+        "name": "D",
+        "value": "2+(3-b)/2",
+        "description": "Fractal dimension",
+        "source_case": "如何生成随机非均匀材料数据6.2"
       },
       {
-        "name": "df",
-        "value": "1/(Tf)",
-        "description": "frequency step",
-        "source_case": "瞬态声压级6.3"
-      },
-      {
-        "name": "Fs",
-        "value": "1/dt",
-        "description": "sampling frequency",
-        "source_case": "瞬态声压级6.3"
-      },
-      {
-        "name": "Fmax",
-        "value": "Fs/2",
-        "description": "maximum frequency",
-        "source_case": "瞬态声压级6.3"
+        "name": "dh",
+        "value": "2[cm]",
+        "description": "",
+        "source_case": "受载弹簧 - 使用全局方程满足约束条件"
       }
     ],
     "article_specific_modifications": [
-      "Use the article parameters as the baseline constraints instead of generic thermal or structural defaults.",
+      "优先使用文章参数作为基准约束，而不是套用通用热学或结构默认值。",
       "Correct geometry to a 300 mm square domain with a 15 mm borehole and optional natural-fracture weak planes.",
       "Correct loads by sweeping principal stress ratio from 1.5 to 2.0 and stress directions such as 90, 135, and 180 degrees.",
       "Correct material definition by adding Weibull-distributed elastic modulus and strength rather than a single homogeneous material.",

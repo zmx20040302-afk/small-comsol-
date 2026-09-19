@@ -1,0 +1,1372 @@
+{
+  "kind": "comsol_case_card",
+  "title": "SiC_PVT_62_withsol",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\通过 PVT 法实现 SiC 的外延生长",
+  "created_at": "2026-08-20T09:28:22.257629+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 4,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 0,
+    "pptx_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "r_seed",
+      "value": "30[mm]",
+      "description": "Radius of seed crystal",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "h_seed",
+      "value": "5[mm]",
+      "description": "Height of seed crystal",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "r_chamber",
+      "value": "65[mm]",
+      "description": "Radius of chamber",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "h_chamber",
+      "value": "80[mm]",
+      "description": "Height of chamber",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "t_side",
+      "value": "6[mm]",
+      "description": "Side thickness of furnace",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "t_cap",
+      "value": "20[mm]",
+      "description": "Top/Bottom cap thickness of furnace",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "h_melt",
+      "value": "50[mm]",
+      "description": "Height of melt",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "t_felt",
+      "value": "40[mm]",
+      "description": "Thickness of air",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "r_coil",
+      "value": "5[mm]",
+      "description": "Radius of coil wire",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "pr_coil_1",
+      "value": "150[mm]",
+      "description": "Position of coil section 1, r",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "pz_coil_1",
+      "value": "-20[mm]",
+      "description": "Position of coil section 1, z",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "n_coil_1",
+      "value": "4",
+      "description": "Turns of coil",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "d_coil_1",
+      "value": "25[mm]",
+      "description": "Distance between coil turns",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "r_rod_u",
+      "value": "10[mm]",
+      "description": "Radius of upper rod",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "r_rod_d",
+      "value": "5[mm]",
+      "description": "Radius of lower rod",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "r_air",
+      "value": "300[mm]",
+      "description": "Radius of air domain",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "h_air",
+      "value": "400[mm]",
+      "description": "Height of air domain",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "pz_air",
+      "value": "-150[mm]",
+      "description": "Position of air domain",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "freq",
+      "value": "16[kHz]",
+      "description": "Operating frequency",
+      "source": "matlab_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "r_seed",
+      "h_seed",
+      "r_chamber",
+      "h_chamber",
+      "t_side",
+      "t_cap",
+      "h_melt",
+      "t_felt",
+      "r_coil",
+      "pr_coil_1",
+      "pz_coil_1",
+      "n_coil_1",
+      "d_coil_1",
+      "r_rod_u",
+      "r_rod_d",
+      "r_air",
+      "h_air",
+      "pz_air",
+      "freq"
+    ],
+    "geometry": [],
+    "physics": [
+      "Heat Transfer"
+    ],
+    "materials": [],
+    "mesh": [],
+    "studies": [],
+    "results": [],
+    "boundary_conditions": [],
+    "theory_keywords": [
+      "传热",
+      "流体",
+      "电磁"
+    ],
+    "source_extracts": [
+      {
+        "name": "SiC_PVT_62_withsol.java",
+        "kind": "comsol_java",
+        "evidence_score": 23,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"SiC_PVT_62_withsol.mph\");",
+          "model.title(\"SiC Epitaxial Growth\");",
+          ".description(\"Silicon Carbide (SiC) Epitaxial Furnace is a specialized equipment for the production and preparation of SiC Epitaxial Wafers. This model demonstrates the process of preparing SiC Epitaxial Wafer based on the Physical Vapor Tr",
+          "model.param().set(\"r_seed\", \"30[mm]\", \"Radius of seed crystal\");",
+          "model.param().set(\"h_seed\", \"5[mm]\", \"Height of seed crystal\");",
+          "model.param().set(\"r_chamber\", \"65[mm]\", \"Radius of chamber\");"
+        ],
+        "parameters": [
+          "r_seed",
+          "h_seed",
+          "r_chamber",
+          "h_chamber",
+          "t_side",
+          "t_cap",
+          "h_melt",
+          "t_felt",
+          "r_coil",
+          "pr_coil_1",
+          "pz_coil_1",
+          "n_coil_1",
+          "d_coil_1",
+          "r_rod_u",
+          "r_rod_d",
+          "r_air",
+          "h_air",
+          "pz_air",
+          "freq"
+        ],
+        "geometry": [],
+        "physics": [
+          "Heat Transfer"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热",
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "SiC_PVT_62_withsol.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 22,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('SiC_PVT_62_withsol.mph');",
+          "model.title('SiC Epitaxial Growth');",
+          "model.description(['Silicon Carbide (SiC) Epitaxial Furnace is a specialized equipment for the production and preparation of SiC Epitaxial Wafers. This model demonstrates the process of preparing SiC Epitaxial Wafer based on the Physical Va",
+          "model.param.set('r_seed', '30[mm]', 'Radius of seed crystal');",
+          "model.param.set('h_seed', '5[mm]', 'Height of seed crystal');"
+        ],
+        "parameters": [
+          "r_seed",
+          "h_seed",
+          "r_chamber",
+          "h_chamber",
+          "t_side",
+          "t_cap",
+          "h_melt",
+          "t_felt",
+          "r_coil",
+          "pr_coil_1",
+          "pz_coil_1",
+          "n_coil_1",
+          "d_coil_1",
+          "r_rod_u",
+          "r_rod_d",
+          "r_air",
+          "h_air",
+          "pz_air",
+          "freq"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热",
+          "流体",
+          "电磁"
+        ]
+      },
+      {
+        "name": "SiC_PVT_62_withsol.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "SiC_PVT_62_withsol_summary.json",
+        "kind": "json",
+        "evidence_score": 0,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh2\"",
+          "\"result_groups\": ["
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 20,
+      "source_files_with_content": 2,
+      "source_files_checked": 4
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "4 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "SiC_PVT_62_withsol.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "SiC_PVT_62_withsol.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 19,
+            "physics": [
+              {
+                "tag": "mf",
+                "interface": "InductionCurrents",
+                "geom": "geom1"
+              },
+              {
+                "tag": "ht",
+                "interface": "HeatTransferInSolidsAndFluids",
+                "geom": "geom1"
+              },
+              {
+                "tag": "spf",
+                "interface": "LaminarFlow",
+                "geom": "geom1"
+              },
+              {
+                "tag": "rad",
+                "interface": "SurfaceToSurfaceRadiation",
+                "geom": "geom1"
+              },
+              {
+                "tag": "tds",
+                "interface": "DilutedSpecies",
+                "geom": "geom1"
+              },
+              {
+                "tag": "bode",
+                "interface": "BoundaryODE",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "fstat",
+                "type": "FrequencyStationary"
+              },
+              {
+                "study": "std2",
+                "tag": "ftrans",
+                "type": "FrequencyTransient"
+              },
+              {
+                "study": "std3",
+                "tag": "ftrans",
+                "type": "FrequencyTransient"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg7",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg8",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg22",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg11",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg12",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg13",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg15",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg16",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg19",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg21",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg36",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg37",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg39",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg40",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg38",
+                "type": "PlotGroup1D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "r_seed",
+                "h_seed",
+                "r_chamber",
+                "h_chamber",
+                "t_side",
+                "t_cap",
+                "h_melt",
+                "t_felt",
+                "r_coil",
+                "pr_coil_1",
+                "pz_coil_1",
+                "n_coil_1",
+                "d_coil_1",
+                "r_rod_u",
+                "r_rod_d",
+                "r_air",
+                "h_air",
+                "pz_air",
+                "freq"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热",
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('SiC_PVT_62_withsol.mph');",
+                "model.title('SiC Epitaxial Growth');",
+                "model.description(['Silicon Carbide (SiC) Epitaxial Furnace is a specialized equipment for the production and preparation of SiC Epitaxial Wafers. This model demonstrates the process of preparing SiC Epitaxial Wafer based on the Physical Va",
+                "model.param.set('r_seed', '30[mm]', 'Radius of seed crystal');",
+                "model.param.set('h_seed', '5[mm]', 'Height of seed crystal');",
+                "model.param.set('r_chamber', '65[mm]', 'Radius of chamber');",
+                "model.param.set('h_chamber', '80[mm]', 'Height of chamber');",
+                "model.param.set('t_side', '6[mm]', 'Side thickness of furnace');",
+                "model.param.set('t_cap', '20[mm]', 'Top/Bottom cap thickness of furnace');"
+              ],
+              "evidence_score": 22
+            }
+          },
+          "preview": "function out = model\n%\n% SiC_PVT_62_withsol.m\n%\n% Model exported on Aug 20 2026, 17:28 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'unicode')  native2unicode(hex2"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "SiC_PVT_62_withsol.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 19,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "r_seed",
+                "h_seed",
+                "r_chamber",
+                "h_chamber",
+                "t_side",
+                "t_cap",
+                "h_melt",
+                "t_felt",
+                "r_coil",
+                "pr_coil_1",
+                "pz_coil_1",
+                "n_coil_1",
+                "d_coil_1",
+                "r_rod_u",
+                "r_rod_d",
+                "r_air",
+                "h_air",
+                "pz_air",
+                "freq"
+              ],
+              "geometry": [],
+              "physics": [
+                "Heat Transfer"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热",
+                "流体",
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"SiC_PVT_62_withsol.mph\");",
+                "model.title(\"SiC Epitaxial Growth\");",
+                ".description(\"Silicon Carbide (SiC) Epitaxial Furnace is a specialized equipment for the production and preparation of SiC Epitaxial Wafers. This model demonstrates the process of preparing SiC Epitaxial Wafer based on the Physical Vapor Tr",
+                "model.param().set(\"r_seed\", \"30[mm]\", \"Radius of seed crystal\");",
+                "model.param().set(\"h_seed\", \"5[mm]\", \"Height of seed crystal\");",
+                "model.param().set(\"r_chamber\", \"65[mm]\", \"Radius of chamber\");",
+                "model.param().set(\"h_chamber\", \"80[mm]\", \"Height of chamber\");",
+                "model.param().set(\"t_side\", \"6[mm]\", \"Side thickness of furnace\");",
+                "model.param().set(\"t_cap\", \"20[mm]\", \"Top/Bottom cap thickness of furnace\");",
+                "model.param().set(\"h_melt\", \"50[mm]\", \"Height of melt\");"
+              ],
+              "evidence_score": 23
+            }
+          },
+          "preview": "/*\n * SiC_PVT_62_withsol.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 20 2026, 17:28 by COMSOL 6.4.0.293. */\npublic class SiC_PVT_62_withsol {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u901a\\u8fc7 PVT \\u6cd5\\u5b9e\\u73b0 SiC \\u7684\\u5916\\u5ef6\\u751f\\u957f\");\n\n    model.label(\"SiC_PVT_62_withsol.mph\");\n\n    model.title(\"SiC Epitaxial Growth\");\n\n    model\n         .description(\"Silicon Carbide (SiC) Epitaxial Furnace"
+        }
+      ],
+      "pdf_documents": [],
+      "presentation_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "SiC_PVT_62_withsol_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh2\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/通过 PVT 法实现 SiC 的外延生长/SiC_PVT_62_withsol.mph\",\n  \"label\": \"SiC_PVT_62_withsol.mph\",\n  \"parameters\": {\n    \"r_seed\": \"30[mm]\",\n    \"h_seed\": \"5[mm]\",\n    \"r_chamber\": \"65[mm]\",\n    \"h_chamber\": \"80[mm]\",\n    \"t_side\": \"6[mm]\",\n    \"t_cap\": \"20[mm]\",\n    \"h_melt\": \"50[mm]\",\n    \"t_felt\": \"40[mm]\",\n    \"r_coil\": \"5[mm]\",\n    \"pr_coil_1\": \"150[mm]\",\n    \"pz_coil_1\": \"-20[mm]\",\n    \"n_coil_1\": \"4\",\n    \"d_coil_1\": \"25[mm]\",\n    \"r_rod_u\": \"10[mm]\",\n    \"r_rod_d\": \"5[mm]\",\n    \"r_air\": \"300[mm]\",\n    \"h_air\": \"400[mm]\",\n    \"pz_air\": \"-150[mm]\",\n    \"M\": \"40[g/mol]\""
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [],
+  "prompt_summary": "",
+  "thoughts": [
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "SiC_PVT_62_withsol.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 402060033,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+      }
+    },
+    {
+      "name": "SiC_PVT_62_withsol.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 151865,
+      "details": {
+        "parameters": 19,
+        "physics": [
+          {
+            "tag": "mf",
+            "interface": "InductionCurrents",
+            "geom": "geom1"
+          },
+          {
+            "tag": "ht",
+            "interface": "HeatTransferInSolidsAndFluids",
+            "geom": "geom1"
+          },
+          {
+            "tag": "spf",
+            "interface": "LaminarFlow",
+            "geom": "geom1"
+          },
+          {
+            "tag": "rad",
+            "interface": "SurfaceToSurfaceRadiation",
+            "geom": "geom1"
+          },
+          {
+            "tag": "tds",
+            "interface": "DilutedSpecies",
+            "geom": "geom1"
+          },
+          {
+            "tag": "bode",
+            "interface": "BoundaryODE",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "fstat",
+            "type": "FrequencyStationary"
+          },
+          {
+            "study": "std2",
+            "tag": "ftrans",
+            "type": "FrequencyTransient"
+          },
+          {
+            "study": "std3",
+            "tag": "ftrans",
+            "type": "FrequencyTransient"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg7",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg8",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg22",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg11",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg12",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg13",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg15",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg16",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg19",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg21",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg36",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg37",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg39",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg40",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg38",
+            "type": "PlotGroup1D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "r_seed",
+            "h_seed",
+            "r_chamber",
+            "h_chamber",
+            "t_side",
+            "t_cap",
+            "h_melt",
+            "t_felt",
+            "r_coil",
+            "pr_coil_1",
+            "pz_coil_1",
+            "n_coil_1",
+            "d_coil_1",
+            "r_rod_u",
+            "r_rod_d",
+            "r_air",
+            "h_air",
+            "pz_air",
+            "freq"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热",
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('SiC_PVT_62_withsol.mph');",
+            "model.title('SiC Epitaxial Growth');",
+            "model.description(['Silicon Carbide (SiC) Epitaxial Furnace is a specialized equipment for the production and preparation of SiC Epitaxial Wafers. This model demonstrates the process of preparing SiC Epitaxial Wafer based on the Physical Va",
+            "model.param.set('r_seed', '30[mm]', 'Radius of seed crystal');",
+            "model.param.set('h_seed', '5[mm]', 'Height of seed crystal');",
+            "model.param.set('r_chamber', '65[mm]', 'Radius of chamber');",
+            "model.param.set('h_chamber', '80[mm]', 'Height of chamber');",
+            "model.param.set('t_side', '6[mm]', 'Side thickness of furnace');",
+            "model.param.set('t_cap', '20[mm]', 'Top/Bottom cap thickness of furnace');"
+          ],
+          "evidence_score": 22
+        }
+      }
+    },
+    {
+      "name": "SiC_PVT_62_withsol.java",
+      "kind": "comsol_java",
+      "size_bytes": 161767,
+      "details": {
+        "model_param_set": 19,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "r_seed",
+            "h_seed",
+            "r_chamber",
+            "h_chamber",
+            "t_side",
+            "t_cap",
+            "h_melt",
+            "t_felt",
+            "r_coil",
+            "pr_coil_1",
+            "pz_coil_1",
+            "n_coil_1",
+            "d_coil_1",
+            "r_rod_u",
+            "r_rod_d",
+            "r_air",
+            "h_air",
+            "pz_air",
+            "freq"
+          ],
+          "geometry": [],
+          "physics": [
+            "Heat Transfer"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热",
+            "流体",
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"SiC_PVT_62_withsol.mph\");",
+            "model.title(\"SiC Epitaxial Growth\");",
+            ".description(\"Silicon Carbide (SiC) Epitaxial Furnace is a specialized equipment for the production and preparation of SiC Epitaxial Wafers. This model demonstrates the process of preparing SiC Epitaxial Wafer based on the Physical Vapor Tr",
+            "model.param().set(\"r_seed\", \"30[mm]\", \"Radius of seed crystal\");",
+            "model.param().set(\"h_seed\", \"5[mm]\", \"Height of seed crystal\");",
+            "model.param().set(\"r_chamber\", \"65[mm]\", \"Radius of chamber\");",
+            "model.param().set(\"h_chamber\", \"80[mm]\", \"Height of chamber\");",
+            "model.param().set(\"t_side\", \"6[mm]\", \"Side thickness of furnace\");",
+            "model.param().set(\"t_cap\", \"20[mm]\", \"Top/Bottom cap thickness of furnace\");",
+            "model.param().set(\"h_melt\", \"50[mm]\", \"Height of melt\");"
+          ],
+          "evidence_score": 23
+        }
+      }
+    },
+    {
+      "name": "SiC_PVT_62_withsol_summary.json",
+      "kind": "json",
+      "size_bytes": 3600,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh2\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 0
+        }
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 19 个参数，可作为约束 JSON 和参数扫描变量。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：Heat Transfer",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "SiC_PVT_62_withsol 主要研究流动速度、压力或输运过程，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Heat Transfer。",
+    "primary_physics": "Heat Transfer",
+    "study_type": "unknown",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Heat Transfer，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型需要继续从研究步骤确认。",
+    "evidence": [
+      "脚本/文本识别到的物理场: Heat Transfer",
+      "理论关键词: 传热, 流体, 电磁"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "传热",
+      "流体",
+      "电磁"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "r_seed",
+        "modeling_content": "Radius of seed crystal",
+        "matlab_action": "model.param.set('r_seed', value, description)"
+      },
+      {
+        "keyword": "h_seed",
+        "modeling_content": "Height of seed crystal",
+        "matlab_action": "model.param.set('h_seed', value, description)"
+      },
+      {
+        "keyword": "r_chamber",
+        "modeling_content": "Radius of chamber",
+        "matlab_action": "model.param.set('r_chamber', value, description)"
+      },
+      {
+        "keyword": "h_chamber",
+        "modeling_content": "Height of chamber",
+        "matlab_action": "model.param.set('h_chamber', value, description)"
+      },
+      {
+        "keyword": "t_side",
+        "modeling_content": "Side thickness of furnace",
+        "matlab_action": "model.param.set('t_side', value, description)"
+      },
+      {
+        "keyword": "t_cap",
+        "modeling_content": "Top/Bottom cap thickness of furnace",
+        "matlab_action": "model.param.set('t_cap', value, description)"
+      },
+      {
+        "keyword": "h_melt",
+        "modeling_content": "Height of melt",
+        "matlab_action": "model.param.set('h_melt', value, description)"
+      },
+      {
+        "keyword": "t_felt",
+        "modeling_content": "Thickness of air",
+        "matlab_action": "model.param.set('t_felt', value, description)"
+      },
+      {
+        "keyword": "r_coil",
+        "modeling_content": "Radius of coil wire",
+        "matlab_action": "model.param.set('r_coil', value, description)"
+      },
+      {
+        "keyword": "pr_coil_1",
+        "modeling_content": "Position of coil section 1, r",
+        "matlab_action": "model.param.set('pr_coil_1', value, description)"
+      },
+      {
+        "keyword": "pz_coil_1",
+        "modeling_content": "Position of coil section 1, z",
+        "matlab_action": "model.param.set('pz_coil_1', value, description)"
+      },
+      {
+        "keyword": "n_coil_1",
+        "modeling_content": "Turns of coil",
+        "matlab_action": "model.param.set('n_coil_1', value, description)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别物理场证据：Heat Transfer",
+      "已识别参数：r_seed、h_seed、r_chamber、h_chamber、t_side、t_cap、h_melt、t_felt、r_coil、pr_coil_1、pz_coil_1、n_coil_1"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "r_seed",
+      "h_seed",
+      "r_chamber",
+      "h_chamber",
+      "t_side",
+      "t_cap",
+      "h_melt",
+      "t_felt",
+      "r_coil",
+      "pr_coil_1",
+      "pz_coil_1",
+      "n_coil_1",
+      "d_coil_1",
+      "r_rod_u",
+      "r_rod_d",
+      "r_air",
+      "h_air",
+      "pz_air",
+      "freq"
+    ],
+    "candidate_outputs": [
+      "Tmax",
+      "Tavg"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 65,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: Heat Transfer."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 传热, 流体, 电磁?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to temperature sensitivity studies by sweeping heat source, convection coefficient, and thermal conductivity.",
+      "Couple heat transfer with structural stress or electric losses when the requirement includes deformation or Joule heating.",
+      "Extend to inlet/outlet sensitivity, pressure-drop prediction, and flow-uniformity analysis.",
+      "Add coupled transport, porous media, or nonisothermal flow when concentration or temperature fields are involved."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `r_seed` around the learned value `30[mm]` and export target outputs to CSV.",
+      "Sweep `h_seed` around the learned value `5[mm]` and export target outputs to CSV.",
+      "Sweep `r_chamber` around the learned value `65[mm]` and export target outputs to CSV.",
+      "Sweep `h_chamber` around the learned value `80[mm]` and export target outputs to CSV.",
+      "Sweep `t_side` around the learned value `6[mm]` and export target outputs to CSV.",
+      "Sweep `t_cap` around the learned value `20[mm]` and export target outputs to CSV.",
+      "Sweep `h_melt` around the learned value `50[mm]` and export target outputs to CSV.",
+      "Sweep `t_felt` around the learned value `40[mm]` and export target outputs to CSV.",
+      "Sweep heat source, heat-transfer coefficient, thermal conductivity, and ambient temperature.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\通过 PVT 法实现 SiC 的外延生长"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=4, MATLAB=1, Java=1, PDF=0, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 20 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "SiC_PVT_62_withsol",
+    "summary": "已学习 SiC_PVT_62_withsol 的 4 个文件；训练阶段=modeling_logic_learning_ready；参数数量=19；内容证据=20 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "19 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification.",
+      "20 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 4 个案例文件；MATLAB=1，Java=1，PDF=0，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 20 条；几何=0，物理场=1，材料=0，网格=0，研究=0，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：SiC_PVT_62_withsol.m, SiC_PVT_62_withsol.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 19 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=1。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 SiC_PVT_62_withsol，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "SiC_PVT_62_withsol modeling_logic_learning_ready MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. r_seed Radius of seed crystal 30[mm] h_seed Height of seed crystal 5[mm] r_chamber Radius of chamber 65[mm] h_chamber Height of chamber 80[mm] t_side Side thickness of furnace 6[mm] t_cap Top/Bottom cap thickness of furnace 20[mm] h_melt Height of melt 50[mm] t_felt Thickness of air 40[mm] r_coil Radius of coil wire 5[mm] pr_coil_1 Position of coil section 1, r 150[mm] pz_coil_1 Position of coil section 1, z -20[mm] n_coil_1 Turns of coil 4 d_coil_1 Distance between coil turns 25[mm] r_rod_u Radius of upper rod 10[mm] r_rod_d Radius of lower rod 5[mm] r_air Radius of air domain 300[mm] h_air Height of air domain 400[mm] pz_air Position of air domain -150[mm] freq Operating frequency 16[kHz] SiC_PVT_62_withsol.mph comsol_mph SiC_PVT_62_withsol.m matlab_livelink SiC_PVT_62_withsol.java comsol_java SiC_PVT_62_withsol_summary.json json",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

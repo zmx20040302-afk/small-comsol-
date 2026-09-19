@@ -2,7 +2,7 @@
 
 - Case directory: `D:\桌面\codex\案例下载\COMSOL\用 Hodgkin-Huxley 模型模拟动作电位`
 - Training stage: `modeling_logic_learning_ready`
-- Created at: `2026-06-29T08:47:18.834566+00:00`
+- Created at: `2026-07-06T09:42:19.412788+00:00`
 
 ## File Summary
 
@@ -39,9 +39,121 @@
 
 ### 文件内容证据
 
+- `Hodgkin_Huxley_simulation_app.mph`: 参数=11, 几何=0, 物理场=1, 研究=2, 结果=0
 - `Hodgkin_Huxley_simulation_app.m`: 参数=11, 几何=0, 物理场=1, 研究=1, 结果=0
 - `Hodgkin_Huxley_simulation_app.java`: 参数=11, 几何=0, 物理场=1, 研究=2, 结果=0
-- `Hodgkin_Huxley_simulation_app.mph`: 参数=0, 几何=0, 物理场=0, 研究=0, 结果=0
+
+## PDF Summary and Physics Judgement
+
+- Simple summary: 用 Hodgkin-Huxley 模型模拟动作电位 主要研究模型中的主要物理现象和输出量，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 GlobalEquations，并采用 Transient 研究。
+- Primary physics: `GlobalEquations`
+- Study type: `Transient`
+- Judgement rule: 若 PDF 的核心量和方程关键词指向 GlobalEquations，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Transient 确认。
+
+### Judgement Evidence
+
+- 脚本/文本识别到的物理场: ge / GlobalEquations
+- 识别到的研究类型: std1 / time / Transient, std1
+
+## PDF Keywords to Geometry/Parameter/MATLAB Mapping
+
+- Summary: 将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。
+- `ENa` -> 案例参数/扫描变量; MATLAB: `model.param.set('ENa', value, description)`
+- `EK` -> 案例参数/扫描变量; MATLAB: `model.param.set('EK', value, description)`
+- `El` -> 案例参数/扫描变量; MATLAB: `model.param.set('El', value, description)`
+- `gbarNa` -> 案例参数/扫描变量; MATLAB: `model.param.set('gbarNa', value, description)`
+- `gbarK` -> 案例参数/扫描变量; MATLAB: `model.param.set('gbarK', value, description)`
+- `gbarl` -> 案例参数/扫描变量; MATLAB: `model.param.set('gbarl', value, description)`
+- `Cm` -> 案例参数/扫描变量; MATLAB: `model.param.set('Cm', value, description)`
+- `startT` -> 案例参数/扫描变量; MATLAB: `model.param.set('startT', value, description)`
+- `finalT` -> 案例参数/扫描变量; MATLAB: `model.param.set('finalT', value, description)`
+- `step` -> 案例参数/扫描变量; MATLAB: `model.param.set('step', value, description)`
+- `rel_tol` -> 案例参数/扫描变量; MATLAB: `model.param.set('rel_tol', value, description)`
+
+### Geometry and Parameter Checks
+
+- 先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。
+- 全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。
+- 几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。
+- MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。
+- 已识别物理场证据：ge / GlobalEquations
+- 已识别参数：ENa、EK、El、gbarNa、gbarK、gbarl、Cm、startT、finalT、step、rel_tol
+
+## Modeling Principles Learned
+
+- Readiness: `modeling_principles_ready`
+
+### core_sequence
+
+- 先定义全局参数和单位，再建立几何与选择集。
+- 随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。
+- 自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。
+- 本案例已提取 11 个参数，可作为约束 JSON 和参数扫描变量。
+
+### physics_reasoning
+
+- 物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。
+- 识别到物理场证据：ge / GlobalEquations
+- 边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。
+
+### automation_evidence
+
+- MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。
+- MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。
+
+### verification_logic
+
+- 生成模型后先运行基准算例，再做网格无关性和参数扫描。
+- 若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。
+- 训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。
+
+## Thinking and Extension
+
+- Readiness: `ready_for_reasoning_and_extension`
+
+### transferable_knowledge
+
+- Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.
+- Treat extracted parameters as future constraint variables and parametric sweep inputs.
+- Transfer recognized physics interfaces to similar requirements: ge / GlobalEquations.
+- Use the learned study types as solver starting points: std1 / time / Transient, std1.
+
+### extension_questions
+
+- Which parameters control geometry size, material response, boundary loading, and solver stability?
+- Which output quantities can be converted into CSV columns for surrogate-model training?
+- Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?
+- Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?
+
+### new_model_directions
+
+- Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target.
+
+### parameter_sweep_ideas
+
+- Sweep `ENa` around the learned value `50[mV]` and export target outputs to CSV.
+- Sweep `EK` around the learned value `-77[mV]` and export target outputs to CSV.
+- Sweep `El` around the learned value `-54.4[mV]` and export target outputs to CSV.
+- Sweep `gbarNa` around the learned value `120[mS/cm^2]` and export target outputs to CSV.
+- Sweep `gbarK` around the learned value `36[mS/cm^2]` and export target outputs to CSV.
+- Sweep `gbarl` around the learned value `0.3[mS/cm^2]` and export target outputs to CSV.
+- Sweep `Cm` around the learned value `0.001[mF/cm^2]` and export target outputs to CSV.
+- Sweep `startT` around the learned value `0[ms]` and export target outputs to CSV.
+- Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities.
+
+### code_generation_ideas
+
+- Use existing MATLAB/Java scripts as the highest-confidence source for API call order.
+- Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.
+- Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.
+- Create a CSV export script for derived values before training a numerical surrogate.
+
+### risk_checks
+
+- Boundary IDs and named selections must be verified after geometry changes.
+- Material properties and units must be checked before using generated scripts for real simulation.
+- Mesh independence and baseline-solve convergence should be checked before parameter sweeps.
+- No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training.
 
 ## Thoughts
 
@@ -107,6 +219,47 @@
 - Export a CSV containing input parameters and target outputs.
 - Train the local surrogate model after the CSV exists.
 - 几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。
+
+## Deep Learning Capability Plan
+
+- Readiness: `ready_to_generate_comsol_sweep_dataset`
+- Score: `70`
+
+### Candidate Inputs
+
+- `ENa`
+- `EK`
+- `El`
+- `gbarNa`
+- `gbarK`
+- `gbarl`
+- `Cm`
+- `startT`
+- `finalT`
+- `step`
+- `rel_tol`
+
+### Candidate Outputs
+
+- `primary_quantity_of_interest`
+- `validation_error`
+
+### Training Workflow
+
+- 读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。
+- 从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。
+- 把候选输入参数转成约束 JSON，并确定扫描范围。
+- 运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。
+- 对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。
+- 用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。
+
+### Dataset Requirements
+
+- 当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。
+- 每一行代表一次 COMSOL 参数扫描或验证运行。
+- 输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。
+- 输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。
+- 训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。
 
 ## External Knowledge Alignment
 

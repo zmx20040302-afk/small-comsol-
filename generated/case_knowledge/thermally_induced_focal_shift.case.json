@@ -1,0 +1,1317 @@
+{
+  "kind": "comsol_case_card",
+  "title": "thermally_induced_focal_shift",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\大功率激光聚焦系统中的热致焦移",
+  "created_at": "2026-08-22T03:56:04.496502+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 5,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1,
+      "pdf_document": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 1,
+    "pptx_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "Irms",
+      "value": "1[W]",
+      "description": "Root mean square power of the source",
+      "source": "java_param_set"
+    },
+    {
+      "name": "T0",
+      "value": "293.15",
+      "description": "Room temperature",
+      "source": "java_param_set"
+    },
+    {
+      "name": "lam",
+      "value": "1064[nm]",
+      "description": "Fiber laser's wavelength",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d",
+      "value": "50[mm]",
+      "description": "Diameter of the plano-convex lens",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R",
+      "value": "68.8[mm]",
+      "description": "Radius of curvature of plano-convex lens",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Te",
+      "value": "3.0[mm]",
+      "description": "Edge thickness of the plano-convex lens",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Tc",
+      "value": "Te+R-sqrt(R^2-(d/2)^2)",
+      "description": "Center thickness of the plano-convex lens",
+      "source": "java_param_set"
+    },
+    {
+      "name": "dis",
+      "value": "1.5*R",
+      "description": "Distance between the collimating and focusing lens",
+      "source": "java_param_set"
+    },
+    {
+      "name": "bfl",
+      "value": "145.0[mm]",
+      "description": "Back focal length of the plano-convex lens",
+      "source": "java_param_set"
+    },
+    {
+      "name": "fiber_pos",
+      "value": "-(dis/2+Tc+bfl)",
+      "description": "Position of the optical fiber",
+      "source": "java_param_set"
+    },
+    {
+      "name": "fiber_NA",
+      "value": "0.1",
+      "description": "Numerical aperture of the optical fiber",
+      "source": "java_param_set"
+    },
+    {
+      "name": "theta",
+      "value": "asin(fiber_NA)",
+      "description": "Half cone angle of the released rays",
+      "source": "java_param_set"
+    },
+    {
+      "name": "n0",
+      "value": "1.45",
+      "description": "Real part of the refractive index at T=T0 and lambda=lam",
+      "source": "java_param_set"
+    },
+    {
+      "name": "dndT",
+      "value": "10e-6[1/K]",
+      "description": "Thermal variation of the real part of the refractive index",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "Irms",
+      "T0",
+      "lam",
+      "d",
+      "R",
+      "Te",
+      "Tc",
+      "dis",
+      "bfl",
+      "fiber_pos",
+      "fiber_NA",
+      "theta",
+      "n0",
+      "dndT"
+    ],
+    "geometry": [
+      "pi1 / PartInstance"
+    ],
+    "physics": [
+      "Heat Transfer",
+      "Solid Mechanics",
+      "Ray Optics"
+    ],
+    "materials": [],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [
+      "Parametric Sweep"
+    ],
+    "results": [],
+    "boundary_conditions": [],
+    "theory_keywords": [
+      "传热",
+      "结构力学",
+      "电磁",
+      "优化/参数扫描"
+    ],
+    "source_extracts": [
+      {
+        "name": "thermally_induced_focal_shift.java",
+        "kind": "comsol_java",
+        "evidence_score": 17,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"thermally_induced_focal_shift.mph\");",
+          "model.title(\"\\u5927\\u529f\\u7387\\u6fc0\\u5149\\u805a\\u7126\\u7cfb\\u7edf\\u4e2d\\u7684\\u70ed\\u81f4\\u7126\\u79fb\");",
+          "model.param().set(\"Irms\", \"1[W]\", \"Root mean square power of the source\");",
+          "model.param().set(\"T0\", \"293.15\", \"Room temperature\");",
+          "model.param().set(\"lam\", \"1064[nm]\", \"Fiber laser's wavelength\");",
+          "model.param().set(\"d\", \"50[mm]\", \"Diameter of the plano-convex lens\");"
+        ],
+        "parameters": [
+          "Irms",
+          "T0",
+          "lam",
+          "d",
+          "R",
+          "Te",
+          "Tc",
+          "dis",
+          "bfl",
+          "fiber_pos",
+          "fiber_NA",
+          "theta",
+          "n0",
+          "dndT"
+        ],
+        "geometry": [
+          "pi1 / PartInstance"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "models.roptics.thermally_induced_focal_shift.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 8,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          " Stress-optical effects resulting from thermal stress",
+          "relay in which the rays can deposit energy. The lenses are heated as a result. The",
+          "The resulting thermally induced focal shift is then computed.",
+          "The model geometry consists of two 50 mm diameter fused silica glass lenses with an",
+          "The model uses the Geometrical Optics interface to trace the paths of rays through the lens",
+          "In the Geometrical Optics interface it is possible to assign separate degrees of freedom for",
+          "Ray Heat Source multiphysics coupling"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Heat Transfer",
+          "Solid Mechanics",
+          "Ray Optics"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [
+          "Parametric Sweep"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热",
+          "结构力学",
+          "电磁",
+          "优化/参数扫描"
+        ]
+      },
+      {
+        "name": "thermally_induced_focal_shift.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 1,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "thermally_induced_focal_shift.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 1,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('thermally_induced_focal_shift.mph');",
+          "model.title([native2unicode(hex2dec({'59' '27'}), 'unicode') native2unicode(hex2dec({'52' '9f'}), 'unicode') native2unicode(hex2dec({'73' '87'}), 'unicode') native2unicode(hex2dec({'6f' 'c0'}), 'unicode') native2unicode(hex2dec({'51' '49'})",
+          "model.description([native2unicode(hex2dec({'73' 'b0'}), 'unicode') native2unicode(hex2dec({'4e' 'e3'}), 'unicode') native2unicode(hex2dec({'59' '27'}), 'unicode') native2unicode(hex2dec({'52' '9f'}), 'unicode') native2unicode(hex2dec({'73' "
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热"
+        ]
+      },
+      {
+        "name": "thermally_induced_focal_shift_summary.json",
+        "kind": "json",
+        "evidence_score": 1,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\",",
+          "\"pgeom_gop\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\"",
+          "\"result_groups\": ["
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热"
+        ]
+      }
+    ],
+    "totals": {
+      "model_tree_items": 20,
+      "source_files_with_content": 5,
+      "source_files_checked": 5
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "5 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "thermally_induced_focal_shift.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "thermally_induced_focal_shift_parameters.txt",
+                "kind": "mph_text_sidecar",
+                "size_bytes": 1029
+              },
+              {
+                "name": "thermally_induced_focal_shift_variables.txt",
+                "kind": "mph_text_sidecar",
+                "size_bytes": 168
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [],
+              "evidence_score": 1
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+          },
+          "preview": "## thermally_induced_focal_shift_parameters.txt\nIrms       1[W]                   Root mean square power of the source\nT0         293.15                 Room temperature\nlam        1064[nm]               Fiber laser's wavelength\nd          50[mm]                 Diameter of the plano-convex lens\nR          68.8[mm]               Radius of curvature of plano-convex lens\nTe         3.0[mm]                Edge thickness of the plano-convex lens\nTc         Te+R-sqrt(R^2-(d/2)^2) Center thickness of the plano-convex lens\ndis        1.5*R                  Distance between the collimating and focusin"
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "thermally_induced_focal_shift.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 13,
+            "physics": [
+              {
+                "tag": "gop",
+                "interface": "GeometricalOptics",
+                "geom": "geom1"
+              },
+              {
+                "tag": "ht",
+                "interface": "HeatTransfer",
+                "geom": "geom1"
+              },
+              {
+                "tag": "solid",
+                "interface": "SolidMechanics",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "param",
+                "type": "Parametric"
+              },
+              {
+                "study": "std1",
+                "tag": "bcrt",
+                "type": "BidirectionallyCoupledRayTracing"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg6",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg7",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg8",
+                "type": "PlotGroup2D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('thermally_induced_focal_shift.mph');",
+                "model.title([native2unicode(hex2dec({'59' '27'}), 'unicode') native2unicode(hex2dec({'52' '9f'}), 'unicode') native2unicode(hex2dec({'73' '87'}), 'unicode') native2unicode(hex2dec({'6f' 'c0'}), 'unicode') native2unicode(hex2dec({'51' '49'})",
+                "model.description([native2unicode(hex2dec({'73' 'b0'}), 'unicode') native2unicode(hex2dec({'4e' 'e3'}), 'unicode') native2unicode(hex2dec({'59' '27'}), 'unicode') native2unicode(hex2dec({'52' '9f'}), 'unicode') native2unicode(hex2dec({'73' "
+              ],
+              "evidence_score": 1
+            }
+          },
+          "preview": "function out = model\n%\n% thermally_induced_focal_shift.m\n%\n% Model exported on Aug 22 2026, 11:55 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'unicode')  native2u"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "thermally_induced_focal_shift.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 14,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "Irms",
+                "T0",
+                "lam",
+                "d",
+                "R",
+                "Te",
+                "Tc",
+                "dis",
+                "bfl",
+                "fiber_pos",
+                "fiber_NA",
+                "theta",
+                "n0",
+                "dndT"
+              ],
+              "geometry": [
+                "pi1 / PartInstance"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"thermally_induced_focal_shift.mph\");",
+                "model.title(\"\\u5927\\u529f\\u7387\\u6fc0\\u5149\\u805a\\u7126\\u7cfb\\u7edf\\u4e2d\\u7684\\u70ed\\u81f4\\u7126\\u79fb\");",
+                "model.param().set(\"Irms\", \"1[W]\", \"Root mean square power of the source\");",
+                "model.param().set(\"T0\", \"293.15\", \"Room temperature\");",
+                "model.param().set(\"lam\", \"1064[nm]\", \"Fiber laser's wavelength\");",
+                "model.param().set(\"d\", \"50[mm]\", \"Diameter of the plano-convex lens\");",
+                "model.param().set(\"R\", \"68.8[mm]\", \"Radius of curvature of plano-convex lens\");",
+                "model.param().set(\"Te\", \"3.0[mm]\", \"Edge thickness of the plano-convex lens\");",
+                "model.param().set(\"Tc\", \"Te+R-sqrt(R^2-(d/2)^2)\", \"Center thickness of the plano-convex lens\");",
+                "model.param().set(\"dis\", \"1.5*R\", \"Distance between the collimating and focusing lens\");"
+              ],
+              "evidence_score": 17
+            }
+          },
+          "preview": "/*\n * thermally_induced_focal_shift.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 22 2026, 11:55 by COMSOL 6.4.0.293. */\npublic class thermally_induced_focal_shift {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u5927\\u529f\\u7387\\u6fc0\\u5149\\u805a\\u7126\\u7cfb\\u7edf\\u4e2d\\u7684\\u70ed\\u81f4\\u7126\\u79fb\");\n\n    model.label(\"thermally_induced_focal_shift.mph\");\n\n    model.title(\"\\u5927\\u529f\\u7387\\u6fc0\\u5149\\u805a\\u7126\\u"
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.roptics.thermally_induced_focal_shift.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 27,
+            "extractor": "pypdf",
+            "preview_pages": 27,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Heat Transfer",
+                "Solid Mechanics",
+                "Ray Optics"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [
+                "Parametric Sweep"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热",
+                "结构力学",
+                "电磁",
+                "优化/参数扫描"
+              ],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                " Stress-optical effects resulting from thermal stress",
+                "relay in which the rays can deposit energy. The lenses are heated as a result. The",
+                "The resulting thermally induced focal shift is then computed.",
+                "The model geometry consists of two 50 mm diameter fused silica glass lenses with an",
+                "The model uses the Geometrical Optics interface to trace the paths of rays through the lens",
+                "In the Geometrical Optics interface it is possible to assign separate degrees of freedom for",
+                "Ray Heat Source multiphysics coupling",
+                "perturbs the ray trajectories, both directly and through the resulting structural",
+                "Bidirectionally Coupled Ray Tracing study step are",
+                "used. The Bidirectionally Coupled Ray Tracing study step sets up a solver loop in which the",
+                "iterations. The results of each iteration are used to assign the"
+              ],
+              "evidence_score": 8
+            },
+            "simple_summary": "models.roptics.thermally_induced_focal_shift.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Solid Mechanics、Ray Optics，研究类型线索为 Parametric Sweep；核心内容可概括为：Model created in COMSOL Multiphysics 6.4； Stress-optical effects resulting from thermal stress"
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nThermally Induced Focal Shift in High-Power\nLaser Focusing Systems\n2 | THERMALLY INDUCED FOCAL SHIFT IN HIGH-POWER LASER FOCUSING SYSTEMS\nIntroduction\nModern high-power industrial fiber laser systems can deliver up to 3k W of single-mode \nlaser radiation onto surfaces to be cut, drilled, welded, or marked (Ref. 1). Even when the \noptical components used to focus the beam are almost completely "
+        }
+      ],
+      "presentation_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "thermally_induced_focal_shift_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热"
+              ],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\",",
+                "\"pgeom_gop\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 1
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/大功率激光聚焦系统中的热致焦移/thermally_induced_focal_shift.mph\",\n  \"label\": \"thermally_induced_focal_shift.mph\",\n  \"parameters\": {\n    \"Irms\": \"1[W]\",\n    \"T0\": \"293.15\",\n    \"lam\": \"1064[nm]\",\n    \"d\": \"50[mm]\",\n    \"R\": \"68.8[mm]\",\n    \"Te\": \"3.0[mm]\",\n    \"Tc\": \"Te+R-sqrt(R^2-(d/2)^2)\",\n    \"dis\": \"1.5*R\",\n    \"bfl\": \"145.0[mm]\",\n    \"fiber_pos\": \"-(dis/2+Tc+bfl)\",\n    \"fiber_NA\": \"0.1\",\n    \"theta\": \"asin(fiber_NA)\",\n    \"n0\": \"1.45\",\n    \"dndT\": \"10e-6[1/K]\"\n  },\n  \"components\": {\n    \"tag\": \"comp1\",\n    \"geometry\": [\n      \"geom1\",\n      \"pgeom_gop\"\n    ],\n    \"mate"
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.roptics.thermally_induced_focal_shift.pdf",
+        "summary": "models.roptics.thermally_induced_focal_shift.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Solid Mechanics、Ray Optics，研究类型线索为 Parametric Sweep；核心内容可概括为：Model created in COMSOL Multiphysics 6.4； Stress-optical effects resulting from thermal stress"
+      }
+    ],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.roptics.thermally_induced_focal_shift.pdf",
+      "summary": "models.roptics.thermally_induced_focal_shift.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Solid Mechanics、Ray Optics，研究类型线索为 Parametric Sweep；核心内容可概括为：Model created in COMSOL Multiphysics 6.4； Stress-optical effects resulting from thermal stress"
+    }
+  ],
+  "prompt_summary": "",
+  "thoughts": [
+    "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "thermally_induced_focal_shift.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 25578684,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "thermally_induced_focal_shift_parameters.txt",
+            "kind": "mph_text_sidecar",
+            "size_bytes": 1029
+          },
+          {
+            "name": "thermally_induced_focal_shift_variables.txt",
+            "kind": "mph_text_sidecar",
+            "size_bytes": 168
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [],
+          "evidence_score": 1
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+      }
+    },
+    {
+      "name": "thermally_induced_focal_shift.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 66266,
+      "details": {
+        "parameters": 13,
+        "physics": [
+          {
+            "tag": "gop",
+            "interface": "GeometricalOptics",
+            "geom": "geom1"
+          },
+          {
+            "tag": "ht",
+            "interface": "HeatTransfer",
+            "geom": "geom1"
+          },
+          {
+            "tag": "solid",
+            "interface": "SolidMechanics",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "param",
+            "type": "Parametric"
+          },
+          {
+            "study": "std1",
+            "tag": "bcrt",
+            "type": "BidirectionallyCoupledRayTracing"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg6",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg7",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg8",
+            "type": "PlotGroup2D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('thermally_induced_focal_shift.mph');",
+            "model.title([native2unicode(hex2dec({'59' '27'}), 'unicode') native2unicode(hex2dec({'52' '9f'}), 'unicode') native2unicode(hex2dec({'73' '87'}), 'unicode') native2unicode(hex2dec({'6f' 'c0'}), 'unicode') native2unicode(hex2dec({'51' '49'})",
+            "model.description([native2unicode(hex2dec({'73' 'b0'}), 'unicode') native2unicode(hex2dec({'4e' 'e3'}), 'unicode') native2unicode(hex2dec({'59' '27'}), 'unicode') native2unicode(hex2dec({'52' '9f'}), 'unicode') native2unicode(hex2dec({'73' "
+          ],
+          "evidence_score": 1
+        }
+      }
+    },
+    {
+      "name": "thermally_induced_focal_shift.java",
+      "kind": "comsol_java",
+      "size_bytes": 61578,
+      "details": {
+        "model_param_set": 14,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "Irms",
+            "T0",
+            "lam",
+            "d",
+            "R",
+            "Te",
+            "Tc",
+            "dis",
+            "bfl",
+            "fiber_pos",
+            "fiber_NA",
+            "theta",
+            "n0",
+            "dndT"
+          ],
+          "geometry": [
+            "pi1 / PartInstance"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"thermally_induced_focal_shift.mph\");",
+            "model.title(\"\\u5927\\u529f\\u7387\\u6fc0\\u5149\\u805a\\u7126\\u7cfb\\u7edf\\u4e2d\\u7684\\u70ed\\u81f4\\u7126\\u79fb\");",
+            "model.param().set(\"Irms\", \"1[W]\", \"Root mean square power of the source\");",
+            "model.param().set(\"T0\", \"293.15\", \"Room temperature\");",
+            "model.param().set(\"lam\", \"1064[nm]\", \"Fiber laser's wavelength\");",
+            "model.param().set(\"d\", \"50[mm]\", \"Diameter of the plano-convex lens\");",
+            "model.param().set(\"R\", \"68.8[mm]\", \"Radius of curvature of plano-convex lens\");",
+            "model.param().set(\"Te\", \"3.0[mm]\", \"Edge thickness of the plano-convex lens\");",
+            "model.param().set(\"Tc\", \"Te+R-sqrt(R^2-(d/2)^2)\", \"Center thickness of the plano-convex lens\");",
+            "model.param().set(\"dis\", \"1.5*R\", \"Distance between the collimating and focusing lens\");"
+          ],
+          "evidence_score": 17
+        }
+      }
+    },
+    {
+      "name": "thermally_induced_focal_shift_summary.json",
+      "kind": "json",
+      "size_bytes": 2889,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热"
+          ],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\",",
+            "\"pgeom_gop\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 1
+        }
+      }
+    },
+    {
+      "name": "models.roptics.thermally_induced_focal_shift.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 1117799,
+      "details": {
+        "readable": true,
+        "pages": 27,
+        "extractor": "pypdf",
+        "preview_pages": 27,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Heat Transfer",
+            "Solid Mechanics",
+            "Ray Optics"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [
+            "Parametric Sweep"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热",
+            "结构力学",
+            "电磁",
+            "优化/参数扫描"
+          ],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            " Stress-optical effects resulting from thermal stress",
+            "relay in which the rays can deposit energy. The lenses are heated as a result. The",
+            "The resulting thermally induced focal shift is then computed.",
+            "The model geometry consists of two 50 mm diameter fused silica glass lenses with an",
+            "The model uses the Geometrical Optics interface to trace the paths of rays through the lens",
+            "In the Geometrical Optics interface it is possible to assign separate degrees of freedom for",
+            "Ray Heat Source multiphysics coupling",
+            "perturbs the ray trajectories, both directly and through the resulting structural",
+            "Bidirectionally Coupled Ray Tracing study step are",
+            "used. The Bidirectionally Coupled Ray Tracing study step sets up a solver loop in which the",
+            "iterations. The results of each iteration are used to assign the"
+          ],
+          "evidence_score": 8
+        },
+        "simple_summary": "models.roptics.thermally_induced_focal_shift.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Solid Mechanics、Ray Optics，研究类型线索为 Parametric Sweep；核心内容可概括为：Model created in COMSOL Multiphysics 6.4； Stress-optical effects resulting from thermal stress"
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 14 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：Heat Transfer",
+      "识别到物理场证据：Solid Mechanics",
+      "识别到物理场证据：Ray Optics",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "thermally_induced_focal_shift 主要研究结构受力、变形或强度响应，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Heat Transfer，并采用 Parametric Sweep 研究。",
+    "primary_physics": "Heat Transfer",
+    "study_type": "Parametric Sweep",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Heat Transfer，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Parametric Sweep 确认。",
+    "evidence": [
+      "PDF: Model created in COMSOL Multiphysics 6.4",
+      "PDF:  Stress-optical effects resulting from thermal stress",
+      "PDF: relay in which the rays can deposit energy. The lenses are heated as a result. The",
+      "PDF: The resulting thermally induced focal shift is then computed.",
+      "脚本/文本识别到的物理场: Heat Transfer, Solid Mechanics, Ray Optics",
+      "识别到的研究类型: Parametric Sweep",
+      "理论关键词: 传热, 结构力学, 电磁, 优化/参数扫描"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "传热",
+      "结构力学",
+      "电磁",
+      "优化/参数扫描",
+      "models.roptics.thermally_induced_focal_shift.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Solid Mechanics、Ray Optics，研究类型线索为 Parametric Sweep；核心内容可概括为：Model created in COMSOL Multiphysics 6.4； Stress-optical effects resulting from thermal stress"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "Irms",
+        "modeling_content": "Root mean square power of the source",
+        "matlab_action": "model.param.set('Irms', value, description)"
+      },
+      {
+        "keyword": "T0",
+        "modeling_content": "Room temperature",
+        "matlab_action": "model.param.set('T0', value, description)"
+      },
+      {
+        "keyword": "lam",
+        "modeling_content": "Fiber laser's wavelength",
+        "matlab_action": "model.param.set('lam', value, description)"
+      },
+      {
+        "keyword": "d",
+        "modeling_content": "Diameter of the plano-convex lens",
+        "matlab_action": "model.param.set('d', value, description)"
+      },
+      {
+        "keyword": "R",
+        "modeling_content": "Radius of curvature of plano-convex lens",
+        "matlab_action": "model.param.set('R', value, description)"
+      },
+      {
+        "keyword": "Te",
+        "modeling_content": "Edge thickness of the plano-convex lens",
+        "matlab_action": "model.param.set('Te', value, description)"
+      },
+      {
+        "keyword": "Tc",
+        "modeling_content": "Center thickness of the plano-convex lens",
+        "matlab_action": "model.param.set('Tc', value, description)"
+      },
+      {
+        "keyword": "dis",
+        "modeling_content": "Distance between the collimating and focusing lens",
+        "matlab_action": "model.param.set('dis', value, description)"
+      },
+      {
+        "keyword": "bfl",
+        "modeling_content": "Back focal length of the plano-convex lens",
+        "matlab_action": "model.param.set('bfl', value, description)"
+      },
+      {
+        "keyword": "fiber_pos",
+        "modeling_content": "Position of the optical fiber",
+        "matlab_action": "model.param.set('fiber_pos', value, description)"
+      },
+      {
+        "keyword": "fiber_NA",
+        "modeling_content": "Numerical aperture of the optical fiber",
+        "matlab_action": "model.param.set('fiber_NA', value, description)"
+      },
+      {
+        "keyword": "theta",
+        "modeling_content": "Half cone angle of the released rays",
+        "matlab_action": "model.param.set('theta', value, description)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：pi1 / PartInstance",
+      "已识别物理场证据：Heat Transfer；Solid Mechanics；Ray Optics",
+      "已识别参数：Irms、T0、lam、d、R、Te、Tc、dis、bfl、fiber_pos、fiber_NA、theta"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "Irms",
+      "T0",
+      "lam",
+      "d",
+      "R",
+      "Te",
+      "Tc",
+      "dis",
+      "bfl",
+      "fiber_pos",
+      "fiber_NA",
+      "theta",
+      "n0",
+      "dndT"
+    ],
+    "candidate_outputs": [
+      "Tmax",
+      "Tavg",
+      "max_von_mises_stress",
+      "max_displacement"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 85,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: Heat Transfer, Solid Mechanics, Ray Optics.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations.",
+      "Use the learned study types as solver starting points: Parametric Sweep."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 传热, 结构力学, 电磁, 优化/参数扫描?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to temperature sensitivity studies by sweeping heat source, convection coefficient, and thermal conductivity.",
+      "Couple heat transfer with structural stress or electric losses when the requirement includes deformation or Joule heating.",
+      "Extend to load-case comparison, stress concentration analysis, and displacement safety checks.",
+      "Build a corrected model workflow that separates geometry repair, material assignment, constraints, and load verification."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `Irms` around the learned value `1[W]` and export target outputs to CSV.",
+      "Sweep `T0` around the learned value `293.15` and export target outputs to CSV.",
+      "Sweep `lam` around the learned value `1064[nm]` and export target outputs to CSV.",
+      "Sweep `d` around the learned value `50[mm]` and export target outputs to CSV.",
+      "Sweep `R` around the learned value `68.8[mm]` and export target outputs to CSV.",
+      "Sweep `Te` around the learned value `3.0[mm]` and export target outputs to CSV.",
+      "Sweep `Tc` around the learned value `Te+R-sqrt(R^2-(d/2)^2)` and export target outputs to CSV.",
+      "Sweep `dis` around the learned value `1.5*R` and export target outputs to CSV.",
+      "Sweep heat source, heat-transfer coefficient, thermal conductivity, and ambient temperature.",
+      "Sweep load, Young's modulus, thickness, fixed constraints, and contact/fracture parameters.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\大功率激光聚焦系统中的热致焦移"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=5, MATLAB=1, Java=1, PDF=1, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 20 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "thermally_induced_focal_shift",
+    "summary": "已学习 thermally_induced_focal_shift 的 5 个文件；训练阶段=modeling_logic_learning_ready；参数数量=14；内容证据=20 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "14 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification.",
+      "20 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 5 个案例文件；MATLAB=1，Java=1，PDF=1，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 20 条；几何=1，物理场=3，材料=0，网格=1，研究=1，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：thermally_induced_focal_shift.m, thermally_induced_focal_shift.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 14 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=1，MPH 模型=1。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 thermally_induced_focal_shift，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "thermally_induced_focal_shift modeling_logic_learning_ready PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. Irms Root mean square power of the source 1[W] T0 Room temperature 293.15 lam Fiber laser's wavelength 1064[nm] d Diameter of the plano-convex lens 50[mm] R Radius of curvature of plano-convex lens 68.8[mm] Te Edge thickness of the plano-convex lens 3.0[mm] Tc Center thickness of the plano-convex lens Te+R-sqrt(R^2-(d/2)^2) dis Distance between the collimating and focusing lens 1.5*R bfl Back focal length of the plano-convex lens 145.0[mm] fiber_pos Position of the optical fiber -(dis/2+Tc+bfl) fiber_NA Numerical aperture of the optical fiber 0.1 theta Half cone angle of the released rays asin(fiber_NA) n0 Real part of the refractive index at T=T0 and lambda=lam 1.45 dndT Thermal variation of the real part of the refractive index 10e-6[1/K] thermally_induced_focal_shift.mph comsol_mph thermally_induced_focal_shift.m matlab_livelink thermally_induced_focal_shift.java comsol_java thermally_induced_focal_shift_summary.json json models.roptics.thermally_induced_focal_shift.pdf pdf_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

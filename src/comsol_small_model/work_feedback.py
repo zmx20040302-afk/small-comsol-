@@ -24,7 +24,19 @@ ACTION_LABELS = {
     "/api/learn-case": "学习 COMSOL 案例并输出总结",
     "/api/learn-article": "学习文章并生成 COMSOL 修正方案",
     "/api/plan-model": "根据记忆库规划 COMSOL 模型",
+    "/api/knowledge-system": "形成 COMSOL 跨案例知识体系",
 }
+
+ACTION_LABELS.update(
+    {
+        "/api/read-code": "读取并分析代码文件",
+        "/api/modify-code": "修改代码并输出文件",
+        "/api/staged-workflow": "创建分步 COMSOL 建模审批任务",
+        "/api/approve-staged-step": "审批分步 COMSOL 建模步骤",
+        "/api/finalize-staged-workflow": "生成完整 COMSOL 建模包",
+        "/api/staged-workflow/queue-execution": "将已批准建模包加入 COMSOL 执行队列",
+    }
+)
 
 
 def build_work_feedback(endpoint: str, request_payload: dict[str, Any], response_payload: dict[str, Any]) -> dict[str, Any]:
@@ -82,6 +94,12 @@ def _summary(endpoint: str, response: dict[str, Any]) -> str:
         plan = response.get("plan", {})
         matches = plan.get("matched_cases", []) if isinstance(plan, dict) else []
         return f"已根据 {len(matches)} 个记忆库匹配案例生成 COMSOL 建模方案。"
+    if endpoint == "/api/knowledge-system":
+        system = response.get("knowledge_system", {})
+        return (
+            f"已根据 {system.get('case_count', 0)} 个案例形成 COMSOL 知识体系，"
+            f"覆盖 {system.get('domain_count', 0)} 个领域。"
+        )
     if endpoint == "/api/validate-constraints":
         return "当前约束可以用于已支持的建模模板。"
     if endpoint == "/api/generate-matlab":
@@ -102,6 +120,12 @@ def _summary(endpoint: str, response: dict[str, Any]) -> str:
     if endpoint == "/api/inspect-matlab":
         summary = response.get("summary", {})
         return f"已解析 MATLAB 文件，提取到 {len(summary.get('parameters', []))} 个参数。"
+    if endpoint == "/api/staged-workflow/queue-execution":
+        job = response.get("job", {})
+        return f"已将批准建模包加入执行队列，任务状态为 {job.get('status', 'unknown')}。"
+    if endpoint.startswith("/api/jobs/") and endpoint.endswith("/approve-review"):
+        job = response.get("job", {})
+        return f"已批准执行复核，任务已重新排队，当前状态为 {job.get('status', 'unknown')}。"
     return "操作已完成。"
 
 
@@ -146,6 +170,12 @@ def _details(endpoint: str, request: dict[str, Any], response: dict[str, Any]) -
             details["correction_strategy"] = card.get("correction_strategy", [])
             details["matched_cases"] = card.get("memory_assisted_model_plan", {}).get("matched_cases", [])
         details["outputs"] = response.get("outputs", {})
+    if endpoint == "/api/knowledge-system":
+        system = response.get("knowledge_system", {})
+        if isinstance(system, dict):
+            details["case_count"] = system.get("case_count")
+            details["domain_count"] = system.get("domain_count")
+            details["capability_summary"] = system.get("capability_summary")
     return details
 
 
@@ -195,6 +225,12 @@ def _next_steps(endpoint: str, response: dict[str, Any]) -> list[str]:
         return response.get("response", {}).get("next_actions", []) or ["从右侧工具栏选择一个操作。"]
     if endpoint == "/api/plan-model":
         return ["查看匹配案例和推断物理域。", "把候选参数转成约束。", "生成或改写 LiveLink MATLAB 脚本。", "运行 COMSOL 参数扫描并生成训练数据。"]
+    if endpoint == "/api/knowledge-system":
+        return [
+            "在建模需求中使用该知识体系匹配相近领域和案例。",
+            "继续学习修正后的 MATLAB/Java/MPH 摘要，强化可复用建模模板。",
+            "补充参数扫描 CSV，让知识体系同时拥有建模逻辑和数值训练数据。",
+        ]
     return ["继续执行下一步建模或训练任务。"]
 
 

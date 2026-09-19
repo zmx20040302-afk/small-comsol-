@@ -1,0 +1,1322 @@
+{
+  "kind": "comsol_case_card",
+  "title": "rotating_microwave_oven",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\微波炉中的旋转加热及相变",
+  "created_at": "2026-08-20T12:36:01.023723+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 5,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1,
+      "pdf_document": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 1,
+    "pptx_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "wo",
+      "value": "20[cm]",
+      "description": "Oven width",
+      "source": "java_param_set"
+    },
+    {
+      "name": "do",
+      "value": "20[cm]",
+      "description": "Oven depth",
+      "source": "java_param_set"
+    },
+    {
+      "name": "ho",
+      "value": "10[cm]",
+      "description": "Oven height",
+      "source": "java_param_set"
+    },
+    {
+      "name": "wg",
+      "value": "50[mm]",
+      "description": "Waveguide width",
+      "source": "java_param_set"
+    },
+    {
+      "name": "dg",
+      "value": "78[mm]",
+      "description": "Waveguide depth",
+      "source": "java_param_set"
+    },
+    {
+      "name": "hg",
+      "value": "18[mm]",
+      "description": "Waveguide height",
+      "source": "java_param_set"
+    },
+    {
+      "name": "rp",
+      "value": "8[cm]",
+      "description": "Glass plate radius",
+      "source": "java_param_set"
+    },
+    {
+      "name": "hp",
+      "value": "5[mm]",
+      "description": "Glass plate height",
+      "source": "java_param_set"
+    },
+    {
+      "name": "rot",
+      "value": "0[deg]",
+      "description": "Initial angular position",
+      "source": "java_param_set"
+    },
+    {
+      "name": "gpos",
+      "value": "5[cm]",
+      "description": "Potato shift from center",
+      "source": "java_param_set"
+    },
+    {
+      "name": "rpot",
+      "value": "2[cm]",
+      "description": "Potato radius",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "wo",
+      "do",
+      "ho",
+      "wg",
+      "dg",
+      "hg",
+      "rp",
+      "hp",
+      "rot",
+      "gpos",
+      "rpot"
+    ],
+    "geometry": [
+      "blk1 / Block",
+      "blk2 / Block",
+      "geom1 / blk1 / size",
+      "geom1 / blk1 / pos"
+    ],
+    "physics": [
+      "Heat Transfer",
+      "Magnetic Fields",
+      "Optimization",
+      "Electromagnetic Waves"
+    ],
+    "materials": [],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [
+      "Time Dependent",
+      "Frequency Domain",
+      "Optimization"
+    ],
+    "results": [],
+    "boundary_conditions": [
+      "blk1 / size",
+      "blk1 / pos"
+    ],
+    "theory_keywords": [
+      "传热",
+      "结构力学",
+      "流体",
+      "电磁",
+      "多孔介质/裂隙",
+      "优化/参数扫描"
+    ],
+    "source_extracts": [
+      {
+        "name": "rotating_microwave_oven.java",
+        "kind": "comsol_java",
+        "evidence_score": 18,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"rotating_microwave_oven.mph\");",
+          "model.title(\"\\u5e26\\u76f8\\u53d8\\u7684\\u65cb\\u8f6c\\u5fae\\u6ce2\\u7089\");",
+          ".description(\"\\u672c\\u4f8b\\u5c06\\u4e00\\u4e2a\\u5bcc\\u542b\\u6c34\\u5206\\u7684\\u7403\\u5f62\\u8f7d\\u8377\\uff08\\u5982\\u571f\\u8c46\\uff09\\u653e\\u7f6e\\u5728\\u5fae\\u6ce2\\u7089\\u7684\\u65cb\\u8f6c\\u73bb\\u7483\\u6258\\u76d8\\u4e0a\\uff0c\\u4f7f\\u5176\\u4e0e\\u65",
+          "model.param().set(\"wo\", \"20[cm]\", \"Oven width\");",
+          "model.param().set(\"do\", \"20[cm]\", \"Oven depth\");",
+          "model.param().set(\"ho\", \"10[cm]\", \"Oven height\");"
+        ],
+        "parameters": [
+          "wo",
+          "do",
+          "ho",
+          "wg",
+          "dg",
+          "hg",
+          "rp",
+          "hp",
+          "rot",
+          "gpos",
+          "rpot"
+        ],
+        "geometry": [
+          "blk1 / Block",
+          "blk2 / Block",
+          "geom1 / blk1 / size",
+          "geom1 / blk1 / pos"
+        ],
+        "physics": [],
+        "materials": [],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "blk1 / size",
+          "blk1 / pos"
+        ],
+        "theory_keywords": []
+      },
+      {
+        "name": "models.rf.rotating_microwave_oven.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 13,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          "interacts with objects, affecting their internal temperature and cooking results. It also aids",
+          "second steps, with a mesh adjusted for conformity at each step using the Phase Change",
+          "MOVING MESH",
+          "The model utilizes the Moving Mesh functionality to handle rotating domains. The",
+          "angle, enabling dynamic geometry changes during rotation.",
+          "MULTIPHYSICS",
+          "The Electromagnetic Heating multiphysics feature couples electromagnetic effects with"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Heat Transfer",
+          "Magnetic Fields",
+          "Optimization",
+          "Electromagnetic Waves"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [
+          "Time Dependent",
+          "Frequency Domain",
+          "Optimization"
+        ],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "传热",
+          "结构力学",
+          "流体",
+          "电磁",
+          "多孔介质/裂隙",
+          "优化/参数扫描"
+        ]
+      },
+      {
+        "name": "rotating_microwave_oven.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "rotating_microwave_oven.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 0,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('rotating_microwave_oven.mph');",
+          "model.title([native2unicode(hex2dec({'5e' '26'}), 'unicode') native2unicode(hex2dec({'76' 'f8'}), 'unicode') native2unicode(hex2dec({'53' 'd8'}), 'unicode') native2unicode(hex2dec({'76' '84'}), 'unicode') native2unicode(hex2dec({'65' 'cb'})",
+          "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(hex2dec({'5c' '06'}), 'unicode') native2unicode(hex2dec({'4e' '00'}), 'unicode') native2unicode(hex2dec({'4e' "
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "rotating_microwave_oven_summary.json",
+        "kind": "json",
+        "evidence_score": 0,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\"",
+          "\"result_groups\": [",
+          "\"mesh1\""
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 25,
+      "source_files_with_content": 2,
+      "source_files_checked": 5
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "5 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "rotating_microwave_oven.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "rotating_microwave_oven_parameters.txt",
+                "kind": "mph_text_sidecar",
+                "size_bytes": 329
+              }
+            ],
+            "sidecar_count": 1,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+          },
+          "preview": "## rotating_microwave_oven_parameters.txt\nwo 20[cm] \"Oven width\"\ndo 20[cm] \"Oven depth\"\nho 10[cm] \"Oven height\"\nwg 50[mm] \"Waveguide width\"\ndg 78[mm] \"Waveguide depth\"\nhg 18[mm] \"Waveguide height\"\nrp 8[cm] \"Glass plate radius\"\nhp 5[mm] \"Glass plate height\"\nrot 0[deg] \"Initial angular position\"\ngpos 5[cm] \"Potato shift from center\"\nrpot 2[cm] \"Potato radius\"\n"
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "rotating_microwave_oven.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 11,
+            "physics": [
+              {
+                "tag": "emw",
+                "interface": "ElectromagneticWaves",
+                "geom": "geom1"
+              },
+              {
+                "tag": "ht",
+                "interface": "HeatTransfer",
+                "geom": "geom1"
+              },
+              {
+                "tag": "ev",
+                "interface": "Events",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "ftrans",
+                "type": "FrequencyTransient"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg6",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg7",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg8",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg9",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg10",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg11",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg12",
+                "type": "PlotGroup3D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('rotating_microwave_oven.mph');",
+                "model.title([native2unicode(hex2dec({'5e' '26'}), 'unicode') native2unicode(hex2dec({'76' 'f8'}), 'unicode') native2unicode(hex2dec({'53' 'd8'}), 'unicode') native2unicode(hex2dec({'76' '84'}), 'unicode') native2unicode(hex2dec({'65' 'cb'})",
+                "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(hex2dec({'5c' '06'}), 'unicode') native2unicode(hex2dec({'4e' '00'}), 'unicode') native2unicode(hex2dec({'4e' "
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "function out = model\n%\n% rotating_microwave_oven.m\n%\n% Model exported on Aug 20 2026, 20:35 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'unicode')  native2unicode"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "rotating_microwave_oven.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 11,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "wo",
+                "do",
+                "ho",
+                "wg",
+                "dg",
+                "hg",
+                "rp",
+                "hp",
+                "rot",
+                "gpos",
+                "rpot"
+              ],
+              "geometry": [
+                "blk1 / Block",
+                "blk2 / Block",
+                "geom1 / blk1 / size",
+                "geom1 / blk1 / pos"
+              ],
+              "physics": [],
+              "materials": [],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "blk1 / size",
+                "blk1 / pos"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"rotating_microwave_oven.mph\");",
+                "model.title(\"\\u5e26\\u76f8\\u53d8\\u7684\\u65cb\\u8f6c\\u5fae\\u6ce2\\u7089\");",
+                ".description(\"\\u672c\\u4f8b\\u5c06\\u4e00\\u4e2a\\u5bcc\\u542b\\u6c34\\u5206\\u7684\\u7403\\u5f62\\u8f7d\\u8377\\uff08\\u5982\\u571f\\u8c46\\uff09\\u653e\\u7f6e\\u5728\\u5fae\\u6ce2\\u7089\\u7684\\u65cb\\u8f6c\\u73bb\\u7483\\u6258\\u76d8\\u4e0a\\uff0c\\u4f7f\\u5176\\u4e0e\\u65",
+                "model.param().set(\"wo\", \"20[cm]\", \"Oven width\");",
+                "model.param().set(\"do\", \"20[cm]\", \"Oven depth\");",
+                "model.param().set(\"ho\", \"10[cm]\", \"Oven height\");",
+                "model.param().set(\"wg\", \"50[mm]\", \"Waveguide width\");",
+                "model.param().set(\"dg\", \"78[mm]\", \"Waveguide depth\");",
+                "model.param().set(\"hg\", \"18[mm]\", \"Waveguide height\");",
+                "model.param().set(\"rp\", \"8[cm]\", \"Glass plate radius\");"
+              ],
+              "evidence_score": 18
+            }
+          },
+          "preview": "/*\n * rotating_microwave_oven.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 20 2026, 20:35 by COMSOL 6.4.0.293. */\npublic class rotating_microwave_oven {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u5fae\\u6ce2\\u7089\\u4e2d\\u7684\\u65cb\\u8f6c\\u52a0\\u70ed\\u53ca\\u76f8\\u53d8\");\n\n    model.label(\"rotating_microwave_oven.mph\");\n\n    model.title(\"\\u5e26\\u76f8\\u53d8\\u7684\\u65cb\\u8f6c\\u5fae\\u6ce2\\u7089\");\n\n    model\n         .d"
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "models.rf.rotating_microwave_oven.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 46,
+            "extractor": "pypdf",
+            "preview_pages": 46,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Heat Transfer",
+                "Magnetic Fields",
+                "Optimization",
+                "Electromagnetic Waves"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [
+                "Time Dependent",
+                "Frequency Domain",
+                "Optimization"
+              ],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "传热",
+                "结构力学",
+                "流体",
+                "电磁",
+                "多孔介质/裂隙",
+                "优化/参数扫描"
+              ],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                "interacts with objects, affecting their internal temperature and cooking results. It also aids",
+                "second steps, with a mesh adjusted for conformity at each step using the Phase Change",
+                "MOVING MESH",
+                "The model utilizes the Moving Mesh functionality to handle rotating domains. The",
+                "angle, enabling dynamic geometry changes during rotation.",
+                "MULTIPHYSICS",
+                "The Electromagnetic Heating multiphysics feature couples electromagnetic effects with",
+                "Discretization properties for both electromagnetic and heat transfer physics are set to",
+                "The Model Builder sets up a comprehensive multiphysics simulation integrating",
+                "domains under Moving Mesh functionality. This setup provides a detailed and interactive",
+                "simulation of complex physical processes, considering dynamic changes in geometry and"
+              ],
+              "evidence_score": 13
+            },
+            "simple_summary": "models.rf.rotating_microwave_oven.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Magnetic Fields、Optimization，研究类型线索为 Time Dependent、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；interacts with objects, affecting their internal temperature and cooking results. It also aids"
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nRotating Microwave Oven with Phase\nTransition\n2 | ROTATING MICROWAVE OVEN WITH PHASE TRANSITION\nIntroduction\nSimulating a rotating microwave oven helps us understand how microwave energy \ninteracts with objects, affecting their internal temperature and cooking results. It also aids \nin refining microwave oven designs and understanding heat transfer during heating. The \nexample model demonstrat"
+        }
+      ],
+      "presentation_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "rotating_microwave_oven_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": [",
+                "\"mesh1\""
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/微波炉中的旋转加热及相变/rotating_microwave_oven.mph\",\n  \"label\": \"rotating_microwave_oven.mph\",\n  \"parameters\": {\n    \"wo\": \"20[cm]\",\n    \"do\": \"20[cm]\",\n    \"ho\": \"10[cm]\",\n    \"wg\": \"50[mm]\",\n    \"dg\": \"78[mm]\",\n    \"hg\": \"18[mm]\",\n    \"rp\": \"8[cm]\",\n    \"hp\": \"5[mm]\",\n    \"rot\": \"0[deg]\",\n    \"gpos\": \"5[cm]\",\n    \"rpot\": \"2[cm]\",\n    \"N\": \"20\",\n    \"dt\": \"0.25[s]\"\n  },\n  \"components\": {\n    \"tag\": \"comp1\",\n    \"geometry\": [\n      \"geom1\"\n    ],\n    \"materials\": [\n      \"mat1\",\n      \"mat2\",\n      \"mat3\",\n      \"mat4\"\n    ],\n    \"physics\": [\n      \"emw\",\n      \"ht\",\n "
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [
+      {
+        "name": "models.rf.rotating_microwave_oven.pdf",
+        "summary": "models.rf.rotating_microwave_oven.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Magnetic Fields、Optimization，研究类型线索为 Time Dependent、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；interacts with objects, affecting their internal temperature and cooking results. It also aids"
+      }
+    ],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [
+    {
+      "name": "models.rf.rotating_microwave_oven.pdf",
+      "summary": "models.rf.rotating_microwave_oven.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Magnetic Fields、Optimization，研究类型线索为 Time Dependent、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；interacts with objects, affecting their internal temperature and cooking results. It also aids"
+    }
+  ],
+  "prompt_summary": "",
+  "thoughts": [
+    "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "rotating_microwave_oven.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 596842400,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "rotating_microwave_oven_parameters.txt",
+            "kind": "mph_text_sidecar",
+            "size_bytes": 329
+          }
+        ],
+        "sidecar_count": 1,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
+      }
+    },
+    {
+      "name": "rotating_microwave_oven.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 83315,
+      "details": {
+        "parameters": 11,
+        "physics": [
+          {
+            "tag": "emw",
+            "interface": "ElectromagneticWaves",
+            "geom": "geom1"
+          },
+          {
+            "tag": "ht",
+            "interface": "HeatTransfer",
+            "geom": "geom1"
+          },
+          {
+            "tag": "ev",
+            "interface": "Events",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "ftrans",
+            "type": "FrequencyTransient"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg6",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg7",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg8",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg9",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg10",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg11",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg12",
+            "type": "PlotGroup3D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('rotating_microwave_oven.mph');",
+            "model.title([native2unicode(hex2dec({'5e' '26'}), 'unicode') native2unicode(hex2dec({'76' 'f8'}), 'unicode') native2unicode(hex2dec({'53' 'd8'}), 'unicode') native2unicode(hex2dec({'76' '84'}), 'unicode') native2unicode(hex2dec({'65' 'cb'})",
+            "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(hex2dec({'5c' '06'}), 'unicode') native2unicode(hex2dec({'4e' '00'}), 'unicode') native2unicode(hex2dec({'4e' "
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "rotating_microwave_oven.java",
+      "kind": "comsol_java",
+      "size_bytes": 77210,
+      "details": {
+        "model_param_set": 11,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "wo",
+            "do",
+            "ho",
+            "wg",
+            "dg",
+            "hg",
+            "rp",
+            "hp",
+            "rot",
+            "gpos",
+            "rpot"
+          ],
+          "geometry": [
+            "blk1 / Block",
+            "blk2 / Block",
+            "geom1 / blk1 / size",
+            "geom1 / blk1 / pos"
+          ],
+          "physics": [],
+          "materials": [],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "blk1 / size",
+            "blk1 / pos"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"rotating_microwave_oven.mph\");",
+            "model.title(\"\\u5e26\\u76f8\\u53d8\\u7684\\u65cb\\u8f6c\\u5fae\\u6ce2\\u7089\");",
+            ".description(\"\\u672c\\u4f8b\\u5c06\\u4e00\\u4e2a\\u5bcc\\u542b\\u6c34\\u5206\\u7684\\u7403\\u5f62\\u8f7d\\u8377\\uff08\\u5982\\u571f\\u8c46\\uff09\\u653e\\u7f6e\\u5728\\u5fae\\u6ce2\\u7089\\u7684\\u65cb\\u8f6c\\u73bb\\u7483\\u6258\\u76d8\\u4e0a\\uff0c\\u4f7f\\u5176\\u4e0e\\u65",
+            "model.param().set(\"wo\", \"20[cm]\", \"Oven width\");",
+            "model.param().set(\"do\", \"20[cm]\", \"Oven depth\");",
+            "model.param().set(\"ho\", \"10[cm]\", \"Oven height\");",
+            "model.param().set(\"wg\", \"50[mm]\", \"Waveguide width\");",
+            "model.param().set(\"dg\", \"78[mm]\", \"Waveguide depth\");",
+            "model.param().set(\"hg\", \"18[mm]\", \"Waveguide height\");",
+            "model.param().set(\"rp\", \"8[cm]\", \"Glass plate radius\");"
+          ],
+          "evidence_score": 18
+        }
+      }
+    },
+    {
+      "name": "rotating_microwave_oven_summary.json",
+      "kind": "json",
+      "size_bytes": 3115,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": [",
+            "\"mesh1\""
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "models.rf.rotating_microwave_oven.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 4861137,
+      "details": {
+        "readable": true,
+        "pages": 46,
+        "extractor": "pypdf",
+        "preview_pages": 46,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Heat Transfer",
+            "Magnetic Fields",
+            "Optimization",
+            "Electromagnetic Waves"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [
+            "Time Dependent",
+            "Frequency Domain",
+            "Optimization"
+          ],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "传热",
+            "结构力学",
+            "流体",
+            "电磁",
+            "多孔介质/裂隙",
+            "优化/参数扫描"
+          ],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            "interacts with objects, affecting their internal temperature and cooking results. It also aids",
+            "second steps, with a mesh adjusted for conformity at each step using the Phase Change",
+            "MOVING MESH",
+            "The model utilizes the Moving Mesh functionality to handle rotating domains. The",
+            "angle, enabling dynamic geometry changes during rotation.",
+            "MULTIPHYSICS",
+            "The Electromagnetic Heating multiphysics feature couples electromagnetic effects with",
+            "Discretization properties for both electromagnetic and heat transfer physics are set to",
+            "The Model Builder sets up a comprehensive multiphysics simulation integrating",
+            "domains under Moving Mesh functionality. This setup provides a detailed and interactive",
+            "simulation of complex physical processes, considering dynamic changes in geometry and"
+          ],
+          "evidence_score": 13
+        },
+        "simple_summary": "models.rf.rotating_microwave_oven.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Magnetic Fields、Optimization，研究类型线索为 Time Dependent、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；interacts with objects, affecting their internal temperature and cooking results. It also aids"
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 11 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：Heat Transfer",
+      "识别到物理场证据：Magnetic Fields",
+      "识别到物理场证据：Optimization",
+      "识别到物理场证据：Electromagnetic Waves",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "rotating_microwave_oven 主要研究流动速度、压力或输运过程，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Heat Transfer，并采用 Time Dependent 研究。",
+    "primary_physics": "Heat Transfer",
+    "study_type": "Time Dependent",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Heat Transfer，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Time Dependent 确认。",
+    "evidence": [
+      "PDF: Model created in COMSOL Multiphysics 6.4",
+      "PDF: interacts with objects, affecting their internal temperature and cooking results. It also aids",
+      "PDF: second steps, with a mesh adjusted for conformity at each step using the Phase Change",
+      "PDF: MOVING MESH",
+      "脚本/文本识别到的物理场: Heat Transfer, Magnetic Fields, Optimization, Electromagnetic Waves",
+      "识别到的研究类型: Time Dependent, Frequency Domain, Optimization",
+      "理论关键词: 传热, 结构力学, 流体, 电磁, 多孔介质/裂隙, 优化/参数扫描"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "传热",
+      "结构力学",
+      "流体",
+      "电磁",
+      "多孔介质/裂隙",
+      "优化/参数扫描",
+      "models.rf.rotating_microwave_oven.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Heat Transfer、Magnetic Fields、Optimization，研究类型线索为 Time Dependent、Frequency Domain；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；interacts with objects, affecting their internal temperature and cooking results. It also aids"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "wo",
+        "modeling_content": "Oven width",
+        "matlab_action": "model.param.set('wo', value, description)"
+      },
+      {
+        "keyword": "do",
+        "modeling_content": "Oven depth",
+        "matlab_action": "model.param.set('do', value, description)"
+      },
+      {
+        "keyword": "ho",
+        "modeling_content": "Oven height",
+        "matlab_action": "model.param.set('ho', value, description)"
+      },
+      {
+        "keyword": "wg",
+        "modeling_content": "Waveguide width",
+        "matlab_action": "model.param.set('wg', value, description)"
+      },
+      {
+        "keyword": "dg",
+        "modeling_content": "Waveguide depth",
+        "matlab_action": "model.param.set('dg', value, description)"
+      },
+      {
+        "keyword": "hg",
+        "modeling_content": "Waveguide height",
+        "matlab_action": "model.param.set('hg', value, description)"
+      },
+      {
+        "keyword": "rp",
+        "modeling_content": "Glass plate radius",
+        "matlab_action": "model.param.set('rp', value, description)"
+      },
+      {
+        "keyword": "hp",
+        "modeling_content": "Glass plate height",
+        "matlab_action": "model.param.set('hp', value, description)"
+      },
+      {
+        "keyword": "rot",
+        "modeling_content": "Initial angular position",
+        "matlab_action": "model.param.set('rot', value, description)"
+      },
+      {
+        "keyword": "gpos",
+        "modeling_content": "Potato shift from center",
+        "matlab_action": "model.param.set('gpos', value, description)"
+      },
+      {
+        "keyword": "rpot",
+        "modeling_content": "Potato radius",
+        "matlab_action": "model.param.set('rpot', value, description)"
+      },
+      {
+        "keyword": "Block",
+        "modeling_content": "三维块体/实体计算域",
+        "matlab_action": "model.component('comp1').geom('geom1').create(tag, 'Block')"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：blk1 / Block；blk2 / Block；geom1 / blk1 / size；geom1 / blk1 / pos",
+      "已识别物理场证据：Heat Transfer；Magnetic Fields；Optimization；Electromagnetic Waves",
+      "已识别参数：wo、do、ho、wg、dg、hg、rp、hp、rot、gpos、rpot"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "wo",
+      "do",
+      "ho",
+      "wg",
+      "dg",
+      "hg",
+      "rp",
+      "hp",
+      "rot",
+      "gpos",
+      "rpot"
+    ],
+    "candidate_outputs": [
+      "Tmax",
+      "Tavg",
+      "objective_value"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 85,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: Heat Transfer, Magnetic Fields, Optimization, Electromagnetic Waves.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations.",
+      "Use the learned study types as solver starting points: Time Dependent, Frequency Domain, Optimization."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 传热, 结构力学, 流体, 电磁, 多孔介质/裂隙, 优化/参数扫描?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to temperature sensitivity studies by sweeping heat source, convection coefficient, and thermal conductivity.",
+      "Couple heat transfer with structural stress or electric losses when the requirement includes deformation or Joule heating.",
+      "Extend to load-case comparison, stress concentration analysis, and displacement safety checks.",
+      "Build a corrected model workflow that separates geometry repair, material assignment, constraints, and load verification.",
+      "Extend to inlet/outlet sensitivity, pressure-drop prediction, and flow-uniformity analysis.",
+      "Add coupled transport, porous media, or nonisothermal flow when concentration or temperature fields are involved.",
+      "Extend to terminal-current, resistance, field-distribution, and Joule-loss studies.",
+      "Use electric-current outputs as coupling sources for thermal or structural models."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `wo` around the learned value `20[cm]` and export target outputs to CSV.",
+      "Sweep `do` around the learned value `20[cm]` and export target outputs to CSV.",
+      "Sweep `ho` around the learned value `10[cm]` and export target outputs to CSV.",
+      "Sweep `wg` around the learned value `50[mm]` and export target outputs to CSV.",
+      "Sweep `dg` around the learned value `78[mm]` and export target outputs to CSV.",
+      "Sweep `hg` around the learned value `18[mm]` and export target outputs to CSV.",
+      "Sweep `rp` around the learned value `8[cm]` and export target outputs to CSV.",
+      "Sweep `hp` around the learned value `5[mm]` and export target outputs to CSV.",
+      "Sweep heat source, heat-transfer coefficient, thermal conductivity, and ambient temperature.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\微波炉中的旋转加热及相变"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=5, MATLAB=1, Java=1, PDF=1, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 25 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "rotating_microwave_oven",
+    "summary": "已学习 rotating_microwave_oven 的 5 个文件；训练阶段=modeling_logic_learning_ready；参数数量=11；内容证据=25 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "11 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification.",
+      "25 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 5 个案例文件；MATLAB=1，Java=1，PDF=1，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 25 条；几何=4，物理场=4，材料=0，网格=1，研究=3，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：rotating_microwave_oven.m, rotating_microwave_oven.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 11 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=1，MPH 模型=1。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 rotating_microwave_oven，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "rotating_microwave_oven modeling_logic_learning_ready PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. wo Oven width 20[cm] do Oven depth 20[cm] ho Oven height 10[cm] wg Waveguide width 50[mm] dg Waveguide depth 78[mm] hg Waveguide height 18[mm] rp Glass plate radius 8[cm] hp Glass plate height 5[mm] rot Initial angular position 0[deg] gpos Potato shift from center 5[cm] rpot Potato radius 2[cm] rotating_microwave_oven.mph comsol_mph rotating_microwave_oven.m matlab_livelink rotating_microwave_oven.java comsol_java rotating_microwave_oven_summary.json json models.rf.rotating_microwave_oven.pdf pdf_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

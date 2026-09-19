@@ -2,7 +2,7 @@
   "kind": "comsol_case_card",
   "title": "延迟微分方程",
   "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\延迟微分方程",
-  "created_at": "2026-06-29T08:43:50.403294+00:00",
+  "created_at": "2026-07-06T09:39:10.025311+00:00",
   "training_stage": "modeling_logic_learning_ready",
   "file_summary": {
     "count": 3,
@@ -138,6 +138,63 @@
     "theory_keywords": [],
     "source_extracts": [
       {
+        "name": "delay_differential_equation_population_model.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 29,
+        "content_summary": [
+          "## delay_differential_equation_population_model.java",
+          "* delay_differential_equation_population_model.java",
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"delay_differential_equation_population_model.mph\");",
+          "model.param().set(\"Tsummer\", \"100[d]\", \"Summer time\");",
+          "model.param().set(\"A0\", \"(200[m])^2\", \"Area of meadow\");",
+          "model.param().set(\"Binit\", \"2500[kg]\", \"Initial Biomass\");"
+        ],
+        "parameters": [
+          "Tsummer",
+          "A0",
+          "Binit",
+          "Bmax",
+          "G0",
+          "Minit",
+          "E0",
+          "Tg",
+          "L0",
+          "R0",
+          "P0",
+          "Tp"
+        ],
+        "geometry": [],
+        "physics": [
+          "ge / GlobalEquations"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [
+          "std1 / time / Transient",
+          "std1"
+        ],
+        "results": [],
+        "boundary_conditions": [
+          "ge2 / DependentVariableQuantity",
+          "ge2 / CustomDependentVariableUnit",
+          "ge1 / name",
+          "ge1 / initialValueU",
+          "ge1 / initialValueUt",
+          "ge1 / SourceTermQuantity",
+          "ge1 / CustomSourceTermUnit",
+          "ge2 / name",
+          "ge2 / equation",
+          "ge2 / initialValueU",
+          "ge2 / description",
+          "ge2 / SourceTermQuantity",
+          "ge1 / equation",
+          "ge1 / description"
+        ],
+        "theory_keywords": []
+      },
+      {
         "name": "delay_differential_equation_population_model.m",
         "kind": "matlab_livelink",
         "evidence_score": 28,
@@ -247,26 +304,11 @@
           "ge2 / SourceTermQuantity"
         ],
         "theory_keywords": []
-      },
-      {
-        "name": "delay_differential_equation_population_model.mph",
-        "kind": "comsol_mph",
-        "evidence_score": 0,
-        "content_summary": [],
-        "parameters": [],
-        "geometry": [],
-        "physics": [],
-        "materials": [],
-        "mesh": [],
-        "studies": [],
-        "results": [],
-        "boundary_conditions": [],
-        "theory_keywords": []
       }
     ],
     "totals": {
       "model_tree_items": 29,
-      "source_files_with_content": 2,
+      "source_files_with_content": 3,
       "source_files_checked": 3
     }
   },
@@ -280,9 +322,84 @@
           "kind": "comsol_mph",
           "details": {
             "readable": false,
-            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+            "binary_model": true,
+            "sidecar_files": [
+              {
+                "name": "delay_differential_equation_population_model.java",
+                "kind": "comsol_java_sidecar",
+                "size_bytes": 10946
+              },
+              {
+                "name": "delay_differential_equation_population_model.m",
+                "kind": "matlab_livelink_sidecar",
+                "size_bytes": 10179
+              }
+            ],
+            "sidecar_count": 2,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_sidecar",
+              "parameters": [
+                "Tsummer",
+                "A0",
+                "Binit",
+                "Bmax",
+                "G0",
+                "Minit",
+                "E0",
+                "Tg",
+                "L0",
+                "R0",
+                "P0",
+                "Tp"
+              ],
+              "geometry": [],
+              "physics": [
+                "ge / GlobalEquations"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [
+                "std1 / time / Transient",
+                "std1"
+              ],
+              "results": [],
+              "boundary_conditions": [
+                "ge2 / DependentVariableQuantity",
+                "ge2 / CustomDependentVariableUnit",
+                "ge1 / name",
+                "ge1 / initialValueU",
+                "ge1 / initialValueUt",
+                "ge1 / SourceTermQuantity",
+                "ge1 / CustomSourceTermUnit",
+                "ge2 / name",
+                "ge2 / equation",
+                "ge2 / initialValueU",
+                "ge2 / description",
+                "ge2 / SourceTermQuantity",
+                "ge1 / equation",
+                "ge1 / description"
+              ],
+              "theory_keywords": [],
+              "content_summary": [
+                "## delay_differential_equation_population_model.java",
+                "* delay_differential_equation_population_model.java",
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"delay_differential_equation_population_model.mph\");",
+                "model.param().set(\"Tsummer\", \"100[d]\", \"Summer time\");",
+                "model.param().set(\"A0\", \"(200[m])^2\", \"Area of meadow\");",
+                "model.param().set(\"Binit\", \"2500[kg]\", \"Initial Biomass\");",
+                "model.param().set(\"Bmax\", \"3000[kg]\", \"Maximum Biomass\");",
+                "model.param().set(\"G0\", \"1/15[d]\", \"Vegetation growth constant\");",
+                "model.param().set(\"Minit\", \"100[1]\", \"Initial marmot population\");",
+                "model.param().set(\"E0\", \"0.5[kg/d]\", \"Marmot eating rate\");"
+              ],
+              "evidence_score": 29
+            },
+            "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
           },
-          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+          "preview": "## delay_differential_equation_population_model.java\n/*\n * delay_differential_equation_population_model.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Jun 14 2026, 17:05 by COMSOL 6.4.0.293. */\npublic class delay_differential_equation_population_model {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\COMSOL\\\\\\u5ef6\\u8fdf\\u5fae\\u5206\\u65b9\\u7a0b\");\n\n    model.label(\"delay_differential_equation_population_model.mph\");\n\n    model.param().set(\""
         }
       ],
       "matlab_builders": [
@@ -452,6 +569,7 @@
       "constraints_or_metadata": [],
       "other": []
     },
+    "pdf_simple_summaries": [],
     "recommendations": [
       "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
       "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree."
@@ -470,6 +588,7 @@
       "Train and validate the surrogate model."
     ]
   },
+  "pdf_simple_summaries": [],
   "thoughts": [
     "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
     "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
@@ -655,8 +774,321 @@
       "size_bytes": 387238,
       "details": {
         "readable": false,
-        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary."
+        "binary_model": true,
+        "sidecar_files": [
+          {
+            "name": "delay_differential_equation_population_model.java",
+            "kind": "comsol_java_sidecar",
+            "size_bytes": 10946
+          },
+          {
+            "name": "delay_differential_equation_population_model.m",
+            "kind": "matlab_livelink_sidecar",
+            "size_bytes": 10179
+          }
+        ],
+        "sidecar_count": 2,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_sidecar",
+          "parameters": [
+            "Tsummer",
+            "A0",
+            "Binit",
+            "Bmax",
+            "G0",
+            "Minit",
+            "E0",
+            "Tg",
+            "L0",
+            "R0",
+            "P0",
+            "Tp"
+          ],
+          "geometry": [],
+          "physics": [
+            "ge / GlobalEquations"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [
+            "std1 / time / Transient",
+            "std1"
+          ],
+          "results": [],
+          "boundary_conditions": [
+            "ge2 / DependentVariableQuantity",
+            "ge2 / CustomDependentVariableUnit",
+            "ge1 / name",
+            "ge1 / initialValueU",
+            "ge1 / initialValueUt",
+            "ge1 / SourceTermQuantity",
+            "ge1 / CustomSourceTermUnit",
+            "ge2 / name",
+            "ge2 / equation",
+            "ge2 / initialValueU",
+            "ge2 / description",
+            "ge2 / SourceTermQuantity",
+            "ge1 / equation",
+            "ge1 / description"
+          ],
+          "theory_keywords": [],
+          "content_summary": [
+            "## delay_differential_equation_population_model.java",
+            "* delay_differential_equation_population_model.java",
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"delay_differential_equation_population_model.mph\");",
+            "model.param().set(\"Tsummer\", \"100[d]\", \"Summer time\");",
+            "model.param().set(\"A0\", \"(200[m])^2\", \"Area of meadow\");",
+            "model.param().set(\"Binit\", \"2500[kg]\", \"Initial Biomass\");",
+            "model.param().set(\"Bmax\", \"3000[kg]\", \"Maximum Biomass\");",
+            "model.param().set(\"G0\", \"1/15[d]\", \"Vegetation growth constant\");",
+            "model.param().set(\"Minit\", \"100[1]\", \"Initial marmot population\");",
+            "model.param().set(\"E0\", \"0.5[kg/d]\", \"Marmot eating rate\");"
+          ],
+          "evidence_score": 29
+        },
+        "recommendation": "MPH is binary, but related MATLAB/Java/JSON sidecar evidence was loaded for model-tree learning."
       }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 12 个参数，可作为约束 JSON 和参数扫描变量。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：ge / GlobalEquations",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "延迟微分方程 主要研究模型中的主要物理现象和输出量，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 GlobalEquations，并采用 Transient 研究。",
+    "primary_physics": "GlobalEquations",
+    "study_type": "Transient",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 GlobalEquations，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型可由 Transient 确认。",
+    "evidence": [
+      "脚本/文本识别到的物理场: ge / GlobalEquations",
+      "识别到的研究类型: std1 / time / Transient, std1"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [],
+    "matlab_mapping": [
+      {
+        "keyword": "Tsummer",
+        "modeling_content": "Summer time",
+        "matlab_action": "model.param.set('Tsummer', value, description)"
+      },
+      {
+        "keyword": "A0",
+        "modeling_content": "Area of meadow",
+        "matlab_action": "model.param.set('A0', value, description)"
+      },
+      {
+        "keyword": "Binit",
+        "modeling_content": "Initial Biomass",
+        "matlab_action": "model.param.set('Binit', value, description)"
+      },
+      {
+        "keyword": "Bmax",
+        "modeling_content": "Maximum Biomass",
+        "matlab_action": "model.param.set('Bmax', value, description)"
+      },
+      {
+        "keyword": "G0",
+        "modeling_content": "Vegetation growth constant",
+        "matlab_action": "model.param.set('G0', value, description)"
+      },
+      {
+        "keyword": "Minit",
+        "modeling_content": "Initial marmot population",
+        "matlab_action": "model.param.set('Minit', value, description)"
+      },
+      {
+        "keyword": "E0",
+        "modeling_content": "Marmot eating rate",
+        "matlab_action": "model.param.set('E0', value, description)"
+      },
+      {
+        "keyword": "Tg",
+        "modeling_content": "Marmot gestation period",
+        "matlab_action": "model.param.set('Tg', value, description)"
+      },
+      {
+        "keyword": "L0",
+        "modeling_content": "Average marmot litter size",
+        "matlab_action": "model.param.set('L0', value, description)"
+      },
+      {
+        "keyword": "R0",
+        "modeling_content": "Reproduction constant",
+        "matlab_action": "model.param.set('R0', value, description)"
+      },
+      {
+        "keyword": "P0",
+        "modeling_content": "Predator density",
+        "matlab_action": "model.param.set('P0', value, description)"
+      },
+      {
+        "keyword": "Tp",
+        "modeling_content": "Predator search time",
+        "matlab_action": "model.param.set('Tp', value, description)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别物理场证据：ge / GlobalEquations",
+      "已识别参数：Tsummer、A0、Binit、Bmax、G0、Minit、E0、Tg、L0、R0、P0、Tp"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "Tsummer",
+      "A0",
+      "Binit",
+      "Bmax",
+      "G0",
+      "Minit",
+      "E0",
+      "Tg",
+      "L0",
+      "R0",
+      "P0",
+      "Tp"
+    ],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 65,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: ge / GlobalEquations.",
+      "Use the learned study types as solver starting points: std1 / time / Transient, std1."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `Tsummer` around the learned value `100[d]` and export target outputs to CSV.",
+      "Sweep `A0` around the learned value `(200[m])^2` and export target outputs to CSV.",
+      "Sweep `Binit` around the learned value `2500[kg]` and export target outputs to CSV.",
+      "Sweep `Bmax` around the learned value `3000[kg]` and export target outputs to CSV.",
+      "Sweep `G0` around the learned value `1/15[d]` and export target outputs to CSV.",
+      "Sweep `Minit` around the learned value `100[1]` and export target outputs to CSV.",
+      "Sweep `E0` around the learned value `0.5[kg/d]` and export target outputs to CSV.",
+      "Sweep `Tg` around the learned value `50[d]` and export target outputs to CSV.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\COMSOL\\延迟微分方程"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=3, MATLAB=1, Java=1, PDF=0, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 29 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
     }
   ],
   "post_learning_summary": {

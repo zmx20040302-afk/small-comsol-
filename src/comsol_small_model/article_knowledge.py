@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree
 
-from .case_memory import generate_model_plan
+from .case_memory import generate_model_plan, remember_case
 
 
 DOCX_NS = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
@@ -26,7 +26,8 @@ def summarize_article_docx(
     plan = generate_model_plan(card["modeling_requirement"], memory_path, top_k=8)
     card["memory_assisted_model_plan"] = _article_model_plan(card, plan)
     outputs = write_article_card(card, output_dir)
-    return {"card": card, "outputs": outputs}
+    memory = remember_case(_article_memory_card(card), memory_path)
+    return {"card": card, "outputs": outputs, "memory": memory}
 
 
 def build_article_card(source: Path, paragraphs: list[str]) -> dict[str, Any]:
@@ -48,6 +49,38 @@ def build_article_card(source: Path, paragraphs: list[str]) -> dict[str, Any]:
         "correction_strategy": correction_strategy,
         "learning_trace": _learning_trace(params, model_features, correction_strategy),
         "source_excerpt": paragraphs[:30],
+    }
+
+
+def _article_memory_card(card: dict[str, Any]) -> dict[str, Any]:
+    features = card.get("model_features", {})
+    return {
+        "kind": "comsol_article_memory_card",
+        "title": card.get("title", "article"),
+        "case_dir": card.get("source_path", ""),
+        "created_at": card.get("created_at", datetime.now(timezone.utc).isoformat()),
+        "training_stage": "modeling_logic_learning_ready",
+        "parameters": card.get("parameters", []),
+        "case_content": {
+            "parameters": [item.get("name", "") for item in card.get("parameters", [])],
+            "geometry": features.get("geometry", []),
+            "physics": features.get("physics", []),
+            "materials": features.get("materials", []),
+            "mesh": features.get("mesh", []),
+            "studies": features.get("studies", []),
+            "results": features.get("outputs", []),
+            "boundary_conditions": features.get("boundary_conditions", []),
+            "theory_keywords": re.findall(r"[\u4e00-\u9fff]{2,8}", card.get("summary", ""))[:30],
+            "source_extracts": [],
+        },
+        "thoughts": [card.get("summary", ""), card.get("modeling_requirement", "")],
+        "implementation_path": card.get("memory_assisted_model_plan", {}).get("recommended_modeling_steps", []),
+        "gaps": ["文章不能替代 COMSOL 模型树；仍需通过 MATLAB/Java/MPH 摘要核对 API 与选择集。"],
+        "source_files": [{"name": Path(card.get("source_path", "article.docx")).name, "kind": "docx_article"}],
+        "post_learning_summary": {
+            "kind": "post_article_learning_summary",
+            "summary": "文章理论、参数和建模要求已写入案例记忆。",
+        },
     }
 
 

@@ -1,0 +1,3 @@
+name,expression,value
+T_max,"maxop1(T)",293.1500000000001
+Q_joule_max,"maxop1(ec.Qh)",5800000000.002375

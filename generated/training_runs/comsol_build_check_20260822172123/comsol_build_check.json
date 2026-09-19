@@ -1,0 +1,29 @@
+{
+  "kind": "comsol_build_check",
+  "created_at": "2026-08-22T09:20:55.061312+00:00",
+  "script": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\joule_rectangle_auto_solve.m",
+  "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\joule_rectangle_auto_solve_buildcheck.mph",
+  "host": "localhost",
+  "port": 2036,
+  "study_executed": true,
+  "results_csv": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\joule_first_batch_37.csv",
+  "sweep_range_mv": [
+    0.1,
+    0.025,
+    1.0
+  ],
+  "server": {
+    "ready": true,
+    "started_by_check": false,
+    "message": "COMSOL mphserver 已可连接。"
+  },
+  "ok": true,
+  "matlab_exit_code": 0,
+  "model_exists": true,
+  "model_updated_this_run": true,
+  "results_csv_exists": true,
+  "results_csv_has_rows": true,
+  "stdout_tail": "\nMATLAB is now connected to a COMSOL Multiphysics Server at localhost:2036\n\nRun the commands below to access the COMSOL ModelUtil commands:\nimport com.comsol.model.util.*\nSTUDY_SOLVE_OK\nJOULE_RESULTS_CSV=D:/桌面/codex/comsol1/comsol_training_small_model/generated/training_runs/joule_first_batch_37.csv\nBUILD_CHECK_OK\n",
+  "stderr_tail": "",
+  "report": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\training_runs\\comsol_build_check_20260822172123\\comsol_build_check.json"
+}

@@ -1,0 +1,1643 @@
+{
+  "kind": "comsol_case_card",
+  "title": "petzval_lens_geometric_modulation_transfer_function",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\Petzval 透镜几何调制传递函数",
+  "created_at": "2026-08-22T03:11:17.138102+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 7,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1,
+      "presentation_document": 1,
+      "pdf_document": 2
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 2,
+    "pptx_files": 1,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "nix",
+      "value": "0",
+      "description": "Global optical axis, x-component",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "niy",
+      "value": "0",
+      "description": "Global optical axis, y-component",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "niz",
+      "value": "1",
+      "description": "Global optical axis, z-component",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "R1_1",
+      "value": "98.45049[mm]",
+      "description": "L1, surface 1 radius of curvature",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "R2_1",
+      "value": "-83.29386[mm]",
+      "description": "L1, surface 2 radius of curvature",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "Tc_1",
+      "value": "13.000[mm]",
+      "description": "L1 center thickness",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "d0_1",
+      "value": "58.000[mm]",
+      "description": "L1, outer diameter",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "d1_1",
+      "value": "0",
+      "description": "L1, surface 1 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d2_1",
+      "value": "0",
+      "description": "L1, surface 2 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_clear_1",
+      "value": "2*28.478[mm]",
+      "description": "L1, surface 1 clear aperture diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d2_clear_1",
+      "value": "2*26.267[mm]",
+      "description": "L1, surface 2 clear aperture diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "T_1",
+      "value": "0.000[mm]",
+      "description": "L1 to L2 spacing",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R1_2",
+      "value": "R2_1",
+      "description": "L2, surface 1 radius of curvature",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R2_2",
+      "value": "-1421.38828[mm]",
+      "description": "L2, surface 2 radius of curvature",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Tc_2",
+      "value": "4.000[mm]",
+      "description": "L2 center thickness",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d0_2",
+      "value": "58.000[mm]",
+      "description": "L2, outer diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_2",
+      "value": "0",
+      "description": "L2, surface 1 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d2_2",
+      "value": "0",
+      "description": "L2, surface 2 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_clear_2",
+      "value": "d2_clear_1",
+      "description": "L2, surface 1 clear aperture diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d2_clear_2",
+      "value": "2*20.020[mm]",
+      "description": "L2, surface 2 clear aperture diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "T_2",
+      "value": "40.000[mm]",
+      "description": "L2 to Stop spacing",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Tc_3",
+      "value": "0",
+      "description": "Stop center thickness",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d0_S",
+      "value": "d0_1",
+      "description": "Stop maximum diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_S",
+      "value": "2*16.631[mm]",
+      "description": "Stop clear diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "T_3",
+      "value": "40.000[mm]",
+      "description": "Stop to L3 spacing",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R1_4",
+      "value": "59.00613[mm]",
+      "description": "L3, surface 1 radius of curvature",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R2_4",
+      "value": "-54.36470[mm]",
+      "description": "L3, surface 2 radius of curvature",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Tc_4",
+      "value": "12.000[mm]",
+      "description": "L3 center thickness",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d0_4",
+      "value": "45.000[mm]",
+      "description": "L3, outer diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_4",
+      "value": "0",
+      "description": "L3, surface 1 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d2_4",
+      "value": "0",
+      "description": "L3, surface 2 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_clear_4",
+      "value": "2*20.543[mm]",
+      "description": "L3, surface 1 clear aperture diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d2_clear_4",
+      "value": "2*20.074[mm]",
+      "description": "L3, surface 2 clear aperture diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "T_4",
+      "value": "0.000[mm]",
+      "description": "L3 to L4 spacing",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R1_5",
+      "value": "R2_4",
+      "description": "L4, surface 1 radius of curvature",
+      "source": "java_param_set"
+    },
+    {
+      "name": "R2_5",
+      "value": "-549.36547[mm]",
+      "description": "L4, surface 2 radius of curvature",
+      "source": "java_param_set"
+    },
+    {
+      "name": "Tc_5",
+      "value": "3.000[mm]",
+      "description": "L4 center thickness",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d0_5",
+      "value": "45.000[mm]",
+      "description": "L4, outer diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_5",
+      "value": "0",
+      "description": "L4, surface 1 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d2_5",
+      "value": "0",
+      "description": "L4, surface 2 diameter",
+      "source": "java_param_set"
+    },
+    {
+      "name": "d1_clear_5",
+      "value": "d2_clear_4",
+      "description": "L4, surface 1 clear aperture diameter",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "nix",
+      "niy",
+      "niz",
+      "R1_1",
+      "R2_1",
+      "Tc_1",
+      "d0_1",
+      "d1_1",
+      "d2_1",
+      "d1_clear_1",
+      "d2_clear_1",
+      "T_1",
+      "R1_2",
+      "R2_2",
+      "Tc_2",
+      "d0_2",
+      "d1_2",
+      "d2_2",
+      "d1_clear_2",
+      "d2_clear_2",
+      "T_2",
+      "Tc_3",
+      "d0_S",
+      "d1_S",
+      "T_3",
+      "R1_4",
+      "R2_4",
+      "Tc_4",
+      "d0_4",
+      "d1_4"
+    ],
+    "geometry": [],
+    "physics": [
+      "Ray Optics"
+    ],
+    "materials": [],
+    "mesh": [],
+    "studies": [],
+    "results": [],
+    "boundary_conditions": [],
+    "theory_keywords": [
+      "电磁"
+    ],
+    "source_extracts": [
+      {
+        "name": "petzval_lens_geometric_modulation_transfer_function.java",
+        "kind": "comsol_java",
+        "evidence_score": 30,
+        "content_summary": [
+          "* petzval_lens_geometric_modulation_transfer_function.java",
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "public class petzval_lens_geometric_modulation_transfer_function {",
+          "model.label(\"petzval_lens_geometric_modulation_transfer_function.mph\");",
+          "model.title(\"Petzval \\u900f\\u955c\\u51e0\\u4f55\\u8c03\\u5236\\u4f20\\u9012\\u51fd\\u6570\");",
+          "model.param().set(\"nix\", \"0\", \"Global optical axis, x-component\");",
+          "model.param().set(\"niy\", \"0\", \"Global optical axis, y-component\");"
+        ],
+        "parameters": [
+          "nix",
+          "niy",
+          "niz",
+          "R1_1",
+          "R2_1",
+          "Tc_1",
+          "d0_1",
+          "d1_1",
+          "d2_1",
+          "d1_clear_1",
+          "d2_clear_1",
+          "T_1",
+          "R1_2",
+          "R2_2",
+          "Tc_2",
+          "d0_2",
+          "d1_2",
+          "d2_2",
+          "d1_clear_2",
+          "d2_clear_2"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "petzval_lens_geometric_modulation_transfer_function.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 7,
+        "content_summary": [
+          "% petzval_lens_geometric_modulation_transfer_function.m",
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('petzval_lens_geometric_modulation_transfer_function.mph');",
+          "model.title(['Petzval ' native2unicode(hex2dec({'90' '0f'}), 'unicode') native2unicode(hex2dec({'95' '5c'}), 'unicode') native2unicode(hex2dec({'51' 'e0'}), 'unicode') native2unicode(hex2dec({'4f' '55'}), 'unicode') native2unicode(hex2dec({",
+          "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'65' '59'}), 'unicode') native2unicode(hex2dec({'5b' '66'}), 'unicode') native2unicode(hex2dec({'6a' '21'}), 'unicode') native2unicode(hex2dec({'57' ",
+          "model.param.set('nix', '0', 'Global optical axis, x-component');"
+        ],
+        "parameters": [
+          "nix",
+          "niy",
+          "niz",
+          "R1_1",
+          "R2_1",
+          "Tc_1",
+          "d0_1"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "Computing_MTF_using_ModelMethod.pptx",
+        "kind": "presentation_document",
+        "evidence_score": 2,
+        "content_summary": [
+          "第 1 页：Computing the Geometric Modulation Transfer Function (MTF) Using the Ray Optics Module and a Model Method",
+          "第 2 页：The Modulation Transfer Function The optical transfer function (OTF) is a measure of an optical systems ability to resolve an object at a given spatial frequency. OTF = 𝐼𝑚𝑎𝑔𝑒 𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡 𝑂𝑏𝑗𝑒𝑐𝑡 𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡 C 𝑜𝑛𝑡𝑟𝑎𝑠𝑡 = 𝐼 ma x − 𝐼 m in 𝐼 max ",
+          "第 4 页：The Model Method (1) For the current model method we compute the LSF using a geometrical optics ray trace. The accuracy of the LSF is therefore related to the number of rays being traced, and the number of spatial bins. The sagittal a",
+          "第 7 页：Some results: “ Petzval Lens” MTF: [  x , y ] = [0  , 0  ] MTF: [  x , y ] = [10  , 0  ] (The original “ Petzval Lens” model is available here: https :// www.comsol.com/model/petzval-lens-55491 )"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Ray Optics"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "电磁"
+        ]
+      },
+      {
+        "name": "Computing_MTF_using_ModelMethod.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 2,
+        "content_summary": [
+          "Computing the Geometric",
+          "compute the geometric MTF.",
+          "compute the LSF using a geometrical",
+          "Some results: “Petzval Lens”"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Ray Optics"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": [
+          "电磁"
+        ]
+      },
+      {
+        "name": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf",
+        "kind": "pdf_document",
+        "evidence_score": 1,
+        "content_summary": [
+          "Model created in COMSOL Multiphysics 6.4",
+          "Petzval Lens Geometric Modulation",
+          "2 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+          "In this tutorial we demonstrate how to compute the geometric modulation transfer",
+          "3 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+          "GEOMETRIC MODULATION TRANSFER FUNCTION",
+          "The MTF can be calculated using the results of a Geometrical Optics ray trace. The LSF",
+          "4 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [
+          "Ray Optics"
+        ],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "petzval_lens_geometric_modulation_transfer_function.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [
+          "petzval_lens_geometric_modulation_transfer_function"
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "petzval_lens_geometric_modulation_transfer_function_summary.json",
+        "kind": "json",
+        "evidence_score": 0,
+        "content_summary": [
+          "\"source\": \"D:/桌面/codex/案例下载/电气/Petzval 透镜几何调制传递函数/petzval_lens_geometric_modulation_transfer_function.mph\",",
+          "\"label\": \"petzval_lens_geometric_modulation_transfer_function.mph\",",
+          "\"geometry\": [",
+          "\"geom1\",",
+          "\"pgeom_gop\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\""
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 31,
+      "source_files_with_content": 5,
+      "source_files_checked": 7
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "7 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "petzval_lens_geometric_modulation_transfer_function.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "petzval_lens_geometric_modulation_transfer_function"
+              ],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "petzval_lens_geometric_modulation_transfer_function.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 53,
+            "physics": [
+              {
+                "tag": "gop",
+                "interface": "GeometricalOptics",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "rtrac",
+                "type": "RayTracing"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup2D"
+              },
+              {
+                "tag": "pg4",
+                "type": "PlotGroup3D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup1D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "nix",
+                "niy",
+                "niz",
+                "R1_1",
+                "R2_1",
+                "Tc_1",
+                "d0_1"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "% petzval_lens_geometric_modulation_transfer_function.m",
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('petzval_lens_geometric_modulation_transfer_function.mph');",
+                "model.title(['Petzval ' native2unicode(hex2dec({'90' '0f'}), 'unicode') native2unicode(hex2dec({'95' '5c'}), 'unicode') native2unicode(hex2dec({'51' 'e0'}), 'unicode') native2unicode(hex2dec({'4f' '55'}), 'unicode') native2unicode(hex2dec({",
+                "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'65' '59'}), 'unicode') native2unicode(hex2dec({'5b' '66'}), 'unicode') native2unicode(hex2dec({'6a' '21'}), 'unicode') native2unicode(hex2dec({'57' ",
+                "model.param.set('nix', '0', 'Global optical axis, x-component');",
+                "model.param.set('niy', '0', 'Global optical axis, y-component');",
+                "model.param.set('niz', '1', 'Global optical axis, z-component');",
+                "model.param.set('R1_1', '98.45049[mm]', 'L1, surface 1 radius of curvature');",
+                "model.param.set('R2_1', '-83.29386[mm]', 'L1, surface 2 radius of curvature');"
+              ],
+              "evidence_score": 7
+            }
+          },
+          "preview": "function out = model\n%\n% petzval_lens_geometric_modulation_transfer_function.m\n%\n% Model exported on Aug 22 2026, 11:11 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'})"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "petzval_lens_geometric_modulation_transfer_function.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 42,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "nix",
+                "niy",
+                "niz",
+                "R1_1",
+                "R2_1",
+                "Tc_1",
+                "d0_1",
+                "d1_1",
+                "d2_1",
+                "d1_clear_1",
+                "d2_clear_1",
+                "T_1",
+                "R1_2",
+                "R2_2",
+                "Tc_2",
+                "d0_2",
+                "d1_2",
+                "d2_2",
+                "d1_clear_2",
+                "d2_clear_2",
+                "T_2",
+                "Tc_3",
+                "d0_S",
+                "d1_S",
+                "T_3",
+                "R1_4",
+                "R2_4",
+                "Tc_4",
+                "d0_4",
+                "d1_4"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "* petzval_lens_geometric_modulation_transfer_function.java",
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "public class petzval_lens_geometric_modulation_transfer_function {",
+                "model.label(\"petzval_lens_geometric_modulation_transfer_function.mph\");",
+                "model.title(\"Petzval \\u900f\\u955c\\u51e0\\u4f55\\u8c03\\u5236\\u4f20\\u9012\\u51fd\\u6570\");",
+                "model.param().set(\"nix\", \"0\", \"Global optical axis, x-component\");",
+                "model.param().set(\"niy\", \"0\", \"Global optical axis, y-component\");",
+                "model.param().set(\"niz\", \"1\", \"Global optical axis, z-component\");",
+                "model.param().set(\"R1_1\", \"98.45049[mm]\", \"L1, surface 1 radius of curvature\");",
+                "model.param().set(\"R2_1\", \"-83.29386[mm]\", \"L1, surface 2 radius of curvature\");",
+                "model.param().set(\"Tc_1\", \"13.000[mm]\", \"L1 center thickness\");"
+              ],
+              "evidence_score": 30
+            }
+          },
+          "preview": "/*\n * petzval_lens_geometric_modulation_transfer_function.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 22 2026, 11:11 by COMSOL 6.4.0.293. */\npublic class petzval_lens_geometric_modulation_transfer_function {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\Petzval \\u900f\\u955c\\u51e0\\u4f55\\u8c03\\u5236\\u4f20\\u9012\\u51fd\\u6570\");\n\n    model.label(\"petzval_lens_geometric_modulation_transfer_function.mph\");\n\n    model.title(\""
+        }
+      ],
+      "pdf_documents": [
+        {
+          "name": "Computing_MTF_using_ModelMethod.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 7,
+            "extractor": "pypdf",
+            "preview_pages": 7,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Ray Optics"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "电磁"
+              ],
+              "content_summary": [
+                "Computing the Geometric",
+                "compute the geometric MTF.",
+                "compute the LSF using a geometrical",
+                "Some results: “Petzval Lens”"
+              ],
+              "evidence_score": 2
+            },
+            "simple_summary": "Computing_MTF_using_ModelMethod.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Computing the Geometric；compute the geometric MTF."
+          },
+          "preview": "Computing the Geometric \nModulation Transfer Function (MTF)\nUsing the Ray Optics Module and a Model Method\nThe Modulation Transfer Function\n• The optical transfer function (OTF) is a measure of an optical \nsystems ability to resolve an object at a given spatial frequency.\n– OTF=\n𝐼𝐼𝐼𝐼𝐼𝐼𝐼𝐼𝐼𝐼 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐼𝐼𝐶𝐶𝐶𝐶\n𝑂𝑂𝑂𝑂𝑂𝑂𝐼𝐼𝑂𝑂𝐶𝐶 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐼𝐼𝐶𝐶𝐶𝐶\n– C𝑜𝑜𝑜𝑜𝑜𝑜𝑜𝑜𝑜𝑜𝑜𝑜𝑜𝑜 =\n𝐼𝐼max − 𝐼𝐼min\n𝐼𝐼max+ 𝐼𝐼min\n• The OTF is a vector quantity (i.e., including phase). But, the \nmodulation transfer function (MTF, amplitude only) is commonly \nused.\n• In the following example, we implement a model method to \ncompute the geometr"
+        },
+        {
+          "name": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf",
+          "kind": "pdf_document",
+          "details": {
+            "readable": true,
+            "pages": 13,
+            "extractor": "pypdf",
+            "preview_pages": 13,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "pdf_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Ray Optics"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "Model created in COMSOL Multiphysics 6.4",
+                "Petzval Lens Geometric Modulation",
+                "2 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+                "In this tutorial we demonstrate how to compute the geometric modulation transfer",
+                "3 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+                "GEOMETRIC MODULATION TRANSFER FUNCTION",
+                "The MTF can be calculated using the results of a Geometrical Optics ray trace. The LSF",
+                "4 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+                "Results and Discussion",
+                "Intersection Point 3D dataset parameters and the resulting MTF plot is shown in Figure 3.",
+                "5 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+                "6 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION"
+              ],
+              "evidence_score": 1
+            },
+            "simple_summary": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Petzval Lens Geometric Modulation"
+          },
+          "preview": "This model is licensed under the COMSOL Software License Agreement 6.4.\nAll trademarks are the property of their respective owners. See www.comsol.com/trademarks.\nModel created in COMSOL Multiphysics 6.4\nPetzval Lens Geometric Modulation\nTransfer Function\n2 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION\nIntroduction\nIn this tutorial we demonstrate how to compute the geometric modulation transfer \nfunction (MTF) of a lens. The optical transfer function (OTF) is a measure of an optical \nsystems ability to resolve an object at a given spatial frequency. The OTF is defined as\n, ( 1 )\nwhere "
+        }
+      ],
+      "presentation_documents": [
+        {
+          "name": "Computing_MTF_using_ModelMethod.pptx",
+          "kind": "presentation_document",
+          "details": {
+            "readable": true,
+            "slide_count": 7,
+            "slides_with_text": 7,
+            "text_characters": 2477,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "presentation_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [
+                "Ray Optics"
+              ],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [
+                "电磁"
+              ],
+              "content_summary": [
+                "第 1 页：Computing the Geometric Modulation Transfer Function (MTF) Using the Ray Optics Module and a Model Method",
+                "第 2 页：The Modulation Transfer Function The optical transfer function (OTF) is a measure of an optical systems ability to resolve an object at a given spatial frequency. OTF = 𝐼𝑚𝑎𝑔𝑒 𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡 𝑂𝑏𝑗𝑒𝑐𝑡 𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡 C 𝑜𝑛𝑡𝑟𝑎𝑠𝑡 = 𝐼 ma x − 𝐼 m in 𝐼 max ",
+                "第 4 页：The Model Method (1) For the current model method we compute the LSF using a geometrical optics ray trace. The accuracy of the LSF is therefore related to the number of rays being traced, and the number of spatial bins. The sagittal a",
+                "第 7 页：Some results: “ Petzval Lens” MTF: [  x , y ] = [0  , 0  ] MTF: [  x , y ] = [10  , 0  ] (The original “ Petzval Lens” model is available here: https :// www.comsol.com/model/petzval-lens-55491 )"
+              ],
+              "evidence_score": 2
+            }
+          },
+          "preview": "第 1 页：Computing the  Geometric Modulation  Transfer Function (MTF) Using the Ray Optics Module and a Model Method\n第 2 页：The Modulation Transfer Function The optical transfer function (OTF) is a measure of an optical systems ability to resolve an object at a given spatial frequency. OTF = 𝐼𝑚𝑎𝑔𝑒   𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡 𝑂𝑏𝑗𝑒𝑐𝑡   𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡   C 𝑜𝑛𝑡𝑟𝑎𝑠𝑡 = 𝐼 ma x  −  𝐼 m in 𝐼 max +  𝐼 min The OTF is a vector quantity (i.e., including phase). But, the modulation transfer function (MTF, amplitude only) is commonly used. In the following example, we implement a model method to compute the  geometric MTF .\n第 3 页：The c"
+        }
+      ],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "petzval_lens_geometric_modulation_transfer_function_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "\"source\": \"D:/桌面/codex/案例下载/电气/Petzval 透镜几何调制传递函数/petzval_lens_geometric_modulation_transfer_function.mph\",",
+                "\"label\": \"petzval_lens_geometric_modulation_transfer_function.mph\",",
+                "\"geometry\": [",
+                "\"geom1\",",
+                "\"pgeom_gop\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/Petzval 透镜几何调制传递函数/petzval_lens_geometric_modulation_transfer_function.mph\",\n  \"label\": \"petzval_lens_geometric_modulation_transfer_function.mph\",\n  \"parameters\": {\n    \"theta_x1\": \"0.0[deg]\",\n    \"theta_y1\": \"0.0[deg]\",\n    \"theta_x2\": \"0.0[deg]\",\n    \"theta_y2\": \"6.0[deg]\",\n    \"theta_x3\": \"0.0[deg]\",\n    \"theta_y3\": \"9.0[deg]\",\n    \"N_ring\": \"100\",\n    \"P_nom\": \"41.5[mm]\",\n    \"vx1\": \"tan(theta_x1)\",\n    \"vy1\": \"tan(theta_y1)\",\n    \"vx2\": \"tan(theta_x2)\",\n    \"vy2\": \"tan(theta_y2)\",\n    \"vx3\": \"tan(theta_x3)\",\n    \"vy3\": \"tan(theta_y3)\",\n    \"vz\": \"1\",\n   "
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [
+      {
+        "name": "Computing_MTF_using_ModelMethod.pdf",
+        "summary": "Computing_MTF_using_ModelMethod.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Computing the Geometric；compute the geometric MTF."
+      },
+      {
+        "name": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf",
+        "summary": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Petzval Lens Geometric Modulation"
+      }
+    ],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use PDFs as learning context: problem definition, assumptions, governing equations, validation targets, and expected results.",
+      "Use presentation slides as concise case context: objectives, assumptions, validation figures, and conclusions.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [
+    {
+      "name": "Computing_MTF_using_ModelMethod.pdf",
+      "summary": "Computing_MTF_using_ModelMethod.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Computing the Geometric；compute the geometric MTF."
+    },
+    {
+      "name": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf",
+      "summary": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Petzval Lens Geometric Modulation"
+    }
+  ],
+  "prompt_summary": "",
+  "thoughts": [
+    "PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。",
+    "PPT 演示文稿用于补充案例目标、关键假设、结果图说明和结论。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "petzval_lens_geometric_modulation_transfer_function.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 130161408,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "petzval_lens_geometric_modulation_transfer_function"
+          ],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+      }
+    },
+    {
+      "name": "petzval_lens_geometric_modulation_transfer_function.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 92853,
+      "details": {
+        "parameters": 53,
+        "physics": [
+          {
+            "tag": "gop",
+            "interface": "GeometricalOptics",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "rtrac",
+            "type": "RayTracing"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup2D"
+          },
+          {
+            "tag": "pg4",
+            "type": "PlotGroup3D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup1D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "nix",
+            "niy",
+            "niz",
+            "R1_1",
+            "R2_1",
+            "Tc_1",
+            "d0_1"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "% petzval_lens_geometric_modulation_transfer_function.m",
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('petzval_lens_geometric_modulation_transfer_function.mph');",
+            "model.title(['Petzval ' native2unicode(hex2dec({'90' '0f'}), 'unicode') native2unicode(hex2dec({'95' '5c'}), 'unicode') native2unicode(hex2dec({'51' 'e0'}), 'unicode') native2unicode(hex2dec({'4f' '55'}), 'unicode') native2unicode(hex2dec({",
+            "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'65' '59'}), 'unicode') native2unicode(hex2dec({'5b' '66'}), 'unicode') native2unicode(hex2dec({'6a' '21'}), 'unicode') native2unicode(hex2dec({'57' ",
+            "model.param.set('nix', '0', 'Global optical axis, x-component');",
+            "model.param.set('niy', '0', 'Global optical axis, y-component');",
+            "model.param.set('niz', '1', 'Global optical axis, z-component');",
+            "model.param.set('R1_1', '98.45049[mm]', 'L1, surface 1 radius of curvature');",
+            "model.param.set('R2_1', '-83.29386[mm]', 'L1, surface 2 radius of curvature');"
+          ],
+          "evidence_score": 7
+        }
+      }
+    },
+    {
+      "name": "petzval_lens_geometric_modulation_transfer_function.java",
+      "kind": "comsol_java",
+      "size_bytes": 98873,
+      "details": {
+        "model_param_set": 42,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "nix",
+            "niy",
+            "niz",
+            "R1_1",
+            "R2_1",
+            "Tc_1",
+            "d0_1",
+            "d1_1",
+            "d2_1",
+            "d1_clear_1",
+            "d2_clear_1",
+            "T_1",
+            "R1_2",
+            "R2_2",
+            "Tc_2",
+            "d0_2",
+            "d1_2",
+            "d2_2",
+            "d1_clear_2",
+            "d2_clear_2",
+            "T_2",
+            "Tc_3",
+            "d0_S",
+            "d1_S",
+            "T_3",
+            "R1_4",
+            "R2_4",
+            "Tc_4",
+            "d0_4",
+            "d1_4"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "* petzval_lens_geometric_modulation_transfer_function.java",
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "public class petzval_lens_geometric_modulation_transfer_function {",
+            "model.label(\"petzval_lens_geometric_modulation_transfer_function.mph\");",
+            "model.title(\"Petzval \\u900f\\u955c\\u51e0\\u4f55\\u8c03\\u5236\\u4f20\\u9012\\u51fd\\u6570\");",
+            "model.param().set(\"nix\", \"0\", \"Global optical axis, x-component\");",
+            "model.param().set(\"niy\", \"0\", \"Global optical axis, y-component\");",
+            "model.param().set(\"niz\", \"1\", \"Global optical axis, z-component\");",
+            "model.param().set(\"R1_1\", \"98.45049[mm]\", \"L1, surface 1 radius of curvature\");",
+            "model.param().set(\"R2_1\", \"-83.29386[mm]\", \"L1, surface 2 radius of curvature\");",
+            "model.param().set(\"Tc_1\", \"13.000[mm]\", \"L1 center thickness\");"
+          ],
+          "evidence_score": 30
+        }
+      }
+    },
+    {
+      "name": "petzval_lens_geometric_modulation_transfer_function_summary.json",
+      "kind": "json",
+      "size_bytes": 3775,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "\"source\": \"D:/桌面/codex/案例下载/电气/Petzval 透镜几何调制传递函数/petzval_lens_geometric_modulation_transfer_function.mph\",",
+            "\"label\": \"petzval_lens_geometric_modulation_transfer_function.mph\",",
+            "\"geometry\": [",
+            "\"geom1\",",
+            "\"pgeom_gop\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "Computing_MTF_using_ModelMethod.pptx",
+      "kind": "presentation_document",
+      "size_bytes": 1440746,
+      "details": {
+        "readable": true,
+        "slide_count": 7,
+        "slides_with_text": 7,
+        "text_characters": 2477,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "presentation_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Ray Optics"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "电磁"
+          ],
+          "content_summary": [
+            "第 1 页：Computing the Geometric Modulation Transfer Function (MTF) Using the Ray Optics Module and a Model Method",
+            "第 2 页：The Modulation Transfer Function The optical transfer function (OTF) is a measure of an optical systems ability to resolve an object at a given spatial frequency. OTF = 𝐼𝑚𝑎𝑔𝑒 𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡 𝑂𝑏𝑗𝑒𝑐𝑡 𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡 C 𝑜𝑛𝑡𝑟𝑎𝑠𝑡 = 𝐼 ma x − 𝐼 m in 𝐼 max ",
+            "第 4 页：The Model Method (1) For the current model method we compute the LSF using a geometrical optics ray trace. The accuracy of the LSF is therefore related to the number of rays being traced, and the number of spatial bins. The sagittal a",
+            "第 7 页：Some results: “ Petzval Lens” MTF: [  x , y ] = [0  , 0  ] MTF: [  x , y ] = [10  , 0  ] (The original “ Petzval Lens” model is available here: https :// www.comsol.com/model/petzval-lens-55491 )"
+          ],
+          "evidence_score": 2
+        }
+      }
+    },
+    {
+      "name": "Computing_MTF_using_ModelMethod.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 391328,
+      "details": {
+        "readable": true,
+        "pages": 7,
+        "extractor": "pypdf",
+        "preview_pages": 7,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Ray Optics"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [
+            "电磁"
+          ],
+          "content_summary": [
+            "Computing the Geometric",
+            "compute the geometric MTF.",
+            "compute the LSF using a geometrical",
+            "Some results: “Petzval Lens”"
+          ],
+          "evidence_score": 2
+        },
+        "simple_summary": "Computing_MTF_using_ModelMethod.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Computing the Geometric；compute the geometric MTF."
+      }
+    },
+    {
+      "name": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf",
+      "kind": "pdf_document",
+      "size_bytes": 1004267,
+      "details": {
+        "readable": true,
+        "pages": 13,
+        "extractor": "pypdf",
+        "preview_pages": 13,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "pdf_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [
+            "Ray Optics"
+          ],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "Model created in COMSOL Multiphysics 6.4",
+            "Petzval Lens Geometric Modulation",
+            "2 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+            "In this tutorial we demonstrate how to compute the geometric modulation transfer",
+            "3 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+            "GEOMETRIC MODULATION TRANSFER FUNCTION",
+            "The MTF can be calculated using the results of a Geometrical Optics ray trace. The LSF",
+            "4 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+            "Results and Discussion",
+            "Intersection Point 3D dataset parameters and the resulting MTF plot is shown in Figure 3.",
+            "5 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION",
+            "6 | PETZVAL LENS GEOMETRIC MODULATION TRANSFER FUNCTION"
+          ],
+          "evidence_score": 1
+        },
+        "simple_summary": "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Petzval Lens Geometric Modulation"
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 41 个参数，可作为约束 JSON 和参数扫描变量。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：Ray Optics",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "petzval_lens_geometric_modulation_transfer_function 主要研究模型中的主要物理现象和输出量，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 Ray Optics。",
+    "primary_physics": "Ray Optics",
+    "study_type": "unknown",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 Ray Optics，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型需要继续从研究步骤确认。",
+    "evidence": [
+      "PDF: Computing the Geometric",
+      "PDF: compute the geometric MTF.",
+      "PDF: compute the LSF using a geometrical",
+      "PDF: Some results: “Petzval Lens”",
+      "脚本/文本识别到的物理场: Ray Optics",
+      "理论关键词: 电磁"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "电磁",
+      "Computing_MTF_using_ModelMethod.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Computing the Geometric；compute the geometric MTF.",
+      "models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果，主要物理场线索为 Ray Optics；核心内容可概括为：Model created in COMSOL Multiphysics 6.4；Petzval Lens Geometric Modulation"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "nix",
+        "modeling_content": "Global optical axis, x-component",
+        "matlab_action": "model.param.set('nix', value, description)"
+      },
+      {
+        "keyword": "niy",
+        "modeling_content": "Global optical axis, y-component",
+        "matlab_action": "model.param.set('niy', value, description)"
+      },
+      {
+        "keyword": "niz",
+        "modeling_content": "Global optical axis, z-component",
+        "matlab_action": "model.param.set('niz', value, description)"
+      },
+      {
+        "keyword": "R1_1",
+        "modeling_content": "L1, surface 1 radius of curvature",
+        "matlab_action": "model.param.set('R1_1', value, description)"
+      },
+      {
+        "keyword": "R2_1",
+        "modeling_content": "L1, surface 2 radius of curvature",
+        "matlab_action": "model.param.set('R2_1', value, description)"
+      },
+      {
+        "keyword": "Tc_1",
+        "modeling_content": "L1 center thickness",
+        "matlab_action": "model.param.set('Tc_1', value, description)"
+      },
+      {
+        "keyword": "d0_1",
+        "modeling_content": "L1, outer diameter",
+        "matlab_action": "model.param.set('d0_1', value, description)"
+      },
+      {
+        "keyword": "d1_1",
+        "modeling_content": "L1, surface 1 diameter",
+        "matlab_action": "model.param.set('d1_1', value, description)"
+      },
+      {
+        "keyword": "d2_1",
+        "modeling_content": "L1, surface 2 diameter",
+        "matlab_action": "model.param.set('d2_1', value, description)"
+      },
+      {
+        "keyword": "d1_clear_1",
+        "modeling_content": "L1, surface 1 clear aperture diameter",
+        "matlab_action": "model.param.set('d1_clear_1', value, description)"
+      },
+      {
+        "keyword": "d2_clear_1",
+        "modeling_content": "L1, surface 2 clear aperture diameter",
+        "matlab_action": "model.param.set('d2_clear_1', value, description)"
+      },
+      {
+        "keyword": "T_1",
+        "modeling_content": "L1 to L2 spacing",
+        "matlab_action": "model.param.set('T_1', value, description)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别物理场证据：Ray Optics",
+      "已识别参数：nix、niy、niz、R1_1、R2_1、Tc_1、d0_1、d1_1、d2_1、d1_clear_1、d2_clear_1、T_1"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "nix",
+      "niy",
+      "niz",
+      "R1_1",
+      "R2_1",
+      "Tc_1",
+      "d0_1",
+      "d1_1",
+      "d2_1",
+      "d1_clear_1",
+      "d2_clear_1",
+      "T_1",
+      "R1_2",
+      "R2_2",
+      "Tc_2",
+      "d0_2",
+      "d1_2",
+      "d2_2",
+      "d1_clear_2",
+      "d2_clear_2",
+      "T_2",
+      "Tc_3",
+      "d0_S",
+      "d1_S",
+      "T_3",
+      "R1_4",
+      "R2_4",
+      "Tc_4",
+      "d0_4",
+      "d1_4",
+      "d2_4",
+      "d1_clear_4",
+      "d2_clear_4",
+      "T_4",
+      "R1_5",
+      "R2_5",
+      "Tc_5",
+      "d0_5",
+      "d1_5",
+      "d2_5"
+    ],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 65,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: Ray Optics."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 电磁?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `nix` around the learned value `0` and export target outputs to CSV.",
+      "Sweep `niy` around the learned value `0` and export target outputs to CSV.",
+      "Sweep `niz` around the learned value `1` and export target outputs to CSV.",
+      "Sweep `R1_1` around the learned value `98.45049[mm]` and export target outputs to CSV.",
+      "Sweep `R2_1` around the learned value `-83.29386[mm]` and export target outputs to CSV.",
+      "Sweep `Tc_1` around the learned value `13.000[mm]` and export target outputs to CSV.",
+      "Sweep `d0_1` around the learned value `58.000[mm]` and export target outputs to CSV.",
+      "Sweep `d1_1` around the learned value `0` and export target outputs to CSV.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\Petzval 透镜几何调制传递函数"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=7, MATLAB=1, Java=1, PDF=2, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 31 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "petzval_lens_geometric_modulation_transfer_function",
+    "summary": "已学习 petzval_lens_geometric_modulation_transfer_function 的 7 个文件；训练阶段=modeling_logic_learning_ready；参数数量=41；内容证据=31 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "PDF documentation provides modeling purpose, assumptions, theoretical context, and validation targets.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "41 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Theory and workflow evidence from PDF documents.",
+      "Original MPH files for later COMSOL-side verification.",
+      "31 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "high",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 7 个案例文件；MATLAB=1，Java=1，PDF=2，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 31 条；几何=0，物理场=1，材料=0，网格=0，研究=0，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：petzval_lens_geometric_modulation_transfer_function.m, petzval_lens_geometric_modulation_transfer_function.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 41 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=2，MPH 模型=1。",
+        "judgement": "PDF 用于补充理论、假设和教程目标；MPH 作为权威模型文件，后续应通过 COMSOL/LiveLink 提取内部设置。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 petzval_lens_geometric_modulation_transfer_function，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "petzval_lens_geometric_modulation_transfer_function modeling_logic_learning_ready PDF 文档用于理解案例目的、建模顺序、理论假设和验证目标。 PPT 演示文稿用于补充案例目标、关键假设、结果图说明和结论。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. nix Global optical axis, x-component 0 niy Global optical axis, y-component 0 niz Global optical axis, z-component 1 R1_1 L1, surface 1 radius of curvature 98.45049[mm] R2_1 L1, surface 2 radius of curvature -83.29386[mm] Tc_1 L1 center thickness 13.000[mm] d0_1 L1, outer diameter 58.000[mm] d1_1 L1, surface 1 diameter 0 d2_1 L1, surface 2 diameter 0 d1_clear_1 L1, surface 1 clear aperture diameter 2*28.478[mm] d2_clear_1 L1, surface 2 clear aperture diameter 2*26.267[mm] T_1 L1 to L2 spacing 0.000[mm] R1_2 L2, surface 1 radius of curvature R2_1 R2_2 L2, surface 2 radius of curvature -1421.38828[mm] Tc_2 L2 center thickness 4.000[mm] d0_2 L2, outer diameter 58.000[mm] d1_2 L2, surface 1 diameter 0 d2_2 L2, surface 2 diameter 0 d1_clear_2 L2, surface 1 clear aperture diameter d2_clear_1 d2_clear_2 L2, surface 2 clear aperture diameter 2*20.020[mm] petzval_lens_geometric_modulation_transfer_function.mph comsol_mph petzval_lens_geometric_modulation_transfer_function.m matlab_livelink petzval_lens_geometric_modulation_transfer_function.java comsol_java petzval_lens_geometric_modulation_transfer_function_summary.json json Computing_MTF_using_ModelMethod.pptx presentation_document Computing_MTF_using_ModelMethod.pdf pdf_document models.roptics.petzval_lens_geometric_modulation_transfer_function.pdf pdf_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "mph_code_export_and_learning",
+  "created_at": "2026-08-25T10:25:48.425117+00:00",
+  "source_mph": "D:\\桌面\\codex\\案例下载\\电气\\菲涅尔方程 (RF)\\fresnel_equations.mph",
+  "output_dir": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf",
+  "server": {
+    "ready": true,
+    "host": "localhost",
+    "port": 2036,
+    "started_by_exporter": false
+  },
+  "matlab_exit_code": 0,
+  "stdout_tail": "\nMATLAB is now connected to a COMSOL Multiphysics Server at localhost:2036\n\nRun the commands below to access the COMSOL ModelUtil commands:\nimport com.comsol.model.util.*\nMATLAB_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf\\fresnel_equations.m\nJAVA_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf\\fresnel_equations.java\nSUMMARY_EXPORT=D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf\\fresnel_equations_summary.json\n",
+  "stderr_tail": "",
+  "matlab_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf\\fresnel_equations.m",
+  "java_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf\\fresnel_equations.java",
+  "summary_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf\\fresnel_equations_summary.json",
+  "learning_outputs": {
+    "json": "generated\\case_knowledge\\fresnel_equations.case.json",
+    "markdown": "generated\\case_knowledge\\fresnel_equations.case.md",
+    "index": "generated\\case_knowledge\\case_knowledge_index.json"
+  },
+  "memory": {
+    "path": "generated\\case_memory\\case_memory.json",
+    "case_count": 709
+  },
+  "ok": true,
+  "message": "MATLAB and Java code exported and learned successfully.",
+  "report_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\mph_exports\\fresnel_equations_rf\\export_and_learning_report.json"
+}

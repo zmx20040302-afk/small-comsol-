@@ -1,0 +1,21 @@
+{
+  "kind": "local_api_smoke_test",
+  "created_at": "2026-08-12T02:39:10.663812+00:00",
+  "base_url": "http://127.0.0.1:8880",
+  "health_ok": true,
+  "default_material_assumption_visible": true,
+  "workflow_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\二维矩形板通电发热_长度100_mm_宽度50_mm_比较不同电压下的最高温度_20260812023909.workflow.json",
+  "approved_steps": 6,
+  "package_outputs": {
+    "json": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\二维矩形板通电发热_长度100_mm_宽度50_mm_比较不同电压下的最高温度_20260812023909.final_modeling_package.json",
+    "markdown": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\二维矩形板通电发热_长度100_mm_宽度50_mm_比较不同电压下的最高温度_20260812023909.final_modeling_package.md",
+    "matlab": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260812023909.m",
+    "java": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\Model100Mm50Mm20260812023909.java",
+    "guidance": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260812023909_guidance.md",
+    "verification": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260812023909_verification.json"
+  },
+  "ready_to_open": true,
+  "ready_to_solve": false,
+  "next_action": "review_blockers",
+  "unresolved_count": 6
+}

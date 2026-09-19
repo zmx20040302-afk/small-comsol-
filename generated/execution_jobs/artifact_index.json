@@ -1,0 +1,1758 @@
+{
+  "kind": "comsol_execution_artifact_index",
+  "generated_at": "2026-08-03T08:30:05.065983+00:00",
+  "root": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs",
+  "record_count": 56,
+  "completed_count": 44,
+  "failed_count": 11,
+  "records": [
+    {
+      "job_id": "job_20260803082937_cdd66aae",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-08-03T08:30:05.044428+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803082937_cdd66aae\\job_20260803082937_cdd66aae.mph",
+        "exists": true,
+        "size_bytes": 1796222,
+        "execution_duration_seconds": 25.718,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_electrothermal.json",
+          "model_name": "one_dimensional_electrothermal_wire",
+          "physics": "electrothermal_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803082937_cdd66aae\\generated_build_one_dimensional_electrothermal_wire.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803082937_cdd66aae\\job_20260803082937_cdd66aae_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 104,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "Q_joule_max": "maxop1(ec.Qh)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803082937_cdd66aae\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803082937_cdd66aae\\run_job_20260803082937_cdd66aae.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803082937_cdd66aae.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "electrothermal_1d",
+        "values": {
+          "T_max": 294.9579800498752,
+          "Q_joule_max": 580000.0000000577
+        },
+        "checks": [
+          {
+            "name": "joule_temperature_rise",
+            "passed": true,
+            "actual": 294.9579800498752,
+            "expected": "> 293.15",
+            "reason": "正焦耳热下内部最高温度应高于定温边界。"
+          },
+          {
+            "name": "positive_joule_heat",
+            "passed": true,
+            "actual": 580000.0000000577,
+            "expected": "> 0",
+            "reason": "通电导体的焦耳热密度应为正。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260803082406_5c99fda3",
+      "status": "completed",
+      "job_type": "thermal_augmentation",
+      "requirement": "Run COMSOL thermal-plate augmentation samples for surrogate learning.",
+      "updated_at": "2026-08-03T08:25:24.180682+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803082406_5c99fda3\\run_job_20260803082406_5c99fda3.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803082406_5c99fda3.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260803060429_c167ab54",
+      "status": "completed",
+      "job_type": "thermal_sweep_training",
+      "requirement": "Run verified COMSOL thermal-plate sweep and train a local surrogate model.",
+      "updated_at": "2026-08-03T07:58:20.615647+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803060429_c167ab54\\run_job_20260803060429_c167ab54.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803060429_c167ab54.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260803033442_f348e44a",
+      "status": "completed",
+      "job_type": "thermal_sweep_training",
+      "requirement": "Run verified COMSOL thermal-plate sweep and train a local surrogate model.",
+      "updated_at": "2026-08-03T03:37:44.772981+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803033442_f348e44a\\run_job_20260803033442_f348e44a.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803033442_f348e44a.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260803024215_e718c44a",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_axial_bar",
+      "updated_at": "2026-08-03T02:42:44.417114+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803024215_e718c44a\\job_20260803024215_e718c44a.mph",
+        "exists": true,
+        "size_bytes": 1494180,
+        "execution_duration_seconds": 27.343,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_cantilever_beam.json",
+          "model_name": "one_dimensional_axial_bar",
+          "physics": "axial_bar_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803024215_e718c44a\\generated_build_one_dimensional_axial_bar.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803024215_e718c44a\\job_20260803024215_e718c44a_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 121,
+        "outputs": {
+          "u_max": "maxop1(solid.disp)",
+          "mises_max": "maxop1(solid.mises)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803024215_e718c44a\\generated_build_one_dimensional_axial_bar.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803024215_e718c44a\\run_job_20260803024215_e718c44a.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803024215_e718c44a.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "axial_bar_1d",
+        "values": {
+          "u_max": 3.537414965989111e-07,
+          "mises_max": 571428.5714292524
+        },
+        "checks": [
+          {
+            "name": "axial_bar_displacement",
+            "passed": true,
+            "actual": 3.537414965989111e-07,
+            "expected": "> 0",
+            "reason": "固定一端并在另一端施加正轴向面力时，杆件应产生有限正位移。"
+          },
+          {
+            "name": "axial_bar_stress",
+            "passed": true,
+            "actual": 571428.5714292524,
+            "expected": "> 0",
+            "reason": "受轴向面力的线弹性杆件应产生正的等效应力。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260803023900_812fb2c2",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_axial_bar",
+      "updated_at": "2026-08-03T02:39:26.379604+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023900_812fb2c2\\generated_build_one_dimensional_axial_bar.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023900_812fb2c2\\run_job_20260803023900_812fb2c2.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803023900_812fb2c2.log",
+      "validation": {},
+      "diagnosis": {
+        "kind": "execution_diagnosis",
+        "stage": "execution",
+        "category": "variable",
+        "title": "变量或材料参数未定义",
+        "summary": "物理场引用了不存在、同名冲突或未赋值的参数。",
+        "actions": [
+          "检查材料属性、全局参数和物理场变量名称。",
+          "避免使用 E、T 等可能与 COMSOL 内部变量冲突的参数名。",
+          "修正脚本后重新生成任务。"
+        ],
+        "retry_recommended": false
+      }
+    },
+    {
+      "job_id": "job_20260803023657_081dc155",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_axial_bar",
+      "updated_at": "2026-08-03T02:37:20.292753+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023657_081dc155\\generated_build_one_dimensional_axial_bar.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023657_081dc155\\run_job_20260803023657_081dc155.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803023657_081dc155.log",
+      "validation": {},
+      "diagnosis": {
+        "kind": "execution_diagnosis",
+        "stage": "execution",
+        "category": "unknown",
+        "title": "未分类执行错误",
+        "summary": "执行节点返回了未分类错误，请查看完整 MATLAB/COMSOL 日志。",
+        "actions": [
+          "查看任务日志中最先出现的 COMSOL 错误。",
+          "检查最近修改的物理场、材料、边界条件和单位。"
+        ],
+        "retry_recommended": false
+      }
+    },
+    {
+      "job_id": "job_20260803023433_034dd013",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_axial_bar",
+      "updated_at": "2026-08-03T02:34:53.295569+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023433_034dd013\\generated_build_one_dimensional_axial_bar.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023433_034dd013\\run_job_20260803023433_034dd013.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803023433_034dd013.log",
+      "validation": {},
+      "diagnosis": {
+        "kind": "execution_diagnosis",
+        "stage": "execution",
+        "category": "unknown",
+        "title": "未分类执行错误",
+        "summary": "执行节点返回了未分类错误，请查看完整 MATLAB/COMSOL 日志。",
+        "actions": [
+          "查看任务日志中最先出现的 COMSOL 错误。",
+          "检查最近修改的物理场、材料、边界条件和单位。"
+        ],
+        "retry_recommended": false
+      }
+    },
+    {
+      "job_id": "job_20260803023142_c1fa6f91",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_cantilever_beam",
+      "updated_at": "2026-08-03T02:32:44.568394+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023142_c1fa6f91\\generated_build_one_dimensional_cantilever_beam.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803023142_c1fa6f91\\run_job_20260803023142_c1fa6f91.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803023142_c1fa6f91.log",
+      "validation": {},
+      "diagnosis": {
+        "kind": "execution_diagnosis",
+        "stage": "execution",
+        "category": "unknown",
+        "title": "未分类执行错误",
+        "summary": "执行节点返回了未分类错误，请查看完整 MATLAB/COMSOL 日志。",
+        "actions": [
+          "查看任务日志中最先出现的 COMSOL 错误。",
+          "检查最近修改的物理场、材料、边界条件和单位。"
+        ],
+        "retry_recommended": false
+      }
+    },
+    {
+      "job_id": "job_20260803021939_9649bd8a",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: solid_mechanics_rectangle",
+      "updated_at": "2026-08-03T02:21:15.365922+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803021939_9649bd8a\\job_20260803021939_9649bd8a.mph",
+        "exists": true,
+        "size_bytes": 2030067,
+        "execution_duration_seconds": 95.938,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\derived_constraints\\solid_mechanics_rectangle_derived_20260803021939.json",
+          "model_name": "solid_mechanics_rectangle",
+          "physics": "solid_mechanics_2d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803021939_9649bd8a\\generated_build_solid_mechanics_rectangle.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803021939_9649bd8a\\job_20260803021939_9649bd8a_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 121,
+        "outputs": {
+          "u_max": "maxop1(solid.disp)",
+          "mises_max": "maxop1(solid.mises)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803021939_9649bd8a\\generated_build_solid_mechanics_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803021939_9649bd8a\\run_job_20260803021939_9649bd8a.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260803021939_9649bd8a.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "solid_mechanics_2d",
+        "values": {
+          "u_max": 4.423086865032889e-05,
+          "mises_max": 52524690.90107489
+        },
+        "checks": [
+          {
+            "name": "positive_displacement",
+            "passed": true,
+            "actual": 4.423086865032889e-05,
+            "expected": "> 0",
+            "reason": "受载且存在固定约束时，应出现有限的非零位移。"
+          },
+          {
+            "name": "positive_von_mises_stress",
+            "passed": true,
+            "actual": 52524690.90107489,
+            "expected": "> 0",
+            "reason": "受载固体应出现正的等效应力。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801170721_81738c9f",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_heat_conduction",
+      "updated_at": "2026-08-01T17:07:47.457840+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801170721_81738c9f\\job_20260801170721_81738c9f.mph",
+        "exists": true,
+        "size_bytes": 1564354,
+        "execution_duration_seconds": 24.109,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_heat_conduction.json",
+          "model_name": "one_dimensional_heat_conduction",
+          "physics": "heat_transfer_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801170721_81738c9f\\generated_build_one_dimensional_heat_conduction.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801170721_81738c9f\\job_20260801170721_81738c9f_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 47,
+        "outputs": {
+          "T_max": "maxop1(T)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801170721_81738c9f\\generated_build_one_dimensional_heat_conduction.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801170721_81738c9f\\run_job_20260801170721_81738c9f.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801170721_81738c9f.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "heat_transfer_1d",
+        "values": {
+          "T_max": 373.15
+        },
+        "checks": [
+          {
+            "name": "T_max_range",
+            "passed": true,
+            "actual": 373.15,
+            "expected": [
+              293.15,
+              373.15
+            ],
+            "reason": "最大温度应位于两个定温边界之间。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801151723_e37de2fe",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: thermal_stress_rectangle",
+      "updated_at": "2026-08-01T15:18:15.531512+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_e37de2fe\\job_20260801151723_e37de2fe.mph",
+        "exists": true,
+        "size_bytes": 3497869,
+        "execution_duration_seconds": 27.906,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\thermal_stress_rectangle.json",
+          "model_name": "thermal_stress_rectangle",
+          "physics": "thermal_stress_2d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_e37de2fe\\generated_build_thermal_stress_rectangle.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_e37de2fe\\job_20260801151723_e37de2fe_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 146,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "u_max": "maxop1(solid.disp)",
+          "mises_max": "maxop1(solid.mises)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_e37de2fe\\generated_build_thermal_stress_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_e37de2fe\\run_job_20260801151723_e37de2fe.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801151723_e37de2fe.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "thermal_stress_2d",
+        "values": {
+          "T_max": 373.15,
+          "u_max": 7.236510048587562e-05,
+          "mises_max": 467177205.7206526
+        },
+        "checks": [
+          {
+            "name": "T_max_range",
+            "passed": true,
+            "actual": 373.15,
+            "expected": [
+              293.15,
+              373.15
+            ],
+            "reason": "最高温度应位于冷热定温边界之间。"
+          },
+          {
+            "name": "thermal_displacement",
+            "passed": true,
+            "actual": 7.236510048587562e-05,
+            "expected": "> 0",
+            "reason": "存在温差、热膨胀系数和约束时，应出现非零位移。"
+          },
+          {
+            "name": "thermal_von_mises_stress",
+            "passed": true,
+            "actual": 467177205.7206526,
+            "expected": "> 0",
+            "reason": "受约束热膨胀应产生正的等效应力。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801151723_141b0fbe",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: solid_mechanics_rectangle",
+      "updated_at": "2026-08-01T15:17:45.594460+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_141b0fbe\\job_20260801151723_141b0fbe.mph",
+        "exists": true,
+        "size_bytes": 2029458,
+        "execution_duration_seconds": 21.812,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\solid_mechanics_rectangle.json",
+          "model_name": "solid_mechanics_rectangle",
+          "physics": "solid_mechanics_2d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_141b0fbe\\generated_build_solid_mechanics_rectangle.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_141b0fbe\\job_20260801151723_141b0fbe_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 121,
+        "outputs": {
+          "u_max": "maxop1(solid.disp)",
+          "mises_max": "maxop1(solid.mises)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_141b0fbe\\generated_build_solid_mechanics_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151723_141b0fbe\\run_job_20260801151723_141b0fbe.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801151723_141b0fbe.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "solid_mechanics_2d",
+        "values": {
+          "u_max": 2.211543432516445e-05,
+          "mises_max": 26262345.45053744
+        },
+        "checks": [
+          {
+            "name": "positive_displacement",
+            "passed": true,
+            "actual": 2.211543432516445e-05,
+            "expected": "> 0",
+            "reason": "受载且存在固定约束时，应出现有限的非零位移。"
+          },
+          {
+            "name": "positive_von_mises_stress",
+            "passed": true,
+            "actual": 26262345.45053744,
+            "expected": "> 0",
+            "reason": "受载固体应出现正的等效应力。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801151542_68f3e2fe",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: thermal_stress_rectangle",
+      "updated_at": "2026-08-01T15:16:11.668580+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151542_68f3e2fe\\job_20260801151542_68f3e2fe.mph",
+        "exists": true,
+        "size_bytes": 3497857,
+        "execution_duration_seconds": 27.593,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\thermal_stress_rectangle.json",
+          "model_name": "thermal_stress_rectangle",
+          "physics": "thermal_stress_2d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151542_68f3e2fe\\generated_build_thermal_stress_rectangle.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151542_68f3e2fe\\job_20260801151542_68f3e2fe_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 146,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "u_max": "maxop1(solid.disp)",
+          "mises_max": "maxop1(solid.mises)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151542_68f3e2fe\\generated_build_thermal_stress_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151542_68f3e2fe\\run_job_20260801151542_68f3e2fe.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801151542_68f3e2fe.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "thermal_stress_2d",
+        "values": {
+          "T_max": 373.15,
+          "u_max": 7.236510048587562e-05,
+          "mises_max": 467177205.7206526
+        },
+        "checks": [
+          {
+            "name": "T_max_range",
+            "passed": true,
+            "actual": 373.15,
+            "expected": [
+              293.15,
+              373.15
+            ],
+            "reason": "最高温度应位于冷热定温边界之间。"
+          },
+          {
+            "name": "thermal_displacement",
+            "passed": true,
+            "actual": 7.236510048587562e-05,
+            "expected": "> 0",
+            "reason": "存在温差、热膨胀系数和约束时，应出现非零位移。"
+          },
+          {
+            "name": "thermal_von_mises_stress",
+            "passed": true,
+            "actual": 467177205.7206526,
+            "expected": "> 0",
+            "reason": "受约束热膨胀应产生正的等效应力。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801151450_27dece27",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: solid_mechanics_rectangle",
+      "updated_at": "2026-08-01T15:15:14.020997+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151450_27dece27\\job_20260801151450_27dece27.mph",
+        "exists": true,
+        "size_bytes": 2029363,
+        "execution_duration_seconds": 21.922,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\solid_mechanics_rectangle.json",
+          "model_name": "solid_mechanics_rectangle",
+          "physics": "solid_mechanics_2d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151450_27dece27\\generated_build_solid_mechanics_rectangle.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151450_27dece27\\job_20260801151450_27dece27_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 121,
+        "outputs": {
+          "u_max": "maxop1(solid.disp)",
+          "mises_max": "maxop1(solid.mises)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151450_27dece27\\generated_build_solid_mechanics_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151450_27dece27\\run_job_20260801151450_27dece27.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801151450_27dece27.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "solid_mechanics_2d",
+        "values": {
+          "u_max": 2.211543432516445e-05,
+          "mises_max": 26262345.45053744
+        },
+        "checks": [
+          {
+            "name": "positive_displacement",
+            "passed": true,
+            "actual": 2.211543432516445e-05,
+            "expected": "> 0",
+            "reason": "受载且存在固定约束时，应出现有限的非零位移。"
+          },
+          {
+            "name": "positive_von_mises_stress",
+            "passed": true,
+            "actual": 26262345.45053744,
+            "expected": "> 0",
+            "reason": "受载固体应出现正的等效应力。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801151305_2c4a6127",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: solid_mechanics_rectangle",
+      "updated_at": "2026-08-01T16:11:02.985606+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151305_2c4a6127\\job_20260801151305_2c4a6127.mph",
+        "exists": true,
+        "size_bytes": 2029429,
+        "execution_duration_seconds": 25.594,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\solid_mechanics_rectangle.json",
+          "model_name": "solid_mechanics_rectangle",
+          "physics": "solid_mechanics_2d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151305_2c4a6127\\generated_build_solid_mechanics_rectangle.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151305_2c4a6127\\job_20260801151305_2c4a6127_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 121,
+        "outputs": {
+          "u_max": "maxop1(solid.disp)",
+          "mises_max": "maxop1(solid.mises)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151305_2c4a6127\\generated_build_solid_mechanics_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801151305_2c4a6127\\run_job_20260801151305_2c4a6127.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801151305_2c4a6127.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "solid_mechanics_2d",
+        "values": {
+          "u_max": 2.211543432516445e-05,
+          "mises_max": 26262345.45053744
+        },
+        "checks": [
+          {
+            "name": "positive_displacement",
+            "passed": true,
+            "actual": 2.211543432516445e-05,
+            "expected": "> 0",
+            "reason": "受载且存在固定约束时，应出现有限的非零位移。"
+          },
+          {
+            "name": "positive_von_mises_stress",
+            "passed": true,
+            "actual": 26262345.45053744,
+            "expected": "> 0",
+            "reason": "受载固体应出现正的等效应力。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801132255_7049b1fd",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T13:23:20.229791+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132255_7049b1fd\\job_20260801132255_7049b1fd.mph",
+        "exists": true,
+        "size_bytes": 721468,
+        "execution_duration_seconds": 23.297,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132255_7049b1fd\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132255_7049b1fd\\job_20260801132255_7049b1fd_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132255_7049b1fd\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132255_7049b1fd\\run_job_20260801132255_7049b1fd.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801132255_7049b1fd.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "diffusion_1d",
+        "values": {
+          "c_max": 1.0
+        },
+        "checks": [
+          {
+            "name": "concentration_boundary_match",
+            "passed": true,
+            "actual": 1.0,
+            "expected": 1.0,
+            "reason": "稳态无反应扩散的最大浓度应等于较高定浓度边界。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801132051_2807df92",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-08-01T13:22:10.850970+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_2807df92\\job_20260801132051_2807df92.mph",
+        "exists": true,
+        "size_bytes": 1796185,
+        "execution_duration_seconds": 24.969,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_electrothermal.json",
+          "model_name": "one_dimensional_electrothermal_wire",
+          "physics": "electrothermal_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_2807df92\\generated_build_one_dimensional_electrothermal_wire.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_2807df92\\job_20260801132051_2807df92_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 104,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "Q_joule_max": "maxop1(ec.Qh)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_2807df92\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_2807df92\\run_job_20260801132051_2807df92.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801132051_2807df92.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "electrothermal_1d",
+        "values": {
+          "T_max": 294.9579800498752,
+          "Q_joule_max": 580000.0000000577
+        },
+        "checks": [
+          {
+            "name": "joule_temperature_rise",
+            "passed": true,
+            "actual": 294.9579800498752,
+            "expected": "> 293.15",
+            "reason": "正焦耳热下内部最高温度应高于定温边界。"
+          },
+          {
+            "name": "positive_joule_heat",
+            "passed": true,
+            "actual": 580000.0000000577,
+            "expected": "> 0",
+            "reason": "通电导体的焦耳热密度应为正。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801132051_255c335a",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T13:21:43.859565+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_255c335a\\job_20260801132051_255c335a.mph",
+        "exists": true,
+        "size_bytes": 721402,
+        "execution_duration_seconds": 22.953,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_255c335a\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_255c335a\\job_20260801132051_255c335a_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_255c335a\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_255c335a\\run_job_20260801132051_255c335a.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801132051_255c335a.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "diffusion_1d",
+        "values": {
+          "c_max": 1.0
+        },
+        "checks": [
+          {
+            "name": "concentration_boundary_match",
+            "passed": true,
+            "actual": 1.0,
+            "expected": 1.0,
+            "reason": "稳态无反应扩散的最大浓度应等于较高定浓度边界。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801132051_e2b276e5",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_heat_conduction",
+      "updated_at": "2026-08-01T13:21:18.878130+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_e2b276e5\\job_20260801132051_e2b276e5.mph",
+        "exists": true,
+        "size_bytes": 1564221,
+        "execution_duration_seconds": 25.265,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_heat_conduction.json",
+          "model_name": "one_dimensional_heat_conduction",
+          "physics": "heat_transfer_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_e2b276e5\\generated_build_one_dimensional_heat_conduction.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_e2b276e5\\job_20260801132051_e2b276e5_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 47,
+        "outputs": {
+          "T_max": "maxop1(T)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_e2b276e5\\generated_build_one_dimensional_heat_conduction.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801132051_e2b276e5\\run_job_20260801132051_e2b276e5.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801132051_e2b276e5.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "heat_transfer_1d",
+        "values": {
+          "T_max": 373.15
+        },
+        "checks": [
+          {
+            "name": "T_max_range",
+            "passed": true,
+            "actual": 373.15,
+            "expected": [
+              293.15,
+              373.15
+            ],
+            "reason": "最大温度应位于两个定温边界之间。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801131800_366db233",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_heat_conduction",
+      "updated_at": "2026-08-01T13:18:25.457558+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131800_366db233\\job_20260801131800_366db233.mph",
+        "exists": true,
+        "size_bytes": 1564396,
+        "execution_duration_seconds": 24.578,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_heat_conduction.json",
+          "model_name": "one_dimensional_heat_conduction",
+          "physics": "heat_transfer_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131800_366db233\\generated_build_one_dimensional_heat_conduction.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131800_366db233\\job_20260801131800_366db233_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 47,
+        "outputs": {
+          "T_max": "maxop1(T)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131800_366db233\\generated_build_one_dimensional_heat_conduction.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131800_366db233\\run_job_20260801131800_366db233.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801131800_366db233.log",
+      "validation": {
+        "kind": "constraint_result_validation",
+        "physics": "heat_transfer_1d",
+        "values": {
+          "T_max": 373.15
+        },
+        "checks": [
+          {
+            "name": "T_max_range",
+            "passed": true,
+            "actual": 373.15,
+            "expected": [
+              293.15,
+              373.15
+            ],
+            "reason": "最大温度应位于两个定温边界之间。"
+          }
+        ],
+        "passed": true,
+        "summary": "物理结果检查通过。"
+      },
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801131047_7d4cdcc4",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T13:11:11.900376+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131047_7d4cdcc4\\job_20260801131047_7d4cdcc4.mph",
+        "exists": true,
+        "size_bytes": 721486,
+        "execution_duration_seconds": 22.703,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131047_7d4cdcc4\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131047_7d4cdcc4\\job_20260801131047_7d4cdcc4_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131047_7d4cdcc4\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801131047_7d4cdcc4\\run_job_20260801131047_7d4cdcc4.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801131047_7d4cdcc4.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801130928_9aa743fa",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T13:09:47.808824+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801130928_9aa743fa\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801130928_9aa743fa\\run_job_20260801130928_9aa743fa.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801130928_9aa743fa.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801125736_98ac3590",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:58:01.637912+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125736_98ac3590\\job_20260801125736_98ac3590.mph",
+        "exists": true,
+        "size_bytes": 711821,
+        "execution_duration_seconds": 23.39,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125736_98ac3590\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125736_98ac3590\\job_20260801125736_98ac3590_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125736_98ac3590\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125736_98ac3590\\run_job_20260801125736_98ac3590.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801125736_98ac3590.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801125613_b9017269",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:56:36.994127+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125613_b9017269\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125613_b9017269\\run_job_20260801125613_b9017269.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801125613_b9017269.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801125255_49263efe",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:53:15.477469+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125255_49263efe\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125255_49263efe\\run_job_20260801125255_49263efe.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801125255_49263efe.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801125043_e5153469",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-08-01T12:51:34.598107+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_e5153469\\job_20260801125043_e5153469.mph",
+        "exists": true,
+        "size_bytes": 1796049,
+        "execution_duration_seconds": 25.344,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_electrothermal.json",
+          "model_name": "one_dimensional_electrothermal_wire",
+          "physics": "electrothermal_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_e5153469\\generated_build_one_dimensional_electrothermal_wire.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_e5153469\\job_20260801125043_e5153469_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 104,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "Q_joule_max": "maxop1(ec.Qh)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_e5153469\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_e5153469\\run_job_20260801125043_e5153469.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801125043_e5153469.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801125043_71e4275a",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:51:07.206731+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_71e4275a\\job_20260801125043_71e4275a.mph",
+        "exists": true,
+        "size_bytes": 711220,
+        "execution_duration_seconds": 21.891,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_71e4275a\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_71e4275a\\job_20260801125043_71e4275a_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_71e4275a\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801125043_71e4275a\\run_job_20260801125043_71e4275a.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801125043_71e4275a.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801124440_1741ad78",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-08-01T12:45:31.785766+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1741ad78\\job_20260801124440_1741ad78.mph",
+        "exists": true,
+        "size_bytes": 1796097,
+        "execution_duration_seconds": 25.531,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_electrothermal.json",
+          "model_name": "one_dimensional_electrothermal_wire",
+          "physics": "electrothermal_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1741ad78\\generated_build_one_dimensional_electrothermal_wire.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1741ad78\\job_20260801124440_1741ad78_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 104,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "Q_joule_max": "maxop1(ec.Qh)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1741ad78\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1741ad78\\run_job_20260801124440_1741ad78.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801124440_1741ad78.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801124440_1ae7eb64",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:45:04.232355+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1ae7eb64\\job_20260801124440_1ae7eb64.mph",
+        "exists": true,
+        "size_bytes": 711197,
+        "execution_duration_seconds": 22.375,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1ae7eb64\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1ae7eb64\\job_20260801124440_1ae7eb64_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1ae7eb64\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124440_1ae7eb64\\run_job_20260801124440_1ae7eb64.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801124440_1ae7eb64.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801124322_6a0e8411",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:43:46.978742+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124322_6a0e8411\\job_20260801124322_6a0e8411.mph",
+        "exists": true,
+        "size_bytes": 711120,
+        "execution_duration_seconds": 22.484,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124322_6a0e8411\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124322_6a0e8411\\job_20260801124322_6a0e8411_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124322_6a0e8411\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801124322_6a0e8411\\run_job_20260801124322_6a0e8411.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801124322_6a0e8411.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801123951_a1472829",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-08-01T12:40:37.393389+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123951_a1472829\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123951_a1472829\\run_job_20260801123951_a1472829.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801123951_a1472829.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801123951_9751d261",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:40:15.013040+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123951_9751d261\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123951_9751d261\\run_job_20260801123951_9751d261.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801123951_9751d261.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801123813_7fbbb395",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-08-01T12:38:41.354471+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123813_7fbbb395\\job_20260801123813_7fbbb395.mph",
+        "exists": true,
+        "size_bytes": 1794334,
+        "execution_duration_seconds": 25.813,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_electrothermal.json",
+          "model_name": "one_dimensional_electrothermal_wire",
+          "physics": "electrothermal_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123813_7fbbb395\\generated_build_one_dimensional_electrothermal_wire.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123813_7fbbb395\\job_20260801123813_7fbbb395_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 93,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "Q_joule_max": "maxop1(ec.Qh)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123813_7fbbb395\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123813_7fbbb395\\run_job_20260801123813_7fbbb395.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801123813_7fbbb395.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801123339_1d79e316",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-08-01T12:37:17.590051+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123339_1d79e316\\job_20260801123339_1d79e316.mph",
+        "exists": true,
+        "size_bytes": 1754662,
+        "execution_duration_seconds": 23.984,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_electrothermal.json",
+          "model_name": "one_dimensional_electrothermal_wire",
+          "physics": "electrothermal_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123339_1d79e316\\generated_build_one_dimensional_electrothermal_wire.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123339_1d79e316\\job_20260801123339_1d79e316_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 104,
+        "outputs": {
+          "T_max": "maxop1(T)",
+          "Q_joule_max": "maxop1(ec.Qh)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123339_1d79e316\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123339_1d79e316\\run_job_20260801123339_1d79e316.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801123339_1d79e316.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801123253_5c8e0ee9",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-08-01T12:33:18.005038+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123253_5c8e0ee9\\job_20260801123253_5c8e0ee9.mph",
+        "exists": true,
+        "size_bytes": 711196,
+        "execution_duration_seconds": 24.156,
+        "parameter_source": {
+          "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\configs\\one_dimensional_diffusion.json",
+          "model_name": "one_dimensional_diffusion",
+          "physics": "diffusion_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123253_5c8e0ee9\\generated_build_one_dimensional_diffusion.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123253_5c8e0ee9\\job_20260801123253_5c8e0ee9_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 42,
+        "outputs": {
+          "c_max": "maxop1(c)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123253_5c8e0ee9\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801123253_5c8e0ee9\\run_job_20260801123253_5c8e0ee9.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801123253_5c8e0ee9.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260801121725_8f2d76e3",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_heat_conduction",
+      "updated_at": "2026-08-01T12:24:44.341261+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801121725_8f2d76e3\\job_20260801121725_8f2d76e3.mph",
+        "exists": true,
+        "size_bytes": 1564521,
+        "execution_duration_seconds": 27.625,
+        "parameter_source": {
+          "path": "configs\\one_dimensional_heat_conduction.json",
+          "model_name": "one_dimensional_heat_conduction",
+          "physics": "heat_transfer_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801121725_8f2d76e3\\generated_build_one_dimensional_heat_conduction.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_validate_csv"
+      },
+      "results_csv": {
+        "kind": "comsol_global_results_csv",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801121725_8f2d76e3\\job_20260801121725_8f2d76e3_results.csv",
+        "expected": true,
+        "exists": true,
+        "size_bytes": 47,
+        "outputs": {
+          "T_max": "maxop1(T)"
+        }
+      },
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801121725_8f2d76e3\\generated_build_one_dimensional_heat_conduction.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260801121725_8f2d76e3\\run_job_20260801121725_8f2d76e3.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260801121725_8f2d76e3.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731062423_0a543271",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_heat_conduction",
+      "updated_at": "2026-07-31T06:24:47.116253+00:00",
+      "mph": {
+        "kind": "comsol_mph_artifact",
+        "path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731062423_0a543271\\job_20260731062423_0a543271.mph",
+        "exists": true,
+        "size_bytes": 1561867,
+        "execution_duration_seconds": 23.282,
+        "parameter_source": {
+          "path": "configs\\one_dimensional_heat_conduction.json",
+          "model_name": "one_dimensional_heat_conduction",
+          "physics": "heat_transfer_1d",
+          "builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731062423_0a543271\\generated_build_one_dimensional_heat_conduction.m"
+        },
+        "next_action": "inspect_results_in_comsol_and_export_validated_csv"
+      },
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731062423_0a543271\\generated_build_one_dimensional_heat_conduction.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731062423_0a543271\\run_job_20260731062423_0a543271.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731062423_0a543271.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731061717_9d967437",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: solid_mechanics_rectangle",
+      "updated_at": "2026-07-31T06:17:44.505130+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731061717_9d967437\\generated_build_solid_mechanics_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731061717_9d967437\\run_job_20260731061717_9d967437.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731061717_9d967437.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731060659_4952dfb9",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: thermal_stress_rectangle",
+      "updated_at": "2026-07-31T06:07:30.985122+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731060659_4952dfb9\\generated_build_thermal_stress_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731060659_4952dfb9\\run_job_20260731060659_4952dfb9.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731060659_4952dfb9.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731055709_bfb2ed99",
+      "status": "awaiting_model_review",
+      "job_type": "comsol_modeling",
+      "requirement": "建立母线板焦耳热标杆模型：电流场与固体传热通过 Joule Heating 耦合，输出温度与电流密度，并准备参数扫描 CSV。",
+      "updated_at": "2026-07-31T05:57:11.709327+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731055709_bfb2ed99\\run_job_20260731055709_bfb2ed99.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731055709_bfb2ed99.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731055708_c98b2162",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-07-31T05:57:35.170632+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731055708_c98b2162\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731055708_c98b2162\\run_job_20260731055708_c98b2162.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731055708_c98b2162.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731055510_9d71afa3",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: thermal_stress_rectangle",
+      "updated_at": "2026-07-31T05:55:51.089570+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731055510_9d71afa3\\generated_build_thermal_stress_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731055510_9d71afa3\\run_job_20260731055510_9d71afa3.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731055510_9d71afa3.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731023555_64a8a307",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: thermal_rectangle_surrogate",
+      "updated_at": "2026-07-31T02:42:22.354376+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731023555_64a8a307\\generated_build_thermal_rectangle_surrogate.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731023555_64a8a307\\run_job_20260731023555_64a8a307.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731023555_64a8a307.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260731022940_0bf42bc4",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: thermal_stress_rectangle",
+      "updated_at": "2026-07-31T02:31:02.499385+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731022940_0bf42bc4\\generated_build_thermal_stress_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260731022940_0bf42bc4\\run_job_20260731022940_0bf42bc4.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260731022940_0bf42bc4.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730170217_44616980",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: solid_mechanics_rectangle",
+      "updated_at": "2026-07-30T17:02:46.129900+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730170217_44616980\\generated_build_solid_mechanics_rectangle.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730170217_44616980\\run_job_20260730170217_44616980.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730170217_44616980.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730164323_8bcbf2fb",
+      "status": "failed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_cantilever_beam",
+      "updated_at": "2026-07-30T16:44:28.017052+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730164323_8bcbf2fb\\generated_build_one_dimensional_cantilever_beam.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730164323_8bcbf2fb\\run_job_20260730164323_8bcbf2fb.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730164323_8bcbf2fb.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730163916_48e8b2bc",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_electrothermal_wire",
+      "updated_at": "2026-07-30T16:39:47.785467+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730163916_48e8b2bc\\generated_build_one_dimensional_electrothermal_wire.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730163916_48e8b2bc\\run_job_20260730163916_48e8b2bc.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730163916_48e8b2bc.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730163737_34e8b6a4",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_diffusion",
+      "updated_at": "2026-07-30T16:38:32.740058+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730163737_34e8b6a4\\generated_build_one_dimensional_diffusion.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730163737_34e8b6a4\\run_job_20260730163737_34e8b6a4.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730163737_34e8b6a4.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730043334_d40dbea9",
+      "status": "completed",
+      "job_type": "constraint_template",
+      "requirement": "Execute validated COMSOL constraint template: one_dimensional_heat_conduction",
+      "updated_at": "2026-07-30T07:59:48.602754+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730043334_d40dbea9\\generated_build_one_dimensional_heat_conduction.m",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730043334_d40dbea9\\run_job_20260730043334_d40dbea9.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730043334_d40dbea9.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730042552_f9e3e2ae",
+      "status": "completed",
+      "job_type": "approved_model_package",
+      "requirement": "验证已批准母线板焦耳热 COMSOL 模型的一键执行队列。",
+      "updated_at": "2026-07-30T04:26:26.268371+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730042552_f9e3e2ae\\run_job_20260730042552_f9e3e2ae.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730042552_f9e3e2ae.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730042250_e957024c",
+      "status": "completed",
+      "job_type": "approved_model_package",
+      "requirement": "验证已批准母线板焦耳热 COMSOL 模型的一键执行队列。",
+      "updated_at": "2026-07-30T04:23:44.992514+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730042250_e957024c\\run_job_20260730042250_e957024c.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730042250_e957024c.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730041647_0e3283db",
+      "status": "failed",
+      "job_type": "approved_model_package",
+      "requirement": "验证已批准母线板焦耳热 COMSOL 模型的一键执行队列。",
+      "updated_at": "2026-07-30T04:17:52.253209+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260730041647_0e3283db\\run_job_20260730041647_0e3283db.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730041647_0e3283db.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730041001_57146b7c",
+      "status": "completed",
+      "job_type": "approved_model_package",
+      "requirement": "验证已批准母线板焦耳热 COMSOL 模型的一键执行队列。",
+      "updated_at": "2026-07-30T04:15:35.076694+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "generated\\execution_jobs\\job_20260730041001_57146b7c\\run_job_20260730041001_57146b7c.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730041001_57146b7c.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260730020534_869cf9b3",
+      "status": "completed",
+      "job_type": "approved_model_package",
+      "requirement": "验证已批准母线板焦耳热 COMSOL 模型的一键执行队列。",
+      "updated_at": "2026-07-30T04:06:44.290754+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "generated\\execution_jobs\\job_20260730020534_869cf9b3\\run_job_20260730020534_869cf9b3.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260730020534_869cf9b3.log",
+      "validation": {},
+      "diagnosis": {}
+    },
+    {
+      "job_id": "job_20260729095435_5768068f",
+      "status": "completed",
+      "job_type": "joule_heat_benchmark",
+      "requirement": "建立母线板焦耳热标杆模型：使用 Electric Currents 和 Heat Transfer in Solids，通过 Joule Heating 耦合；设置端子、接地、绝缘、对流换热和环境温度；输出最高温度、平均温度、电流密度和端子电流，并为电压、电流和换热系数参数扫描导出 CSV。",
+      "updated_at": "2026-07-29T09:57:40.369159+00:00",
+      "mph": {},
+      "results_csv": {},
+      "matlab_builder": "",
+      "runner": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\benchmarks\\busbar_joule_heat\\builders\\run_busbar_joule_heat_baseline.m",
+      "log": "generated\\execution_jobs\\logs\\job_20260729095435_5768068f.log",
+      "validation": {},
+      "diagnosis": {}
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "source": "D:/桌面/codex/案例下载/COMSOL/顶盖驱动方腔流/lid_driven_cavity.mph",
+  "label": "lid_driven_cavity.mph",
+  "parameters": {
+    "Re": "10000",
+    "xR": "1-0.1328",
+    "yR": "0.1484",
+    "xL": "0.0781",
+    "yL": "0.0781",
+    "xC": "0.6172",
+    "yC": "0.7344"
+  },
+  "components": {
+    "tag": "comp1",
+    "geometry": [
+      "geom1"
+    ],
+    "materials": [
+      "mat1"
+    ],
+    "physics": [
+      "spf"
+    ],
+    "meshes": [
+      "mesh1"
+    ],
+    "couplings": [
+      "builder_integrate1",
+      "builder_average1",
+      "builder_max1"
+    ]
+  },
+  "studies": [
+    "std1"
+  ],
+  "result_groups": [
+    "pg1",
+    "pg2",
+    "pg3",
+    "pg4",
+    "pg5"
+  ],
+  "datasets": [
+    "dset1",
+    "cln1",
+    "cln2"
+  ],
+  "tables": [
+    "tbl1",
+    "tbl2"
+  ],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

@@ -1,0 +1,18 @@
+{
+  "node_id": "local-windows-comsol-node",
+  "enabled": true,
+  "matlab_executable": "D:\\MATLAB2025\\bin\\matlab.exe",
+  "livelink_matlab_path": "D:\\COMSOL64\\Multiphysics\\mli",
+  "comsol_executable": "D:\\COMSOL64\\Multiphysics\\bin\\win64\\comsol.exe",
+  "comsol_server_executable": "D:\\COMSOL64\\Multiphysics\\bin\\win64\\comsolmphserver.exe",
+  "comsol_server_host": "localhost",
+  "comsol_server_port": 2036,
+  "start_comsol_server": true,
+  "comsol_server_startup_timeout_seconds": 60,
+  "comsol_server_multi_connection": true,
+  "comsol_server_silent": true,
+  "working_directory": "generated/execution_jobs",
+  "timeout_seconds": 3600,
+  "allow_external_execution": true,
+  "note": "MATLAB R2025b、LiveLink mli 与 localhost:2036 COMSOL mphserver 连接均已验证。执行节点已启用，并允许执行已批准的基准模型。"
+}

@@ -1,0 +1,1577 @@
+{
+  "kind": "comsol_staged_modeling_workflow",
+  "workflow_id": "铜矩形板通电发热_长度100_mm_宽度50_mm_比较不同电压下的最高温度_20260812024623",
+  "created_at": "2026-08-12T02:46:23.236504+00:00",
+  "updated_at": "2026-08-12T02:46:23.942241+00:00",
+  "requirement": "铜矩形板通电发热，长度100 mm，宽度50 mm，比较不同电压下的最高温度",
+  "memory_path": "generated/case_memory/case_memory.json",
+  "status": "complete",
+  "current_step": 7,
+  "plan": {
+    "kind": "comsol_model_plan",
+    "requirement": "铜矩形板通电发热，长度100 mm，宽度50 mm，比较不同电压下的最高温度",
+    "inferred_domains": [
+      "heat_transfer",
+      "electromagnetics"
+    ],
+    "case_count": 115,
+    "matched_cases": [
+      {
+        "title": "磁滞作用下的相变建模",
+        "score": 6.109463010156716,
+        "quality": {
+          "score": 85,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": false,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少结果量证据",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "已验证：二维热应力矩形模板",
+        "score": 4.59620288940771,
+        "quality": {
+          "score": 90,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": false,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少来源文件记录",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": false,
+          "surrogate_ready": false
+        },
+        "training_stage": "execution_validated",
+        "domains": [
+          "heat_transfer",
+          "structural"
+        ]
+      },
+      {
+        "title": "已验证：一维电热焦耳热模板",
+        "score": 4.51028692436042,
+        "quality": {
+          "score": 90,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": false,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少来源文件记录",
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": false,
+          "surrogate_ready": false
+        },
+        "training_stage": "execution_validated",
+        "domains": [
+          "heat_transfer",
+          "electromagnetics"
+        ]
+      },
+      {
+        "title": "如何生成随机非均匀材料数据6.2",
+        "score": 3.9297275406782095,
+        "quality": {
+          "score": 95,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "圆柱绕流",
+        "score": 3.92393858297923,
+        "quality": {
+          "score": 95,
+          "checks": {
+            "physics": true,
+            "geometry": true,
+            "materials": true,
+            "study": true,
+            "boundary_conditions": true,
+            "results": true,
+            "parameters": true,
+            "source_files": true,
+            "training_csv": false
+          },
+          "issues": [
+            "缺少参数扫描 CSV"
+          ],
+          "usable_for_modeling": true,
+          "surrogate_ready": false
+        },
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      }
+    ],
+    "knowledge_system_context": {
+      "kind": "knowledge_system_context",
+      "available": true,
+      "case_count": 115,
+      "domain_count": 8,
+      "capability_summary": "The local COMSOL knowledge system has learned 115 cases across 8 domains (geometry, structural, optimization, electromagnetics, acoustics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training.",
+      "matched_domains": [
+        {
+          "domain": "electromagnetics",
+          "case_count": 108,
+          "cases": [
+            "App 中用户定义的许可协议",
+            "Black-Scholes 方程",
+            "Blasius 边界层",
+            "COMSOL 物理场类型与选择指南",
+            "KdV 方程和孤子",
+            "STL导入教程",
+            "“图像到曲线”插件示例6.2",
+            "两种载荷工况下的锥形悬臂梁",
+            "传输线参数计算器",
+            "传递和吸附",
+            "使用 Microsoft® Azure 运行 COMSOL® 软件",
+            "使用 PID 控制器的过程控制"
+          ],
+          "core_physics": [
+            {
+              "name": "ht / HeatTransfer",
+              "count": 20
+            },
+            {
+              "name": "solid / SolidMechanics",
+              "count": 18
+            },
+            {
+              "name": "spf / LaminarFlow",
+              "count": 12
+            },
+            {
+              "name": "tds / DilutedSpecies",
+              "count": 11
+            },
+            {
+              "name": "Heat Transfer",
+              "count": 10
+            },
+            {
+              "name": "ec / ConductiveMedia",
+              "count": 9
+            },
+            {
+              "name": "c / CoefficientFormPDE",
+              "count": 5
+            },
+            {
+              "name": "ht / HeatTransferInFluids",
+              "count": 4
+            },
+            {
+              "name": "cb / CoefficientFormBoundaryPDE",
+              "count": 3
+            },
+            {
+              "name": "ge / GlobalEquations",
+              "count": 3
+            }
+          ],
+          "geometry_patterns": [
+            {
+              "name": "r1 / Rectangle",
+              "count": 31
+            },
+            {
+              "name": "geom1 / r1 / size",
+              "count": 22
+            },
+            {
+              "name": "wp1 / WorkPlane",
+              "count": 14
+            },
+            {
+              "name": "dif1 / Difference",
+              "count": 12
+            },
+            {
+              "name": "geom1 / wp1 / unite",
+              "count": 12
+            },
+            {
+              "name": "blk1 / Block",
+              "count": 11
+            },
+            {
+              "name": "c1 / Circle",
+              "count": 11
+            },
+            {
+              "name": "uni1 / Union",
+              "count": 10
+            },
+            {
+              "name": "cyl1 / Cylinder",
+              "count": 10
+            },
+            {
+              "name": "geom1 / cyl1 / r",
+              "count": 10
+            }
+          ],
+          "study_patterns": [
+            {
+              "name": "std1",
+              "count": 72
+            },
+            {
+              "name": "Stationary",
+              "count": 43
+            },
+            {
+              "name": "std1 / stat / Stationary",
+              "count": 39
+            },
+            {
+              "name": "std1 / time / Transient",
+              "count": 25
+            },
+            {
+              "name": "Eigenfrequency",
+              "count": 6
+            },
+            {
+              "name": "std1 / eig / Eigenfrequency",
+              "count": 5
+            },
+            {
+              "name": "Eigenvalue",
+              "count": 3
+            },
+            {
+              "name": "Time Dependent",
+              "count": 2
+            }
+          ],
+          "typical_outputs": [
+            {
+              "name": "Original MPH files for later COMSOL-side verification.",
+              "count": 104
+            },
+            {
+              "name": "LiveLink MATLAB or COMSOL Java script structure.",
+              "count": 95
+            },
+            {
+              "name": "Theory and workflow evidence from PDF documents.",
+              "count": 75
+            },
+            {
+              "name": "传热",
+              "count": 31
+            },
+            {
+              "name": "流体",
+              "count": 29
+            },
+            {
+              "name": "电磁",
+              "count": 23
+            },
+            {
+              "name": "pg1",
+              "count": 18
+            },
+            {
+              "name": "结构力学",
+              "count": 14
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Lp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rb",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "沉降 App（考虑颗粒大小分布）",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "Lh",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "d_rod",
+              "description": "Rod diameter",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_L",
+              "description": "C3 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_L",
+              "description": "C4 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_L",
+              "description": "C5 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "t_angle",
+              "description": "Transverse angle",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "s_angle",
+              "description": "Sagittal angle",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_xw",
+              "description": "C3 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_yw",
+              "description": "C3 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_zw",
+              "description": "C3 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_xw",
+              "description": "C4 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_yw",
+              "description": "C4 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_zw",
+              "description": "C4 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_xw",
+              "description": "C5 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_yw",
+              "description": "C5 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_zw",
+              "description": "C5 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "frq_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "Ri_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "dR_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "d_s_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "epsr_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "mur_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "sigma_d_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "sigma_c_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "Ro_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "w_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "delta_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            }
+          ],
+          "modeling_logic": [
+            "Use electromagnetics cases as the first retrieval group when the requirement shares physics, geometry, or output targets.",
+            "Start from parameters and geometry, then add selections, materials, physics, mesh, study, and result export.",
+            "Prioritize learned physics interfaces: ht / HeatTransfer, solid / SolidMechanics, spf / LaminarFlow.",
+            "Reuse similar study patterns: std1, Stationary, std1 / stat / Stationary."
+          ]
+        },
+        {
+          "domain": "heat_transfer",
+          "case_count": 61,
+          "cases": [
+            "COMSOL 物理场类型与选择指南",
+            "传递和吸附",
+            "使用 PID 控制器的过程控制",
+            "借助变形几何接口修改导入的 CAD 几何",
+            "化学蚀刻",
+            "受载弹簧 - 使用全局方程满足约束条件",
+            "含载荷突变的瞬时加热6.2",
+            "四极透镜",
+            "圆柱绕流",
+            "在轨航天器",
+            "多孔材料的有效扩散系数",
+            "如何在求解后自动导出图像仅6.3"
+          ],
+          "core_physics": [
+            {
+              "name": "ht / HeatTransfer",
+              "count": 20
+            },
+            {
+              "name": "spf / LaminarFlow",
+              "count": 12
+            },
+            {
+              "name": "tds / DilutedSpecies",
+              "count": 11
+            },
+            {
+              "name": "Heat Transfer",
+              "count": 10
+            },
+            {
+              "name": "solid / SolidMechanics",
+              "count": 8
+            },
+            {
+              "name": "ec / ConductiveMedia",
+              "count": 7
+            },
+            {
+              "name": "HeatTransfer",
+              "count": 4
+            },
+            {
+              "name": "ht / HeatTransferInFluids",
+              "count": 4
+            },
+            {
+              "name": "acpr / PressureAcoustics",
+              "count": 3
+            },
+            {
+              "name": "Laminar Flow",
+              "count": 2
+            }
+          ],
+          "geometry_patterns": [
+            {
+              "name": "r1 / Rectangle",
+              "count": 24
+            },
+            {
+              "name": "geom1 / r1 / size",
+              "count": 19
+            },
+            {
+              "name": "i1 / Interval",
+              "count": 9
+            },
+            {
+              "name": "wp1 / WorkPlane",
+              "count": 7
+            },
+            {
+              "name": "geom1 / r1 / pos",
+              "count": 6
+            },
+            {
+              "name": "geom1 / imp1 / filename",
+              "count": 6
+            },
+            {
+              "name": "c1 / Circle",
+              "count": 6
+            },
+            {
+              "name": "dif1 / Difference",
+              "count": 6
+            },
+            {
+              "name": "pt1 / Point",
+              "count": 5
+            },
+            {
+              "name": "geom1 / c1 / r",
+              "count": 5
+            }
+          ],
+          "study_patterns": [
+            {
+              "name": "std1",
+              "count": 49
+            },
+            {
+              "name": "Stationary",
+              "count": 32
+            },
+            {
+              "name": "std1 / stat / Stationary",
+              "count": 25
+            },
+            {
+              "name": "std1 / time / Transient",
+              "count": 21
+            },
+            {
+              "name": "Time Dependent",
+              "count": 2
+            },
+            {
+              "name": "Eigenfrequency",
+              "count": 2
+            },
+            {
+              "name": "std1 / freq / Frequency",
+              "count": 2
+            },
+            {
+              "name": "Transient",
+              "count": 1
+            }
+          ],
+          "typical_outputs": [
+            {
+              "name": "LiveLink MATLAB or COMSOL Java script structure.",
+              "count": 56
+            },
+            {
+              "name": "Original MPH files for later COMSOL-side verification.",
+              "count": 56
+            },
+            {
+              "name": "Theory and workflow evidence from PDF documents.",
+              "count": 40
+            },
+            {
+              "name": "传热",
+              "count": 31
+            },
+            {
+              "name": "流体",
+              "count": 29
+            },
+            {
+              "name": "电磁",
+              "count": 16
+            },
+            {
+              "name": "多孔介质/裂隙",
+              "count": 9
+            },
+            {
+              "name": "结构力学",
+              "count": 9
+            }
+          ],
+          "parameters": [
+            {
+              "name": "c0",
+              "description": "\\u521d\\u59cb\\u6d53\\u5ea6",
+              "source_cases": [
+                "传递和吸附",
+                "如何在求解后自动导出图像仅6.3",
+                "微混合器",
+                "微混合器 - 批处理和集群版本",
+                "求解模型后保存数据的作业序列6.3"
+              ]
+            },
+            {
+              "name": "k_ads",
+              "description": "\\u6b63\\u53cd\\u5e94\\u901f\\u7387\\u5e38\\u6570",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "k_des",
+              "description": "\\u9006\\u53cd\\u5e94\\u901f\\u7387\\u5e38\\u6570",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "Gamma_s",
+              "description": "\\u6d3b\\u6027\\u4f4d\\u6d53\\u5ea6",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "Ds",
+              "description": "\\u8868\\u9762\\u6269\\u6563\\u7cfb\\u6570",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "D",
+              "description": "\\u6c14\\u4f53\\u6269\\u6563\\u7cfb\\u6570",
+              "source_cases": [
+                "传递和吸附",
+                "使用 PID 控制器的过程控制",
+                "化学蚀刻",
+                "如何在求解后自动导出图像仅6.3",
+                "如何生成随机非均匀材料数据6.2",
+                "微混合器"
+              ]
+            },
+            {
+              "name": "v_max",
+              "description": "\\u6700\\u5927\\u901f\\u5ea6",
+              "source_cases": [
+                "传递和吸附"
+              ]
+            },
+            {
+              "name": "delta",
+              "description": "\\u901a\\u9053\\u5bbd\\u5ea6",
+              "source_cases": [
+                "传递和吸附",
+                "飞秒激光加热引起的超快传热"
+              ]
+            },
+            {
+              "name": "v_in_top",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c_in_top",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c_in_inlet",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c00",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "c_set",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_P_ctrl",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_I_ctrl",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_D_ctrl",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "k_D_ctrl_temp_param",
+              "description": "",
+              "source_cases": [
+                "使用 PID 控制器的过程控制"
+              ]
+            },
+            {
+              "name": "cCuCl2_bulk",
+              "description": "Bulk concentration, cCuCl2",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "kf",
+              "description": "Forward rate constant",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "M_Cu",
+              "description": "Molar mass, Cu",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "rho_Cu",
+              "description": "Density, Cu",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "h_mask",
+              "description": "Height mask",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "h_seed_cavity",
+              "description": "Seed cavity height",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "d_mask",
+              "description": "Mask length",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "h_boundary_layer",
+              "description": "Boundary layer width",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "tmax",
+              "description": "Etching time",
+              "source_cases": [
+                "化学蚀刻"
+              ]
+            },
+            {
+              "name": "dh",
+              "description": "",
+              "source_cases": [
+                "受载弹簧 - 使用全局方程满足约束条件"
+              ]
+            },
+            {
+              "name": "M",
+              "description": "",
+              "source_cases": [
+                "四极透镜",
+                "带轮应力"
+              ]
+            },
+            {
+              "name": "Z",
+              "description": "",
+              "source_cases": [
+                "四极透镜"
+              ]
+            },
+            {
+              "name": "L1",
+              "description": "",
+              "source_cases": [
+                "四极透镜",
+                "热微执行器的简化模型",
+                "热执行器"
+              ]
+            }
+          ],
+          "modeling_logic": [
+            "Use heat_transfer cases as the first retrieval group when the requirement shares physics, geometry, or output targets.",
+            "Start from parameters and geometry, then add selections, materials, physics, mesh, study, and result export.",
+            "Prioritize learned physics interfaces: ht / HeatTransfer, spf / LaminarFlow, tds / DilutedSpecies.",
+            "Reuse similar study patterns: std1, Stationary, std1 / stat / Stationary."
+          ]
+        }
+      ],
+      "global_modeling_workflow": [
+        {
+          "stage": "requirement",
+          "description": "Clarify target physics, dimensions, assumptions, inputs, outputs, and validation criteria.",
+          "case_evidence_count": 90
+        },
+        {
+          "stage": "evidence",
+          "description": "Retrieve similar cases and official/document evidence before creating a new model.",
+          "case_evidence_count": 108
+        },
+        {
+          "stage": "parameters",
+          "description": "Define reusable parameters, units, sweep ranges, and constraints.",
+          "case_evidence_count": 109
+        },
+        {
+          "stage": "geometry",
+          "description": "Build or import geometry, then create named selections for later boundary assignment.",
+          "case_evidence_count": 109
+        },
+        {
+          "stage": "physics",
+          "description": "Assign materials, physics interfaces, loads, boundary conditions, and initial values.",
+          "case_evidence_count": 109
+        },
+        {
+          "stage": "mesh_study",
+          "description": "Create mesh, study sequence, solver settings, and a baseline solve.",
+          "case_evidence_count": 0
+        },
+        {
+          "stage": "validation",
+          "description": "Export derived values/plots and compare against theory, case expectations, or experiments.",
+          "case_evidence_count": 75
+        },
+        {
+          "stage": "surrogate",
+          "description": "Only after COMSOL sweep CSV exists, train and validate a local surrogate model.",
+          "case_evidence_count": 108
+        }
+      ],
+      "training_strategy": [
+        "Current memory contains 115 cases: 96 support modeling-logic learning and 1 contain direct CSV surrogate-training evidence.",
+        "Treat PDF/MATLAB/Java/MPH evidence as modeling knowledge; treat CSV sweep tables as numerical training data.",
+        "When no CSV is available, generate COMSOL sweep scripts first, export inputs/outputs, then train baseline, ridge, random forest, and MLP candidates.",
+        "After each generated model is corrected in COMSOL, place the corrected MATLAB/Java/exported summary back into the case library and refresh this knowledge system."
+      ],
+      "common_gaps": [
+        {
+          "gap": "Missing parameter-sweep CSV for numerical surrogate training.",
+          "count": 106
+        },
+        {
+          "gap": "MPH files need COMSOL with MATLAB summaries for reliable internal settings.",
+          "count": 105
+        },
+        {
+          "gap": "No parameter table was detected; parameters may need manual extraction from scripts or PDFs.",
+          "count": 39
+        },
+        {
+          "gap": "复杂多物理场仍需要用户逐步确认耦合方向和边界条件。",
+          "count": 1
+        },
+        {
+          "gap": "文章不能替代 COMSOL 模型树；仍需通过 MATLAB/Java/MPH 摘要核对 API 与选择集。",
+          "count": 1
+        }
+      ],
+      "quality_audit": {
+        "kind": "case_memory_quality_audit",
+        "case_count": 115,
+        "average_quality_score": 60.7,
+        "high_quality_cases": 64,
+        "usable_modeling_cases": 65,
+        "surrogate_ready_cases": 0,
+        "issue_counts": [
+          {
+            "issue": "缺少参数扫描 CSV",
+            "count": 114
+          },
+          {
+            "issue": "缺少结果量证据",
+            "count": 89
+          },
+          {
+            "issue": "缺少材料证据",
+            "count": 76
+          },
+          {
+            "issue": "缺少参数证据",
+            "count": 40
+          },
+          {
+            "issue": "缺少研究/求解证据",
+            "count": 33
+          },
+          {
+            "issue": "缺少物理场证据",
+            "count": 32
+          },
+          {
+            "issue": "缺少几何证据",
+            "count": 32
+          },
+          {
+            "issue": "缺少边界条件证据",
+            "count": 28
+          },
+          {
+            "issue": "缺少来源文件记录",
+            "count": 6
+          }
+        ]
+      }
+    },
+    "physics_corrections": [],
+    "recommended_modeling_steps": [
+      "Clarify model objective, dimensionality, input parameters, outputs, and validation targets.",
+      "查看检索到的相似案例，并复用其参数命名、几何序列和 LiveLink API 调用模式。",
+      "Choose geometry strategy: reuse similar case script, import CAD, or generate parametric geometry.",
+      "Define materials, units, selections, and reusable parameter groups.",
+      "Add physics interfaces and boundary/initial conditions.",
+      "Create mesh and study sequence, then solve a baseline model.",
+      "Export derived values and plots for validation."
+    ],
+    "candidate_parameters": [
+      {
+        "name": "T_init",
+        "value": "20[degC]",
+        "description": "",
+        "source_case": "磁滞作用下的相变建模"
+      },
+      {
+        "name": "dT",
+        "value": "1[K]",
+        "description": "",
+        "source_case": "磁滞作用下的相变建模"
+      },
+      {
+        "name": "T_melt",
+        "value": "65[degC]",
+        "description": "",
+        "source_case": "磁滞作用下的相变建模"
+      },
+      {
+        "name": "T_freeze",
+        "value": "55[degC]",
+        "description": "",
+        "source_case": "磁滞作用下的相变建模"
+      },
+      {
+        "name": "T_top",
+        "value": "T_melt+dT/2",
+        "description": "",
+        "source_case": "磁滞作用下的相变建模"
+      },
+      {
+        "name": "T_bot",
+        "value": "T_freeze-dT/2",
+        "description": "",
+        "source_case": "磁滞作用下的相变建模"
+      },
+      {
+        "name": "LH",
+        "value": "100[kJ/kg]",
+        "description": "",
+        "source_case": "磁滞作用下的相变建模"
+      },
+      {
+        "name": "E",
+        "value": "210[GPa]",
+        "description": "杨氏模量",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "alpha",
+        "value": "12e-6[1/K]",
+        "description": "热膨胀系数",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "T_hot",
+        "value": "373.15[K]",
+        "description": "热端温度",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "T_cold",
+        "value": "293.15[K]",
+        "description": "冷端温度",
+        "source_case": "已验证：二维热应力矩形模板"
+      },
+      {
+        "name": "L",
+        "value": "0.1[m]",
+        "description": "导线长度",
+        "source_case": "已验证：一维电热焦耳热模板"
+      },
+      {
+        "name": "sigma",
+        "value": "5.8e7[S/m]",
+        "description": "电导率",
+        "source_case": "已验证：一维电热焦耳热模板"
+      },
+      {
+        "name": "V_left",
+        "value": "1[V]",
+        "description": "施加电压",
+        "source_case": "已验证：一维电热焦耳热模板"
+      },
+      {
+        "name": "k",
+        "value": "401[W/(m*K)]",
+        "description": "导热系数",
+        "source_case": "已验证：一维电热焦耳热模板"
+      },
+      {
+        "name": "N",
+        "value": "20",
+        "description": "Spatial frequency resolution",
+        "source_case": "如何生成随机非均匀材料数据6.2"
+      },
+      {
+        "name": "b",
+        "value": "1.8",
+        "description": "Spectral exponent",
+        "source_case": "如何生成随机非均匀材料数据6.2"
+      },
+      {
+        "name": "D",
+        "value": "2+(3-b)/2",
+        "description": "Fractal dimension",
+        "source_case": "如何生成随机非均匀材料数据6.2"
+      },
+      {
+        "name": "H",
+        "value": "0.41[m]",
+        "description": "",
+        "source_case": "圆柱绕流"
+      },
+      {
+        "name": "W",
+        "value": "1[m]",
+        "description": "",
+        "source_case": "圆柱绕流"
+      },
+      {
+        "name": "R",
+        "value": "0.05[m]",
+        "description": "",
+        "source_case": "圆柱绕流"
+      },
+      {
+        "name": "U_mean",
+        "value": "1[m/s]",
+        "description": "",
+        "source_case": "圆柱绕流"
+      }
+    ],
+    "candidate_outputs": [
+      "Tmax",
+      "Tavg",
+      "heat_flux_integral",
+      "max_current_density",
+      "electric_resistance",
+      "terminal_current"
+    ],
+    "analysis_path": [
+      "Baseline solve",
+      "Mesh refinement check",
+      "Parameter sweep",
+      "Result validation",
+      "Temperature and heat-flux sensitivity analysis",
+      "Current/field distribution and loss analysis",
+      "Surrogate training dataset export"
+    ],
+    "training_path": [
+      "根据选定参数和范围创建或改写约束 JSON。",
+      "结合已校验约束和相似案例证据生成 LiveLink MATLAB 建模脚本。",
+      "运行 COMSOL 参数扫描并生成 CSV 数据。",
+      "使用选定输入列和输出列训练本地代理模型。",
+      "用未参与训练的 COMSOL 结果验证 RMSE、MAE、R2 和测试预测。",
+      "Search the master COMSOL case knowledge base for similar evidence before adapting settings.",
+      "Cross-check COMSOL API and feature usage against the official documentation index.",
+      "Keep unsupported settings marked as unknown until verified in COMSOL or by source evidence."
+    ],
+    "limitations": [
+      "Retrieved cases mainly support modeling logic; numerical training still needs CSV sweep data.",
+      "No external master case match was found; rely on local case memory and review settings manually.",
+      "No official documentation match was found; API usage should be checked before execution."
+    ],
+    "external_case_matches": [],
+    "official_doc_matches": []
+  },
+  "steps": [
+    {
+      "index": 0,
+      "id": "physics",
+      "title": "选择物理场",
+      "purpose": "Confirm physics interfaces, coupling assumptions, dependent variables, and boundary-condition families.",
+      "status": "approved",
+      "proposal": [
+        "选择结果：电流 + 固体传热（焦耳热耦合）；可能还需要耦合：传热、电流或静电",
+        "COMSOL 接口建议：Electric Currents + Heat Transfer in Solids，可用 Joule Heating 多物理场耦合",
+        "理论依据：需求同时包含电荷守恒/电势分布和温度升高，电流损耗会作为热源进入热传导方程，因此需要电-热耦合。",
+        "复合场检查：该需求应按复合场判断，优先考虑：电-热耦合 / 焦耳热 + 热-结构耦合 / 热应力 + 非等温流动。 主物理场=Electric Currents；耦合物理场=Heat Transfer in Solids、Solid Mechanics、Heat Transfer in Fluids；多物理场节点=Joule Heating / Electromagnetic Heating、Thermal Expansion、Nonisothermal Flow；耦合变量=电流密度、电损耗/焦耳热源、温度场、温度相关电导率、热膨胀应变、应力/位移、热膨胀系数、速度场。",
+        "边界条件判断：需要端子电压或电流、接地端、绝缘边界，以及热边界中的温度、热通量或对流换热。",
+        "边界条件知识库：按当前需求，边界条件应优先按“电流/静电 + 传热”来判断。 建议边界类型：端子电压或电流、接地、电绝缘、表面电荷、浮动电势、固定温度/给定温度。",
+        "初始条件建议：初始电势、初始电荷分布、初始电流状态、初始温度、初始热源状态、环境温度。",
+        "需要确认：确认导电材料电导率、热导率、是否稳态、是否需要温度依赖电阻率。",
+        "相似案例参考：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流。"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Temperature and heat-flux sensitivity analysis"
+      ],
+      "approval_questions": [
+        "物理场是否正确？是否需要耦合其他物理场？",
+        "边界条件类型是否已确认？"
+      ],
+      "approved_outputs": [
+        "approved_physics_interfaces",
+        "approved_couplings",
+        "boundary_condition_families"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "API smoke test",
+        "timestamp": "2026-08-12T02:46:23.257210+00:00"
+      }
+    },
+    {
+      "index": 1,
+      "id": "materials",
+      "title": "确定材料",
+      "purpose": "Confirm material groups, property sources, units, nonlinear/anisotropic assumptions, and parameterization.",
+      "status": "approved",
+      "proposal": [
+        "材料与物性结论：材料与物性参数应优先按“传热材料 + 电学材料”配置。 Recognized material: Copper.",
+        "物性就绪检查：可以进入材料配置",
+        "物性联动风险：未发现明显物性联动风险",
+        "默认物性假设：Check temperature-dependent electrical conductivity for Joule heating.",
+        "已识别材料配置：Copper: density=8960[kg/m^3], thermalconductivity=400[W/(m*K)], heatcapacity=385[J/(kg*K)], electricconductivity=5.998e7[S/m]",
+        "必填物性参数：密度(rho, kg/m^3)；导热系数(k, W/(m*K))；比热容(Cp, J/(kg*K))；电导率(sigma, S/m)",
+        "可选/耦合物性：表面发射率(epsilon)；热膨胀系数(alpha_T)；相对介电常数(epsr)；导热系数(k)；比热容(Cp)；密度(rho)",
+        "温度/频率/方向依赖：导热系数、比热和密度可随温度变化；复合材料导热系数可能随方向变化。；电导率常随温度变化；频域问题中介电常数和损耗因子可能随频率变化。",
+        "待补充物性：当前候选参数已覆盖主要必填项",
+        "MATLAB 材料设置应使用 material.propertyGroup('def').set(...)，并先用 model.param.set(...) 定义带单位参数。"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "材料属性和单位是否可靠？",
+        "是否需要非线性、各向异性或温度相关材料？"
+      ],
+      "approved_outputs": [
+        "approved_materials",
+        "material_parameters",
+        "unit_checks"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "API smoke test",
+        "timestamp": "2026-08-12T02:46:23.272876+00:00"
+      }
+    },
+    {
+      "index": 2,
+      "id": "data_structure",
+      "title": "建模数据与结构",
+      "purpose": "Confirm geometry source, dimensionality, selections, imported data, parameters, and data needed for training.",
+      "status": "approved",
+      "proposal": [
+        "几何与参数结论：几何与参数应优先按“传热几何与参数”组织。",
+        "几何就绪检查：可以进入网格划分",
+        "待补充几何信息：当前几何证据基本完整",
+        "维度建议：先按几何厚度选择 2D 或 3D；薄板可用 2D，实体散热优先 3D",
+        "几何要点：矩形/块体热传导域；热源区域；冷却或对流边界；温度监测点或输出边界",
+        "关键参数：T_init=20[degC], dT=1[K], T_melt=65[degC], T_freeze=55[degC], T_top=T_melt+dT/2, T_bot=T_freeze-dT/2, LH=100[kJ/kg], E=210[GPa]",
+        "选择集建议：命名热源域；命名固定温度边界；命名对流边界；命名输出点/面",
+        "后续扫描变量：Q0、hconv、L、W"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "几何/数据结构是否符合建模对象？",
+        "参数、选择集和导入数据是否完整？"
+      ],
+      "approved_outputs": [
+        "approved_geometry_or_data_structure",
+        "named_selections",
+        "input_parameters"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "API smoke test",
+        "timestamp": "2026-08-12T02:46:23.285016+00:00"
+      }
+    },
+    {
+      "index": 3,
+      "id": "mesh",
+      "title": "网格策略",
+      "purpose": "Confirm global/local mesh size, boundary layers, refinement targets, and mesh-independence checks.",
+      "status": "approved",
+      "proposal": [
+        "网格策略：先使用可控的全局网格尺寸，再对结果梯度大的区域局部加密；热源、材料界面和温度梯度大的区域局部加密；电极、端子和电流密度集中区域局部加密",
+        "局部加密区域：热源/材料界面、电极/端子/电流集中区",
+        "网格参数：hmax，建议先做基准网格再做加密对比",
+        "网格检查：至少进行一次网格加密对比，确认关键输出基本收敛；检查最高温度和热流密度在网格加密后的变化；检查电流密度峰值是否受单个尖角单元控制"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "网格尺度和局部加密区域是否合理？",
+        "是否需要边界层或网格无关性检查？"
+      ],
+      "approved_outputs": [
+        "approved_mesh_strategy",
+        "refinement_targets",
+        "mesh_validation_plan"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "API smoke test",
+        "timestamp": "2026-08-12T02:46:23.303184+00:00"
+      }
+    },
+    {
+      "index": 4,
+      "id": "study_solver",
+      "title": "求解分步",
+      "purpose": "Confirm study sequence, stationary/transient/eigen/frequency/parametric settings, and solver risks.",
+      "status": "approved",
+      "proposal": [
+        "研究类型：Stationary、Parametric Sweep",
+        "判断依据：需求未明确时间变化，先采用稳态基准求解；需求包含参数变化或工况对比",
+        "求解器检查：先完成一次基准求解并记录收敛状态；检查残差、相对误差和关键输出是否稳定；参数扫描或代理模型训练必须在基准求解通过后进行",
+        "案例库建议路径：Baseline solve, Mesh refinement check, Parameter sweep, Result validation, Temperature and heat-flux sensitivity analysis, Current/field distribution and loss analysis"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Temperature and heat-flux sensitivity analysis"
+      ],
+      "approval_questions": [
+        "求解顺序是否合理？",
+        "是否先做基准求解再做参数扫描？"
+      ],
+      "approved_outputs": [
+        "approved_study_sequence",
+        "solver_settings",
+        "parameter_sweep_plan"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "API smoke test",
+        "timestamp": "2026-08-12T02:46:23.317877+00:00"
+      }
+    },
+    {
+      "index": 5,
+      "id": "results_export",
+      "title": "结果与导出",
+      "purpose": "Confirm derived values, plots, CSV export columns, validation criteria, and surrogate-training outputs.",
+      "status": "approved",
+      "proposal": [
+        "结果输出量：Tmax、Tavg、heat_flux_integral、max_current_density、electric_resistance、terminal_current、T_max、heat_flux、temperature_profile",
+        "导出格式：CSV、model report",
+        "结果校验：先确认输出量、单位和积分/最大值定义；对关键输出进行网格加密和基准工况对比；导出 CSV 前检查结果是否有限、无 NaN 且与边界条件一致",
+        "是否需要实验/现场对比：暂未识别"
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Temperature and heat-flux sensitivity analysis"
+      ],
+      "approval_questions": [
+        "输出量是否能验证模型？",
+        "CSV 列是否满足后续训练需求？"
+      ],
+      "approved_outputs": [
+        "approved_outputs",
+        "csv_export_columns",
+        "validation_targets"
+      ],
+      "approval": {
+        "approved": true,
+        "comment": "API smoke test",
+        "timestamp": "2026-08-12T02:46:23.327465+00:00"
+      }
+    },
+    {
+      "index": 6,
+      "id": "final_generation",
+      "title": "完整模型生成",
+      "purpose": "Generate final COMSOL MATLAB/Java modeling plan after all previous steps are approved.",
+      "status": "approved",
+      "proposal": [
+        "Generate the complete COMSOL model only after all previous steps are approved.",
+        "Final scripts should preserve comments for boundary IDs, selections, material data, and solver assumptions."
+      ],
+      "evidence": [
+        "案例记忆数量：115。",
+        "匹配案例：磁滞作用下的相变建模, 已验证：二维热应力矩形模板, 已验证：一维电热焦耳热模板, 如何生成随机非均匀材料数据6.2, 圆柱绕流",
+        "本地知识库已可用于相似案例检索、物理场判断、参数/输出量提取和建模步骤复用。"
+      ],
+      "approval_questions": [
+        "所有步骤是否已确认？",
+        "是否可以生成完整 COMSOL MATLAB/Java 建模包？"
+      ],
+      "approved_outputs": [
+        "final_matlab_script",
+        "final_java_script",
+        "verification_report"
+      ],
+      "generated_outputs": {
+        "matlab": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260812024623.m",
+        "java": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\Model100Mm50Mm20260812024623.java",
+        "guidance": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260812024623_guidance.md",
+        "verification": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260812024623_verification.json"
+      },
+      "approval": {
+        "approved": true,
+        "comment": "Final MATLAB and Java files generated from approved workflow decisions.",
+        "timestamp": "2026-08-12T02:46:23.942241+00:00"
+      }
+    }
+  ],
+  "approval_log": [
+    {
+      "step_id": "physics",
+      "approved": true,
+      "comment": "API smoke test",
+      "timestamp": "2026-08-12T02:46:23.257210+00:00"
+    },
+    {
+      "step_id": "materials",
+      "approved": true,
+      "comment": "API smoke test",
+      "timestamp": "2026-08-12T02:46:23.272876+00:00"
+    },
+    {
+      "step_id": "data_structure",
+      "approved": true,
+      "comment": "API smoke test",
+      "timestamp": "2026-08-12T02:46:23.285016+00:00"
+    },
+    {
+      "step_id": "mesh",
+      "approved": true,
+      "comment": "API smoke test",
+      "timestamp": "2026-08-12T02:46:23.303184+00:00"
+    },
+    {
+      "step_id": "study_solver",
+      "approved": true,
+      "comment": "API smoke test",
+      "timestamp": "2026-08-12T02:46:23.317877+00:00"
+    },
+    {
+      "step_id": "results_export",
+      "approved": true,
+      "comment": "API smoke test",
+      "timestamp": "2026-08-12T02:46:23.327465+00:00"
+    }
+  ]
+}

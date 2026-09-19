@@ -1,0 +1,1151 @@
+{
+  "kind": "comsol_case_card",
+  "title": "photonic_crystal_1d",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\光子晶体一维模型的三个案例",
+  "created_at": "2026-08-16T10:46:49.518900+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 5,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1,
+      "presentation_document": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 0,
+    "pptx_files": 1,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "a",
+      "value": "400[nm]",
+      "description": "Spacing",
+      "source": "java_param_set"
+    },
+    {
+      "name": "w",
+      "value": "a/2",
+      "description": "Width of layer",
+      "source": "java_param_set"
+    },
+    {
+      "name": "eps_1",
+      "value": "13",
+      "description": "Permittivity of layer 1",
+      "source": "java_param_set"
+    },
+    {
+      "name": "eps_2",
+      "value": "12",
+      "description": "Permittivity of layer 2",
+      "source": "java_param_set"
+    },
+    {
+      "name": "ky",
+      "value": "0[rad/m]",
+      "description": "Wave vector definition",
+      "source": "java_param_set"
+    },
+    {
+      "name": "N",
+      "value": "40",
+      "description": "Number of steps",
+      "source": "java_param_set"
+    },
+    {
+      "name": "f_max",
+      "value": "250[THz]",
+      "description": "Maximum frequency",
+      "source": "java_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "a",
+      "w",
+      "eps_1",
+      "eps_2",
+      "ky",
+      "N",
+      "f_max"
+    ],
+    "geometry": [
+      "r1 / Rectangle",
+      "geom1 / r1 / size",
+      "geom1 / r1 / pos",
+      "geom1 / r1 / layername",
+      "geom1 / r1 / layerbottom",
+      "geom1 / r1 / layertop"
+    ],
+    "physics": [
+      "ewfd / ElectromagneticWavesFrequencyDomain"
+    ],
+    "materials": [
+      "mat1",
+      "mat2"
+    ],
+    "mesh": [
+      "mesh1"
+    ],
+    "studies": [],
+    "results": [],
+    "boundary_conditions": [
+      "pc1 / 2, 5",
+      "pc2 / 1, 3, 6, 7",
+      "r1 / size",
+      "r1 / pos",
+      "r1 / layername",
+      "r1 / layerbottom",
+      "r1 / layertop"
+    ],
+    "theory_keywords": [
+      "电磁"
+    ],
+    "source_extracts": [
+      {
+        "name": "photonic_crystal_1d.java",
+        "kind": "comsol_java",
+        "evidence_score": 25,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"photonic_crystal_1d.mph\");",
+          "model.title(\"\\u4e00\\u7ef4\\u5149\\u5b50\\u6676\\u4f53\\u7684\\u4e09\\u79cd\\u60c5\\u51b5\");",
+          "model.param().set(\"a\", \"400[nm]\", \"Spacing\");",
+          "model.param().set(\"w\", \"a/2\", \"Width of layer\");",
+          "model.param().set(\"eps_1\", \"13\", \"Permittivity of layer 1\");",
+          "model.param().set(\"eps_2\", \"12\", \"Permittivity of layer 2\");"
+        ],
+        "parameters": [
+          "a",
+          "w",
+          "eps_1",
+          "eps_2",
+          "ky",
+          "N",
+          "f_max"
+        ],
+        "geometry": [
+          "r1 / Rectangle",
+          "geom1 / r1 / size",
+          "geom1 / r1 / pos",
+          "geom1 / r1 / layername",
+          "geom1 / r1 / layerbottom",
+          "geom1 / r1 / layertop"
+        ],
+        "physics": [
+          "ewfd / ElectromagneticWavesFrequencyDomain"
+        ],
+        "materials": [
+          "mat1",
+          "mat2"
+        ],
+        "mesh": [
+          "mesh1"
+        ],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [
+          "pc1 / 2, 5",
+          "pc2 / 1, 3, 6, 7",
+          "r1 / size",
+          "r1 / pos",
+          "r1 / layername",
+          "r1 / layerbottom",
+          "r1 / layertop"
+        ],
+        "theory_keywords": [
+          "电磁"
+        ]
+      },
+      {
+        "name": "photonic_crystal_1d.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "photonic_crystal_1d.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 0,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('photonic_crystal_1d.mph');",
+          "model.title([native2unicode(hex2dec({'4e' '00'}), 'unicode') native2unicode(hex2dec({'7e' 'f4'}), 'unicode') native2unicode(hex2dec({'51' '49'}), 'unicode') native2unicode(hex2dec({'5b' '50'}), 'unicode') native2unicode(hex2dec({'66' '76'})",
+          "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'6a' '21'}), 'unicode') native2unicode(hex2dec({'57' '8b'}), 'unicode') native2unicode(hex2dec({'90' '1a'}), 'unicode') native2unicode(hex2dec({'8f' "
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "photonic_crystal_1d_summary.json",
+        "kind": "json",
+        "evidence_score": 0,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\"",
+          "\"result_groups\": ["
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "1D Photonic crystal.pptx",
+        "kind": "presentation_document",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 24,
+      "source_files_with_content": 1,
+      "source_files_checked": 5
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "5 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "photonic_crystal_1d.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "photonic_crystal_1d.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 7,
+            "physics": [
+              {
+                "tag": "ewfd",
+                "interface": "ElectromagneticWavesFrequencyDomain",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std1",
+                "tag": "param2",
+                "type": "Parametric"
+              },
+              {
+                "study": "std1",
+                "tag": "param1",
+                "type": "Parametric"
+              },
+              {
+                "study": "std1",
+                "tag": "eig",
+                "type": "Eigenfrequency"
+              },
+              {
+                "study": "std2",
+                "tag": "param2",
+                "type": "Parametric"
+              },
+              {
+                "study": "std2",
+                "tag": "param1",
+                "type": "Parametric"
+              },
+              {
+                "study": "std2",
+                "tag": "eig",
+                "type": "Eigenfrequency"
+              },
+              {
+                "study": "std3",
+                "tag": "param2",
+                "type": "Parametric"
+              },
+              {
+                "study": "std3",
+                "tag": "param1",
+                "type": "Parametric"
+              },
+              {
+                "study": "std3",
+                "tag": "eig",
+                "type": "Eigenfrequency"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg1",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg2",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg3",
+                "type": "PlotGroup1D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('photonic_crystal_1d.mph');",
+                "model.title([native2unicode(hex2dec({'4e' '00'}), 'unicode') native2unicode(hex2dec({'7e' 'f4'}), 'unicode') native2unicode(hex2dec({'51' '49'}), 'unicode') native2unicode(hex2dec({'5b' '50'}), 'unicode') native2unicode(hex2dec({'66' '76'})",
+                "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'6a' '21'}), 'unicode') native2unicode(hex2dec({'57' '8b'}), 'unicode') native2unicode(hex2dec({'90' '1a'}), 'unicode') native2unicode(hex2dec({'8f' "
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "function out = model\n%\n% photonic_crystal_1d.m\n%\n% Model exported on Aug 16 2026, 18:46 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'unicode')  native2unicode(hex"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "photonic_crystal_1d.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 7,
+            "physics_create": 1,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 2,
+            "material_mentions": 5,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "a",
+                "w",
+                "eps_1",
+                "eps_2",
+                "ky",
+                "N",
+                "f_max"
+              ],
+              "geometry": [
+                "r1 / Rectangle",
+                "geom1 / r1 / size",
+                "geom1 / r1 / pos",
+                "geom1 / r1 / layername",
+                "geom1 / r1 / layerbottom",
+                "geom1 / r1 / layertop"
+              ],
+              "physics": [
+                "ewfd / ElectromagneticWavesFrequencyDomain"
+              ],
+              "materials": [
+                "mat1",
+                "mat2"
+              ],
+              "mesh": [
+                "mesh1"
+              ],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [
+                "pc1 / 2, 5",
+                "pc2 / 1, 3, 6, 7",
+                "r1 / size",
+                "r1 / pos",
+                "r1 / layername",
+                "r1 / layerbottom",
+                "r1 / layertop"
+              ],
+              "theory_keywords": [
+                "电磁"
+              ],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"photonic_crystal_1d.mph\");",
+                "model.title(\"\\u4e00\\u7ef4\\u5149\\u5b50\\u6676\\u4f53\\u7684\\u4e09\\u79cd\\u60c5\\u51b5\");",
+                "model.param().set(\"a\", \"400[nm]\", \"Spacing\");",
+                "model.param().set(\"w\", \"a/2\", \"Width of layer\");",
+                "model.param().set(\"eps_1\", \"13\", \"Permittivity of layer 1\");",
+                "model.param().set(\"eps_2\", \"12\", \"Permittivity of layer 2\");",
+                "model.param().set(\"ky\", \"0[rad/m]\", \"Wave vector definition\");",
+                "model.param().set(\"N\", \"40\", \"Number of steps\");",
+                "model.param().set(\"f_max\", \"250[THz]\", \"Maximum frequency\");",
+                "model.param().label(\"Parameters 1\");"
+              ],
+              "evidence_score": 25
+            }
+          },
+          "preview": "/*\n * photonic_crystal_1d.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 16 2026, 18:46 by COMSOL 6.4.0.293. */\npublic class photonic_crystal_1d {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u5149\\u5b50\\u6676\\u4f53\\u4e00\\u7ef4\\u6a21\\u578b\\u7684\\u4e09\\u4e2a\\u6848\\u4f8b\");\n\n    model.label(\"photonic_crystal_1d.mph\");\n\n    model.title(\"\\u4e00\\u7ef4\\u5149\\u5b50\\u6676\\u4f53\\u7684\\u4e09\\u79cd\\u60c5\\u51b5\");\n\n    model\n     "
+        }
+      ],
+      "pdf_documents": [],
+      "presentation_documents": [
+        {
+          "name": "1D Photonic crystal.pptx",
+          "kind": "presentation_document",
+          "details": {
+            "readable": true,
+            "slide_count": 5,
+            "slides_with_text": 5,
+            "text_characters": 878,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "presentation_document",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            }
+          },
+          "preview": "第 1 页：Three Different Configurations of 1D Photonic Crystal\n第 2 页：Three different configurations of 1D photonic crystal are modeled as following: Configuration 1: eps1 = 13 eps2 = 13 Configuration 2: eps1 = 13 eps2 = 12 Configuration 3: eps1 = 13 eps 2= 1 The Floquet periodic condition is applied to the outer boundaries in y-direction to model a 1D photonic crystal repeating in y-direction.  The continuity periodic condition is applied to the outer boundaries in x-direction to model the material till infinity in ± x-direction. Model setup Material 1 (eps1) Material 2 (eps1) Reference:  [1] J.D"
+        }
+      ],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "photonic_crystal_1d_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/光子晶体一维模型的三个案例/photonic_crystal_1d.mph\",\n  \"label\": \"photonic_crystal_1d.mph\",\n  \"parameters\": {\n    \"a\": \"400[nm]\",\n    \"w\": \"a/2\",\n    \"eps_1\": \"13\",\n    \"eps_2\": \"12\",\n    \"ky\": \"0[rad/m]\",\n    \"N\": \"40\",\n    \"f_max\": \"250[THz]\"\n  },\n  \"components\": {\n    \"tag\": \"comp1\",\n    \"geometry\": [\n      \"geom1\"\n    ],\n    \"materials\": [\n      \"mat1\",\n      \"mat2\"\n    ],\n    \"physics\": [\n      \"ewfd\"\n    ],\n    \"meshes\": [\n      \"mesh1\"\n    ],\n    \"couplings\": [\n      \"builder_integrate1\",\n      \"builder_integrate2\",\n      \"src_avg_pc11\",\n      \"dst_avg_pc11\",\n      "
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use presentation slides as concise case context: objectives, assumptions, validation figures, and conclusions.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [],
+  "prompt_summary": "",
+  "thoughts": [
+    "PPT 演示文稿用于补充案例目标、关键假设、结果图说明和结论。",
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "photonic_crystal_1d.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 160434584,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+      }
+    },
+    {
+      "name": "photonic_crystal_1d.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 21279,
+      "details": {
+        "parameters": 7,
+        "physics": [
+          {
+            "tag": "ewfd",
+            "interface": "ElectromagneticWavesFrequencyDomain",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std1",
+            "tag": "param2",
+            "type": "Parametric"
+          },
+          {
+            "study": "std1",
+            "tag": "param1",
+            "type": "Parametric"
+          },
+          {
+            "study": "std1",
+            "tag": "eig",
+            "type": "Eigenfrequency"
+          },
+          {
+            "study": "std2",
+            "tag": "param2",
+            "type": "Parametric"
+          },
+          {
+            "study": "std2",
+            "tag": "param1",
+            "type": "Parametric"
+          },
+          {
+            "study": "std2",
+            "tag": "eig",
+            "type": "Eigenfrequency"
+          },
+          {
+            "study": "std3",
+            "tag": "param2",
+            "type": "Parametric"
+          },
+          {
+            "study": "std3",
+            "tag": "param1",
+            "type": "Parametric"
+          },
+          {
+            "study": "std3",
+            "tag": "eig",
+            "type": "Eigenfrequency"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg1",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg2",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg3",
+            "type": "PlotGroup1D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('photonic_crystal_1d.mph');",
+            "model.title([native2unicode(hex2dec({'4e' '00'}), 'unicode') native2unicode(hex2dec({'7e' 'f4'}), 'unicode') native2unicode(hex2dec({'51' '49'}), 'unicode') native2unicode(hex2dec({'5b' '50'}), 'unicode') native2unicode(hex2dec({'66' '76'})",
+            "model.description([native2unicode(hex2dec({'67' '2c'}), 'unicode') native2unicode(hex2dec({'6a' '21'}), 'unicode') native2unicode(hex2dec({'57' '8b'}), 'unicode') native2unicode(hex2dec({'90' '1a'}), 'unicode') native2unicode(hex2dec({'8f' "
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "photonic_crystal_1d.java",
+      "kind": "comsol_java",
+      "size_bytes": 18635,
+      "details": {
+        "model_param_set": 7,
+        "physics_create": 1,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 2,
+        "material_mentions": 5,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "a",
+            "w",
+            "eps_1",
+            "eps_2",
+            "ky",
+            "N",
+            "f_max"
+          ],
+          "geometry": [
+            "r1 / Rectangle",
+            "geom1 / r1 / size",
+            "geom1 / r1 / pos",
+            "geom1 / r1 / layername",
+            "geom1 / r1 / layerbottom",
+            "geom1 / r1 / layertop"
+          ],
+          "physics": [
+            "ewfd / ElectromagneticWavesFrequencyDomain"
+          ],
+          "materials": [
+            "mat1",
+            "mat2"
+          ],
+          "mesh": [
+            "mesh1"
+          ],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [
+            "pc1 / 2, 5",
+            "pc2 / 1, 3, 6, 7",
+            "r1 / size",
+            "r1 / pos",
+            "r1 / layername",
+            "r1 / layerbottom",
+            "r1 / layertop"
+          ],
+          "theory_keywords": [
+            "电磁"
+          ],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"photonic_crystal_1d.mph\");",
+            "model.title(\"\\u4e00\\u7ef4\\u5149\\u5b50\\u6676\\u4f53\\u7684\\u4e09\\u79cd\\u60c5\\u51b5\");",
+            "model.param().set(\"a\", \"400[nm]\", \"Spacing\");",
+            "model.param().set(\"w\", \"a/2\", \"Width of layer\");",
+            "model.param().set(\"eps_1\", \"13\", \"Permittivity of layer 1\");",
+            "model.param().set(\"eps_2\", \"12\", \"Permittivity of layer 2\");",
+            "model.param().set(\"ky\", \"0[rad/m]\", \"Wave vector definition\");",
+            "model.param().set(\"N\", \"40\", \"Number of steps\");",
+            "model.param().set(\"f_max\", \"250[THz]\", \"Maximum frequency\");",
+            "model.param().label(\"Parameters 1\");"
+          ],
+          "evidence_score": 25
+        }
+      }
+    },
+    {
+      "name": "photonic_crystal_1d_summary.json",
+      "kind": "json",
+      "size_bytes": 1294,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 0
+        }
+      }
+    },
+    {
+      "name": "1D Photonic crystal.pptx",
+      "kind": "presentation_document",
+      "size_bytes": 6712718,
+      "details": {
+        "readable": true,
+        "slide_count": 5,
+        "slides_with_text": 5,
+        "text_characters": 878,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "presentation_document",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        }
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 7 个参数，可作为约束 JSON 和参数扫描变量。",
+      "几何证据显示模型可以从脚本中的 geom/feature 序列恢复。"
+    ],
+    "physics_reasoning": [
+      "物理场接口来自 MATLAB/Java/摘要中的 physics.create 证据，应作为自动建模的主约束。",
+      "识别到物理场证据：ewfd / ElectromagneticWavesFrequencyDomain",
+      "边界条件和选择集需要复核边界编号；自动生成代码时应标注人工确认点。",
+      "理论关键词可用于判断控制方程、变量含义和验证目标。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。",
+      "材料节点已识别，生成脚本时应保留材料标签、属性组和单位。",
+      "网格节点已识别，后续应将网格尺寸或网格序列写入可复用模板。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "photonic_crystal_1d 主要研究模型中的主要物理现象和输出量，PDF 用来说明问题目标、基本假设和求解对象；从核心内容看，建模时应优先选择 ElectromagneticWavesFrequencyDomain。",
+    "primary_physics": "ElectromagneticWavesFrequencyDomain",
+    "study_type": "unknown",
+    "judgement_rule": "若 PDF 的核心量和方程关键词指向 ElectromagneticWavesFrequencyDomain，并且脚本/文本中出现同类接口，就把它作为主物理场；研究类型需要继续从研究步骤确认。",
+    "evidence": [
+      "脚本/文本识别到的物理场: ewfd / ElectromagneticWavesFrequencyDomain",
+      "理论关键词: 电磁"
+    ],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [
+      "电磁"
+    ],
+    "matlab_mapping": [
+      {
+        "keyword": "a",
+        "modeling_content": "Spacing",
+        "matlab_action": "model.param.set('a', value, description)"
+      },
+      {
+        "keyword": "w",
+        "modeling_content": "Width of layer",
+        "matlab_action": "model.param.set('w', value, description)"
+      },
+      {
+        "keyword": "eps_1",
+        "modeling_content": "Permittivity of layer 1",
+        "matlab_action": "model.param.set('eps_1', value, description)"
+      },
+      {
+        "keyword": "eps_2",
+        "modeling_content": "Permittivity of layer 2",
+        "matlab_action": "model.param.set('eps_2', value, description)"
+      },
+      {
+        "keyword": "ky",
+        "modeling_content": "Wave vector definition",
+        "matlab_action": "model.param.set('ky', value, description)"
+      },
+      {
+        "keyword": "N",
+        "modeling_content": "Number of steps",
+        "matlab_action": "model.param.set('N', value, description)"
+      },
+      {
+        "keyword": "f_max",
+        "modeling_content": "Maximum frequency",
+        "matlab_action": "model.param.set('f_max', value, description)"
+      },
+      {
+        "keyword": "Rectangle",
+        "modeling_content": "矩形/二维计算域",
+        "matlab_action": "model.component('comp1').geom('geom1').create(tag, 'Rectangle')"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别几何证据：r1 / Rectangle；geom1 / r1 / size；geom1 / r1 / pos；geom1 / r1 / layername；geom1 / r1 / layerbottom；geom1 / r1 / layertop",
+      "已识别物理场证据：ewfd / ElectromagneticWavesFrequencyDomain",
+      "已识别参数：a、w、eps_1、eps_2、ky、N、f_max"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "a",
+      "w",
+      "eps_1",
+      "eps_2",
+      "ky",
+      "N",
+      "f_max"
+    ],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "ready_for_reasoning_and_extension",
+    "readiness_score": 85,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs.",
+      "Transfer recognized physics interfaces to similar requirements: ewfd / ElectromagneticWavesFrequencyDomain.",
+      "Reuse geometry construction patterns when new requirements share shape, import, array, sweep, or boolean operations."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "How do the theory keywords change governing equations, assumptions, or validation targets: 电磁?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Extend to terminal-current, resistance, field-distribution, and Joule-loss studies.",
+      "Use electric-current outputs as coupling sources for thermal or structural models."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `a` around the learned value `400[nm]` and export target outputs to CSV.",
+      "Sweep `w` around the learned value `a/2` and export target outputs to CSV.",
+      "Sweep `eps_1` around the learned value `13` and export target outputs to CSV.",
+      "Sweep `eps_2` around the learned value `12` and export target outputs to CSV.",
+      "Sweep `ky` around the learned value `0[rad/m]` and export target outputs to CSV.",
+      "Sweep `N` around the learned value `40` and export target outputs to CSV.",
+      "Sweep `f_max` around the learned value `250[THz]` and export target outputs to CSV.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\光子晶体一维模型的三个案例"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=5, MATLAB=1, Java=1, PDF=0, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 24 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "photonic_crystal_1d",
+    "summary": "已学习 photonic_crystal_1d 的 5 个文件；训练阶段=modeling_logic_learning_ready；参数数量=7；内容证据=24 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "7 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification.",
+      "24 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 5 个案例文件；MATLAB=1，Java=1，PDF=0，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 24 条；几何=6，物理场=1，材料=2，网格=1，研究=0，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：photonic_crystal_1d.m, photonic_crystal_1d.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 7 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=1。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 photonic_crystal_1d，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "photonic_crystal_1d modeling_logic_learning_ready PPT 演示文稿用于补充案例目标、关键假设、结果图说明和结论。 MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. a Spacing 400[nm] w Width of layer a/2 eps_1 Permittivity of layer 1 13 eps_2 Permittivity of layer 2 12 ky Wave vector definition 0[rad/m] N Number of steps 40 f_max Maximum frequency 250[THz] photonic_crystal_1d.mph comsol_mph photonic_crystal_1d.m matlab_livelink photonic_crystal_1d.java comsol_java photonic_crystal_1d_summary.json json 1D Photonic crystal.pptx presentation_document",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

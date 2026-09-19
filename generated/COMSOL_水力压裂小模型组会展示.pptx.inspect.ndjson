@@ -1,0 +1,64 @@
+{"kind":"deck","id":"pr/scq53e","name":"Deck"}
+{"kind":"layout","layoutId":"e50176f4-edb9-4e12-96a5-70f29f2c5eb5","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"c1918948-6926-49a2-9d0b-16eb72d43dac","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/3shnoy","slide":1,"title":"水力压裂论文驱动的小模型建模演示","textShapes":7}
+{"kind":"textbox","id":"sh/u50jmp0v","slide":1,"name":"title","text":"水力压裂论文驱动的小模型建模演示","textPreview":"水力压裂论文驱动的小模型建模演示","textChars":16,"textLines":1,"bbox":[42,42,575,132]}
+{"kind":"textbox","id":"sh/hsb2h4zm","slide":1,"name":"subtitle","text":"将 Word 论文的研究对象、参数与物理问题，整理为可审核的 COMSOL 分步建模任务。","textPreview":"将 Word 论文的研究对象、参数与物理问题，整理为可审核的 COMSOL 分步建模任务。","textChars":45,"textLines":1,"bbox":[42,206,548,102]}
+{"kind":"shape","id":"sh/g721ozi1","slide":1,"name":"accent-rule","bbox":[42,340,150,8]}
+{"kind":"textbox","id":"sh/3utkjehs","slide":1,"name":"label","text":"本次输入","textPreview":"本次输入","textChars":4,"textLines":1,"bbox":[42,380,200,28]}
+{"kind":"textbox","id":"sh/2tkjq907","slide":1,"name":"paper-name","text":"《COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究》","textPreview":"《COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究》","textChars":30,"textLines":1,"bbox":[42,418,548,92]}
+{"kind":"textbox","id":"sh/pwb2lozi","slide":1,"name":"evidence","text":"论文解析：23 段文本 · 9 类参数 · 8 个相似案例检索结果","textPreview":"论文解析：23 段文本 · 9 类参数 · 8 个相似案例检索结果","textChars":33,"textLines":1,"bbox":[42,544,550,56]}
+{"kind":"shape","id":"sh/4v21sjid","slide":1,"name":"article-shot-frame","bbox":[658,42,580,588]}
+{"kind":"shape","id":"sh/qxkju903","slide":1,"name":"footer-rule","bbox":[42,650,1196,1]}
+{"kind":"textbox","id":"sh/4zu9sna5","slide":1,"name":"source-footer","text":"本地论文与 COMSOL 小模型运行记录","textPreview":"本地论文与 COMSOL 小模型运行记录","textChars":20,"textLines":1,"bbox":[42,665,560,20]}
+{"kind":"textbox","id":"sh/503qlsrq","slide":1,"name":"slide-number","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[1184,662,54,22]}
+{"kind":"image","id":"im/2d43m9s3","slide":1,"name":"","geometry":"rect","alt":"小模型读取水力压裂论文后的学习界面","bbox":[668,52,560,568]}
+{"kind":"notes","id":"nt/3shnoy","slide":1,"text":"[Sources]\n- 本地论文：D:/桌面/COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究.docx\n- 本地界面截图：generated/group_meeting_assets/article_learning_ui.png"}
+{"kind":"slide","id":"sl/l7d693","slide":2,"title":"论文内容已被转成七步建模流程与代码包","textShapes":21}
+{"kind":"textbox","id":"sh/zyp8rex4","slide":2,"name":"title","text":"论文内容已被转成七步建模流程与代码包","textPreview":"论文内容已被转成七步建模流程与代码包","textChars":18,"textLines":1,"bbox":[42,38,910,58]}
+{"kind":"textbox","id":"sh/0zy9kjep","slide":2,"name":"subtitle","text":"每一步都保留判断依据，当前结果用于方案审核，而不是直接求解。","textPreview":"每一步都保留判断依据，当前结果用于方案审核，而不是直接求解。","textChars":30,"textLines":1,"bbox":[42,106,760,34]}
+{"kind":"shape","id":"sh/l07qtofu","slide":2,"name":"step-1","bbox":[42,168,146,52]}
+{"kind":"textbox","id":"sh/m1grm9wf","slide":2,"name":"step-text-1","text":"1 物理场","textPreview":"1 物理场","textChars":5,"textLines":1,"bbox":[52,182,126,24]}
+{"kind":"textbox","id":"sh/n298vex0","slide":2,"name":"arrow-1","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[189,180,20,28]}
+{"kind":"shape","id":"sh/8ni9ojel","slide":2,"name":"step-2","bbox":[211,168,146,52]}
+{"kind":"textbox","id":"sh/9orqxof6","slide":2,"name":"step-text-2","text":"2 材料","textPreview":"2 材料","textChars":4,"textLines":1,"bbox":[221,182,126,24]}
+{"kind":"textbox","id":"sh/25w7apwb","slide":2,"name":"arrow-2","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[358,180,20,28]}
+{"kind":"shape","id":"sh/3658juxw","slide":2,"name":"step-3","bbox":[380,168,146,52]}
+{"kind":"textbox","id":"sh/ne5o36xs","slide":2,"name":"step-text-3","text":"3 几何","textPreview":"3 几何","textChars":4,"textLines":1,"bbox":[390,182,126,24]}
+{"kind":"textbox","id":"sh/mdw7a1w7","slide":2,"name":"arrow-3","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[527,180,20,28]}
+{"kind":"shape","id":"sh/9g765wfy","slide":2,"name":"step-4","bbox":[549,168,146,52]}
+{"kind":"textbox","id":"sh/8fepcbed","slide":2,"name":"step-text-4","text":"4 网格","textPreview":"4 网格","textChars":4,"textLines":1,"bbox":[559,182,126,24]}
+{"kind":"textbox","id":"sh/za5ozmxw","slide":2,"name":"arrow-4","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[696,180,20,28]}
+{"kind":"shape","id":"sh/y9w76hwb","slide":2,"name":"step-5","bbox":[718,168,146,52]}
+{"kind":"textbox","id":"sh/lcn61wf2","slide":2,"name":"step-text-5","text":"5 研究","textPreview":"5 研究","textChars":4,"textLines":1,"bbox":[728,182,126,24]}
+{"kind":"textbox","id":"sh/0bep8reh","slide":2,"name":"arrow-5","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[865,180,20,28]}
+{"kind":"shape","id":"sh/bmlovmxk","slide":2,"name":"step-6","bbox":[887,168,146,52]}
+{"kind":"textbox","id":"sh/qlcn2hwf","slide":2,"name":"step-text-6","text":"6 结果","textPreview":"6 结果","textChars":4,"textLines":1,"bbox":[897,182,126,24]}
+{"kind":"textbox","id":"sh/ehc7eh07","slide":2,"name":"arrow-6","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[1034,180,20,28]}
+{"kind":"shape","id":"sh/fil8n2hs","slide":2,"name":"step-7","bbox":[1056,168,146,52]}
+{"kind":"textbox","id":"sh/gjupg7id","slide":2,"name":"step-text-7","text":"7 代码包","textPreview":"7 代码包","textChars":5,"textLines":1,"bbox":[1066,182,126,24]}
+{"kind":"shape","id":"sh/1k3qpczi","slide":2,"name":"modeling-summary","bbox":[42,258,548,338]}
+{"kind":"textbox","id":"sh/2lc7ih03","slide":2,"name":"judgement-title","text":"本次建模判断","textPreview":"本次建模判断","textChars":6,"textLines":1,"bbox":[68,282,260,30]}
+{"kind":"textbox","id":"sh/3ml8rmho","slide":2,"name":"judgement-copy","text":"• 固体力学 + 孔隙流/达西流\n• 裂纹：相场或内聚区二选一\n• 2D 平面应变；300 mm 方域，中心 15 mm 钻孔\n• 围压、注入压力与煤层非均质性作为主要工况\n• 钻孔和预期裂纹区局部加密网格","textPreview":"• 固体力学 + 孔隙流/达西流 | • 裂纹：相场或内聚区二选一 | • 2D 平面应变；300 mm 方域，中心 15 mm 钻孔 | • 围压、注入压力与煤层非均质性作为主要工况 | • 钻孔和预期裂纹区局部加密网格","textChars":103,"textLines":5,"bbox":[68,328,478,180]}
+{"kind":"textbox","id":"sh/o7upkri9","slide":2,"name":"review-warning","text":"生成状态：review_required；尚未对该水力压裂代码执行求解。","textPreview":"生成状态：review_required；尚未对该水力压裂代码执行求解。","textChars":36,"textLines":1,"bbox":[68,536,478,34]}
+{"kind":"shape","id":"sh/p8nqtwzu","slide":2,"name":"code-shot-frame","bbox":[620,258,618,338]}
+{"kind":"textbox","id":"sh/ba58vmh0","slide":2,"name":"code-evidence","text":"代码读回检查：130 行 · COMSOL API · 20 参数 · 3 物理接口钩子 · 8 项输出","textPreview":"代码读回检查：130 行 · COMSOL API · 20 参数 · 3 物理接口钩子 · 8 项输出","textChars":52,"textLines":1,"bbox":[644,552,560,28]}
+{"kind":"shape","id":"sh/lgr21kne","slide":2,"name":"footer-rule","bbox":[42,650,1196,1]}
+{"kind":"textbox","id":"sh/kfi18f6t","slide":2,"name":"source-footer","text":"本地论文与 COMSOL 小模型运行记录","textPreview":"本地论文与 COMSOL 小模型运行记录","textChars":20,"textLines":1,"bbox":[42,665,560,20]}
+{"kind":"textbox","id":"sh/je90za58","slide":2,"name":"slide-number","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[1184,662,54,22]}
+{"kind":"image","id":"im/dgbuhoji","slide":2,"name":"","geometry":"rect","alt":"小模型对生成 MATLAB 代码的分析界面","bbox":[632,270,594,270]}
+{"kind":"notes","id":"nt/l7d693","slide":2,"text":"[Sources]\n- 本地论文：D:/桌面/COMSOL不同围压条件下单孔水力压裂裂纹的拓展规律研究.docx\n- 本地流程：generated/staged_workflows/Build_a_COMSOL_hydraulic_fracturing_mode_20260803111808.workflow.json\n- 本地界面截图：generated/group_meeting_assets/code_analysis_ui.png"}
+{"kind":"slide","id":"sl/wekpfi","slide":3,"title":"结论：小模型已能组织建模，尚不能替代裂纹模型校准","textShapes":8}
+{"kind":"textbox","id":"sh/kvm9ofmt","slide":3,"name":"title","text":"结论：小模型已能组织建模，尚不能替代裂纹模型校准","textPreview":"结论：小模型已能组织建模，尚不能替代裂纹模型校准","textChars":24,"textLines":1,"bbox":[42,38,1110,58]}
+{"kind":"shape","id":"sh/zudsva58","slide":3,"name":"ready-panel","bbox":[42,140,558,412]}
+{"kind":"textbox","id":"sh/ytkrm54n","slide":3,"name":"ready-title","text":"已经可用","textPreview":"已经可用","textChars":4,"textLines":1,"bbox":[70,170,200,30]}
+{"kind":"textbox","id":"sh/xsbatkn2","slide":3,"name":"ready-copy","text":"• 读取 Word、PDF、MATLAB、Java 与案例资料\n• 提取参数、总结理论、检索本地案例记忆\n• 给出物理场、几何、材料、边界与研究建议\n• 分步审批并输出 MATLAB/Java 建模骨架\n• 已在更简单的二维热传导标杆中验证 COMSOL → CSV → 代理模型重训练闭环","textPreview":"• 读取 Word、PDF、MATLAB、Java 与案例资料 | • 提取参数、总结理论、检索本地案例记忆 | • 给出物理场、几何、材料、边界与研究建议 | • 分步审批并输出 MATLAB/Java 建模骨架 | • 已在更简单的二维热传导标杆中验证 COMSOL →...","textChars":145,"textLines":5,"bbox":[70,220,486,240]}
+{"kind":"shape","id":"sh/cr29kfmh","slide":3,"name":"gap-panel","bbox":[638,140,600,412]}
+{"kind":"textbox","id":"sh/bqtsra5c","slide":3,"name":"gap-title","text":"本案例暴露的关键缺口","textPreview":"本案例暴露的关键缺口","textChars":10,"textLines":1,"bbox":[668,170,360,30]}
+{"kind":"textbox","id":"sh/apkri54r","slide":3,"name":"gap-copy","text":"• 通用代码把二维几何误建为 3D，且缺少命名选择\n• 流动接口应由层流改为孔隙介质/达西流\n• 相场/内聚区裂纹与断裂参数尚未落实\n• 生成代码仍需静态检查、mphserver 编译和结果校验\n• 需用试验或现场数据标定起裂压力、路径和长度","textPreview":"• 通用代码把二维几何误建为 3D，且缺少命名选择 | • 流动接口应由层流改为孔隙介质/达西流 | • 相场/内聚区裂纹与断裂参数尚未落实 | • 生成代码仍需静态检查、mphserver 编译和结果校验 | • 需用试验或现场数据标定起裂压力、路径和长度","textChars":121,"textLines":5,"bbox":[668,220,526,220]}
+{"kind":"shape","id":"sh/hofa54nm","slide":3,"name":"recommendation-band","bbox":[42,580,1196,50]}
+{"kind":"textbox","id":"sh/wn6twzm1","slide":3,"name":"recommendation","text":"建议下一步：先建立一个可运行的单孔水力压裂参考模型，再用 20–50 组扫参案例训练自动建模与校验规则。","textPreview":"建议下一步：先建立一个可运行的单孔水力压裂参考模型，再用 20–50 组扫参案例训练自动建模与校验规则。","textChars":52,"textLines":1,"bbox":[66,593,1140,24]}
+{"kind":"shape","id":"sh/qhcned8n","slide":3,"name":"footer-rule","bbox":[42,650,1196,1]}
+{"kind":"textbox","id":"sh/rilonip8","slide":3,"name":"source-footer","text":"本地论文与 COMSOL 小模型运行记录","textPreview":"本地论文与 COMSOL 小模型运行记录","textChars":20,"textLines":1,"bbox":[42,665,560,20]}
+{"kind":"textbox","id":"sh/sju5gnqt","slide":3,"name":"slide-number","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1184,662,54,22]}
+{"kind":"notes","id":"nt/wekpfi","slide":3,"text":"[Sources]\n- 水力压裂建模包：generated/demo_hydraulic_fracture_package/Build_a_COMSOL_hydraulic_fracturing_mode_20260803111808.final_modeling_package.md\n- 代码审查：generated/demo_hydraulic_fracture_package/final_code/build_a_comsol_hydraulic_fracturing_mode_20260803111808.m\n- 热传导标杆训练记录：项目 generated 目录内的 COMSOL 训练与验证结果。"}

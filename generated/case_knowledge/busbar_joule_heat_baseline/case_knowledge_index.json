@@ -1,0 +1,28 @@
+{
+  "kind": "comsol_case_knowledge_index",
+  "cases": [
+    {
+      "title": "母线板焦耳热基准模型",
+      "case_dir": "D:\\桌面\\codex\\案例下载\\COMSOL\\母线板焦耳热",
+      "training_stage": "modeling_logic_learning_ready",
+      "json": "comsol_training_small_model\\generated\\case_knowledge\\busbar_joule_heat_baseline\\母线板焦耳热基准模型.case.json",
+      "markdown": "comsol_training_small_model\\generated\\case_knowledge\\busbar_joule_heat_baseline\\母线板焦耳热基准模型.case.md",
+      "updated_at": "2026-07-29T08:50:28.897131+00:00",
+      "file_summary": {
+        "count": 15,
+        "kinds": {
+          "comsol_java": 3,
+          "matlab_livelink": 3,
+          "comsol_mph": 6,
+          "pdf_document": 3
+        },
+        "matlab_files": 3,
+        "java_files": 3,
+        "pdf_files": 3,
+        "mph_files": 6,
+        "csv_files": 0,
+        "json_files": 0
+      }
+    }
+  ]
+}

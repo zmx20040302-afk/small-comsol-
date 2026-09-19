@@ -1,0 +1,56 @@
+{
+  "kind": "comsol_surrogate_holdout_validation",
+  "created_at": "2026-08-03T09:15:25.762409+00:00",
+  "model_path": "generated\\execution_jobs\\job_20260803091455_fa477323\\thermal_plate_surrogate_augmented_validated.joblib",
+  "csv_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\execution_jobs\\job_20260803091455_fa477323\\thermal_augmentation_holdout.csv",
+  "rows": [
+    {
+      "inputs": {
+        "L_m": 0.116,
+        "W_m": 0.0225,
+        "k_W_mK": 40.0,
+        "T_hot_K": 353.15,
+        "T_cold_K": 283.15
+      },
+      "actual": {
+        "Tmax_K": 353.15,
+        "Tavg_K": 290.519148369328
+      },
+      "predicted": {
+        "Tmax_K": 353.6235994986531,
+        "Tavg_K": 290.5295771724268
+      },
+      "absolute_error": {
+        "Tmax_K": 0.47359949865312956,
+        "Tavg_K": 0.010428803098818662
+      }
+    },
+    {
+      "inputs": {
+        "L_m": 0.124,
+        "W_m": 0.0225,
+        "k_W_mK": 40.0,
+        "T_hot_K": 353.15,
+        "T_cold_K": 283.15
+      },
+      "actual": {
+        "Tmax_K": 353.15,
+        "Tavg_K": 290.043849168657
+      },
+      "predicted": {
+        "Tmax_K": 352.9351442089986,
+        "Tavg_K": 289.4747612124783
+      },
+      "absolute_error": {
+        "Tmax_K": 0.2148557910013551,
+        "Tavg_K": 0.5690879561786915
+      }
+    }
+  ],
+  "max_absolute_error": {
+    "Tmax_K": 0.47359949865312956,
+    "Tavg_K": 0.5690879561786915
+  },
+  "passed": true,
+  "criterion": "Each fresh-COMSOL holdout output must have absolute error below 5 K."
+}

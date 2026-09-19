@@ -1,0 +1,88 @@
+OK semi.JnX = -8973.89872267
+OK semi.JpX = -2905.3000469
+OK semi.JnX+semi.JpX = -11879.1987696
+FAIL semi.Jn_x :: mphinterp (0): Java exception occurred: 
+Exception:
+	com.comsol.util.exceptions.FlException: 无法计算表达式。
+Messages:
+	无法计算表达式。
+
+	未定义变量。
+	- 变量: semi.Jn_x
+	- 几何: geom1
+	- 域: 2
+
+	无法计算表达式。
+	- 表达式: semi.Jn_x
+	- 特征: 插值
+FAIL semi.Jp_x :: mphinterp (0): Java exception occurred: 
+Exception:
+	com.comsol.util.exceptions.FlException: 无法计算表达式。
+Messages:
+	无法计算表达式。
+
+	未定义变量。
+	- 变量: semi.Jp_x
+	- 几何: geom1
+	- 域: 2
+
+	无法计算表达式。
+	- 表达式: semi.Jp_x
+	- 特征: 插值
+FAIL semi.Jn_x+semi.Jp_x :: mphinterp (0): Java exception occurred: 
+Exception:
+	com.comsol.util.exceptions.FlException: 无法计算表达式。
+Messages:
+	无法计算表达式。
+
+	未定义变量。
+	- 变量: semi.Jn_x
+	- 几何: geom1
+	- 域: 2
+
+	无法计算表达式。
+	- 表达式: semi.Jn_x+semi.Jp_x
+	- 特征: 插值
+OK semi.JX = -11879.1987696
+FAIL semi.J :: mphinterp (0): Java exception occurred: 
+Exception:
+	com.comsol.util.exceptions.FlException: 无法计算表达式。
+Messages:
+	无法计算表达式。
+
+	未定义变量。
+	- 变量: semi.J
+	- 几何: geom1
+	- 域: 2
+
+	无法计算表达式。
+	- 表达式: semi.J
+	- 特征: 插值
+FAIL semi.Jn1 :: mphinterp (0): Java exception occurred: 
+Exception:
+	com.comsol.util.exceptions.FlException: 无法计算表达式。
+Messages:
+	无法计算表达式。
+
+	未定义变量。
+	- 变量: semi.Jn1
+	- 几何: geom1
+	- 域: 2
+
+	无法计算表达式。
+	- 表达式: semi.Jn1
+	- 特征: 插值
+FAIL semi.Jp1 :: mphinterp (0): Java exception occurred: 
+Exception:
+	com.comsol.util.exceptions.FlException: 无法计算表达式。
+Messages:
+	无法计算表达式。
+
+	未定义变量。
+	- 变量: semi.Jp1
+	- 几何: geom1
+	- 域: 2
+
+	无法计算表达式。
+	- 表达式: semi.Jp1
+	- 特征: 插值

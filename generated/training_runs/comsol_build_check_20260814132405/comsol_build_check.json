@@ -1,0 +1,14 @@
+{
+  "kind": "comsol_build_check",
+  "created_at": "2026-08-14T05:23:41.120763+00:00",
+  "script": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260814052127.m",
+  "model_path": "D:\\桌面\\codex\\comsol1\\comsol_training_small_model\\generated\\staged_workflows\\final_code\\model_100_mm__50_mm___20260814052127_buildcheck.mph",
+  "host": "localhost",
+  "port": 2036,
+  "study_executed": false,
+  "ok": true,
+  "matlab_exit_code": 0,
+  "model_exists": true,
+  "stdout_tail": "\nMATLAB is now connected to a COMSOL Multiphysics Server at localhost:2036\n\nRun the commands below to access the COMSOL ModelUtil commands:\nimport com.comsol.model.util.*\nBUILD_CHECK_OK\n",
+  "stderr_tail": ""
+}

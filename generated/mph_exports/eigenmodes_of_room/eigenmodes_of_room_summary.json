@@ -1,0 +1,38 @@
+{
+  "source": "D:/桌面/codex/案例下载/COMSOL/房间的特征模态/eigenmodes_of_room.mph",
+  "label": "eigenmodes_of_room.mph",
+  "parameters": {},
+  "components": {
+    "tag": "comp1",
+    "geometry": [
+      "geom1"
+    ],
+    "materials": [
+      "mat1"
+    ],
+    "physics": [
+      "acpr"
+    ],
+    "meshes": [
+      "mesh1"
+    ],
+    "couplings": [
+      "intop_pml1"
+    ]
+  },
+  "studies": [
+    "std1"
+  ],
+  "result_groups": [
+    "pg1",
+    "pg2",
+    "pg3",
+    "pg4"
+  ],
+  "datasets": [
+    "dset1"
+  ],
+  "tables": [],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

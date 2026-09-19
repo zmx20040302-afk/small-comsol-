@@ -1,0 +1,1090 @@
+{
+  "kind": "comsol_case_card",
+  "title": "transformer",
+  "case_dir": "D:\\桌面\\codex\\案例下载\\电气\\增量电感的计算和应用示例",
+  "created_at": "2026-08-20T10:24:29.286407+00:00",
+  "training_stage": "modeling_logic_learning_ready",
+  "file_summary": {
+    "count": 4,
+    "kinds": {
+      "comsol_mph": 1,
+      "matlab_livelink": 1,
+      "comsol_java": 1,
+      "json": 1
+    },
+    "matlab_files": 1,
+    "java_files": 1,
+    "pdf_files": 0,
+    "pptx_files": 0,
+    "mph_files": 1,
+    "csv_files": 0,
+    "json_files": 1
+  },
+  "parameters": [
+    {
+      "name": "I1_DC",
+      "value": "0[A]",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "I2_DC",
+      "value": "0[A]",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "V_max",
+      "value": "7.5[V]",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "f0",
+      "value": "50[Hz]",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "T0",
+      "value": "1/f0",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "w0",
+      "value": "2*pi*f0",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "Periods",
+      "value": "5",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "R1",
+      "value": "0.25[ohm]",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "R2",
+      "value": "R1",
+      "description": "",
+      "source": "matlab_param_set"
+    },
+    {
+      "name": "R_load",
+      "value": "50[ohm]",
+      "description": "",
+      "source": "matlab_param_set"
+    }
+  ],
+  "case_content": {
+    "kind": "case_content_learning",
+    "parameters": [
+      "I1_DC",
+      "I2_DC",
+      "V_max",
+      "f0",
+      "T0",
+      "w0",
+      "Periods",
+      "R1",
+      "R2",
+      "R_load"
+    ],
+    "geometry": [],
+    "physics": [],
+    "materials": [],
+    "mesh": [],
+    "studies": [],
+    "results": [],
+    "boundary_conditions": [],
+    "theory_keywords": [],
+    "source_extracts": [
+      {
+        "name": "transformer.m",
+        "kind": "matlab_livelink",
+        "evidence_score": 10,
+        "content_summary": [
+          "import com.comsol.model.*",
+          "import com.comsol.model.util.*",
+          "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+          "model.label('transformer.mph');",
+          "model.param.set('I1_DC', '0[A]');",
+          "model.param.set('I2_DC', '0[A]');",
+          "model.param.set('V_max', '7.5[V]');",
+          "model.param.set('f0', '50[Hz]');"
+        ],
+        "parameters": [
+          "I1_DC",
+          "I2_DC",
+          "V_max",
+          "f0",
+          "T0",
+          "w0",
+          "Periods",
+          "R1",
+          "R2",
+          "R_load"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "transformer.java",
+        "kind": "comsol_java",
+        "evidence_score": 10,
+        "content_summary": [
+          "import com.comsol.model.*;",
+          "import com.comsol.model.util.*;",
+          "model.label(\"transformer.mph\");",
+          "model.param().set(\"I1_DC\", \"0[A]\");",
+          "model.param().set(\"I2_DC\", \"0[A]\");",
+          "model.param().set(\"V_max\", \"7.5[V]\");",
+          "model.param().set(\"f0\", \"50[Hz]\");",
+          "model.param().set(\"T0\", \"1/f0\");"
+        ],
+        "parameters": [
+          "I1_DC",
+          "I2_DC",
+          "V_max",
+          "f0",
+          "T0",
+          "w0",
+          "Periods",
+          "R1",
+          "R2",
+          "R_load"
+        ],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "transformer.mph",
+        "kind": "comsol_mph",
+        "evidence_score": 0,
+        "content_summary": [],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      },
+      {
+        "name": "transformer_summary.json",
+        "kind": "json",
+        "evidence_score": 0,
+        "content_summary": [
+          "\"geometry\": [",
+          "\"geom1\"",
+          "\"physics\": [",
+          "\"meshes\": [",
+          "\"mesh1\"",
+          "\"result_groups\": ["
+        ],
+        "parameters": [],
+        "geometry": [],
+        "physics": [],
+        "materials": [],
+        "mesh": [],
+        "studies": [],
+        "results": [],
+        "boundary_conditions": [],
+        "theory_keywords": []
+      }
+    ],
+    "totals": {
+      "model_tree_items": 10,
+      "source_files_with_content": 2,
+      "source_files_checked": 4
+    }
+  },
+  "learning_summary": {
+    "kind": "learning_summary",
+    "source": "4 files",
+    "groups": {
+      "comsol_models": [
+        {
+          "name": "transformer.mph",
+          "kind": "comsol_mph",
+          "details": {
+            "readable": false,
+            "binary_model": true,
+            "sidecar_files": [],
+            "sidecar_count": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_mph_name",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [],
+              "evidence_score": 0
+            },
+            "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+          },
+          "preview": "COMSOL .mph is a proprietary binary model file. Direct Python parsing is not reliable."
+        }
+      ],
+      "matlab_builders": [
+        {
+          "name": "transformer.m",
+          "kind": "matlab_livelink",
+          "details": {
+            "parameters": 10,
+            "physics": [
+              {
+                "tag": "mf",
+                "interface": "InductionCurrents",
+                "geom": "geom1"
+              },
+              {
+                "tag": "sens",
+                "interface": "Sensitivity",
+                "geom": "geom1"
+              },
+              {
+                "tag": "cir",
+                "interface": "Circuit",
+                "geom": "geom1"
+              }
+            ],
+            "studies": [
+              {
+                "study": "std2",
+                "tag": "sens",
+                "type": "Sensitivity"
+              },
+              {
+                "study": "std2",
+                "tag": "ccc",
+                "type": "CoilCurrentCalculation"
+              },
+              {
+                "study": "std2",
+                "tag": "stat",
+                "type": "Stationary"
+              },
+              {
+                "study": "std3",
+                "tag": "sens1",
+                "type": "Sensitivity"
+              },
+              {
+                "study": "std3",
+                "tag": "ccc1",
+                "type": "CoilCurrentCalculation"
+              },
+              {
+                "study": "std3",
+                "tag": "stat1",
+                "type": "Stationary"
+              },
+              {
+                "study": "std6",
+                "tag": "ref",
+                "type": "StudyReference"
+              },
+              {
+                "study": "std6",
+                "tag": "ref1",
+                "type": "StudyReference"
+              },
+              {
+                "study": "std7",
+                "tag": "ccc1",
+                "type": "CoilCurrentCalculation"
+              },
+              {
+                "study": "std7",
+                "tag": "time",
+                "type": "Transient"
+              },
+              {
+                "study": "std8",
+                "tag": "time1",
+                "type": "Transient"
+              }
+            ],
+            "results": [
+              {
+                "tag": "pg4",
+                "type": "PlotGroup1D"
+              },
+              {
+                "tag": "pg5",
+                "type": "PlotGroup3D"
+              }
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "matlab_livelink",
+              "parameters": [
+                "I1_DC",
+                "I2_DC",
+                "V_max",
+                "f0",
+                "T0",
+                "w0",
+                "Periods",
+                "R1",
+                "R2",
+                "R_load"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*",
+                "import com.comsol.model.util.*",
+                "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+                "model.label('transformer.mph');",
+                "model.param.set('I1_DC', '0[A]');",
+                "model.param.set('I2_DC', '0[A]');",
+                "model.param.set('V_max', '7.5[V]');",
+                "model.param.set('f0', '50[Hz]');",
+                "model.param.set('T0', '1/f0');",
+                "model.param.set('w0', '2*pi*f0');",
+                "model.param.set('Periods', '5');",
+                "model.param.set('R1', '0.25[ohm]');"
+              ],
+              "evidence_score": 10
+            }
+          },
+          "preview": "function out = model\n%\n% transformer.m\n%\n% Model exported on Aug 20 2026, 18:24 by COMSOL 6.4.0.293.\n\nimport com.comsol.model.*\nimport com.comsol.model.util.*\n\nmodel = ModelUtil.create('Model');\n\nmodel.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode')  native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode')  native2unicode(hex2dec({'4f' '8b'}), 'unicode')  native2unicode(hex2dec({'4e' '0b'}), 'unicode')  native2unicode(hex2dec({'8f' '7d'}), 'unicode') '\\' native2unicode(hex2dec({'75' '35'}), 'unicode')  native2unicode(hex2dec({'6"
+        }
+      ],
+      "java_exports": [
+        {
+          "name": "transformer.java",
+          "kind": "comsol_java",
+          "details": {
+            "model_param_set": 10,
+            "physics_create": 0,
+            "study_create": 0,
+            "result_create": 0,
+            "mesh_mentions": 0,
+            "material_mentions": 0,
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "comsol_java",
+              "parameters": [
+                "I1_DC",
+                "I2_DC",
+                "V_max",
+                "f0",
+                "T0",
+                "w0",
+                "Periods",
+                "R1",
+                "R2",
+                "R_load"
+              ],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "import com.comsol.model.*;",
+                "import com.comsol.model.util.*;",
+                "model.label(\"transformer.mph\");",
+                "model.param().set(\"I1_DC\", \"0[A]\");",
+                "model.param().set(\"I2_DC\", \"0[A]\");",
+                "model.param().set(\"V_max\", \"7.5[V]\");",
+                "model.param().set(\"f0\", \"50[Hz]\");",
+                "model.param().set(\"T0\", \"1/f0\");",
+                "model.param().set(\"w0\", \"2*pi*f0\");",
+                "model.param().set(\"Periods\", \"5\");",
+                "model.param().set(\"R1\", \"0.25[ohm]\");",
+                "model.param().set(\"R2\", \"R1\");"
+              ],
+              "evidence_score": 10
+            }
+          },
+          "preview": "/*\n * transformer.java\n */\n\nimport com.comsol.model.*;\nimport com.comsol.model.util.*;\n\n/** Model exported on Aug 20 2026, 18:24 by COMSOL 6.4.0.293. */\npublic class transformer {\n\n  public static Model run() {\n    Model model = ModelUtil.create(\"Model\");\n\n    model\n         .modelPath(\"D:\\\\\\u684c\\u9762\\\\codex\\\\\\u6848\\u4f8b\\u4e0b\\u8f7d\\\\\\u7535\\u6c14\\\\\\u589e\\u91cf\\u7535\\u611f\\u7684\\u8ba1\\u7b97\\u548c\\u5e94\\u7528\\u793a\\u4f8b\");\n\n    model.label(\"transformer.mph\");\n\n    model.param().set(\"I1_DC\", \"0[A]\");\n    model.param().set(\"I2_DC\", \"0[A]\");\n    model.param().set(\"V_max\", \"7.5[V]\");\n    model.p"
+        }
+      ],
+      "pdf_documents": [],
+      "presentation_documents": [],
+      "training_tables": [],
+      "constraints_or_metadata": [
+        {
+          "name": "transformer_summary.json",
+          "kind": "json",
+          "details": {
+            "valid": true,
+            "type": "object",
+            "keys": [
+              "source",
+              "label",
+              "parameters",
+              "components",
+              "studies",
+              "result_groups",
+              "datasets",
+              "tables",
+              "exports",
+              "note"
+            ],
+            "content_extract": {
+              "kind": "case_content_extract",
+              "source_kind": "json",
+              "parameters": [],
+              "geometry": [],
+              "physics": [],
+              "materials": [],
+              "mesh": [],
+              "studies": [],
+              "results": [],
+              "boundary_conditions": [],
+              "theory_keywords": [],
+              "content_summary": [
+                "\"geometry\": [",
+                "\"geom1\"",
+                "\"physics\": [",
+                "\"meshes\": [",
+                "\"mesh1\"",
+                "\"result_groups\": ["
+              ],
+              "evidence_score": 0
+            }
+          },
+          "preview": "{\n  \"source\": \"D:/桌面/codex/案例下载/电气/增量电感的计算和应用示例/transformer.mph\",\n  \"label\": \"transformer.mph\",\n  \"parameters\": {\n    \"I1_DC\": \"0[A]\",\n    \"I2_DC\": \"0[A]\",\n    \"V_max\": \"7.5[V]\",\n    \"f0\": \"50[Hz]\",\n    \"T0\": \"1/f0\",\n    \"w0\": \"2*pi*f0\",\n    \"Periods\": \"5\",\n    \"R1\": \"0.25[ohm]\",\n    \"R2\": \"R1\",\n    \"R_load\": \"50[ohm]\"\n  },\n  \"components\": {\n    \"tag\": \"comp1\",\n    \"geometry\": [\n      \"geom1\"\n    ],\n    \"materials\": [\n      \"mat2\",\n      \"mat3\",\n      \"mat4\"\n    ],\n    \"physics\": [\n      \"mf\",\n      \"sens\",\n      \"cir\"\n    ],\n    \"meshes\": [\n      \"mesh1\"\n    ],\n    \"couplings\": [\n      \"build"
+        }
+      ],
+      "other": []
+    },
+    "pdf_simple_summaries": [],
+    "recommendations": [
+      "Use MATLAB/Java sources to recover COMSOL parameter names, physics interfaces, studies, and result settings.",
+      "Use COMSOL with MATLAB to export .mph summaries before automatic reasoning over the full model tree.",
+      "Use JSON files as constraints, exported metadata, or saved model summaries."
+    ],
+    "comsol_modeling_logic": [
+      "A COMSOL model is a structured finite element record: parameters, geometry, selections, materials, physics features, boundary conditions, mesh, study/solver, results, and exports.",
+      "PDF documents provide theory and validation context; MATLAB/Java files provide executable model-tree evidence; MPH summaries provide authoritative metadata; CSV files provide trainable numerical behavior.",
+      "小模型不应猜测缺失设置；应引用已有文件证据，明确标注未知项，只根据已验证记录生成带约束的建模脚本。"
+    ],
+    "workflow": [
+      "Read related PDF, MATLAB, Java, MPH summary, and CSV files together.",
+      "Extract physics, parameters, geometry, boundary conditions, mesh, solver, and result outputs.",
+      "校验或创建约束 JSON。",
+      "Generate a LiveLink MATLAB builder script.",
+      "Run COMSOL sweeps and export CSV data.",
+      "Train and validate the surrogate model."
+    ]
+  },
+  "pdf_simple_summaries": [],
+  "prompt_summary": "",
+  "thoughts": [
+    "MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。",
+    "MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。",
+    "参数文本和脚本证据可转换为约束和参数扫描变量。",
+    "已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。",
+    "未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。"
+  ],
+  "implementation_path": [
+    "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+    "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+    "Convert detected parameters into a constraints JSON with units and valid ranges.",
+    "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+    "Run a COMSOL parametric sweep over selected parameters.",
+    "Export a CSV containing input parameters and target outputs.",
+    "Train the local surrogate model after the CSV exists."
+  ],
+  "gaps": [
+    "Missing parameter-sweep CSV for numerical surrogate training.",
+    "MPH files need COMSOL with MATLAB summaries for reliable internal settings."
+  ],
+  "source_files": [
+    {
+      "name": "transformer.mph",
+      "kind": "comsol_mph",
+      "size_bytes": 84055891,
+      "details": {
+        "readable": false,
+        "binary_model": true,
+        "sidecar_files": [],
+        "sidecar_count": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_mph_name",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [],
+          "evidence_score": 0
+        },
+        "recommendation": "Use COMSOL with MATLAB and matlab/export_mph_summary.m to export a JSON summary next to this .mph file."
+      }
+    },
+    {
+      "name": "transformer.m",
+      "kind": "matlab_livelink",
+      "size_bytes": 88551,
+      "details": {
+        "parameters": 10,
+        "physics": [
+          {
+            "tag": "mf",
+            "interface": "InductionCurrents",
+            "geom": "geom1"
+          },
+          {
+            "tag": "sens",
+            "interface": "Sensitivity",
+            "geom": "geom1"
+          },
+          {
+            "tag": "cir",
+            "interface": "Circuit",
+            "geom": "geom1"
+          }
+        ],
+        "studies": [
+          {
+            "study": "std2",
+            "tag": "sens",
+            "type": "Sensitivity"
+          },
+          {
+            "study": "std2",
+            "tag": "ccc",
+            "type": "CoilCurrentCalculation"
+          },
+          {
+            "study": "std2",
+            "tag": "stat",
+            "type": "Stationary"
+          },
+          {
+            "study": "std3",
+            "tag": "sens1",
+            "type": "Sensitivity"
+          },
+          {
+            "study": "std3",
+            "tag": "ccc1",
+            "type": "CoilCurrentCalculation"
+          },
+          {
+            "study": "std3",
+            "tag": "stat1",
+            "type": "Stationary"
+          },
+          {
+            "study": "std6",
+            "tag": "ref",
+            "type": "StudyReference"
+          },
+          {
+            "study": "std6",
+            "tag": "ref1",
+            "type": "StudyReference"
+          },
+          {
+            "study": "std7",
+            "tag": "ccc1",
+            "type": "CoilCurrentCalculation"
+          },
+          {
+            "study": "std7",
+            "tag": "time",
+            "type": "Transient"
+          },
+          {
+            "study": "std8",
+            "tag": "time1",
+            "type": "Transient"
+          }
+        ],
+        "results": [
+          {
+            "tag": "pg4",
+            "type": "PlotGroup1D"
+          },
+          {
+            "tag": "pg5",
+            "type": "PlotGroup3D"
+          }
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "matlab_livelink",
+          "parameters": [
+            "I1_DC",
+            "I2_DC",
+            "V_max",
+            "f0",
+            "T0",
+            "w0",
+            "Periods",
+            "R1",
+            "R2",
+            "R_load"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*",
+            "import com.comsol.model.util.*",
+            "model.modelPath(['D:\\' native2unicode(hex2dec({'68' '4c'}), 'unicode') native2unicode(hex2dec({'97' '62'}), 'unicode') '\\codex\\' native2unicode(hex2dec({'68' '48'}), 'unicode') native2unicode(hex2dec({'4f' '8b'}), 'unicode') native2unicode(",
+            "model.label('transformer.mph');",
+            "model.param.set('I1_DC', '0[A]');",
+            "model.param.set('I2_DC', '0[A]');",
+            "model.param.set('V_max', '7.5[V]');",
+            "model.param.set('f0', '50[Hz]');",
+            "model.param.set('T0', '1/f0');",
+            "model.param.set('w0', '2*pi*f0');",
+            "model.param.set('Periods', '5');",
+            "model.param.set('R1', '0.25[ohm]');"
+          ],
+          "evidence_score": 10
+        }
+      }
+    },
+    {
+      "name": "transformer.java",
+      "kind": "comsol_java",
+      "size_bytes": 94770,
+      "details": {
+        "model_param_set": 10,
+        "physics_create": 0,
+        "study_create": 0,
+        "result_create": 0,
+        "mesh_mentions": 0,
+        "material_mentions": 0,
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "comsol_java",
+          "parameters": [
+            "I1_DC",
+            "I2_DC",
+            "V_max",
+            "f0",
+            "T0",
+            "w0",
+            "Periods",
+            "R1",
+            "R2",
+            "R_load"
+          ],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "import com.comsol.model.*;",
+            "import com.comsol.model.util.*;",
+            "model.label(\"transformer.mph\");",
+            "model.param().set(\"I1_DC\", \"0[A]\");",
+            "model.param().set(\"I2_DC\", \"0[A]\");",
+            "model.param().set(\"V_max\", \"7.5[V]\");",
+            "model.param().set(\"f0\", \"50[Hz]\");",
+            "model.param().set(\"T0\", \"1/f0\");",
+            "model.param().set(\"w0\", \"2*pi*f0\");",
+            "model.param().set(\"Periods\", \"5\");",
+            "model.param().set(\"R1\", \"0.25[ohm]\");",
+            "model.param().set(\"R2\", \"R1\");"
+          ],
+          "evidence_score": 10
+        }
+      }
+    },
+    {
+      "name": "transformer_summary.json",
+      "kind": "json",
+      "size_bytes": 1439,
+      "details": {
+        "valid": true,
+        "type": "object",
+        "keys": [
+          "source",
+          "label",
+          "parameters",
+          "components",
+          "studies",
+          "result_groups",
+          "datasets",
+          "tables",
+          "exports",
+          "note"
+        ],
+        "content_extract": {
+          "kind": "case_content_extract",
+          "source_kind": "json",
+          "parameters": [],
+          "geometry": [],
+          "physics": [],
+          "materials": [],
+          "mesh": [],
+          "studies": [],
+          "results": [],
+          "boundary_conditions": [],
+          "theory_keywords": [],
+          "content_summary": [
+            "\"geometry\": [",
+            "\"geom1\"",
+            "\"physics\": [",
+            "\"meshes\": [",
+            "\"mesh1\"",
+            "\"result_groups\": ["
+          ],
+          "evidence_score": 0
+        }
+      }
+    }
+  ],
+  "modeling_principles": {
+    "kind": "comsol_modeling_principles",
+    "readiness": "modeling_principles_ready",
+    "core_sequence": [
+      "先定义全局参数和单位，再建立几何与选择集。",
+      "随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。",
+      "自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。",
+      "本案例已提取 10 个参数，可作为约束 JSON 和参数扫描变量。"
+    ],
+    "physics_reasoning": [
+      "当前未识别到明确物理场，需要补充 MATLAB/Java/MPH 摘要或 PDF 理论说明。"
+    ],
+    "automation_evidence": [
+      "MATLAB/Java 文件可直接提供 COMSOL API 调用顺序，是自动建模最可靠的文本证据。",
+      "MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。"
+    ],
+    "verification_logic": [
+      "生成模型后先运行基准算例，再做网格无关性和参数扫描。",
+      "若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。",
+      "训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。"
+    ]
+  },
+  "physics_judgement": {
+    "kind": "physics_judgement_from_case",
+    "simple_summary": "transformer 的 PDF 可用于理解案例目的、假设和操作步骤；当前证据还不足以唯一确定物理场，后续应结合 MATLAB/Java 中的 physics.create 或 COMSOL 模型树再确认。",
+    "primary_physics": "needs_more_evidence",
+    "study_type": "unknown",
+    "judgement_rule": "先根据 PDF 的核心物理量提出候选物理场，再用 MATLAB/Java/MPH 摘要中的 physics.create 做最终确认。",
+    "evidence": [],
+    "reusable_training_note": "后续判断物理场时，先读 PDF 中的问题目标和方程关键词，再用 MATLAB/Java 的 physics.create 校验接口名称；若两者一致，就把该接口作为自动建模的主物理场。"
+  },
+  "geometry_parameter_learning": {
+    "kind": "geometry_parameter_matlab_mapping",
+    "summary": "将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。",
+    "pdf_keywords": [],
+    "matlab_mapping": [
+      {
+        "keyword": "I1_DC",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('I1_DC', value, description)"
+      },
+      {
+        "keyword": "I2_DC",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('I2_DC', value, description)"
+      },
+      {
+        "keyword": "V_max",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('V_max', value, description)"
+      },
+      {
+        "keyword": "f0",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('f0', value, description)"
+      },
+      {
+        "keyword": "T0",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('T0', value, description)"
+      },
+      {
+        "keyword": "w0",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('w0', value, description)"
+      },
+      {
+        "keyword": "Periods",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('Periods', value, description)"
+      },
+      {
+        "keyword": "R1",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('R1', value, description)"
+      },
+      {
+        "keyword": "R2",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('R2', value, description)"
+      },
+      {
+        "keyword": "R_load",
+        "modeling_content": "案例参数/扫描变量",
+        "matlab_action": "model.param.set('R_load', value, description)"
+      }
+    ],
+    "geometry_parameter_checks": [
+      "先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。",
+      "全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。",
+      "几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。",
+      "MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。",
+      "已识别参数：I1_DC、I2_DC、V_max、f0、T0、w0、Periods、R1、R2、R_load"
+    ],
+    "learned_capability": [
+      "根据需求判断几何维度、几何对象和参数化变量。",
+      "把 PDF 中的理论/模型关键词映射到 MATLAB LiveLink 建模 API。",
+      "回答几何模型与参数问题，并给出可修改的 MATLAB 建模骨架。"
+    ]
+  },
+  "deep_learning_plan": {
+    "kind": "comsol_case_deep_learning_plan",
+    "readiness": "ready_to_generate_comsol_sweep_dataset",
+    "readiness_score": 70,
+    "candidate_inputs": [
+      "I1_DC",
+      "I2_DC",
+      "V_max",
+      "f0",
+      "T0",
+      "w0",
+      "Periods",
+      "R1",
+      "R2",
+      "R_load"
+    ],
+    "candidate_outputs": [
+      "primary_quantity_of_interest",
+      "validation_error"
+    ],
+    "dataset_requirements": [
+      "当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。",
+      "每一行代表一次 COMSOL 参数扫描或验证运行。",
+      "输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。",
+      "输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。",
+      "训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。"
+    ],
+    "model_candidates": [
+      "dummy_mean_baseline: 检查数据是否真的有可学习信号。",
+      "ridge_scaled: 小样本、近似线性响应的稳健基线。",
+      "random_forest: 捕捉非线性和参数交互，适合中小型 COMSOL 扫描表。",
+      "mlp_scaled: 用标准化后的神经网络学习连续响应面，需要更多样本并检查收敛。"
+    ],
+    "workflow": [
+      "读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。",
+      "从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。",
+      "把候选输入参数转成约束 JSON，并确定扫描范围。",
+      "运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。",
+      "对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。",
+      "用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。"
+    ],
+    "limitations": [
+      "缺少可直接训练的 CSV；当前只能学习建模逻辑，不能完成数值代理模型训练。"
+    ]
+  },
+  "case_extension": {
+    "kind": "case_thinking_and_extension",
+    "readiness": "needs_more_evidence_for_reliable_extension",
+    "readiness_score": 40,
+    "transferable_knowledge": [
+      "Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.",
+      "Treat extracted parameters as future constraint variables and parametric sweep inputs."
+    ],
+    "extension_questions": [
+      "Which parameters control geometry size, material response, boundary loading, and solver stability?",
+      "Which output quantities can be converted into CSV columns for surrogate-model training?",
+      "Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?",
+      "Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?"
+    ],
+    "new_model_directions": [
+      "Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target."
+    ],
+    "parameter_sweep_ideas": [
+      "Sweep `I1_DC` around the learned value `0[A]` and export target outputs to CSV.",
+      "Sweep `I2_DC` around the learned value `0[A]` and export target outputs to CSV.",
+      "Sweep `V_max` around the learned value `7.5[V]` and export target outputs to CSV.",
+      "Sweep `f0` around the learned value `50[Hz]` and export target outputs to CSV.",
+      "Sweep `T0` around the learned value `1/f0` and export target outputs to CSV.",
+      "Sweep `w0` around the learned value `2*pi*f0` and export target outputs to CSV.",
+      "Sweep `Periods` around the learned value `5` and export target outputs to CSV.",
+      "Sweep `R1` around the learned value `0.25[ohm]` and export target outputs to CSV.",
+      "Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities."
+    ],
+    "code_generation_ideas": [
+      "Use existing MATLAB/Java scripts as the highest-confidence source for API call order.",
+      "Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.",
+      "Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.",
+      "Create a CSV export script for derived values before training a numerical surrogate."
+    ],
+    "risk_checks": [
+      "Boundary IDs and named selections must be verified after geometry changes.",
+      "Material properties and units must be checked before using generated scripts for real simulation.",
+      "Mesh independence and baseline-solve convergence should be checked before parameter sweeps.",
+      "No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training."
+    ]
+  },
+  "learning_progress": [
+    {
+      "percent": 8,
+      "label": "接收案例目录",
+      "detail": "D:\\桌面\\codex\\案例下载\\电气\\增量电感的计算和应用示例"
+    },
+    {
+      "percent": 22,
+      "label": "扫描可学习文件",
+      "detail": "文件=4, MATLAB=1, Java=1, PDF=0, MPH=1, CSV=0"
+    },
+    {
+      "percent": 42,
+      "label": "抽取 COMSOL 模型树证据",
+      "detail": "模型树证据 10 条"
+    },
+    {
+      "percent": 62,
+      "label": "形成深度学习训练计划",
+      "detail": "准备度=ready_to_generate_comsol_sweep_dataset, 分数=70"
+    },
+    {
+      "percent": 82,
+      "label": "写入案例记忆库",
+      "detail": "保存案例摘要、参数、建模逻辑、训练缺口和可复用资产。"
+    },
+    {
+      "percent": 100,
+      "label": "完成学习总结",
+      "detail": "已生成 JSON、Markdown、索引和可展示的判断依据。"
+    }
+  ],
+  "post_learning_summary": {
+    "kind": "post_case_learning_summary",
+    "title": "transformer",
+    "summary": "已学习 transformer 的 4 个文件；训练阶段=modeling_logic_learning_ready；参数数量=10；内容证据=10 条。",
+    "learned_modeling_logic": [
+      "Case files were treated as one COMSOL evidence package: documentation, scripts, binary model files, parameters, and data.",
+      "The model tree should be reconstructed in this order: parameters, geometry, selections, materials, physics, mesh, study, results, and exports.",
+      "MATLAB/Java scripts provide reusable COMSOL API call patterns for automated model construction.",
+      "MPH files are remembered as authoritative model artifacts, but detailed internal settings require COMSOL/LiveLink extraction.",
+      "检测到的参数可用于生成约束 JSON，后续也可作为代理模型训练的扫描变量。",
+      "已完成内容级读取：从案例文件中抽取了参数、几何、物理场、材料、网格、研究、结果和边界条件等模型树证据。"
+    ],
+    "reusable_assets": [
+      "10 extracted parameters with values/descriptions.",
+      "LiveLink MATLAB or COMSOL Java script structure.",
+      "Original MPH files for later COMSOL-side verification.",
+      "10 条内容级模型树证据。"
+    ],
+    "training_readiness": "modeling_logic_ready_but_needs_comsol_sweep_csv",
+    "reusable_confidence": "medium",
+    "learning_trace": [
+      {
+        "step": "1. 文件证据读取",
+        "evidence": "共读取 4 个案例文件；MATLAB=1，Java=1，PDF=0，MPH=1，CSV=0。",
+        "judgement": "这些文件被合并为一个 COMSOL 案例证据包，用于同时学习建模流程、参数和训练可行性。"
+      },
+      {
+        "step": "2. 内容级模型树抽取",
+        "evidence": "抽取到模型树证据 10 条；几何=0，物理场=0，材料=0，网格=0，研究=0，结果=0。",
+        "judgement": "模型已读取案例内容并抽取 COMSOL 模型树结构，可用于后续自动建模和代码生成。"
+      },
+      {
+        "step": "3. 建模脚本识别",
+        "evidence": "检测到可复用的 MATLAB/Java 建模脚本：transformer.m, transformer.java",
+        "judgement": "脚本中的 COMSOL API 调用可用于恢复模型树顺序，并辅助生成 LiveLink MATLAB 自动建模脚本。"
+      },
+      {
+        "step": "4. 参数与约束提取",
+        "evidence": "从文本、MATLAB 或 Java 证据中提取到 10 个参数。",
+        "judgement": "这些参数可转成约束 JSON，并作为后续 COMSOL 参数扫描和代理模型训练的输入变量。"
+      },
+      {
+        "step": "5. 理论与模型来源判断",
+        "evidence": "PDF 文档=0，MPH 模型=1。",
+        "judgement": "MPH 是权威模型文件，但缺少 PDF 时理论背景和验证目标需要从脚本、文件名或后续人工说明补充。"
+      },
+      {
+        "step": "6. 训练阶段判断",
+        "evidence": "CSV 训练数据文件数量为 0。",
+        "judgement": "当前完成的是建模逻辑学习；还需要运行 COMSOL 参数扫描并导出 CSV，才能进行数值代理模型训练。"
+      },
+      {
+        "step": "7. 记忆库补充",
+        "evidence": "案例标题为 transformer，训练阶段为 modeling_logic_learning_ready。",
+        "judgement": "该案例的文件摘要、参数、建模逻辑和下一步动作会写入案例知识库，并可被后续自动建模方案检索复用。"
+      }
+    ],
+    "next_actions": [
+      "把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。",
+      "Extract model purpose, geometry sequence, parameters, selections, and model-tree features.",
+      "Convert detected parameters into a constraints JSON with units and valid ranges.",
+      "Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder.",
+      "Run a COMSOL parametric sweep over selected parameters.",
+      "Export a CSV containing input parameters and target outputs.",
+      "Train the local surrogate model after the CSV exists.",
+      "几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。"
+    ]
+  },
+  "knowledge_alignment": {
+    "kind": "external_knowledge_alignment",
+    "query": "transformer modeling_logic_learning_ready MATLAB 和 Java 文件是 COMSOL 模型树的可执行证据，应驱动自动建模脚本生成。 MPH 文件需要通过 COMSOL with MATLAB 导出摘要后，才能可靠使用内部模型设置。 参数文本和脚本证据可转换为约束和参数扫描变量。 已从案例内容中抽取到模型树证据，可用于学习几何、物理场、材料、网格、研究和结果设置。 未发现训练 CSV，因此数值代理模型训练前需要先导出 COMSOL 参数扫描数据。 把 PDF、MATLAB、Java、MPH、TXT、JSON 和 CSV 证据作为一个完整案例包读取。 Extract model purpose, geometry sequence, parameters, selections, and model-tree features. Convert detected parameters into a constraints JSON with units and valid ranges. Use MATLAB/Java evidence to generate or adapt a LiveLink MATLAB builder. Run a COMSOL parametric sweep over selected parameters. Export a CSV containing input parameters and target outputs. Train the local surrogate model after the CSV exists. Missing parameter-sweep CSV for numerical surrogate training. MPH files need COMSOL with MATLAB summaries for reliable internal settings. I1_DC 0[A] I2_DC 0[A] V_max 7.5[V] f0 50[Hz] T0 1/f0 w0 2*pi*f0 Periods 5 R1 0.25[ohm] R2 R1 R_load 50[ohm] transformer.mph comsol_mph transformer.m matlab_livelink transformer.java comsol_java transformer_summary.json json",
+    "case_index": "comsol_master_cases_index.json",
+    "docs_index": "comsol_64_all_docs_index.json",
+    "case_matches": [],
+    "docs_matches": [],
+    "training_improvements": [
+      "将单案例摘要升级为：本地案例证据 + 总案例库相似案例 + 官方文档校对的三层学习结果。",
+      "学习完成后先判断证据字段是否覆盖 geometry、materials、physics、boundary_conditions、mesh、solver、results。",
+      "未找到可用总案例库匹配时，只把当前案例作为局部经验，不自动推断未见过的 COMSOL 设置。",
+      "缺少官方文档索引匹配时，将 API 用法标记为待校对。",
+      "没有 CSV 时只完成建模逻辑学习；需要先完成 COMSOL 参数扫描、导出 CSV，再训练代理模型。"
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "source": "D:/桌面/codex/案例下载/电气/菲涅尔方程 (RF)/fresnel_equations.mph",
+  "label": "fresnel_equations.mph",
+  "parameters": {
+    "n_air": "1",
+    "n_slab": "1.5",
+    "lda0": "1[m]",
+    "f0": "c_const/lda0",
+    "alpha": "70[deg]",
+    "beta": "asin(n_air*sin(alpha)/n_slab)",
+    "alpha_brewster": "atan(n_slab/n_air)",
+    "r_s": "(n_air*cos(alpha)-n_slab*cos(beta))/(n_air*cos(alpha)+n_slab*cos(beta))",
+    "r_p": "(n_slab*cos(alpha)-n_air*cos(beta))/(n_air*cos(beta)+n_slab*cos(alpha))",
+    "t_s": "(2*n_air*cos(alpha))/(n_air*cos(alpha)+n_slab*cos(beta))",
+    "t_p": "(2*n_air*cos(alpha))/(n_air*cos(beta)+n_slab*cos(alpha))"
+  },
+  "components": {
+    "tag": "comp1",
+    "geometry": [
+      "geom1"
+    ],
+    "materials": [
+      "mat1",
+      "mat2"
+    ],
+    "physics": [
+      "emw",
+      "emw2"
+    ],
+    "meshes": [
+      "mesh1"
+    ],
+    "couplings": [
+      "builder_integrate1",
+      "builder_integrate2",
+      "builder_integrate3",
+      "builder_integrate4",
+      "pport11",
+      "pport12",
+      "pport13",
+      "pport21",
+      "pport22",
+      "pport23",
+      "src_avg_fpc1_ps11",
+      "dst_avg_fpc1_ps11",
+      "src2dst_fpc1_ps1_sim11",
+      "src2dst_fpc1_ps1_sim21",
+      "dst2src_fpc1_ps1_sim11",
+      "dst2src_fpc1_ps1_sim21",
+      "src_avg_fpc2_ps11",
+      "dst_avg_fpc2_ps11",
+      "src2dst_fpc2_ps1_sim11",
+      "src2dst_fpc2_ps1_sim21",
+      "dst2src_fpc2_ps1_sim11",
+      "dst2src_fpc2_ps1_sim21",
+      "pport14",
+      "pport15",
+      "pport16",
+      "pport24",
+      "pport25",
+      "pport26",
+      "src_avg_fpc1_ps12",
+      "dst_avg_fpc1_ps12",
+      "src2dst_fpc1_ps1_sim12",
+      "src2dst_fpc1_ps1_sim22",
+      "dst2src_fpc1_ps1_sim12",
+      "dst2src_fpc1_ps1_sim22",
+      "src_avg_fpc2_ps12",
+      "dst_avg_fpc2_ps12",
+      "src2dst_fpc2_ps1_sim12",
+      "src2dst_fpc2_ps1_sim22",
+      "dst2src_fpc2_ps1_sim12",
+      "dst2src_fpc2_ps1_sim22"
+    ]
+  },
+  "studies": [
+    "std1",
+    "std2"
+  ],
+  "result_groups": [
+    "pg1",
+    "pg2",
+    "pg3",
+    "pg4",
+    "pg5",
+    "pg6",
+    "pg7",
+    "pg8",
+    "pg9",
+    "pg10",
+    "pg11"
+  ],
+  "datasets": [
+    "dset1",
+    "dset2",
+    "dset3"
+  ],
+  "tables": [
+    "tbl1"
+  ],
+  "exports": [],
+  "note": "The summary contains model-tree tags that can be read by the local COMSOL assistant. Export Java or MATLAB code as a sidecar when feature properties and entity selections are required."
+}

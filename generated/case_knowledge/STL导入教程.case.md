@@ -2,7 +2,7 @@
 
 - Case directory: `D:\桌面\codex\案例下载\COMSOL\STL导入教程`
 - Training stage: `needs_comsol_sweep_csv`
-- Created at: `2026-06-29T08:40:43.491186+00:00`
+- Created at: `2026-07-06T09:36:21.055416+00:00`
 
 ## File Summary
 
@@ -51,6 +51,114 @@
 - `stl_2_combine_geom_mesh_parameters.zh_CN.txt`: 参数=0, 几何=0, 物理场=0, 研究=0, 结果=0
 - `stl_2_combine_geom_mesh_rod_coord.txt`: 参数=0, 几何=0, 物理场=0, 研究=0, 结果=0
 - `stl_2_combine_geom_mesh_rod_coord.zh_CN.txt`: 参数=0, 几何=0, 物理场=0, 研究=0, 结果=0
+
+## 每个 PDF 文件的简单总结
+
+- `models.mph.stl_1_repair_imported_meshes.pdf`: models.mph.stl_1_repair_imported_meshes.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber.
+- `models.mph.stl_2_combine_geom_mesh.pdf`: models.mph.stl_2_combine_geom_mesh.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber.
+
+## PDF Summary and Physics Judgement
+
+- Simple summary: STL导入教程 的 PDF 可用于理解案例目的、假设和操作步骤；当前证据还不足以唯一确定物理场，后续应结合 MATLAB/Java 中的 physics.create 或 COMSOL 模型树再确认。
+- Primary physics: `needs_more_evidence`
+- Study type: `unknown`
+- Judgement rule: 先根据 PDF 的核心物理量提出候选物理场，再用 MATLAB/Java/MPH 摘要中的 physics.create 做最终确认。
+
+## PDF Keywords to Geometry/Parameter/MATLAB Mapping
+
+- Summary: 将 PDF 关键词、案例建模内容和 MATLAB/Java API 证据整理为可复用的几何与参数建模知识。
+- PDF keywords: models.mph.stl_1_repair_imported_meshes.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber., models.mph.stl_2_combine_geom_mesh.pdf: 该 PDF 主要用于说明案例背景、建模目标、理论假设和验证结果；核心内容可概括为：PDF detected. Text extraction requires pypdf or pdfplumber.
+- `d_rod` -> Rod diameter; MATLAB: `model.param.set('d_rod', value, description)`
+- `c3_L` -> C3 screw thread length; MATLAB: `model.param.set('c3_L', value, description)`
+- `c4_L` -> C4 screw thread length; MATLAB: `model.param.set('c4_L', value, description)`
+- `c5_L` -> C5 screw thread length; MATLAB: `model.param.set('c5_L', value, description)`
+- `t_angle` -> Transverse angle; MATLAB: `model.param.set('t_angle', value, description)`
+- `s_angle` -> Sagittal angle; MATLAB: `model.param.set('s_angle', value, description)`
+- `c3_xw` -> C3 entry coordinate, x; MATLAB: `model.param.set('c3_xw', value, description)`
+- `c3_yw` -> C3 entry coordinate, y; MATLAB: `model.param.set('c3_yw', value, description)`
+- `c3_zw` -> C3 entry coordinate, z; MATLAB: `model.param.set('c3_zw', value, description)`
+- `c4_xw` -> C4 entry coordinate, x; MATLAB: `model.param.set('c4_xw', value, description)`
+- `c4_yw` -> C4 entry coordinate, y; MATLAB: `model.param.set('c4_yw', value, description)`
+- `c4_zw` -> C4 entry coordinate, z; MATLAB: `model.param.set('c4_zw', value, description)`
+
+### Geometry and Parameter Checks
+
+- 先根据 PDF 关键词判断几何对象、控制变量和输出量，再用 MATLAB/Java 模型树证据确认。
+- 全局参数应优先来自 model.param.set、inputParam 或案例参数表，缺失时用待确认占位参数。
+- 几何应先参数化，再创建命名选择集，避免后续边界条件依赖不稳定的实体编号。
+- MATLAB 建模应按 parameter -> geom.create/feature -> selection -> physics.create -> mesh -> study 的顺序生成。
+- 已识别参数：d_rod、c3_L、c4_L、c5_L、t_angle、s_angle、c3_xw、c3_yw、c3_zw、c4_xw、c4_yw、c4_zw
+
+## Modeling Principles Learned
+
+- Readiness: `modeling_principles_ready`
+
+### core_sequence
+
+- 先定义全局参数和单位，再建立几何与选择集。
+- 随后配置材料、物理场接口、边界条件、网格、研究/求解器和结果导出。
+- 自动建模时必须保持 COMSOL 模型树顺序一致，避免先创建依赖后创建上游对象。
+- 本案例已提取 15 个参数，可作为约束 JSON 和参数扫描变量。
+
+### physics_reasoning
+
+- 当前未识别到明确物理场，需要补充 MATLAB/Java/MPH 摘要或 PDF 理论说明。
+
+### automation_evidence
+
+- MPH 文件被视为权威模型来源；若存在同名 MATLAB/Java/JSON 摘要，系统会读取这些旁路证据。
+
+### verification_logic
+
+- 生成模型后先运行基准算例，再做网格无关性和参数扫描。
+- 若需要训练代理模型，必须导出包含输入参数和目标输出的 CSV。
+- 训练后用未参与训练的 COMSOL 结果复核 RMSE、MAE、R2 和物理趋势。
+
+## Thinking and Extension
+
+- Readiness: `needs_more_evidence_for_reliable_extension`
+
+### transferable_knowledge
+
+- Reuse the learned COMSOL order: parameters -> geometry -> selections -> materials -> physics -> mesh -> study -> results.
+- Treat extracted parameters as future constraint variables and parametric sweep inputs.
+
+### extension_questions
+
+- Which parameters control geometry size, material response, boundary loading, and solver stability?
+- Which output quantities can be converted into CSV columns for surrogate-model training?
+- Can the same physics be tested under steady, transient, eigenfrequency, or parametric-sweep studies?
+- Can COMSOL/LiveLink export a model-tree summary from the MPH file to verify selections and boundary IDs?
+
+### new_model_directions
+
+- Create a similar baseline model, then add one controlled extension at a time: geometry, material, boundary condition, study type, or output target.
+
+### parameter_sweep_ideas
+
+- Sweep `d_rod` around the learned value `3.5[mm]` and export target outputs to CSV.
+- Sweep `c3_L` around the learned value `11[mm]` and export target outputs to CSV.
+- Sweep `c4_L` around the learned value `12[mm]` and export target outputs to CSV.
+- Sweep `c5_L` around the learned value `12[mm]` and export target outputs to CSV.
+- Sweep `t_angle` around the learned value `10[deg]` and export target outputs to CSV.
+- Sweep `s_angle` around the learned value `35[deg]` and export target outputs to CSV.
+- Sweep `c3_xw` around the learned value `26[mm]` and export target outputs to CSV.
+- Sweep `c3_yw` around the learned value `1.5[mm]` and export target outputs to CSV.
+- Create a COMSOL parametric sweep table first; each row should contain input parameters and derived output quantities.
+
+### code_generation_ideas
+
+- Generate a baseline MATLAB LiveLink builder from the learned parameter and model-tree evidence.
+- Generate a Java builder with comments on boundary selections that must be verified inside COMSOL.
+- Create a CSV export script for derived values before training a numerical surrogate.
+
+### risk_checks
+
+- Boundary IDs and named selections must be verified after geometry changes.
+- Material properties and units must be checked before using generated scripts for real simulation.
+- Mesh independence and baseline-solve convergence should be checked before parameter sweeps.
+- No CSV sweep data was detected, so current learning supports reasoning and code generation more than numerical surrogate training.
+- No MATLAB/Java script was detected; generated automation should be reviewed more carefully.
 
 ## Thoughts
 
@@ -113,6 +221,51 @@
 - Export a CSV containing input parameters and target outputs.
 - Train the local surrogate model after the CSV exists.
 - 几何和建模逻辑验证后，运行 COMSOL 参数扫描并导出 CSV 训练数据。
+
+## Deep Learning Capability Plan
+
+- Readiness: `needs_more_case_evidence_before_training`
+- Score: `45`
+
+### Candidate Inputs
+
+- `d_rod`
+- `c3_L`
+- `c4_L`
+- `c5_L`
+- `t_angle`
+- `s_angle`
+- `c3_xw`
+- `c3_yw`
+- `c3_zw`
+- `c4_xw`
+- `c4_yw`
+- `c4_zw`
+- `c5_xw`
+- `c5_yw`
+- `c5_zw`
+
+### Candidate Outputs
+
+- `primary_quantity_of_interest`
+- `validation_error`
+
+### Training Workflow
+
+- 读取 PDF/MATLAB/Java/MPH/CSV，把案例整理为统一证据包。
+- 从脚本和文本中提取参数、几何、物理场、材料、网格、研究和结果节点。
+- 把候选输入参数转成约束 JSON，并确定扫描范围。
+- 运行 COMSOL 参数扫描，导出包含输入列和目标输出列的 CSV。
+- 对比 baseline、Ridge、RandomForest、MLP，按测试 RMSE/MAE/R2 选择最佳模型。
+- 用未参与训练的新 COMSOL 结果复核代理模型，并把训练报告写回案例记忆库。
+
+### Dataset Requirements
+
+- 当前案例未发现 CSV，需要先用 COMSOL 参数扫描导出训练数据。
+- 每一行代表一次 COMSOL 参数扫描或验证运行。
+- 输入列应来自案例参数、几何尺寸、材料参数、边界条件或工况变量。
+- 输出列应来自最大值、平均值、积分量、目标函数、误差、位移、应力、温度、流量、电流等可验证结果。
+- 训练前保留单位说明，并把 CSV、约束 JSON、生成脚本和模型报告一起保存为同一个训练记录。
 
 ## External Knowledge Alignment
 

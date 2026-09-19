@@ -1,0 +1,858 @@
+{
+  "kind": "comsol_staged_modeling_workflow",
+  "workflow_id": "以试验工作面为研究对象_采用COMSOL_Multiphysics_计算软件对煤_20260704103255",
+  "created_at": "2026-07-04T10:32:55.189293+00:00",
+  "updated_at": "2026-07-04T10:32:55.189293+00:00",
+  "requirement": "以试验工作面为研究对象，采用COMSOL Multiphysics 计算软件对煤层超高压水力压裂进行数值模拟，将模拟结果与现场试验结果进行对比。钻孔完成时，地应力条件和煤层条件是水力压裂的主要影响因素。本章采用数值模拟研究了不同地应力条件及不同煤层条件下水力压裂规律。",
+  "memory_path": "generated/case_memory/case_memory.json",
+  "status": "waiting_for_approval",
+  "current_step": 0,
+  "plan": {
+    "kind": "comsol_model_plan",
+    "requirement": "以试验工作面为研究对象，采用COMSOL Multiphysics 计算软件对煤层超高压水力压裂进行数值模拟，将模拟结果与现场试验结果进行对比。钻孔完成时，地应力条件和煤层条件是水力压裂的主要影响因素。本章采用数值模拟研究了不同地应力条件及不同煤层条件下水力压裂规律。",
+    "inferred_domains": [
+      "structural"
+    ],
+    "case_count": 108,
+    "matched_cases": [
+      {
+        "title": "通过 Amazon EC2™ 运行 COMSOL® 软件",
+        "score": 7.382045791405953,
+        "training_stage": "needs_comsol_sweep_csv",
+        "domains": [
+          "geometry",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "在 COMSOL Multiphysics 中编辑与修复面网格",
+        "score": 7.338501600193165,
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "structural",
+          "electromagnetics",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "使用 Microsoft® Azure 运行 COMSOL® 软件",
+        "score": 7.328196230870263,
+        "training_stage": "needs_comsol_sweep_csv",
+        "domains": [
+          "geometry",
+          "structural",
+          "electromagnetics",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "用 Hodgkin-Huxley 模型模拟动作电位",
+        "score": 4.925023718503241,
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "structural",
+          "electromagnetics",
+          "acoustics",
+          "optimization"
+        ]
+      },
+      {
+        "title": "扳手的应力和应变",
+        "score": 4.877551922979416,
+        "training_stage": "modeling_logic_learning_ready",
+        "domains": [
+          "geometry",
+          "heat_transfer",
+          "structural",
+          "electromagnetics",
+          "fluid",
+          "acoustics",
+          "optimization"
+        ]
+      }
+    ],
+    "knowledge_system_context": {
+      "kind": "knowledge_system_context",
+      "available": true,
+      "case_count": 108,
+      "domain_count": 8,
+      "capability_summary": "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training.",
+      "matched_domains": [
+        {
+          "domain": "structural",
+          "case_count": 108,
+          "cases": [
+            "App 中用户定义的许可协议",
+            "Black-Scholes 方程",
+            "Blasius 边界层",
+            "COMSOL 物理场类型与选择指南",
+            "KdV 方程和孤子",
+            "STL导入教程",
+            "“图像到曲线”插件示例6.2",
+            "两种载荷工况下的锥形悬臂梁",
+            "传输线参数计算器",
+            "传递和吸附",
+            "使用 Microsoft® Azure 运行 COMSOL® 软件",
+            "使用 PID 控制器的过程控制"
+          ],
+          "core_physics": [
+            {
+              "name": "Solid Mechanics",
+              "count": 25
+            },
+            {
+              "name": "Heat Transfer",
+              "count": 23
+            },
+            {
+              "name": "ht / HeatTransfer",
+              "count": 20
+            },
+            {
+              "name": "solid / SolidMechanics",
+              "count": 18
+            },
+            {
+              "name": "Laminar Flow",
+              "count": 16
+            },
+            {
+              "name": "Electric Currents",
+              "count": 13
+            },
+            {
+              "name": "spf / LaminarFlow",
+              "count": 12
+            },
+            {
+              "name": "tds / DilutedSpecies",
+              "count": 11
+            },
+            {
+              "name": "Optimization",
+              "count": 9
+            },
+            {
+              "name": "ec / ConductiveMedia",
+              "count": 9
+            }
+          ],
+          "geometry_patterns": [
+            {
+              "name": "r1 / Rectangle",
+              "count": 31
+            },
+            {
+              "name": "geom1 / r1 / size",
+              "count": 22
+            },
+            {
+              "name": "wp1 / WorkPlane",
+              "count": 14
+            },
+            {
+              "name": "dif1 / Difference",
+              "count": 12
+            },
+            {
+              "name": "geom1 / wp1 / unite",
+              "count": 12
+            },
+            {
+              "name": "blk1 / Block",
+              "count": 11
+            },
+            {
+              "name": "c1 / Circle",
+              "count": 11
+            },
+            {
+              "name": "uni1 / Union",
+              "count": 10
+            },
+            {
+              "name": "cyl1 / Cylinder",
+              "count": 10
+            },
+            {
+              "name": "geom1 / cyl1 / r",
+              "count": 10
+            }
+          ],
+          "study_patterns": [
+            {
+              "name": "std1",
+              "count": 72
+            },
+            {
+              "name": "Stationary",
+              "count": 54
+            },
+            {
+              "name": "std1 / stat / Stationary",
+              "count": 39
+            },
+            {
+              "name": "std1 / time / Transient",
+              "count": 25
+            },
+            {
+              "name": "Time Dependent",
+              "count": 18
+            },
+            {
+              "name": "Eigenfrequency",
+              "count": 9
+            },
+            {
+              "name": "Parametric Sweep",
+              "count": 8
+            },
+            {
+              "name": "Optimization",
+              "count": 7
+            }
+          ],
+          "typical_outputs": [
+            {
+              "name": "Original MPH files for later COMSOL-side verification.",
+              "count": 105
+            },
+            {
+              "name": "LiveLink MATLAB or COMSOL Java script structure.",
+              "count": 96
+            },
+            {
+              "name": "Theory and workflow evidence from PDF documents.",
+              "count": 75
+            },
+            {
+              "name": "传热",
+              "count": 50
+            },
+            {
+              "name": "结构力学",
+              "count": 44
+            },
+            {
+              "name": "PDE/方程建模",
+              "count": 42
+            },
+            {
+              "name": "流体",
+              "count": 42
+            },
+            {
+              "name": "电磁",
+              "count": 33
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Lp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rb",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "rp",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "沉降 App（考虑颗粒大小分布）",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "Lh",
+              "description": "",
+              "source_cases": [
+                "App 中用户定义的许可协议",
+                "限时和硬件锁定的 App",
+                "音叉"
+              ]
+            },
+            {
+              "name": "d_rod",
+              "description": "Rod diameter",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_L",
+              "description": "C3 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_L",
+              "description": "C4 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_L",
+              "description": "C5 screw thread length",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "t_angle",
+              "description": "Transverse angle",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "s_angle",
+              "description": "Sagittal angle",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_xw",
+              "description": "C3 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_yw",
+              "description": "C3 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c3_zw",
+              "description": "C3 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_xw",
+              "description": "C4 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_yw",
+              "description": "C4 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c4_zw",
+              "description": "C4 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_xw",
+              "description": "C5 entry coordinate, x",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_yw",
+              "description": "C5 entry coordinate, y",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "c5_zw",
+              "description": "C5 entry coordinate, z",
+              "source_cases": [
+                "STL导入教程"
+              ]
+            },
+            {
+              "name": "frq_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "Ri_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "dR_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "d_s_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "epsr_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "mur_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "sigma_d_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "sigma_c_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "Ro_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "w_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            },
+            {
+              "name": "delta_coax",
+              "description": "",
+              "source_cases": [
+                "传输线参数计算器"
+              ]
+            }
+          ],
+          "modeling_logic": [
+            "Use structural cases as the first retrieval group when the requirement shares physics, geometry, or output targets.",
+            "Start from parameters and geometry, then add selections, materials, physics, mesh, study, and result export.",
+            "Prioritize learned physics interfaces: Solid Mechanics, Heat Transfer, ht / HeatTransfer.",
+            "Reuse similar study patterns: std1, Stationary, std1 / stat / Stationary."
+          ]
+        }
+      ],
+      "global_modeling_workflow": [
+        {
+          "stage": "requirement",
+          "description": "Clarify target physics, dimensions, assumptions, inputs, outputs, and validation criteria.",
+          "case_evidence_count": 99
+        },
+        {
+          "stage": "evidence",
+          "description": "Retrieve similar cases and official/document evidence before creating a new model.",
+          "case_evidence_count": 108
+        },
+        {
+          "stage": "parameters",
+          "description": "Define reusable parameters, units, sweep ranges, and constraints.",
+          "case_evidence_count": 108
+        },
+        {
+          "stage": "geometry",
+          "description": "Build or import geometry, then create named selections for later boundary assignment.",
+          "case_evidence_count": 108
+        },
+        {
+          "stage": "physics",
+          "description": "Assign materials, physics interfaces, loads, boundary conditions, and initial values.",
+          "case_evidence_count": 108
+        },
+        {
+          "stage": "mesh_study",
+          "description": "Create mesh, study sequence, solver settings, and a baseline solve.",
+          "case_evidence_count": 0
+        },
+        {
+          "stage": "validation",
+          "description": "Export derived values/plots and compare against theory, case expectations, or experiments.",
+          "case_evidence_count": 92
+        },
+        {
+          "stage": "surrogate",
+          "description": "Only after COMSOL sweep CSV exists, train and validate a local surrogate model.",
+          "case_evidence_count": 107
+        }
+      ],
+      "training_strategy": [
+        "Current memory contains 108 cases: 95 support modeling-logic learning and 1 contain direct CSV surrogate-training evidence.",
+        "Treat PDF/MATLAB/Java/MPH evidence as modeling knowledge; treat CSV sweep tables as numerical training data.",
+        "When no CSV is available, generate COMSOL sweep scripts first, export inputs/outputs, then train baseline, ridge, random forest, and MLP candidates.",
+        "After each generated model is corrected in COMSOL, place the corrected MATLAB/Java/exported summary back into the case library and refresh this knowledge system."
+      ],
+      "common_gaps": [
+        {
+          "gap": "Missing parameter-sweep CSV for numerical surrogate training.",
+          "count": 106
+        },
+        {
+          "gap": "MPH files need COMSOL with MATLAB summaries for reliable internal settings.",
+          "count": 105
+        },
+        {
+          "gap": "No parameter table was detected; parameters may need manual extraction from scripts or PDFs.",
+          "count": 39
+        },
+        {
+          "gap": "复杂多物理场仍需要用户逐步确认耦合方向和边界条件。",
+          "count": 1
+        }
+      ]
+    },
+    "recommended_modeling_steps": [
+      "Clarify model objective, dimensionality, input parameters, outputs, and validation targets.",
+      "查看检索到的相似案例，并复用其参数命名、几何序列和 LiveLink API 调用模式。",
+      "Choose geometry strategy: reuse similar case script, import CAD, or generate parametric geometry.",
+      "Define materials, units, selections, and reusable parameter groups.",
+      "Add physics interfaces and boundary/initial conditions.",
+      "Create mesh and study sequence, then solve a baseline model.",
+      "Export derived values and plots for validation."
+    ],
+    "candidate_parameters": [
+      {
+        "name": "ENa",
+        "value": "50[mV]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "EK",
+        "value": "-77[mV]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "El",
+        "value": "-54.4[mV]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "gbarNa",
+        "value": "120[mS/cm^2]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "gbarK",
+        "value": "36[mS/cm^2]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "gbarl",
+        "value": "0.3[mS/cm^2]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "Cm",
+        "value": "0.001[mF/cm^2]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "startT",
+        "value": "0[ms]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "finalT",
+        "value": "100[ms]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "step",
+        "value": "0.01[ms]",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      },
+      {
+        "name": "rel_tol",
+        "value": "0.001",
+        "description": "",
+        "source_case": "用 Hodgkin-Huxley 模型模拟动作电位"
+      }
+    ],
+    "candidate_outputs": [
+      "max_displacement",
+      "max_von_mises_stress",
+      "reaction_force"
+    ],
+    "analysis_path": [
+      "Baseline solve",
+      "Mesh refinement check",
+      "Parameter sweep",
+      "Result validation",
+      "Stress/displacement safety check",
+      "Surrogate training dataset export"
+    ],
+    "training_path": [
+      "根据选定参数和范围创建或改写约束 JSON。",
+      "结合已校验约束和相似案例证据生成 LiveLink MATLAB 建模脚本。",
+      "运行 COMSOL 参数扫描并生成 CSV 数据。",
+      "使用选定输入列和输出列训练本地代理模型。",
+      "用未参与训练的 COMSOL 结果验证 RMSE、MAE、R2 和测试预测。",
+      "Search the master COMSOL case knowledge base for similar evidence before adapting settings.",
+      "Cross-check COMSOL API and feature usage against the official documentation index.",
+      "Keep unsupported settings marked as unknown until verified in COMSOL or by source evidence."
+    ],
+    "limitations": [
+      "Retrieved cases mainly support modeling logic; numerical training still needs CSV sweep data.",
+      "No external master case match was found; rely on local case memory and review settings manually.",
+      "No official documentation match was found; API usage should be checked before execution."
+    ],
+    "external_case_matches": [],
+    "official_doc_matches": []
+  },
+  "steps": [
+    {
+      "index": 0,
+      "id": "physics",
+      "title": "选择物理场",
+      "purpose": "Confirm physics interfaces, coupling assumptions, dependent variables, and boundary-condition families.",
+      "status": "active",
+      "proposal": [
+        "Use inferred domains as the initial physics selection: structural.",
+        "Map requirement keywords to COMSOL physics interfaces, then confirm coupling before code generation.",
+        "Reference matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变."
+      ],
+      "evidence": [
+        "Case memory count: 108.",
+        "Matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变",
+        "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training.",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Stress/displacement safety check"
+      ],
+      "approval_questions": [
+        "物理场是否正确？是否需要耦合其他物理场？",
+        "边界条件类型是否已确认？"
+      ],
+      "approved_outputs": [
+        "approved_physics_interfaces",
+        "approved_couplings",
+        "boundary_condition_families"
+      ]
+    },
+    {
+      "index": 1,
+      "id": "materials",
+      "title": "确定材料",
+      "purpose": "Confirm material groups, property sources, units, nonlinear/anisotropic assumptions, and parameterization.",
+      "status": "pending",
+      "proposal": [
+        "Create material groups before physics features so dependent properties are available.",
+        "Parameterize important material properties when they affect outputs or training data.",
+        "Review units and nonlinear/anisotropic assumptions before solving."
+      ],
+      "evidence": [
+        "Case memory count: 108.",
+        "Matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变",
+        "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training."
+      ],
+      "approval_questions": [
+        "材料属性和单位是否可靠？",
+        "是否需要非线性、各向异性或温度相关材料？"
+      ],
+      "approved_outputs": [
+        "approved_materials",
+        "material_parameters",
+        "unit_checks"
+      ]
+    },
+    {
+      "index": 2,
+      "id": "data_structure",
+      "title": "建模数据与结构",
+      "purpose": "Confirm geometry source, dimensionality, selections, imported data, parameters, and data needed for training.",
+      "status": "pending",
+      "proposal": [
+        "Define global parameters and geometry/data structure before applying boundary conditions.",
+        "Candidate parameters: ENa, EK, El, gbarNa, gbarK, gbarl, Cm, startT, finalT, step.",
+        "Create named selections for boundaries and domains to make later edits stable."
+      ],
+      "evidence": [
+        "Case memory count: 108.",
+        "Matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变",
+        "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training."
+      ],
+      "approval_questions": [
+        "几何/数据结构是否符合建模对象？",
+        "参数、选择集和导入数据是否完整？"
+      ],
+      "approved_outputs": [
+        "approved_geometry_or_data_structure",
+        "named_selections",
+        "input_parameters"
+      ]
+    },
+    {
+      "index": 3,
+      "id": "mesh",
+      "title": "网格策略",
+      "purpose": "Confirm global/local mesh size, boundary layers, refinement targets, and mesh-independence checks.",
+      "status": "pending",
+      "proposal": [
+        "Start with a controlled mesh size parameter, then add local refinement where gradients are expected.",
+        "Plan at least one mesh refinement comparison before parameter sweeps."
+      ],
+      "evidence": [
+        "Case memory count: 108.",
+        "Matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变",
+        "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training."
+      ],
+      "approval_questions": [
+        "网格尺度和局部加密区域是否合理？",
+        "是否需要边界层或网格无关性检查？"
+      ],
+      "approved_outputs": [
+        "approved_mesh_strategy",
+        "refinement_targets",
+        "mesh_validation_plan"
+      ]
+    },
+    {
+      "index": 4,
+      "id": "study_solver",
+      "title": "求解分步",
+      "purpose": "Confirm study sequence, stationary/transient/eigen/frequency/parametric settings, and solver risks.",
+      "status": "pending",
+      "proposal": [
+        "Run a baseline solve before adding parameter sweeps or surrogate-training exports.",
+        "Use the study path suggested by memory: Baseline solve, Mesh refinement check, Parameter sweep, Result validation, Stress/displacement safety check, Surrogate training dataset export."
+      ],
+      "evidence": [
+        "Case memory count: 108.",
+        "Matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变",
+        "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training.",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Stress/displacement safety check"
+      ],
+      "approval_questions": [
+        "求解顺序是否合理？",
+        "是否先做基准求解再做参数扫描？"
+      ],
+      "approved_outputs": [
+        "approved_study_sequence",
+        "solver_settings",
+        "parameter_sweep_plan"
+      ]
+    },
+    {
+      "index": 5,
+      "id": "results_export",
+      "title": "结果与导出",
+      "purpose": "Confirm derived values, plots, CSV export columns, validation criteria, and surrogate-training outputs.",
+      "status": "pending",
+      "proposal": [
+        "Export derived values as CSV columns for validation and surrogate training.",
+        "Candidate outputs: max_displacement, max_von_mises_stress, reaction_force."
+      ],
+      "evidence": [
+        "Case memory count: 108.",
+        "Matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变",
+        "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training.",
+        "Baseline solve",
+        "Mesh refinement check",
+        "Parameter sweep",
+        "Result validation",
+        "Stress/displacement safety check"
+      ],
+      "approval_questions": [
+        "输出量是否能验证模型？",
+        "CSV 列是否满足后续训练需求？"
+      ],
+      "approved_outputs": [
+        "approved_outputs",
+        "csv_export_columns",
+        "validation_targets"
+      ]
+    },
+    {
+      "index": 6,
+      "id": "final_generation",
+      "title": "完整模型生成",
+      "purpose": "Generate final COMSOL MATLAB/Java modeling plan after all previous steps are approved.",
+      "status": "pending",
+      "proposal": [
+        "Generate the complete COMSOL model only after all previous steps are approved.",
+        "Final scripts should preserve comments for boundary IDs, selections, material data, and solver assumptions."
+      ],
+      "evidence": [
+        "Case memory count: 108.",
+        "Matched cases: 通过 Amazon EC2™ 运行 COMSOL® 软件, 在 COMSOL Multiphysics 中编辑与修复面网格, 使用 Microsoft® Azure 运行 COMSOL® 软件, 用 Hodgkin-Huxley 模型模拟动作电位, 扳手的应力和应变",
+        "The local COMSOL knowledge system has learned 108 cases across 8 domains (geometry, structural, acoustics, optimization, electromagnetics, heat_transfer, fluid, electrochemistry). It can retrieve similar cases, propose modeling logic, select candidate parameters/outputs, and explain what evidence is missing before automatic COMSOL code generation or surrogate training."
+      ],
+      "approval_questions": [
+        "所有步骤是否已确认？",
+        "是否可以生成完整 COMSOL MATLAB/Java 建模包？"
+      ],
+      "approved_outputs": [
+        "final_matlab_script",
+        "final_java_script",
+        "verification_report"
+      ]
+    }
+  ],
+  "approval_log": []
+}

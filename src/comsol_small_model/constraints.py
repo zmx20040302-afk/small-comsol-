@@ -16,6 +16,15 @@ REQUIRED_TOP_LEVEL = {
     "outputs",
 }
 
+ONE_DIMENSIONAL_PHYSICS = {
+    "heat_transfer_1d",
+    "diffusion_1d",
+    "axial_bar_1d",
+    "electrothermal_1d",
+    "thermal_expansion_bar_1d",
+    "acoustic_pressure_1d",
+}
+
 
 class ConstraintError(ValueError):
     pass
@@ -33,11 +42,15 @@ def validate_constraints(data: dict[str, Any]) -> None:
     if missing:
         raise ConstraintError(f"Missing required sections: {', '.join(sorted(missing))}")
 
-    if data["geometry"].get("type") != "rectangle_2d":
-        raise ConstraintError("Only geometry.type='rectangle_2d' is supported by this starter template")
-
-    if data["physics"] != "heat_transfer_solid":
-        raise ConstraintError("Only physics='heat_transfer_solid' is supported by this starter template")
+    geometry_type = data["geometry"].get("type")
+    physics = data["physics"]
+    is_legacy_2d = geometry_type == "rectangle_2d" and physics in {"heat_transfer_solid", "solid_mechanics_2d", "thermal_stress_2d"}
+    is_one_dimensional = geometry_type == "interval_1d" and physics in ONE_DIMENSIONAL_PHYSICS
+    if not (is_legacy_2d or is_one_dimensional):
+        raise ConstraintError(
+            "Supported templates are rectangle_2d + heat_transfer_solid, or "
+            "interval_1d with a supported one-dimensional physics type"
+        )
 
     for section_name in ("geometry", "materials", "boundary_conditions", "mesh"):
         section = data[section_name]
@@ -47,8 +60,14 @@ def validate_constraints(data: dict[str, Any]) -> None:
         for name, spec in parameters.items():
             _validate_numeric_spec(section_name, name, spec)
 
-    if data["study"].get("type") not in {"stationary"}:
-        raise ConstraintError("Only study.type='stationary' is supported by this starter template")
+    allowed_studies = {"stationary"} if is_legacy_2d else {"stationary", "transient"}
+    if physics == "acoustic_pressure_1d":
+        allowed_studies.add("eigenfrequency")
+    if data["study"].get("type") not in allowed_studies:
+        raise ConstraintError(f"study.type must be one of {sorted(allowed_studies)}")
+
+    if is_one_dimensional and "L" not in data["geometry"].get("parameters", {}):
+        raise ConstraintError("interval_1d requires geometry.parameters.L")
 
     if not data["outputs"]:
         raise ConstraintError("At least one output expression is required")
