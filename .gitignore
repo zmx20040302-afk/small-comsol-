@@ -27,3 +27,4 @@ Thumbs.db
 *.pid
 *.lock
 *.sqlite3
+generated/execution_jobs/worker_status.json
